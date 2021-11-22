@@ -10,11 +10,11 @@
     <!-- for ios 7 style, multi-resolution icon of 152x152 -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-barstyle" content="black-translucent">
-    <link rel="apple-touch-icon" href="../assets/images/logo.png">
+    <link rel="apple-touch-icon" th:href="@{assets/images/logo.png}">
     <meta name="apple-mobile-web-app-title" content="Flatkit">
     <!-- for Chrome on Android, multi-resolution icon of 196x196 -->
     <meta name="mobile-web-app-capable" content="yes">
-    <link rel="shortcut icon" sizes="196x196" href="../assets/images/logo.png">
+    <link rel="shortcut icon" sizes="196x196" th:href="@{assets/images/logo.png}">
 
     <!-- style -->
     <link rel="stylesheet" th:href="@{assets/animate.css/animate.min.css}" type="text/css" />
@@ -44,11 +44,11 @@
             </div>
             <form name="form">
                 <div class="md-form-group float-label">
-                    <input type="email" class="md-input" ng-model="user.email" required>
+                    <input type="email" class="md-input" name="email" required>
                     <label>Email</label>
                 </div>
                 <div class="md-form-group float-label">
-                    <input type="password" class="md-input" ng-model="user.password" required>
+                    <input type="password" class="md-input" name="password" required>
                     <label>Password</label>
                 </div>
                 <div class="m-b-md">
@@ -62,7 +62,7 @@
 
         <div class="p-v-lg text-center">
             <div class="m-b"><a ui-sref="access.forgot-password" href="forgot-password.html" class="text-primary _600">Forgot password?</a></div>
-            <div>Do not have an account? <a ui-sref="access.signup" href="signup.html" class="text-primary _600">Sign up</a></div>
+            <div>Do not have an account? <a ui-sref="access.signup" th:href="@{logup}" class="text-primary _600">Sign up</a></div>
         </div>
     </div>
 
@@ -71,33 +71,33 @@
 </div>
 <!-- build:js scripts/app.html.js -->
 <!-- jQuery -->
-<script src="../static/libs/jquery/jquery/dist/jquery.js"></script>
+<script th:src="@{libs/jquery/jquery/dist/jquery.js}"></script>
 <!-- Bootstrap -->
-<script src="../static/libs/jquery/tether/dist/js/tether.min.js"></script>
-<script src="../static/libs/jquery/bootstrap/dist/js/bootstrap.js"></script>
+<script th:src="@{libs/jquery/tether/dist/js/tether.min.js}"></script>
+<script th:src="@{libs/jquery/bootstrap/dist/js/bootstrap.js}"></script>
 <!-- core -->
-<script src="../static/libs/jquery/underscore/underscore-min.js"></script>
-<script src="../static/libs/jquery/jQuery-Storage-API/jquery.storageapi.min.js"></script>
-<script src="../static/libs/jquery/PACE/pace.min.js"></script>
+<script th:src="@{libs/jquery/underscore/underscore-min.js}"></script>
+<script th:src="@{libs/jquery/jQuery-Storage-API/jquery.storageapi.min.js}"></script>
+<script th:src="@{libs/jquery/PACE/pace.min.js}"></script>
 
-<script src="../static/scripts/config.lazyload.js"></script>
+<script th:src="@{scripts/config.lazyload.js}"></script>
 
-<script src="../static/scripts/palette.js"></script>
-<script src="../static/scripts/ui-load.js"></script>
-<script src="../static/scripts/ui-jp.js"></script>
-<script src="../static/scripts/ui-include.js"></script>
-<script src="../static/scripts/ui-device.js"></script>
-<script src="../static/scripts/ui-form.js"></script>
-<script src="../static/scripts/ui-nav.js"></script>
-<script src="../static/scripts/ui-screenfull.js"></script>
-<script src="../static/scripts/ui-scroll-to.js"></script>
-<script src="../static/scripts/ui-toggle-class.js"></script>
+<script th:src="@{scripts/palette.js}"></script>
+<script th:src="@{scripts/ui-load.js}"></script>
+<script th:src="@{scripts/ui-jp.js}"></script>
+<script th:src="@{scripts/ui-include.js}"></script>
+<script th:src="@{scripts/ui-device.js}"></script>
+<script th:src="@{scripts/ui-form.js}"></script>
+<script th:src="@{scripts/ui-nav.js}"></script>
+<script th:src="@{scripts/ui-screenfull.js}"></script>
+<script th:src="@{scripts/ui-scroll-to.js}"></script>
+<script th:src="@{scripts/ui-toggle-class.js}"></script>
 
-<script src="../static/scripts/app.js"></script>
+<script th:src="@{scripts/app.js}"></script>
 
 <!-- ajax -->
-<script src="../static/libs/jquery/jquery-pjax/jquery.pjax.js"></script>
-<script src="../static/scripts/ajax.js"></script>
+<script th:src="@{libs/jquery/jquery-pjax/jquery.pjax.js}"></script>
+<script th:src="@{scripts/ajax.js}"></script>
 <!-- endbuild -->
 </body>
 </html>
