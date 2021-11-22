@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hit.spt.mapper.OrderItemMapper">
+    <insert id="insertOrderItem" parameterType="OrderItem">
+        insert into order_item(o_id, g_id, quantity, cost, price)
+        values (#{o_id}, #{g_id}, #{quantity}, #{cost}, #{price})
+    </insert>
+    <delete id="deleteOrderItemByOid" parameterType="java.lang.Integer">
+        delete
+        from order_item
+        where o_id = #{o_id}
+    </delete>
+    <delete id="deleteOrderItemByGid" parameterType="java.lang.Integer">
+        delete
+        from order_item
+        where g_id = #{g_id}
+    </delete>
+    <select id="queryOrderItemByOid" parameterType="java.lang.Integer">
+        select oi_id, o_id, g_id, quantity, cost, price
+        from order_item
+        where o_id = #{o_id}
+    </select>
+    <select id="queryOrderItemByGid" parameterType="java.lang.Integer">
+        select oi_id, o_id, g_id, quantity, cost, price
+        from order_item
+        where g_id = #{g_id}
+    </select>
+    <select id="queryOrderItemByGid">
+        select oi_id, o_id, g_id, quantity, cost, price
+        from order_item
+    </select>
+</mapper>
