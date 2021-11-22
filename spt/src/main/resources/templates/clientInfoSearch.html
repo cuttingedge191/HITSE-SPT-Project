@@ -50,12 +50,13 @@
                         <table class="table table-striped b-t b-b">
                             <thead>
                             <tr>
-                                <th  style="width:10%">ID</th>
-                                <th  style="width:10%">姓名</th>
-                                <th  style="width:25%">类型</th>
-                                <th  style="width:10%">性别</th>
-                                <th  style="width:15%">电话</th>
-                                <th  style="width:15%">地址</th>
+                                <th  style="width:7%">ID</th>
+                                <th  style="width:7%">姓名</th>
+                                <th  style="width:7%">类型</th>
+                                <th  style="width:7%">性别</th>
+                                <th  style="width:10%">电话</th>
+                                <th  style="width:10%">地址</th>
+                                <th style="width:7%">操作</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -64,11 +65,11 @@
                                     <td th:text="${cus.name}"></td>
                                     <td th:text="${cus.type}=='retail'?'零售':'批发'"></td>
                                     <td th:text="${cus.gender}=='female'?'女':'男'"></td>
+                                    <td th:text="${cus.phone}"></td>
                                     <td th:text="${cus.address}"></td>
                                     <td>
-                                        <a class="btn btn-sm btn-primary" th:href="'@{/cos/}' + ${cus.c_id}">编辑</a>
-                                        <button th:attr="del_uri='@{/cos/}'+${cus.c_id}" class="btn btn-sm btn-danger deleteBtn">删除
-                                        </button>
+                                        <a class="btn btn-sm btn-primary" th:href="@{/upcos}+'?c_id='+${cus.c_id}">编辑</a>
+                                        <a th:href="@{/decos}+'?c_id='+${cus.c_id}" class="btn btn-sm btn-danger deleteBtn">删除</a>
                                     </td>
                                 </tr>
                             </tbody>

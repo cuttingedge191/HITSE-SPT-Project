@@ -22,8 +22,15 @@ class SptApplicationTests {
 
     @Test
     public void testCustomerMapper() {
-//        System.out.println(customerMapper.deleteCustomerById(1));
-//        System.out.println(userMapper.insertUser(new User(1,"Jian","male","Harbin",0,"Ali","123456")));
+        int c_id = 22;
+        String name="Chen", type="wholesale", gender="male", phone="3338088", address="Asia";
+        Customer customer = new Customer(c_id, type, name,gender,phone,address);
+        System.out.println(customerMapper.updateCustomerById(customer));
+    }
+
+    @Test
+    public void testUserMapper(){
+        //        System.out.println(userMapper.insertUser(new User(1,"Jian","male","Harbin",0,"Ali","123456")));
 //        System.out.println(userMapper.insertUser(new User(2,"Lian","male","Harbin",0,"Bad","123456")));
         System.out.println(userMapper.queryUserByUsername("aaa"));
         System.out.println(userMapper.queryUserByUsername("Ali"));

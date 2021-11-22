@@ -28,7 +28,7 @@
         from order_item
         where g_id = #{g_id}
     </select>
-    <select id="queryOrderItemByGid">
+    <select id="queryOrderItemList" parameterType="OrderItem">
         select oi_id, o_id, g_id, quantity, cost, price
         from order_item
     </select>

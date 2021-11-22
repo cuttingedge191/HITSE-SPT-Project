@@ -30,27 +30,4 @@ public class HelloController {
         return "logup";
     }
 
-    @RequestMapping("addCustomer")
-    public String addCustomer() {
-        return "addCustomer";
-    }
-
-    @RequestMapping("addOrder")
-    public String addOrder() {
-        return "addOrder";
-    }
-
-
-    @RequestMapping("clientInfoSearch")
-    public String clientInfoSearch(Model model) {
-        List<Customer> customers = clientInfoService.showAllCustoms();
-        model.addAttribute("customers", customers);
-        return "clientInfoSearch";
-    }
-
-    @RequestMapping("addCustomerNow")
-    public String addCustomerNow(Model model){
-        return "clientInfoSearch";
-    }
-
 }
