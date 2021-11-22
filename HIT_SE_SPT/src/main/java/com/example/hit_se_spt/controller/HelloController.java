@@ -12,4 +12,8 @@ public class HelloController {
         model.addAttribute("name", "李四");
         return "index";
     }
+    @RequestMapping("login")
+    public String login(Model model){
+        return "login";
+    }
 }
