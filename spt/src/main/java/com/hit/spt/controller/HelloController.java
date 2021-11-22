@@ -18,8 +18,7 @@ public class HelloController {
     }
 
     @RequestMapping("login")
-    public String login(String email, String password, Model model, HttpSession session, HttpServletRequest request, HttpServletResponse response) {
-        System.out.println(email + " " + password);
+    public String login() {
         return "login";
 
     }
@@ -30,13 +29,13 @@ public class HelloController {
     }
 
     @RequestMapping("addCustomer")
-    public String addCustomer(Model model) {
+    public String addCustomer() {
         return "addCustomer";
     }
 
 
     @RequestMapping("clientInfoSearch")
-    public String clientInfoSearch(Model model) {
+    public String clientInfoSearch() {
         return "clientInfoSearch";
     }
 }

@@ -10,23 +10,23 @@
     <!-- for ios 7 style, multi-resolution icon of 152x152 -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-barstyle" content="black-translucent">
-    <link rel="apple-touch-icon" th:href="@{assets/images/logo.png}">
+    <link rel="apple-touch-icon" th:href="@{/assets/images/logo.png}">
     <meta name="apple-mobile-web-app-title" content="Flatkit">
     <!-- for Chrome on Android, multi-resolution icon of 196x196 -->
     <meta name="mobile-web-app-capable" content="yes">
-    <link rel="shortcut icon" sizes="196x196" th:href="@{assets/images/logo.png}">
+    <link rel="shortcut icon" sizes="196x196" th:href="@{/assets/images/logo.png}">
 
     <!-- style -->
-    <link rel="stylesheet" th:href="@{assets/animate.css/animate.min.css}" type="text/css"/>
-    <link rel="stylesheet" th:href="@{assets/glyphicons/glyphicons.css}" type="text/css"/>
-    <link rel="stylesheet" th:href="@{assets/font-awesome/css/font-awesome.min.css}" type="text/css"/>
-    <link rel="stylesheet" th:href="@{assets/material-design-icons/material-design-icons.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/assets/animate.css/animate.min.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/assets/glyphicons/glyphicons.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/assets/font-awesome/css/font-awesome.min.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/assets/material-design-icons/material-design-icons.css}" type="text/css"/>
 
-    <link rel="stylesheet" th:href="@{assets/bootstrap/dist/css/bootstrap.min.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/assets/bootstrap/dist/css/bootstrap.min.css}" type="text/css"/>
     <!-- build:css ../assets/styles/app.min.css -->
-    <link rel="stylesheet" th:href="@{assets/styles/app.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/assets/styles/app.css}" type="text/css"/>
     <!-- endbuild -->
-    <link rel="stylesheet" th:href="@{assets/styles/font.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/assets/styles/font.css}" type="text/css"/>
 </head>
 <body>
 <div class="app" id="app">
@@ -61,7 +61,7 @@
         </div>
 
         <div class="p-v-lg text-center">
-            <div>已有账户? <a ui-sref="access.signin" th:href="@{login}" class="text-primary _600">登录</a></div>
+            <div>已有账户? <a ui-sref="access.signin" th:href="@{/login}" class="text-primary _600">登录</a></div>
         </div>
     </div>
 
@@ -70,33 +70,33 @@
 </div>
 <!-- build:js scripts/app.html.js -->
 <!-- jQuery -->
-<script th:src="@{libs/jquery/jquery/dist/jquery.js}"></script>
+<script th:src="@{/libs/jquery/jquery/dist/jquery.js}"></script>
 <!-- Bootstrap -->
-<script th:src="@{libs/jquery/tether/dist/js/tether.min.js}"></script>
-<script th:src="@{libs/jquery/bootstrap/dist/js/bootstrap.js}"></script>
+<script th:src="@{/libs/jquery/tether/dist/js/tether.min.js}"></script>
+<script th:src="@{/libs/jquery/bootstrap/dist/js/bootstrap.js}"></script>
 <!-- core -->
-<script th:src="@{libs/jquery/underscore/underscore-min.js}"></script>
-<script th:src="@{libs/jquery/jQuery-Storage-API/jquery.storageapi.min.js}"></script>
-<script th:src="@{libs/jquery/PACE/pace.min.js}"></script>
+<script th:src="@{/libs/jquery/underscore/underscore-min.js}"></script>
+<script th:src="@{/libs/jquery/jQuery-Storage-API/jquery.storageapi.min.js}"></script>
+<script th:src="@{/libs/jquery/PACE/pace.min.js}"></script>
 
-<script th:src="@{scripts/config.lazyload.js}"></script>
+<script th:src="@{/scripts/config.lazyload.js}"></script>
 
-<script th:src="@{scripts/palette.js}"></script>
-<script th:src="@{scripts/ui-load.js}"></script>
-<script th:src="@{scripts/ui-jp.js}"></script>
-<script th:src="@{scripts/ui-include.js}"></script>
-<script th:src="@{scripts/ui-device.js}"></script>
-<script th:src="@{scripts/ui-form.js}"></script>
-<script th:src="@{scripts/ui-nav.js}"></script>
-<script th:src="@{scripts/ui-screenfull.js}"></script>
-<script th:src="@{scripts/ui-scroll-to.js}"></script>
-<script th:src="@{scripts/ui-toggle-class.js}"></script>
+<script th:src="@{/scripts/palette.js}"></script>
+<script th:src="@{/scripts/ui-load.js}"></script>
+<script th:src="@{/scripts/ui-jp.js}"></script>
+<script th:src="@{/scripts/ui-include.js}"></script>
+<script th:src="@{/scripts/ui-device.js}"></script>
+<script th:src="@{/scripts/ui-form.js}"></script>
+<script th:src="@{/scripts/ui-nav.js}"></script>
+<script th:src="@{/scripts/ui-screenfull.js}"></script>
+<script th:src="@{/scripts/ui-scroll-to.js}"></script>
+<script th:src="@{/scripts/ui-toggle-class.js}"></script>
 
-<script th:src="@{scripts/app.js}"></script>
+<script th:src="@{/scripts/app.js}"></script>
 
 <!-- ajax -->
-<script th:src="@{libs/jquery/jquery-pjax/jquery.pjax.js}"></script>
-<script th:src="@{scripts/ajax.js}"></script>
+<script th:src="@{/libs/jquery/jquery-pjax/jquery.pjax.js}"></script>
+<script th:src="@{/scripts/ajax.js}"></script>
 <!-- endbuild -->
 </body>
 </html>
