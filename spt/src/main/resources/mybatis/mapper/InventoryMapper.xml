@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hit.spt.mapper.InventoryMapper">
+    <insert id="insertInventory" parameterType="Inventory">
+        insert into inventory(g_id, quantity, quality)
+        values (#{g_id}, #{quantity}, #{quality})
+    </insert>
+    <delete id="deleteInventoryByGid" parameterType="java.lang.Integer">
+        delete
+        from inventory
+        where g_id = #{g_id}
+    </delete>
+    <select id="queryInventoryByGid" parameterType="java.lang.Integer" resultType="Inventory">
+        select i_id, g_id, quantity, quality
+        from inventory
+        where gid = #{g_id}
+    </select>
+    <select id="queryInventoryList" resultType="Inventory">
+        select i_id, g_id, quantity, quality
+        from inventory
+    </select>
+</mapper>
