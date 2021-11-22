@@ -36,6 +36,11 @@ public class HelloController {
         return "addCustomer";
     }
 
+    @RequestMapping("addOrder")
+    public String addOrder() {
+        return "addOrder";
+    }
+
 
     @RequestMapping("clientInfoSearch")
     public String clientInfoSearch(Model model) {
