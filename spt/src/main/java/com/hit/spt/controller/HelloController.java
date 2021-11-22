@@ -23,7 +23,6 @@ public class HelloController {
     @RequestMapping("login")
     public String login() {
         return "login";
-
     }
 
     @RequestMapping("logup")
@@ -53,4 +52,5 @@ public class HelloController {
     public String addCustomerNow(Model model){
         return "clientInfoSearch";
     }
+
 }
