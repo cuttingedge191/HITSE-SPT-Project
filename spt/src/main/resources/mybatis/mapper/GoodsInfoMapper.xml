@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hit.spt.mapper.GoodsInfoMapper">
+    <select id="insertGoodsInfo" resultType="GoodsInfo">
+        insert into goods_info(name, cost, retail_price, trade_price, description)
+        values (#{name}, #{cost}, #{retail_price}, #{trade_price}, #{description})
+    </select>
+    <update id="updateGoodsInfo" parameterType="GoodsInfo">
+        update goods_info
+        set name         = #{name},
+            cost         = #{cost},
+            retail_price = #{retail_price},
+            trade_price  = #{trade_price},
+            description  = #{description}
+        where g_id = #{g_id}
+    </update>
+    <select id="queryGoodsInfoByName" resultType="GoodsInfo">
+        select g_id,
+               name,
+               cost,
+               retail_price,
+               trade_price,
+               description
+        from goods_info
+        where name = #{name}
+    </select>
+    <select id="queryGoodsInfoByGid" resultType="GoodsInfo">
+        select g_id,
+               name,
+               cost,
+               retail_price,
+               trade_price,
+               description
+        from goods_info
+        where name = #{name}
+    </select>
+    <delete id="deleteGoodsInfoByGid" parameterType="java.lang.Integer">
+        delete
+        from goods_info
+        where g_id = #{g_id}
+    </delete>
+    <select id="queryGoodsInfoList" resultType="GoodsInfo">
+        select g_id,
+               name,
+               cost,
+               retail_price,
+               trade_price,
+               description
+        from goods_info
+    </select>
+</mapper>
