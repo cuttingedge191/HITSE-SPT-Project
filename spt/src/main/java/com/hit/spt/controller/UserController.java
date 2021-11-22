@@ -1,5 +1,7 @@
 package com.hit.spt.controller;
 
+import com.hit.spt.pojo.Customer;
+import com.hit.spt.pojo.User;
 import com.hit.spt.service.LogInUpService;
 import com.hit.spt.service.impl.LogInUpServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +25,8 @@ public class UserController {
     }
 
     @RequestMapping("user/logup")
-    public String logup(@RequestParam("username") String username, @RequestParam("password") String password, Model model) {
-        if (service.checkPassword(username, password))
-            return "index";
-        model.addAttribute("msg", "用户名或者密码错误!");
+    public String logup(User user, Model model) {
+        service.registerUser(user);
         return "login";
     }
 

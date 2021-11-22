@@ -43,19 +43,28 @@
             <div class="m-b text-sm">
                 登录
             </div>
-            <form name="form">
+            <form name="form" method="post" th:action="@{/user/logup}">
                 <div class="md-form-group">
-                    <input type="text" class="md-input" required>
-                    <label>Name</label>
+                    <input type="text" class="md-input" name="username" required>
+                    <label>用户名</label>
                 </div>
                 <div class="md-form-group">
-                    <input type="email" class="md-input" required>
-                    <label>Email</label>
+                    <input type="password" class="md-input" name="password" required>
+                    <label>密码</label>
                 </div>
                 <div class="md-form-group">
-                    <input type="password" class="md-input" required>
-                    <label>Password</label>
+                    <input type="text" class="md-input" name="name" required>
+                    <label>真实名</label>
                 </div>
+                <div class="md-form-group">
+                    <input type="text" class="md-input" name="gender" required>
+                    <label>性别</label>
+                </div>
+                <div class="md-form-group">
+                    <input type="text" class="md-input" name="position" required>
+                    <label>地址</label>
+                </div>
+
                 <button type="submit" class="btn primary btn-block p-x-md">注册</button>
             </form>
         </div>
