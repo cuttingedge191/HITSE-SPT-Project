@@ -54,3 +54,5 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2021-11-22 18:54:44
+ALTER TABLE `spt`.`customer_info`
+    CHANGE COLUMN `c_id` `c_id` INT NOT NULL AUTO_INCREMENT ;

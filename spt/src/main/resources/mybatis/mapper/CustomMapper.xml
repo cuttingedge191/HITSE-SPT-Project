@@ -4,6 +4,11 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.hit.spt.mapper.CustomerMapper">
+    <select id="queryCustomerById" resultType="Customer" parameterType="java.lang.Integer">
+        select c_id, type, name, gender, phone, address
+        from customer_info
+        where c_id=#{c_id}
+    </select>
     <select id="queryCustomerList" resultType="Customer">
         select *
         from spt.customer_info
@@ -17,4 +22,8 @@
         from customer_info
         where c_id = #{c_id}
     </delete>
+    <update id="updateCustomerById" parameterType="Customer">
+        update customer_info set type=#{type}, name=#{name}, gender=#{gender}, phone=#{phone}, address=#{address}
+        where c_id=#{c_id}
+    </update>
 </mapper>

@@ -15,5 +15,8 @@ public interface CustomerMapper {
     int deleteCustomerById(Integer c_id);
     //已测试
     List<Customer> queryCustomerList();
+    //已测试
+    int updateCustomerById(Customer customer);
 
+    Customer queryCustomerById(Integer c_id);
 }
