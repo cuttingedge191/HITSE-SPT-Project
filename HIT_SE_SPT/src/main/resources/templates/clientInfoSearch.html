@@ -47,8 +47,8 @@
                         <h2>客户资料查询</h2>
                     </div>
                     <div class="table-responsive">
-                        <table ui-jp="dataTable" ui-options="{
-          sAjaxSource: 'api/datatable.js}on',
+                        <table ui-jq="dataTable" ui-options="{
+          sAjaxSource: 'api/datatable.json',
           aoColumns: [
             { mData: 'engine' },
             { mData: 'browser' },
@@ -59,11 +59,12 @@
         }" class="table table-striped b-t b-b">
                             <thead>
                             <tr>
-                                <th style="width:20%">Rendering engine</th>
-                                <th style="width:25%">Browser</th>
-                                <th style="width:25%">Platform(s)</th>
-                                <th style="width:15%">Engine version</th>
-                                <th style="width:15%">CSS grade</th>
+                                <th style="width:10%">cid</th>
+                                <th style="width:15%">姓名</th>
+                                <th style="width:15%">性别</th>
+                                <th style="width:15%">批发</th>
+                                <th style="width:15%">电话</th>
+                                <th style="width:30%">地址</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -109,5 +110,7 @@
         <script th:src="@{libs/jquery/jquery-pjax/jquery.pjax.js}"></script>
         <script th:src="@{scripts/ajax.js}"></script>
         <!-- endbuild -->
+    </div>
+</div>
 </body>
 </html>

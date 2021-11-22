@@ -1,4 +1,4 @@
-package com.example.hit_se_spt.pojo;
+package com.hit.hit_se_spt.pojo;
 
 
 import lombok.AllArgsConstructor;

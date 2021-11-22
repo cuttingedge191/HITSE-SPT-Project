@@ -1,4 +1,4 @@
-package com.example.hit_se_spt;
+package com.hit.hit_se_spt;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
