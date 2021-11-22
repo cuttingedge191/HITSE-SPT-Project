@@ -47,26 +47,30 @@
                         <h2>客户资料查询</h2>
                     </div>
                     <div class="table-responsive">
-                        <table ui-jp="dataTable" ui-options="{
-          sAjaxSource: 'api/datatable.js}on',
-          aoColumns: [
-            { mData: 'engine' },
-            { mData: 'browser' },
-            { mData: 'platform' },
-            { mData: 'version' },
-            { mData: 'grade' }
-          ]
-        }" class="table table-striped b-t b-b">
+                        <table class="table table-striped b-t b-b">
                             <thead>
                             <tr>
-                                <th  style="width:20%">Rendering engine</th>
-                                <th  style="width:25%">Browser</th>
-                                <th  style="width:25%">Platform(s)</th>
-                                <th  style="width:15%">Engine version</th>
-                                <th  style="width:15%">CSS grade</th>
+                                <th  style="width:10%">ID</th>
+                                <th  style="width:10%">姓名</th>
+                                <th  style="width:25%">类型</th>
+                                <th  style="width:10%">性别</th>
+                                <th  style="width:15%">电话</th>
+                                <th  style="width:15%">地址</th>
                             </tr>
                             </thead>
                             <tbody>
+                                <tr th:each="cus:${customers}">
+                                    <td th:text="${cus.c_id}"></td>
+                                    <td th:text="${cus.name}"></td>
+                                    <td th:text="${cus.type}=='retail'?'零售':'批发'"></td>
+                                    <td th:text="${cus.gender}=='female'?'女':'男'"></td>
+                                    <td th:text="${cus.address}"></td>
+                                    <td>
+                                        <a class="btn btn-sm btn-primary" th:href="'@{/cos/}' + ${cus.c_id}">编辑</a>
+                                        <button th:attr="del_uri='@{/cos/}'+${cus.c_id}" class="btn btn-sm btn-danger deleteBtn">删除
+                                        </button>
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>

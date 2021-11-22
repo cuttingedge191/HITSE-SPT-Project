@@ -18,10 +18,7 @@ public class CustomerController {
 
     @RequestMapping("customerInfo")
     public JSONPObject customerInfo() {
-        List<Customer> customers = customerMapper.queryCustomerList();
-
         JSONObject customerList = new JSONObject();
-
         return null;
     }
 }
