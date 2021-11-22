@@ -2,6 +2,7 @@ package com.hit.spt.pojo;
 
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -15,4 +16,5 @@ public class Customer {
     private String gender;
     private String phone;
     private String address;
+
 }

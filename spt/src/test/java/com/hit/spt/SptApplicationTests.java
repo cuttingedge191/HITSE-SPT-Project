@@ -18,7 +18,7 @@ class SptApplicationTests {
     @Test
     public void testCustomerMapper() {
         System.out.println(customerMapper.queryCustomerList());
-        System.out.println(customerMapper.insertCustomer(new Customer()));
+        System.out.println(customerMapper.insertCustomer(new Customer(2, "retail", "geng", "male", "12333", "Harbin")));
     }
 
 }
