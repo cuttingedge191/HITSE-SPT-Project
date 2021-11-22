@@ -9,9 +9,14 @@ import java.util.List;
 @Mapper
 @Repository
 public interface UserMapper {
+
+    int insertUser(User user);
+
     List<User> queryUserList();
 
-    User queryUserByName();
+    List<User> queryUserByName(String name);
 
+    // 为了验证登录信息
+    User queryUserByUsername(String username);
 
 }

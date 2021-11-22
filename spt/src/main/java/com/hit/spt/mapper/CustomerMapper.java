@@ -9,10 +9,11 @@ import java.util.List;
 @Mapper
 @Repository
 public interface CustomerMapper {
+    //已测试
     int insertCustomer(Customer customer);
-
+    //已测试
     int deleteCustomerById(Integer c_id);
-
+    //已测试
     List<Customer> queryCustomerList();
 
 }
