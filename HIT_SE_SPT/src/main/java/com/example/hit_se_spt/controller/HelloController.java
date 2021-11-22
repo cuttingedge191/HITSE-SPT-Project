@@ -16,4 +16,9 @@ public class HelloController {
     public String login(Model model){
         return "login";
     }
+
+    @RequestMapping("addCustomer")
+    public String addCustomer(Model model){
+        return "addCustomer";
+    }
 }
