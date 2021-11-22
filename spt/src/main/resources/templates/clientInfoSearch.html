@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8"/>
+    <meta charset="utf-8" />
     <title>通用批发零售业务管理系统</title>
-    <meta name="description" content="Admin, Dashboard, Bootstrap, Bootstrap 4, Angular, AngularJS"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui"/>
+    <meta name="description" content="Admin, Dashboard, Bootstrap, Bootstrap 4, Angular, AngularJS" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <!-- for ios 7 style, multi-resolution icon of 152x152 -->
@@ -17,16 +17,16 @@
     <link rel="shortcut icon" sizes="196x196" th:href="@{assets/images/logo.png}">
 
     <!-- style -->
-    <link rel="stylesheet" th:href="@{assets/animate/animate.min.css}" type="text/css"/>
-    <link rel="stylesheet" th:href="@{assets/glyphicons/glyphicons.css}" type="text/css"/>
-    <link rel="stylesheet" th:href="@{assets/font-awesome/css/font-awesome.min.css}" type="text/css"/>
-    <link rel="stylesheet" th:href="@{assets/material-design-icons/material-design-icons.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{assets/animate/animate.min.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{assets/glyphicons/glyphicons.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{assets/font-awesome/css/font-awesome.min.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{assets/material-design-icons/material-design-icons.css}" type="text/css" />
 
-    <link rel="stylesheet" th:href="@{assets/bootstrap/dist/css/bootstrap.min.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{assets/bootstrap/dist/css/bootstrap.min.css}" type="text/css" />
     <!-- build:css @{assets/styles/app.min.css} -->
-    <link rel="stylesheet" th:href="@{assets/styles/app.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{assets/styles/app.css}" type="text/css" />
     <!-- endbuild -->
-    <link rel="stylesheet" th:href="@{assets/styles/font.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{assets/styles/font.css}" type="text/css" />
 </head>
 <body>
 <div class="app" id="app">
@@ -47,8 +47,8 @@
                         <h2>客户资料查询</h2>
                     </div>
                     <div class="table-responsive">
-                        <table ui-jq="dataTable" ui-options="{
-          sAjaxSource: 'api/datatable.json',
+                        <table ui-jp="dataTable" ui-options="{
+          sAjaxSource: 'api/datatable.js}on',
           aoColumns: [
             { mData: 'engine' },
             { mData: 'browser' },
@@ -59,12 +59,11 @@
         }" class="table table-striped b-t b-b">
                             <thead>
                             <tr>
-                                <th style="width:10%">cid</th>
-                                <th style="width:15%">姓名</th>
-                                <th style="width:15%">性别</th>
-                                <th style="width:15%">批发</th>
-                                <th style="width:15%">电话</th>
-                                <th style="width:30%">地址</th>
+                                <th  style="width:20%">Rendering engine</th>
+                                <th  style="width:25%">Browser</th>
+                                <th  style="width:25%">Platform(s)</th>
+                                <th  style="width:15%">Engine version</th>
+                                <th  style="width:15%">CSS grade</th>
                             </tr>
                             </thead>
                             <tbody>
