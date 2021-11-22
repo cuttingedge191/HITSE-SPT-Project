@@ -1,4 +1,4 @@
-package com.hit.spt;
+package com.hit.spt.mapper;
 
 import com.hit.spt.pojo.Customer;
 import org.apache.ibatis.annotations.Mapper;

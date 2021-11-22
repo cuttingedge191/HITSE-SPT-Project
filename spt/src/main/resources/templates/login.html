@@ -42,10 +42,11 @@
             <div class="m-b text-sm">
                 登录
             </div>
-            <form name="form">
+            <form name="form" th:action="@{/user/login}">
                 <div class="md-form-group float-label">
-                    <input type="email" class="md-input" name="email" required>
-                    <label>Email</label>
+                    <input type="email" class="md-input" name="username" required>
+                    <label>username</label>
+                    <p style="color:red" th:text="${msg}" th:if="not #strings.isEmpty({msg})"> s</p>
                 </div>
                 <div class="md-form-group float-label">
                     <input type="password" class="md-input" name="password" required>

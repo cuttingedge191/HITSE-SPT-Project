@@ -1,6 +1,5 @@
 package com.hit.spt.pojo;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,11 +7,12 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Customer {
-    private Integer c_id;
-    private String type;
+public class User {
+    private Integer u_id;
     private String name;
     private String gender;
-    private String phone;
-    private String address;
+    private String position;
+    private Integer level;
+    private String username;
+    private String password;
 }
