@@ -19,6 +19,7 @@ public class LogInUpServiceImpl implements LogInUpService {
 
     @Override
     public boolean registerUser(User user) {
+
         return userMapper.insertUser(user) > 0;
     }
 }

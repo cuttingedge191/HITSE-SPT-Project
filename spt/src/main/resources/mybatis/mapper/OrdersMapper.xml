@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hit.spt.mapper.OrdersMapper">
+    <select id="queryOrdersByCid" parameterType="java.lang.Integer" resultType="Orders">
+        select o_id, c_id, type, status, total_turnover, total_cost, total_profit
+        from orders
+        where c_id = #{c_id}
+    </select>
+    <select id="queryOrdersByStatus" parameterType="java.lang.String" resultType="Orders">
+        select o_id, c_id, type, status, total_turnover, total_cost, total_profit
+        from orders
+        where status = #{status}
+    </select>
+    <select id="queryOrdersByType" parameterType="java.lang.String" resultType="Orders">
+        select o_id, c_id, type, status, total_turnover, total_cost, total_profit
+        from orders
+        where type = #{type}
+    </select>
+    <delete id="deleteOrdersByOid" parameterType="java.lang.Integer">
+        delete
+        from orders
+        where o_id = #{o_id}
+    </delete>
+</mapper>
