@@ -39,12 +39,11 @@
     <div class="container">
         <div ui-view class="app-body" id="view">
 
-            <div class="col-md-9 center-block">
+            <div class="col-md-6 center-block">
                 <br/>
                 <button class="btn btn-fw light-blue-500">客户添加</button>
                 <div class="box">
                     <div class="box-header">
-                        <h2></h2>
                         <small>添加客户资料</small>
                     </div>
                     <div class="box-divider m-0"></div>
@@ -52,20 +51,32 @@
                         <form role="form">
                             <div class="form-group">
                                 <label for="customer_name">客户联系人</label>
-                                <input type="text" class="form-control" id="customer_name"
-                                       placeholder="客户名">
+                                <input type="text" class="form-control" name="name" id="customer_name"
+                                       placeholder="客户名" required>
                             </div>
                             <div class="form-group">
                                 <label for="customer_phone">联系方式</label>
-                                <input type="text" class="form-control" id="customer_phone"
-                                       placeholder="电话">
+                                <input type="text" class="form-control" name="phone" id="customer_phone"
+                                       placeholder="电话" required>
                             </div>
                             <div class="form-group">
                                 <label for="customer_addr">用户地址</label>
-                                <input type="text" class="form-control" id="customer_addr"
-                                       placeholder="地址">
+                                <input type="text" class="form-control" name="addr" id="customer_addr"
+                                       placeholder="地址" required>
                             </div>
-                            <button type="submit" class="btn white m-b">添加</button>
+                            <div class="form-group">
+                                <label for="male">男</label>
+                                <input type="radio" name="sex" id="male"/>
+                                <label for="female">女</label>
+                                <input type="radio" name="sex" id="female"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="retail">零售</label>
+                                <input type="radio" name="type" id="retail" value="true">
+                                <label for="retail">批发</label>
+                                <input type="radio" name="type" id="bulk" value="false">
+                            </div>
+                            <button type="submit" class="btn primary m-b ">添加</button>
                         </form>
                     </div>
                 </div>
