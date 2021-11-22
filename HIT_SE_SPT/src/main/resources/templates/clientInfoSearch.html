@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>通用批发零售业务管理系统</title>
+    <meta name="description" content="Admin, Dashboard, Bootstrap, Bootstrap 4, Angular, AngularJS"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- for ios 7 style, multi-resolution icon of 152x152 -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-barstyle" content="black-translucent">
+    <link rel="apple-touch-icon" th:href="@{assets/images/logo.png}">
+    <meta name="apple-mobile-web-app-title" content="Flatkit">
+    <!-- for Chrome on Android, multi-resolution icon of 196x196 -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="shortcut icon" sizes="196x196" th:href="@{assets/images/logo.png}">
+
+    <!-- style -->
+    <link rel="stylesheet" th:href="@{assets/animate/animate.min.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{assets/glyphicons/glyphicons.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{assets/font-awesome/css/font-awesome.min.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{assets/material-design-icons/material-design-icons.css}" type="text/css"/>
+
+    <link rel="stylesheet" th:href="@{assets/bootstrap/dist/css/bootstrap.min.css}" type="text/css"/>
+    <!-- build:css @{assets/styles/app.min.css} -->
+    <link rel="stylesheet" th:href="@{assets/styles/app.css}" type="text/css"/>
+    <!-- endbuild -->
+    <link rel="stylesheet" th:href="@{assets/styles/font.css}" type="text/css"/>
+</head>
+<body>
+<div class="app" id="app">
+
+    <!-- ############ LAYOUT START-->
+
+    <!-- aside -->
+    <!-- / -->
+
+    <!-- content -->
+    <div id="content" class="app-content box-shadow-z0" role="main">
+        <div ui-view class="app-body" id="view">
+
+            <!-- ############ PAGE START-->
+            <div class="padding">
+                <div class="box">
+                    <div class="box-header">
+                        <h2>客户资料查询</h2>
+                    </div>
+                    <div class="table-responsive">
+                        <table ui-jp="dataTable" ui-options="{
+          sAjaxSource: 'api/datatable.js}on',
+          aoColumns: [
+            { mData: 'engine' },
+            { mData: 'browser' },
+            { mData: 'platform' },
+            { mData: 'version' },
+            { mData: 'grade' }
+          ]
+        }" class="table table-striped b-t b-b">
+                            <thead>
+                            <tr>
+                                <th style="width:20%">Rendering engine</th>
+                                <th style="width:25%">Browser</th>
+                                <th style="width:25%">Platform(s)</th>
+                                <th style="width:15%">Engine version</th>
+                                <th style="width:15%">CSS grade</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!--/-->
+
+            <!-- ############ PAGE END-->
+
+            <!-- ############ LAYOUT END-->
+
+        </div>
+        <!-- build:js @{scripts/app.html.js} -->
+        <!-- jQuery -->
+        <script th:src="@{libs/jquery/jquery/dist/jquery.js}"></script>
+        <!-- Bootstrap -->
+        <script th:src="@{libs/jquery/tether/dist/js/tether.min.js}"></script>
+        <script th:src="@{libs/jquery/bootstrap/dist/js/bootstrap.js}"></script>
+        <!-- core -->
+        <script th:src="@{libs/jquery/underscore/underscore-min.js}"></script>
+        <script th:src="@{libs/jquery/jQuery-Storage-API/jquery.storageapi.min.js}"></script>
+        <script th:src="@{libs/jquery/PACE/pace.min.js}"></script>
+
+        <script th:src="@{scripts/config.lazyload.js}"></script>
+
+        <script th:src="@{scripts/palette.js}"></script>
+        <script th:src="@{scripts/ui-load.js}"></script>
+        <script th:src="@{scripts/ui-jp.js}"></script>
+        <script th:src="@{scripts/ui-include.js}"></script>
+        <script th:src="@{scripts/ui-device.js}"></script>
+        <script th:src="@{scripts/ui-form.js}"></script>
+        <script th:src="@{scripts/ui-nav.js}"></script>
+        <script th:src="@{scripts/ui-screenfull.js}"></script>
+        <script th:src="@{scripts/ui-scroll-to.js}"></script>
+        <script th:src="@{scripts/ui-toggle-class.js}"></script>
+
+        <script th:src="@{scripts/app.js}"></script>
+
+        <!-- ajax -->
+        <script th:src="@{libs/jquery/jquery-pjax/jquery.pjax.js}"></script>
+        <script th:src="@{scripts/ajax.js}"></script>
+        <!-- endbuild -->
+</body>
+</html>
