@@ -1,10 +1,313 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>第一个Springboot的thymeleaf</title>
+    <meta charset="utf-8" />
+    <title>通用批发零售业务管理系统</title>
+    <meta name="description" content="Admin, Dashboard, Bootstrap, Bootstrap 4, Angular, AngularJS" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- for ios 7 style, multi-resolution icon of 152x152 -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-barstyle" content="black-translucent">
+    <link rel="apple-touch-icon" th:href="@{/assets/images/logo.png}">
+    <meta name="apple-mobile-web-app-title" content="Flatkit">
+    <!-- for Chrome on Android, multi-resolution icon of 196x196 -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="shortcut icon" sizes="196x196" th:href="@{/assets/images/logo.png}">
+
+    <!-- style -->
+    <link rel="stylesheet" th:href="@{/assets/animate.css/animate.min.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/assets/glyphicons/glyphicons.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/assets/font-awesome/css/font-awesome.min.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/assets/material-design-icons/material-design-icons.css}" type="text/css" />
+
+    <link rel="stylesheet" th:href="@{/assets/bootstrap/dist/css/bootstrap.min.css}" type="text/css" />
+    <!-- build:css @{/assets/styles/app.min.css} -->
+    <link rel="stylesheet" th:href="@{/assets/styles/app.css}" type="text/css" />
+    <!-- endbuild -->
+    <link rel="stylesheet" th:href="@{/assets/styles/font.css}" type="text/css" />
 </head>
+
 <body>
-  <p th:text="${name}"> </p>
+<div class="app" id="app">
+
+    <!-- ############ LAYOUT START-->
+
+    <!-- aside -->
+    <div id="aside" class="app-aside modal nav-dropdown">
+        <!-- fluid app aside -->
+        <div class="left navside dark dk" data-layout="column">
+            <div class="navbar no-radius">
+                <!-- brand -->
+                <a class="navbar-brand">
+                    <!-- 原来的图标
+                        <div ui-include="'@{/assets/images/logo.svg'"></div>
+                        <img th:src="@{/assets/images/logo.png}" alt="." class="hide">
+                    -->
+                    <span class="hidden-folded inline">通用批发零售</span><br>
+                    <span class="hidden-folded inline">业务管理系统</span>
+                </a>
+                <!-- /brand -->
+            </div>
+            <div class="hide-scroll" data-flex>
+                <nav class="scroll nav-light">
+
+                    <ul class="nav" ui-nav>
+                        <li class="nav-header hidden-folded">
+                            <small class="text-muted">主要功能</small>
+                        </li>
+
+                        <li>
+                            <a th:href="main.html">
+                                    <span class="nav-icon">
+                                        <i class="material-icons">&#xe3fc;
+                                            <span ui-include="'@{/assets/images/i_0.svg'"></span>
+                                        </i>
+                                    </span>
+                                <span class="nav-text">概览界面</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a th:href="404.html">
+                                    <span class="nav-icon">
+                                        <i class="material-icons">&#xe5c3;
+                                            <span ui-include="'@{/assets/images/i_1.svg'"></span>
+                                        </i>
+                                    </span>
+                                <span class="nav-text">货品管理</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a th:href="404.html">
+                                    <span class="nav-icon">
+                                        <i class="material-icons">&#xe8f0;
+                                            <span ui-include="'@{/assets/images/i_2.svg'"></span>
+                                        </i>
+                                    </span>
+                                <span class="nav-text">库存管理</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a th:href="404.html">
+                                    <span class="nav-icon">
+                                        <i class="material-icons">&#xe8d2;
+                                            <span ui-include="'@{/assets/images/i_3.svg'"></span>
+                                        </i>
+                                    </span>
+                                <span class="nav-text">销售管理</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a th:href="404.html">
+                                    <span class="nav-icon">
+                                        <i class="material-icons">&#xe429;
+                                            <span ui-include="'@{/assets/images/i_4.svg'"></span>
+                                        </i>
+                                    </span>
+                                <span class="nav-text">客户管理</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a th:href="404.html">
+                                    <span class="nav-icon">
+                                        <i class="material-icons">&#xe3e8;
+                                            <span ui-include="'@{/assets/images/i_5.svg'"></span>
+                                        </i>
+                                    </span>
+                                <span class="nav-text">系统用户管理</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-header hidden-folded">
+                            <small class="text-muted">关于</small>
+                        </li>
+
+                        <li class="hidden-folded">
+                            <a th:href="404.html">
+                                    <span class="nav-icon">
+                                        <i class="material-icons">&#xe39e;
+                                            <span ui-include="'@{/assets/images/i_6.svg'"></span>
+                                        </i>
+                                    </span>
+                                <span class="nav-text">开发者信息</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <!-- / -->
+
+    <!-- content -->
+    <div id="content" class="app-content box-shadow-z0" role="main">
+        <div ui-view class="app-body" id="view">
+
+            <!-- ############ PAGE START-->
+            <div class="p-a white lt box-shadow">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h4 class="mb-0 _300">【问候语】</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="padding">
+                <div class="row">
+
+                    <div class="col-sm-6">
+                        <div class="box">
+                            <div class="box-header">
+                                <h3>库存概览</h3>
+                                <small class="block text-muted">不确定如何做</small>
+                            </div>
+                            <div class="box-body">
+                                <div ui-jp="chart" ui-options=" {
+                      tooltip : {
+                          trigger: 'item',
+                          formatter: '{a} <br/>{b} : {c} ({d}%)'
+                      },
+                      legend: {
+                          orient : 'vertical',
+                          x : 'left',
+                          data:['Direct','Mail','Affiliate','AD','Search']
+                      },
+                      calculable : true,
+                      series : [
+                          {
+                              name:'Source',
+                              type:'pie',
+                              radius : '55%',
+                              center: ['50%', '60%'],
+                              data:[
+                                  {value:335, name:'Direct'},
+                                  {value:310, name:'Mail'},
+                                  {value:234, name:'Affiliate'},
+                                  {value:135, name:'AD'},
+                                  {value:1548, name:'Search'}
+                              ]
+                          }
+                      ]
+                    }" style="height:300px">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="box">
+                            <div class="box-header">
+                                <h3>经营概览</h3>
+                                <small class="block text-muted">不确定如何做</small>
+                            </div>
+                            <div class="box-body">
+                                <div ui-jp="chart" ui-options=" {
+                          tooltip : {
+                              trigger: 'axis'
+                          },
+                          legend: {
+                              data:['Max','Min']
+                          },
+                          calculable : true,
+                          xAxis : [
+                              {
+                                  type : 'category',
+                                  boundaryGap : false,
+                                  data : ['Mon','Tue','Wed','Thu','Fri','Sat','Sun']
+                              }
+                          ],
+                          yAxis : [
+                              {
+                                  type : 'value',
+                                  axisLabel : {
+                                      formatter: '{value} °C'
+                                  }
+                              }
+                          ],
+                          series : [
+                              {
+                                  name:'Max',
+                                  type:'line',
+                                  data:[11, 11, 15, 13, 12, 13, 10],
+                                  markPoint : {
+                                      data : [
+                                          {type : 'max', name: 'Max'},
+                                          {type : 'min', name: 'Min'}
+                                      ]
+                                  },
+                                  markLine : {
+                                      data : [
+                                          {type : 'average', name: 'Average'}
+                                      ]
+                                  }
+                              },
+                              {
+                                  name:'Min',
+                                  type:'line',
+                                  data:[1, -2, 2, 5, 3, 2, 0],
+                                  markPoint : {
+                                      data : [
+                                          {name : 'Min of Week', value : -2, xAxis: 1, yAxis: -1.5}
+                                      ]
+                                  },
+                                  markLine : {
+                                      data : [
+                                          {type : 'average', name : 'Average'}
+                                      ]
+                                  }
+                              }
+                          ]
+                        }" style="height:300px">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ############ PAGE END-->
+
+<!-- ############ LAYOUT END-->
+
+<!-- build:js scripts/app.html.js} -->
+<!-- jQuery -->
+<script th:src="@{/libs/jquery/jquery/dist/jquery.js}"></script>
+<!-- Bootstrap -->
+<script th:src="@{/libs/jquery/tether/dist/js/tether.min.js}"></script>
+<script th:src="@{/libs/jquery/bootstrap/dist/js/bootstrap.js}"></script>
+<!-- core -->
+<script th:src="@{/libs/jquery/underscore/underscore-min.js}"></script>
+<script th:src="@{/libs/jquery/jQuery-Storage-API/jquery.storageapi.min.js}"></script>
+<script th:src="@{/libs/jquery/PACE/pace.min.js}"></script>
+
+<script th:src="@{scripts/config.lazyload.js}"></script>
+
+<script th:src="@{scripts/palette.js}"></script>
+<script th:src="@{scripts/ui-load.js}"></script>
+<script th:src="@{scripts/ui-jp.js}"></script>
+<script th:src="@{scripts/ui-include.js}"></script>
+<script th:src="@{scripts/ui-device.js}"></script>
+<script th:src="@{scripts/ui-form.js}"></script>
+<script th:src="@{scripts/ui-nav.js}"></script>
+<script th:src="@{scripts/ui-screenfull.js}"></script>
+<script th:src="@{scripts/ui-scroll-to.js}"></script>
+<script th:src="@{scripts/ui-toggle-class.js}"></script>
+
+<script th:src="@{scripts/app.js}"></script>
+
+<!-- ajax -->
+<script th:src="@{/libs/jquery/jquery-pjax/jquery.pjax.js}"></script>
+<script th:src="@{scripts/ajax.js}"></script>
+<!-- endbuild -->
 </body>
+
 </html>

@@ -37,7 +37,115 @@
 
   <!-- aside -->
   <!-- / -->
+  <div id="aside" class="app-aside modal nav-dropdown">
+    <!-- fluid app aside -->
+    <div class="left navside dark dk" data-layout="column">
+      <div class="navbar no-radius">
+        <!-- brand -->
+        <a class="navbar-brand">
+          <!-- 原来的图标
+              <div ui-include="'@{/assets/images/logo.svg'"></div>
+              <img th:src="@{/assets/images/logo.png}" alt="." class="hide">
+          -->
+          <span class="hidden-folded inline">通用批发零售</span><br>
+          <span class="hidden-folded inline">业务管理系统</span>
+        </a>
+        <!-- /brand -->
+      </div>
+      <div class="hide-scroll" data-flex>
+        <nav class="scroll nav-light">
 
+          <ul class="nav" ui-nav>
+            <li class="nav-header hidden-folded">
+              <small class="text-muted">主要功能</small>
+            </li>
+
+            <li>
+              <a th:href="main.html">
+                                    <span class="nav-icon">
+                                        <i class="material-icons">&#xe3fc;
+                                            <span ui-include="'@{/assets/images/i_0.svg'"></span>
+                                        </i>
+                                    </span>
+                <span class="nav-text">概览界面</span>
+              </a>
+            </li>
+
+            <li>
+              <a th:href="404.html">
+                                    <span class="nav-icon">
+                                        <i class="material-icons">&#xe5c3;
+                                            <span ui-include="'@{/assets/images/i_1.svg'"></span>
+                                        </i>
+                                    </span>
+                <span class="nav-text">货品管理</span>
+              </a>
+            </li>
+
+            <li>
+              <a th:href="404.html">
+                                    <span class="nav-icon">
+                                        <i class="material-icons">&#xe8f0;
+                                            <span ui-include="'@{/assets/images/i_2.svg'"></span>
+                                        </i>
+                                    </span>
+                <span class="nav-text">库存管理</span>
+              </a>
+            </li>
+
+            <li>
+              <a th:href="404.html">
+                                    <span class="nav-icon">
+                                        <i class="material-icons">&#xe8d2;
+                                            <span ui-include="'@{/assets/images/i_3.svg'"></span>
+                                        </i>
+                                    </span>
+                <span class="nav-text">销售管理</span>
+              </a>
+            </li>
+
+            <li>
+              <a th:href="404.html">
+                                    <span class="nav-icon">
+                                        <i class="material-icons">&#xe429;
+                                            <span ui-include="'@{/assets/images/i_4.svg'"></span>
+                                        </i>
+                                    </span>
+                <span class="nav-text">客户管理</span>
+              </a>
+            </li>
+
+            <li>
+              <a th:href="404.html">
+                                    <span class="nav-icon">
+                                        <i class="material-icons">&#xe3e8;
+                                            <span ui-include="'@{/assets/images/i_5.svg'"></span>
+                                        </i>
+                                    </span>
+                <span class="nav-text">系统用户管理</span>
+              </a>
+            </li>
+
+            <li class="nav-header hidden-folded">
+              <small class="text-muted">关于</small>
+            </li>
+
+            <li class="hidden-folded">
+              <a th:href="404.html">
+                                    <span class="nav-icon">
+                                        <i class="material-icons">&#xe39e;
+                                            <span ui-include="'@{/assets/images/i_6.svg'"></span>
+                                        </i>
+                                    </span>
+                <span class="nav-text">开发者信息</span>
+              </a>
+            </li>
+
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
   <!-- content -->
   <div class="container">
     <div ui-view class="app-body" id="view">
@@ -74,7 +182,7 @@
             </form>
             <div class="Box">
               <div class="box-header">
-                <small>以下是货品信息的表格预览，展示已经添加的货品项，需要数据！！！</small>
+                <small>货品信息的表格预览，展示已经添加的货品项</small>
               </div>
               <table class="table table-hover b-t">
                 <thead>
@@ -130,7 +238,7 @@
                 </tbody>
               </table>
             </div>
-            <button type="submit" class="btn primary m-b ">取消</button>
+            <button type="submit" class="btn primary m-b " th:href="">取消</button>
             <button type="submit" class="btn primary m-b ">保存</button>
           </div>
         </div>

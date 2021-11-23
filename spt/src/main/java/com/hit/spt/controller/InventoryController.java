@@ -18,3 +18,13 @@ public class InventoryController {
         return "addInventory";
     }
 }
+
+
+
+
+
+
+
+
+
+

@@ -14,9 +14,8 @@ public class HelloController {
     @Autowired
     ClientInfoService clientInfoService;
 
-    @RequestMapping("hello")
+    @RequestMapping("index")
     public String hello(Model model) {
-        model.addAttribute("name", "李四");
         return "index";
     }
 
@@ -40,5 +39,6 @@ public class HelloController {
     public String addOrder(Model model) {
         return "addOrder";
     }
+
 
 }
