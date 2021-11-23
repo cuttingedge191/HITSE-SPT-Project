@@ -1,6 +1,7 @@
 package com.hit.spt.controller;
 
 import com.hit.spt.pojo.OrderItem;
+import com.hit.spt.pojo.Orders;
 import com.hit.spt.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -41,7 +42,9 @@ public class OrderController {
     @RequestMapping("ordersView")
     public String ordersView(Model model) {
         List<Orders> ordersList = orderItemService.getAllOrders();
+        model.addAttribute("orders",ordersList);
         // yyyy.mm.dd.hh.mm
         return "ordersView";
     }
 }
+
