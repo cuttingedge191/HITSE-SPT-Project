@@ -179,104 +179,13 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>BK45678</td>
-                    <td>晨光钢笔</td>
-                    <td>钢笔</td>
-                    <td>5</td>
-                    <td>4789</td>
-                    <td>一般</td>
-                    <td class="m-b btn-groups">
-                      <button class="btn btn-sm info">详细信息</button>
-                      <button class="btn btn-sm success">出库</button>
-                      <button class="btn btn-sm danger">删除</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>C59S465</td>
-                    <td>英雄钢笔</td>
-                    <td>钢笔</td>
-                    <td>25</td>
-                    <td>259</td>
-                    <td>好</td>
-                    <td class="m-b btn-groups">
-                      <button class="btn btn-sm info">详细信息</button>
-                      <button class="btn btn-sm success">出库</button>
-                      <button class="btn btn-sm danger">删除</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>TG165Xi</td>
-                    <td>派克钢笔</td>
-                    <td>钢笔</td>
-                    <td>42</td>
-                    <td>878</td>
-                    <td>好</td>
-                    <td class="m-b btn-groups">
-                      <button class="btn btn-sm info">详细信息</button>
-                      <button class="btn btn-sm success">出库</button>
-                      <button class="btn btn-sm danger">删除</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>BT2698i</td>
-                    <td>晨光夜色主题笔记本</td>
-                    <td>笔记本</td>
-                    <td>1.2</td>
-                    <td>4750</td>
-                    <td>一般</td>
-                    <td class="m-b btn-groups">
-                      <button class="btn btn-sm info">详细信息</button>
-                      <button class="btn btn-sm success">出库</button>
-                      <button class="btn btn-sm danger">删除</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>BT694i</td>
-                    <td>晨光皮壳笔记本</td>
-                    <td>笔记本</td>
-                    <td>10</td>
-                    <td>500</td>
-                    <td>好</td>
-                    <td class="m-b btn-groups">
-                      <button class="btn btn-sm info">详细信息</button>
-                      <button class="btn btn-sm success">出库</button>
-                      <button class="btn btn-sm danger">删除</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>CK5882lo</td>
-                    <td>得力钢尺</td>
-                    <td>直尺</td>
-                    <td>0.5</td>
-                    <td>470</td>
-                    <td>一般</td>
-                    <td class="m-b btn-groups">
-                      <button class="btn btn-sm info">详细信息</button>
-                      <button class="btn btn-sm success">出库</button>
-                      <button class="btn btn-sm danger">删除</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>TC927i</td>
-                    <td>ZEBR蓝色荧光笔</td>
-                    <td>荧光笔</td>
-                    <td>1</td>
-                    <td>1000</td>
-                    <td>一般</td>
-                    <td class="m-b btn-groups">
-                      <button class="btn btn-sm info">详细信息</button>
-                      <button class="btn btn-sm success">出库</button>
-                      <button class="btn btn-sm danger">删除</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>BS568k</td>
-                    <td>得力粉色荧光笔</td>
-                    <td>荧光笔</td>
-                    <td>0.8</td>
-                    <td>700</td>
-                    <td>好</td>
+                  <tr th:each="inventory:${inventories}">
+                    <td th:text="${inventory.i_id}"></td>
+                    <td th:text="${inventory.name}"></td>
+                    <td></td>
+                    <td th:text="${inventory.cost}"></td>
+                    <td th:text="${inventory.quantity}"></td>
+                    <td th:text="${inventory.quality}"></td>
                     <td class="m-b btn-groups">
                       <button class="btn btn-sm info">详细信息</button>
                       <button class="btn btn-sm success">出库</button>

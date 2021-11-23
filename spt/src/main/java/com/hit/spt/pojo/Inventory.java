@@ -12,4 +12,7 @@ public class Inventory {
     private Integer g_id;
     private Integer quantity;
     private String quality;
+    private String name;
+    private Double retail_price;
+    private Double cost;
 }
