@@ -16,20 +16,19 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `inventory`
+-- Table structure for table `databasechangeloglock`
 --
 
-DROP TABLE IF EXISTS `inventory`;
+DROP TABLE IF EXISTS `databasechangeloglock`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `inventory` (
-  `i_id` int(11) NOT NULL AUTO_INCREMENT,
-  `g_id` int(11) NOT NULL,
-  `quantity` int(11) NOT NULL DEFAULT '1',
-  `quality` varchar(45) DEFAULT '一般',
-  PRIMARY KEY (`i_id`),
-  UNIQUE KEY `iid_UNIQUE` (`i_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `databasechangeloglock` (
+  `ID` int(11) NOT NULL,
+  `LOCKED` bit(1) NOT NULL,
+  `LOCKGRANTED` datetime DEFAULT NULL,
+  `LOCKEDBY` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -41,4 +40,4 @@ CREATE TABLE `inventory` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-11-23 14:58:52
+-- Dump completed on 2021-11-23 14:58:53

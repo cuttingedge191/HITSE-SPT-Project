@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS `customer_info`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `customer_info` (
-  `c_id` int(11) NOT NULL,
+  `c_id` int(11) NOT NULL AUTO_INCREMENT,
   `type` varchar(20) DEFAULT NULL,
   `name` varchar(45) DEFAULT NULL,
   `gender` varchar(20) DEFAULT NULL,
@@ -31,18 +31,8 @@ CREATE TABLE `customer_info` (
   `address` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`c_id`),
   UNIQUE KEY `cid_UNIQUE` (`c_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `customer_info`
---
-
-LOCK TABLES `customer_info` WRITE;
-/*!40000 ALTER TABLE `customer_info` DISABLE KEYS */;
-INSERT INTO `customer_info` VALUES (1,'retail','Jian','male','136000','Harbin');
-/*!40000 ALTER TABLE `customer_info` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -53,6 +43,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-11-22 18:54:44
-ALTER TABLE `spt`.`customer_info`
-    CHANGE COLUMN `c_id` `c_id` INT NOT NULL AUTO_INCREMENT ;
+-- Dump completed on 2021-11-23 14:58:52
