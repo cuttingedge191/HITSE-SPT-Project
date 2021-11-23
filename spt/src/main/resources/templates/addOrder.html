@@ -44,6 +44,7 @@
             <div class="col-md-9 center-block">
                 <br/>
                 <button class="btn btn-fw light-blue-500">编辑销售单</button>
+                <small th:text="'order_id: '+${o_id}"></small>
                 <div class="box">
                     <div class="box-header">
                         <small>编辑销售单</small>
@@ -53,7 +54,7 @@
                         <form role="form">
                             <div class="form-group">
                                 <label for="order_type" class="col-md-4 form-control-label">销售单类型</label>
-                                <select class="c-select col-2" id="order_type">
+                                <select class="c-select col-2" id="order_type" name="type">
                                     <option>批发</option>
                                     <option>零售</option>
                                 </select>
@@ -64,6 +65,7 @@
                             <!--                                       required>-->
                             <!--                            </div>-->
                             <div class="form-group">
+                                <input type="hidden" th:value="${o_id}">
                                 <label for="item_id" class="col-md-4 form-control-label">货品编号</label>
                                 <input class="form-control" type="text" id="item_id" placeholder="货品编号">
                                 <label for="item_quantity" class="col-md-4 form-control-label">货品数量</label>
