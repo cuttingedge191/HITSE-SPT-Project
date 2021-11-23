@@ -2,10 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="zh">
 
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <title>Flatkit - HTML Version | Bootstrap 4 Web App Kit with AngularJS</title>
-    <meta name="description" content="Admin, Dashboard, Bootstrap, Bootstrap 4, Angular, AngularJS" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui" />
+    <meta name="description" content="Admin, Dashboard, Bootstrap, Bootstrap 4, Angular, AngularJS"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <!-- for ios 7 style, multi-resolution icon of 152x152 -->
@@ -18,280 +18,315 @@
     <link rel="shortcut icon" sizes="196x196" th:href="@{/assets/images/logo.png}">
 
     <!-- style -->
-    <link rel="stylesheet" th:href="@{/assets/animate.css/animate.min.css}" type="text/css" />
-    <link rel="stylesheet" th:href="@{/assets/glyphicons/glyphicons.css}" type="text/css" />
-    <link rel="stylesheet" th:href="@{/assets/font-awesome/css/font-awesome.min.css}" type="text/css" />
-    <link rel="stylesheet" th:href="@{/assets/material-design-icons/material-design-icons.css}" type="text/css" />
-    <link rel="stylesheet" th:href="@{/assets/bootstrap/dist/css/bootstrap.min.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/assets/animate.css/animate.min.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/assets/glyphicons/glyphicons.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/assets/font-awesome/css/font-awesome.min.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/assets/material-design-icons/material-design-icons.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/assets/bootstrap/dist/css/bootstrap.min.css}" type="text/css"/>
     <!-- build:css @{/assets/styles/app.min.css} -->
-    <link rel="stylesheet" th:href="@{/assets/styles/app.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/assets/styles/app.css}" type="text/css"/>
     <!-- endbuild -->
-    <link rel="stylesheet" th:href="@{/assets/styles/font.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/assets/styles/font.css}" type="text/css"/>
 </head>
 
 <body>
-    <div class="app" id="app">
+<div class="app" id="app">
 
-        <!-- ############ LAYOUT START-->
+    <!-- ############ LAYOUT START-->
 
-        <!-- aside -->
-        <div id="aside" class="app-aside modal nav-dropdown">
-            <!-- fluid app aside -->
-            <div class="left navside dark dk" data-layout="column">
-                <div class="navbar no-radius">
-                    <!-- brand -->
-                    <a class="navbar-brand">
-                        <!-- 原来的图标
-                          <div ui-include="'@{/assets/images/logo.svg'"></div>
-                          <img th:src="@{/assets/images/logo.png}" alt="." class="hide">
-                      -->
-                        <span class="hidden-folded inline">通用批发零售</span><br>
-                        <span class="hidden-folded inline">业务管理系统</span>
-                    </a>
-                    <!-- /brand -->
-                </div>
-                <div class="hide-scroll" data-flex>
-                    <nav class="scroll nav-light">
+    <!-- aside -->
+    <div id="aside" class="app-aside modal nav-dropdown">
+        <!-- fluid app aside -->
+        <div class="left navside dark dk" data-layout="column">
+            <div class="navbar no-radius">
+                <!-- brand -->
+                <a class="navbar-brand">
+                    <!-- 原来的图标
+                      <div ui-include="'@{/assets/images/logo.svg'"></div>
+                      <img th:src="@{/assets/images/logo.png}" alt="." class="hide">
+                  -->
+                    <span class="hidden-folded inline">通用批发零售</span><br>
+                    <span class="hidden-folded inline">业务管理系统</span>
+                </a>
+                <!-- /brand -->
+            </div>
+            <div class="hide-scroll" data-flex>
+                <nav class="scroll nav-light">
 
-                        <ul class="nav" ui-nav>
-                            <li class="nav-header hidden-folded">
-                                <small class="text-muted">主要功能</small>
-                            </li>
+                    <ul class="nav" ui-nav>
+                        <li class="nav-header hidden-folded">
+                            <small class="text-muted">主要功能</small>
+                        </li>
 
-                            <li>
-                                <a th:href="@{/index}">
+                        <li>
+                            <a th:href="@{/index}">
                                     <span class="nav-icon">
                                         <i class="material-icons">&#xe3fc;
                                             <span ui-include="'@{/assets/images/i_0.svg'"></span>
                                         </i>
                                     </span>
-                                    <span class="nav-text">概览界面</span>
-                                </a>
-                            </li>
+                                <span class="nav-text">概览界面</span>
+                            </a>
+                        </li>
 
-                            <li>
-                                <a th:href="@{/goodsView}">
+                        <li>
+                            <a th:href="@{/goodsView}">
                                     <span class="nav-icon">
                                         <i class="material-icons">&#xe5c3;
                                             <span ui-include="'@{/assets/images/i_1.svg'"></span>
                                         </i>
                                     </span>
-                                    <span class="nav-text">货品管理</span>
-                                </a>
-                            </li>
+                                <span class="nav-text">货品管理</span>
+                            </a>
+                        </li>
 
-                            <li>
-                                <a th:href="@{/inventoryView}">
+                        <li>
+                            <a th:href="@{/inventoryView}">
                                     <span class="nav-icon">
                                         <i class="material-icons">&#xe8f0;
                                             <span ui-include="'@{/assets/images/i_2.svg'"></span>
                                         </i>
                                     </span>
-                                    <span class="nav-text">库存管理</span>
-                                </a>
-                            </li>
+                                <span class="nav-text">库存管理</span>
+                            </a>
+                        </li>
 
-                            <li>
-                                <a th:href="@{/ordersView}">
+                        <li>
+                            <a th:href="@{/ordersView}">
                                     <span class="nav-icon">
                                         <i class="material-icons">&#xe8d2;
                                             <span ui-include="'@{/assets/images/i_3.svg'"></span>
                                         </i>
                                     </span>
-                                    <span class="nav-text">销售管理</span>
-                                </a>
-                            </li>
+                                <span class="nav-text">销售管理</span>
+                            </a>
+                        </li>
 
-                            <li>
-                                <a th:href="@{/clientInfoSearch}">
+                        <li>
+                            <a th:href="@{/clientInfoSearch}">
                                     <span class="nav-icon">
                                         <i class="material-icons">&#xe429;
                                             <span ui-include="'@{/assets/images/i_4.svg'"></span>
                                         </i>
                                     </span>
-                                    <span class="nav-text">客户管理</span>
-                                </a>
-                            </li>
+                                <span class="nav-text">客户管理</span>
+                            </a>
+                        </li>
 
-                            <li>
-                                <a th:href="404.html">
+                        <li>
+                            <a th:href="404.html">
                                     <span class="nav-icon">
                                         <i class="material-icons">&#xe3e8;
                                             <span ui-include="'@{/assets/images/i_5.svg'"></span>
                                         </i>
                                     </span>
-                                    <span class="nav-text">系统用户管理</span>
-                                </a>
-                            </li>
+                                <span class="nav-text">系统用户管理</span>
+                            </a>
+                        </li>
 
-                            <li class="nav-header hidden-folded">
-                                <small class="text-muted">关于</small>
-                            </li>
+                        <li class="nav-header hidden-folded">
+                            <small class="text-muted">关于</small>
+                        </li>
 
-                            <li class="hidden-folded">
-                                <a th:href="404.html">
+                        <li class="hidden-folded">
+                            <a th:href="404.html">
                                     <span class="nav-icon">
                                         <i class="material-icons">&#xe39e;
                                             <span ui-include="'@{/assets/images/i_6.svg'"></span>
                                         </i>
                                     </span>
-                                    <span class="nav-text">开发者信息</span>
-                                </a>
-                            </li>
+                                <span class="nav-text">开发者信息</span>
+                            </a>
+                        </li>
 
-                        </ul>
-                    </nav>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <!-- / -->
+
+    <!-- content -->
+    <div id="content" class="app-content box-shadow-z0" role="main">
+        <div ui-view class="app-body" id="view">
+            <!-- ############ PAGE START-->
+            <div class="padding">
+                <div class="box">
+                    <div class="box-header">
+                        <h2>销售单列表</h2>
+                        <small>销售单业务管理</small>
+                    </div>
+                    <div class="box-body">
+                        搜索: <input id="filter" type="text" class="form-control input-sm w-auto inline m-r"/>
+                        <button class="btn btn-icon white" id="addOrder" onclick="window.location.href='/addOneOrder'">
+                        <i class="fa fa-plus"></i>
+                        </button>
+                        <label for="addOrder">新增销售单</label>
+                    </div>
+
+                    <div>
+                        <table class="table m-b-none" ui-jp="footable" data-filter="#filter" data-page-size="5">
+                            <thead>
+                            <tr>
+                                <th data-toggle="true">
+                                    客户ID
+                                </th>
+                                <th>
+                                    销售单ID
+                                </th>
+                                <th data-hide="phone,tablet">
+                                    成交金额
+                                </th>
+                                <th data-hide="phone,tablet" data-name="Transaction time">
+                                    成交时间
+                                </th>
+                                <th data-hide="phone">
+                                    销售单状态
+                                </th>
+                                <th data-hide="phone">
+                                    操作
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>A1</td>
+                                <td>45</td>
+                                <td>219652</td>
+                                <td data-value="20210418">2021.04.18</td>
+                                <td data-value="1"><span class="label success" title="Active">Active</span></td>
+                                <td class="m-b btn-groups">
+                                    <button class="btn btn-sm info">详细信息</button>
+                                    <button class="btn btn-sm success">编辑</button>
+                                    <button class="btn btn-sm danger">删除</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>A2</td>
+                                <td>245</td>
+                                <td>25427</td>
+                                <td data-value="20211105">2021.11.05</td>
+                                <td data-value="2"><span class="label" title="Disabled">Disabled</span></td>
+                                <td class="m-b btn-groups">
+                                    <button class="btn btn-sm info">详细信息</button>
+                                    <button class="btn btn-sm success">编辑</button>
+                                    <button class="btn btn-sm danger">删除</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>A3</td>
+                                <td>343265</td>
+                                <td>4532245</td>
+                                <td data-value="20210112">2021.01.12</td>
+                                <td data-value="3"><span class="label warning"
+                                                         title="Suspended">Suspended</span>
+                                </td>
+                                <td class="m-b btn-groups">
+                                    <button class="btn btn-sm info">详细信息</button>
+                                    <button class="btn btn-sm success">编辑</button>
+                                    <button class="btn btn-sm danger">删除</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>B2</td>
+                                <td>354</td>
+                                <td>25425</td>
+                                <td data-value="20210124">2021.01.24</td>
+                                <td data-value="1"><span class="label success" title="Active">Active</span></td>
+                                <td class="m-b btn-groups">
+                                    <button class="btn btn-sm info">详细信息</button>
+                                    <button class="btn btn-sm success">编辑</button>
+                                    <button class="btn btn-sm danger">删除</button>
+                                </td>
+                            <tr>
+                                <td>B6</td>
+                                <td>867</td>
+                                <td>532453</td>
+                                <td data-value="20201211">2020.12.11</td>
+                                <td data-value="3"><span class="label warning"
+                                                         title="Suspended">Suspended</span>
+                                </td>
+                                <td class="m-b btn-groups">
+                                    <button class="btn btn-sm info">详细信息</button>
+                                    <button class="btn btn-sm success">编辑</button>
+                                    <button class="btn btn-sm danger">删除</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>B3</td>
+                                <td>76327</td>
+                                <td>527432</td>
+                                <td data-value="20210114">2021.01.14</td>
+                                <td data-value="2"><span class="label" title="Disabled">Disabled</span></td>
+                                <td><span><a th:href="404.html">修改</a></span></td>
+                            </tr>
+                            <tr>
+                                <td>A9</td>
+                                <td>2165</td>
+                                <td>2452</td>
+                                <td data-value="202111.1">2021.11.01</td>
+                                <td data-value="2"><span class="label" title="Disabled">Disabled</span></td>
+                                <td><span><a th:href="404.html">修改</a></span></td>
+                            </tr>
+                            <tr th:each="order:${orders}">
+                                <td th:text="${order.customer}"></td>
+                                <td th:text="${order.o_id}"></td>
+                                <td th:data-value="${order.total_cost}"></td>
+                                <td th:text="${order.time_stamp}"></td>
+                                <td th:data-value="${order.status}"><span class="label" th:title="${order.status}==2?'Disabled':(${order.status}==1?'Active':'Suspended')"
+                                                                          th:text="${order.status}"></span></td>
+                                <td>
+                                    <a class="btn btn-sm btn-primary" th:href="@{/upOrder(c_id=${order.o_id})}">编辑</a>
+                                    <a class="btn btn-sm btn-danger deleteBtn"
+                                       th:href="@{/deOrder(c_id=${order.o_id})}">删除</a>
+                                </td>
+                            </tr>
+                            </tbody>
+                            <tfoot class="hide-if-no-paging">
+                            <tr>
+                                <td colspan="5" class="text-center">
+                                    <ul class="pagination"></ul>
+                                </td>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
-        <!-- / -->
+    </div>
+</div>
+<!-- build:js @{scripts/app.html.js} -->
+<!-- jQuery -->
+<script th:src="@{/libs/jquery/jquery/dist/jquery.js}"></script>
 
-        <!-- content -->
-        <div id="content" class="app-content box-shadow-z0" role="main">
-            <div ui-view class="app-body" id="view">
-                <!-- ############ PAGE START-->
-                <div class="padding">
-                    <div class="box">
-                        <div class="box-header">
-                            <h2>销售单列表</h2>
-                            <small>销售单业务管理</small>
-                        </div>
-                        <div class="box-body">
-                            搜索: <input id="filter" type="text" class="form-control input-sm w-auto inline m-r" />
-                            <td><span><a th:href="@{/addOneOrder}">新增销售单</a></span></td>
-                        </div>
+<!-- Bootstrap -->
+<script th:src="@{/libs/jquery/tether/dist/js/tether.min.js}"></script>
+<script th:src="@{/libs/jquery/bootstrap/dist/js/bootstrap.js}"></script>
+<!-- core -->
+<script th:src="@{/libs/jquery/underscore/underscore-min.js}"></script>
+<script th:src="@{/libs/jquery/jQuery-Storage-API/jquery.storageapi.min.js}"></script>
+<script th:src="@{/libs/jquery/PACE/pace.min.js}"></script>
 
-                        <div>
-                            <table class="table m-b-none" ui-jp="footable" data-filter="#filter" data-page-size="5">
-                                <thead>
-                                    <tr>
-                                        <th data-toggle="true">
-                                            客户ID
-                                        </th>
-                                        <th>
-                                            销售单ID
-                                        </th>
-                                        <th data-hide="phone,tablet">
-                                            成交金额
-                                        </th>
-                                        <th data-hide="phone,tablet" data-name="Transaction time">
-                                            成交时间
-                                        </th>
-                                        <th data-hide="phone">
-                                            销售单状态
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>A1</td>
-                                        <td>45</td>
-                                        <td>219652</td>
-                                        <td data-value="20210418">2021.04.18</td>
-                                        <td data-value="1"><span class="label success" title="Active">Active</span></td>
-                                        <td><span><a th:href="404.html">修改</a></span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>A2</td>
-                                        <td>245</td>
-                                        <td>25427</td>
-                                        <td data-value="20211105">2021.11.05</td>
-                                        <td data-value="2"><span class="label" title="Disabled">Disabled</span></td>
-                                        <td><span><a th:href="404.html">修改</a></span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>A3</td>
-                                        <td>343265</td>
-                                        <td>4532245</td>
-                                        <td data-value="20210112">2021.01.12</td>
-                                        <td data-value="3"><span class="label warning"
-                                                title="Suspended">Suspended</span>
-                                        </td>
-                                        <td><span><a th:href="404.html">修改</a></span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>B2</td>
-                                        <td>354</td>
-                                        <td>25425</td>
-                                        <td data-value="20210124">2021.01.24</td>
-                                        <td data-value="1"><span class="label success" title="Active">Active</span></td>
-                                        <td><span><a th:href="404.html">修改</a></span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>B6</td>
-                                        <td>867</td>
-                                        <td>532453</td>
-                                        <td data-value="20201211">2020.12.11</td>
-                                        <td data-value="3"><span class="label warning"
-                                                title="Suspended">Suspended</span>
-                                        </td>
-                                        <td><span><a th:href="404.html">修改</a></span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>B3</td>
-                                        <td>76327</td>
-                                        <td data-value="527432"></td>
-                                        <td data-value="20210114">2021.01.14</td>
-                                        <td data-value="2"><span class="label" title="Disabled">Disabled</span></td>
-                                        <td><span><a th:href="404.html">修改</a></span></td>
-                                    </tr>
-                                    <tr th:each="order:${orders}">
-                                        <td th:text="${order.customer}"></td>
-                                        <td th:text="${order.o_id}"></td>
-                                        <td th:data-value="${order.total_cost}"></td>
-                                        <td th:text="${order.time_stamp}"></td>
-                                        <td th:data-value="${order.status}"><span class="label" th:title="${order.status}==2?'Disabled':(${order.status}==1?'Active':'Suspended')"
-                                                                                  th:text="${order.status}"></span></td>
-                                        <td>
-                                            <a class="btn btn-sm btn-primary" th:href="@{/upOrder(c_id=${order.o_id})}">编辑</a>
-                                            <a class="btn btn-sm btn-danger deleteBtn"
-                                               th:href="@{/deOrder(c_id=${order.o_id})}">删除</a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                                <tfoot class="hide-if-no-paging">
-                                    <tr>
-                                        <td colspan="5" class="text-center">
-                                            <ul class="pagination"></ul>
-                                        </td>
-                                    </tr>
-                                </tfoot>
-                            </table>
-                        </div>
-                    </div>
-                </div>
+<script th:src="@{/scripts/config.lazyload.js}"></script>
 
-            </div>
-            <!-- build:js @{scripts/app.html.js} -->
-            <!-- jQuery -->
-            <script th:src="@{/libs/jquery/jquery/dist/jquery.js}"></script>
-            <!-- Bootstrap -->
-            <script th:src="@{/libs/jquery/tether/dist/js/tether.min.js}"></script>
-            <script th:src="@{/libs/jquery/bootstrap/dist/js/bootstrap.js}"></script>
-            <!-- core -->
-            <script th:src="@{/libs/jquery/underscore/underscore-min.js}"></script>
-            <script th:src="@{/libs/jquery/jQuery-Storage-API/jquery.storageapi.min.js}"></script>
-            <script th:src="@{/libs/jquery/PACE/pace.min.js}"></script>
+<script th:src="@{/scripts/palette.js}"></script>
+<script th:src="@{/scripts/ui-load.js}"></script>
+<script th:src="@{/scripts/ui-jp.js}"></script>
+<script th:src="@{/scripts/ui-include.js}"></script>
+<script th:src="@{/scripts/ui-device.js}"></script>
+<script th:src="@{/scripts/ui-form.js}"></script>
+<script th:src="@{/scripts/ui-nav.js}"></script>
+<script th:src="@{/scripts/ui-screenfull.js}"></script>
+<script th:src="@{/scripts/ui-scroll-to.js}"></script>
+<script th:src="@{/scripts/ui-toggle-class.js}"></script>
 
-            <script th:src="@{/scripts/config.lazyload.js}"></script>
+<script th:src="@{/scripts/app.js}"></script>
 
-            <script th:src="@{/scripts/palette.js}"></script>
-            <script th:src="@{/scripts/ui-load.js}"></script>
-            <script th:src="@{/scripts/ui-jp.js}"></script>
-            <script th:src="@{/scripts/ui-include.js}"></script>
-            <script th:src="@{/scripts/ui-device.js}"></script>
-            <script th:src="@{/scripts/ui-form.js}"></script>
-            <script th:src="@{/scripts/ui-nav.js}"></script>
-            <script th:src="@{/scripts/ui-screenfull.js}"></script>
-            <script th:src="@{/scripts/ui-scroll-to.js}"></script>
-            <script th:src="@{/scripts/ui-toggle-class.js}"></script>
-
-            <script th:src="@{/scripts/app.js}"></script>
-
-            <!-- ajax -->
-            <script th:src="@{/libs/jquery/jquery-pjax/jquery.pjax.js}"></script>
-            <script th:src="@{/scripts/ajax.js}"></script>
-            <!-- endbuild -->
+<!-- ajax -->
+<script th:src="@{/libs/jquery/jquery-pjax/jquery.pjax.js}"></script>
+<script th:src="@{/scripts/ajax.js}"></script>
+<!-- endbuild -->
 </body>
 
 </html>

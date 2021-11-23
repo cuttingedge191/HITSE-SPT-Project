@@ -30,10 +30,20 @@ CREATE TABLE `orders` (
   `total_turnover` double NOT NULL,
   `total_cost` double DEFAULT NULL,
   `total_profit` double DEFAULT NULL,
+  `time_stamp` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`o_id`),
   UNIQUE KEY `oid_UNIQUE` (`o_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `orders`
+--
+
+LOCK TABLES `orders` WRITE;
+/*!40000 ALTER TABLE `orders` DISABLE KEYS */;
+/*!40000 ALTER TABLE `orders` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -44,4 +54,4 @@ CREATE TABLE `orders` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-11-23 14:58:53
+-- Dump completed on 2021-11-23 18:25:54

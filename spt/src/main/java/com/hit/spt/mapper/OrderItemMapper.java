@@ -22,4 +22,6 @@ public interface OrderItemMapper {
     List<OrderItem> queryOrderItemList();
 
     List<OrderItem> queryOrderItemWithNameList();
+
+    List<OrderItem> queryOrderItemWithNameListByOid(Integer o_id);
 }

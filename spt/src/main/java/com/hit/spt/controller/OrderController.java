@@ -1,7 +1,7 @@
 package com.hit.spt.controller;
 
-import com.hit.spt.pojo.Orders;
-import com.hit.spt.service.OrderItemService;
+import com.hit.spt.pojo.OrderItem;
+import com.hit.spt.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +14,7 @@ import java.util.List;
 @RequestMapping
 public class OrderController {
     @Autowired
-    OrderItemService orderItemService;
+    OrderService orderItemService;
 
     @RequestMapping("addOneOrder")
     public String addOneOrder(Model model) {
@@ -24,10 +24,18 @@ public class OrderController {
     }
 
     @RequestMapping("addOneOrderItem")
-    public String orderItemInfo(@RequestParam("o_id") Integer o_id, @RequestParam("name") String name, @RequestParam("quantity") Integer quantity, Model model) {
-        Integer OrderId = orderItemService.genOrderId();
-        model.addAttribute("o_id", OrderId);
+    public String orderItemInfo(@RequestParam("o_id") Integer o_id, @RequestParam("name") String name, @RequestParam("quantity") Integer quantity, @RequestParam("type") String type, Model model) {
+
+        boolean trade = type.equals("trade");
+
+        OrderItem orderItem = orderItemService.generateOrderItem(o_id, name, quantity, trade);
+        orderItemService.insertOrderItem(orderItem);
+        // 生成暂存物品列表
+        List<OrderItem> orderItemWithNameList = orderItemService.queryOrderItemWithNameListByOid(o_id);
+        model.addAttribute("orderItemWithNameList", orderItemWithNameList);
+        model.addAttribute("o_id", o_id);
         return "addOrder";
+
     }
 
     @RequestMapping("ordersView")

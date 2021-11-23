@@ -60,7 +60,7 @@
                             </li>
 
                             <li>
-                                <a th:href="main.html">
+                                <a th:href="@{/index}">
                                     <span class="nav-icon">
                                         <i class="material-icons">&#xe3fc;
                                             <span ui-include="'@{/assets/images/i_0.svg'"></span>
@@ -71,7 +71,7 @@
                             </li>
 
                             <li>
-                                <a th:href="404.html">
+                                <a th:href="@{/goodsView}">
                                     <span class="nav-icon">
                                         <i class="material-icons">&#xe5c3;
                                             <span ui-include="'@{/assets/images/i_1.svg'"></span>
@@ -82,7 +82,7 @@
                             </li>
 
                             <li>
-                                <a th:href="404.html">
+                                <a th:href="@{/inventoryView}">
                                     <span class="nav-icon">
                                         <i class="material-icons">&#xe8f0;
                                             <span ui-include="'@{/assets/images/i_2.svg'"></span>
@@ -93,7 +93,7 @@
                             </li>
 
                             <li>
-                                <a th:href="404.html">
+                                <a th:href="@{/ordersView}">
                                     <span class="nav-icon">
                                         <i class="material-icons">&#xe8d2;
                                             <span ui-include="'@{/assets/images/i_3.svg'"></span>
@@ -104,7 +104,7 @@
                             </li>
 
                             <li>
-                                <a th:href="404.html">
+                                <a th:href="@{/clientInfoSearch}">
                                     <span class="nav-icon">
                                         <i class="material-icons">&#xe429;
                                             <span ui-include="'@{/assets/images/i_4.svg'"></span>
@@ -145,7 +145,7 @@
                 </div>
             </div>
         </div>
-        <!-- / -->
+                <!-- / -->
 
         <!-- content -->
         <div id="content" class="app-content box-shadow-z0" role="main">
@@ -289,24 +289,24 @@
     <script th:src="@{/libs/jquery/jQuery-Storage-API/jquery.storageapi.min.js}"></script>
     <script th:src="@{/libs/jquery/PACE/pace.min.js}"></script>
 
-    <script th:src="@{scripts/config.lazyload.js}"></script>
+    <script th:src="@{/scripts/config.lazyload.js}"></script>
 
-    <script th:src="@{scripts/palette.js}"></script>
-    <script th:src="@{scripts/ui-load.js}"></script>
-    <script th:src="@{scripts/ui-jp.js}"></script>
-    <script th:src="@{scripts/ui-include.js}"></script>
-    <script th:src="@{scripts/ui-device.js}"></script>
-    <script th:src="@{scripts/ui-form.js}"></script>
-    <script th:src="@{scripts/ui-nav.js}"></script>
-    <script th:src="@{scripts/ui-screenfull.js}"></script>
-    <script th:src="@{scripts/ui-scroll-to.js}"></script>
-    <script th:src="@{scripts/ui-toggle-class.js}"></script>
+    <script th:src="@{/scripts/palette.js}"></script>
+    <script th:src="@{/scripts/ui-load.js}"></script>
+    <script th:src="@{/scripts/ui-jp.js}"></script>
+    <script th:src="@{/scripts/ui-include.js}"></script>
+    <script th:src="@{/scripts/ui-device.js}"></script>
+    <script th:src="@{/scripts/ui-form.js}"></script>
+    <script th:src="@{/scripts/ui-nav.js}"></script>
+    <script th:src="@{/scripts/ui-screenfull.js}"></script>
+    <script th:src="@{/scripts/ui-scroll-to.js}"></script>
+    <script th:src="@{/scripts/ui-toggle-class.js}"></script>
 
-    <script th:src="@{scripts/app.js}"></script>
+    <script th:src="@{/scripts/app.js}"></script>
 
     <!-- ajax -->
     <script th:src="@{/libs/jquery/jquery-pjax/jquery.pjax.js}"></script>
-    <script th:src="@{scripts/ajax.js}"></script>
+    <script th:src="@{/scripts/ajax.js}"></script>
     <!-- endbuild -->
 </body>
 
