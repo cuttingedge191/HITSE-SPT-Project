@@ -31,8 +31,18 @@ CREATE TABLE `customer_info` (
   `address` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`c_id`),
   UNIQUE KEY `cid_UNIQUE` (`c_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `customer_info`
+--
+
+LOCK TABLES `customer_info` WRITE;
+/*!40000 ALTER TABLE `customer_info` DISABLE KEYS */;
+INSERT INTO `customer_info` VALUES (2,'retail','小建','male','13684611082','Harbin'),(3,'retail','锐捷','female','13684611082','Harbin');
+/*!40000 ALTER TABLE `customer_info` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -43,4 +53,4 @@ CREATE TABLE `customer_info` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-11-23 14:58:52
+-- Dump completed on 2021-11-23 18:25:53
