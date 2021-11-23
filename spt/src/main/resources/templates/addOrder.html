@@ -51,7 +51,7 @@
                     </div>
                     <div class="box-divider m-0"></div>
                     <div class="box-body">
-                        <form role="form">
+                        <form role="form" method="post" th:action="@{/addOneOrderItem}">
                             <div class="form-group">
                                 <label for="order_type" class="col-md-4 form-control-label">销售单类型</label>
                                 <select class="c-select col-2" id="order_type" name="type">
