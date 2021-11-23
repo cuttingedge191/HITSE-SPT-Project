@@ -59,7 +59,12 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public int insertOrderItem(OrderItem orderItem) {
-        return orderItemMapper.insertOrderItem(orderItem);
+    public void insertOrderItem(OrderItem orderItem) {
+        orderItemMapper.insertOrderItem(orderItem);
+    }
+
+    @Override
+    public void deleteAllOrderItemByOid(Integer o_id) {
+        orderItemMapper.deleteOrderItemByOid(o_id);
     }
 }

@@ -14,5 +14,7 @@ public interface OrderService {
 
     OrderItem generateOrderItem(Integer o_id, String name, Integer quantity, Boolean trade);
 
-    int insertOrderItem(OrderItem orderItem);
+    void insertOrderItem(OrderItem orderItem);
+
+    void deleteAllOrderItemByOid(Integer o_id);
 }
