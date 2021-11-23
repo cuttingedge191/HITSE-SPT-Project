@@ -12,6 +12,8 @@ import java.util.List;
 public interface OrdersMapper {
     List<Orders> queryOrdersByCid(Integer c_id);
 
+    int insertOrder(Orders orders);
+
     Orders queryOrdersByOid(Integer o_id);
 
     List<Orders> queryOrdersByStatus(String status);

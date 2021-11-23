@@ -19,5 +19,11 @@ public interface OrderService {
 
     void deleteAllOrderItemByOid(Integer o_id);
 
+    void deleteOneOrderItemByOiid(Integer oi_id);
+
+    Orders generateOneOrder(Integer o_id, Integer c_id, String type);
+
     List<Orders> getAllOrders();
+
+    int saveOrder(Orders orders);
 }

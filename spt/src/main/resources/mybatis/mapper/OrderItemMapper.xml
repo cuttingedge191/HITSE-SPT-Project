@@ -13,26 +13,31 @@
         from order_item
         where o_id = #{o_id}
     </delete>
+    <delete id="deleteOrderItemByOiid" parameterType="java.lang.Integer">
+        delete
+        from order_item
+        where oi_id = #{oi_id}
+    </delete>
     <delete id="deleteOrderItemByGid" parameterType="java.lang.Integer">
         delete
         from order_item
         where g_id = #{g_id}
     </delete>
-    <select id="queryOrderItemByOid" parameterType="java.lang.Integer">
+    <select id="queryOrderItemByOid" parameterType="java.lang.Integer" resultType="OrderItem">
         select oi_id, o_id, g_id, quantity, cost, price
         from order_item
         where o_id = #{o_id}
     </select>
-    <select id="queryOrderItemByGid" parameterType="java.lang.Integer">
+    <select id="queryOrderItemByGid" parameterType="java.lang.Integer" resultType="OrderItem">
         select oi_id, o_id, g_id, quantity, cost, price
         from order_item
         where g_id = #{g_id}
     </select>
-    <select id="queryOrderItemList" parameterType="OrderItem">
+    <select id="queryOrderItemList" parameterType="OrderItem" resultType="OrderItem">
         select oi_id, o_id, g_id, quantity, cost, price
         from order_item
     </select>
-    <select id="queryOrderItemWithNameList" resultType="OrderItem">
+    <select id="queryOrderItemWithNameList" resultType="OrderItem" >
         select order_item.oi_id,
                order_item.o_id,
                order_item.g_id,

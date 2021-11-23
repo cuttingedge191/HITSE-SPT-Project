@@ -13,6 +13,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @SpringBootTest
 class SptApplicationTests {
@@ -27,7 +29,8 @@ class SptApplicationTests {
 
     @Test
     public void testOrderItemMapper() {
-        System.out.println(orderItemMapper.queryOrderItemWithNameList());
+        Integer a = null;
+        System.out.println((int)a);
     }
 //    @Test
 //    public void testCustomerMapper() {
