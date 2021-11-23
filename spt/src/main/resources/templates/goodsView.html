@@ -18,7 +18,7 @@
     <link rel="shortcut icon" sizes="196x196" th:href="@{/assets/images/logo.png}">
 
     <!-- style -->
-    <link rel="stylesheet" th:href="@{/assets/animate/animate.min.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/assets/animate.css/animate.min.css}" type="text/css" />
     <link rel="stylesheet" th:href="@{/assets/glyphicons/glyphicons.css}" type="text/css" />
     <link rel="stylesheet" th:href="@{/assets/font-awesome/css/font-awesome.min.css}" type="text/css" />
     <link rel="stylesheet" th:href="@{/assets/material-design-icons/material-design-icons.css}" type="text/css" />
@@ -160,10 +160,10 @@
 
                         <div class="dker p-a text-right">
                             Search: <input id="filter" type="text" class="form-control input-sm w-auto inline m-r" />
-                            <button class="btn btn-icon white">
+                            <button class="btn btn-icon white" id="addGoods">
                                 <i class="fa fa-plus"></i>
                             </button>
-                            <button class="btn btn-sm dark">添加新货品</button>
+                            <label for="addGoods">添加新货品</label>
                         </div>
                         <div>
                             <table class="table m-b-none" ui-jp="footable" data-filter="#filter" data-page-size="5">
@@ -214,6 +214,8 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
 
                 <!-- ############ PAGE END-->
 
@@ -250,8 +252,6 @@
             <script th:src="@{/libs/jquery/jquery-pjax/jquery.pjax.js}"></script>
             <script th:src="@{/scripts/ajax.js}"></script>
             <!-- endbuild -->
-        </div>
-    </div>
 </body>
 
 </html>

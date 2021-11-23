@@ -160,10 +160,10 @@
 
             <div class="dker p-a text-right">
               Search: <input id="filter" type="text" class="form-control input-sm w-auto inline m-r" />
-              <button class="btn btn-icon white">
+              <button class="btn btn-icon white" id="inventoryCheck">
                 <i class="fa fa-plus"></i>
               </button>
-              <button class="btn btn-sm dark">库存盘点</button>
+              <label for="inventoryCheck">库存盘点</label>
             </div>
             <div>
               <table class="table m-b-none" ui-jp="footable" data-filter="#filter" data-page-size="5">
@@ -295,6 +295,9 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
 
         <!-- ############ PAGE END-->
 
@@ -302,7 +305,6 @@
 
         <!-- ############ LAYOUT END-->
 
-      </div>
       <!-- build:js @{scripts/app.html.js} -->
       <!-- jQuery -->
       <script th:src="@{/libs/jquery/jquery/dist/jquery.js}"></script>
@@ -333,8 +335,6 @@
       <script th:src="@{/libs/jquery/jquery-pjax/jquery.pjax.js}"></script>
       <script th:src="@{/scripts/ajax.js}"></script>
       <!-- endbuild -->
-    </div>
-  </div>
 </body>
 
 </html>
