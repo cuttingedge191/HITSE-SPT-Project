@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>通用批发零售业务管理系统</title>
+    <title>Flatkit - HTML Version | Bootstrap 4 Web App Kit with AngularJS</title>
     <meta name="description" content="Admin, Dashboard, Bootstrap, Bootstrap 4, Angular, AngularJS" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -150,47 +150,70 @@
         <!-- content -->
         <div id="content" class="app-content box-shadow-z0" role="main">
             <div ui-view class="app-body" id="view">
-
                 <!-- ############ PAGE START-->
                 <div class="padding">
                     <div class="box">
                         <div class="box-header">
-                            <h2>客户资料查询</h2>
+                            <h2>货品管理</h2>
+                            <small>以下是现有货品资料</small>
                         </div>
-                        <div class="table-responsive">
-                            <table class="table table-striped b-t b-b">
+
+                        <div class="dker p-a text-right">
+                            Search: <input id="filter" type="text" class="form-control input-sm w-auto inline m-r" />
+                            <button class="btn btn-icon white">
+                                <i class="fa fa-plus"></i>
+                            </button>
+                            <button class="btn btn-sm dark">添加新货品</button>
+                        </div>
+                        <div>
+                            <table class="table m-b-none" ui-jp="footable" data-filter="#filter" data-page-size="5">
                                 <thead>
                                     <tr>
-                                        <th style="width:7%">ID</th>
-                                        <th style="width:7%">姓名</th>
-                                        <th style="width:7%">类型</th>
-                                        <th style="width:7%">性别</th>
-                                        <th style="width:10%">电话</th>
-                                        <th style="width:10%">地址</th>
-                                        <th style="width:7%">操作</th>
+                                        <th data-toggle="true">货品编号</th>
+                                        <th>货品名称</th>
+                                        <th data-hide="phone,tablet">成本价</th>
+                                        <th data-hide="phone">零售价</th>
+                                        <th data-hide="phone">批发价</th>
+                                        <th data-hide="phone">操作</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr th:each="cus:${customers}">
-                                        <td th:text="${cus.c_id}"></td>
-                                        <td th:text="${cus.name}"></td>
-                                        <td th:text="${cus.type}=='retail'?'零售':'批发'"></td>
-                                        <td th:text="${cus.gender}=='female'?'女':'男'"></td>
-                                        <td th:text="${cus.phone}"></td>
-                                        <td th:text="${cus.address}"></td>
-                                        <td>
-                                            <a class="btn btn-sm btn-primary"
-                                                th:href="'/upcos'+'?c_id='+${cus.c_id}">编辑</a>
-                                            <a th:href="'/decos'+'?c_id='+${cus.c_id}"
-                                                class="btn btn-sm btn-danger deleteBtn">删除</a>
+                                    <tr>
+                                        <td>11</td>
+                                        <td>晨光钢笔</td>
+                                        <td>5</td>
+                                        <td>4789</td>
+                                        <td>20</td>
+                                        <td class="m-b btn-groups">
+                                            <button class="btn btn-sm info">详细信息</button>
+                                            <button class="btn btn-sm success">编辑</button>
+                                            <button class="btn btn-sm danger">删除</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>111</td>
+                                        <td>aaa</td>
+                                        <td>1</td>
+                                        <td>9999</td>
+                                        <td>2</td>
+                                        <td class="m-b btn-groups">
+                                            <button class="btn btn-sm info">详细信息</button>
+                                            <button class="btn btn-sm success">编辑</button>
+                                            <button class="btn btn-sm danger">删除</button>
                                         </td>
                                     </tr>
                                 </tbody>
+                                <tfoot class="hide-if-no-paging">
+                                    <tr>
+                                        <td colspan="5" class="text-center">
+                                            <ul class="pagination"></ul>
+                                        </td>
+                                    </tr>
+                                </tfoot>
                             </table>
                         </div>
                     </div>
                 </div>
-                <!--/-->
 
                 <!-- ############ PAGE END-->
 

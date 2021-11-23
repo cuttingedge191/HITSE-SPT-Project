@@ -2,10 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="">
 
 <head>
-    <meta charset="utf-8"/>
+    <meta charset="utf-8" />
     <title>SPT addCustomer</title>
-    <meta name="description" content="Admin, Dashboard, Bootstrap, Bootstrap 4, Angular, AngularJS"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui"/>
+    <meta name="description" content="Admin, Dashboard, Bootstrap, Bootstrap 4, Angular, AngularJS" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <!-- for ios 7 style, multi-resolution icon of 152x152 -->
@@ -18,107 +18,108 @@
     <link rel="shortcut icon" sizes="196x196" th:href="@{/assets/images/logo.png}">
 
     <!-- style -->
-    <link rel="stylesheet" th:href="@{/assets/animate.css/animate.min.css}" type="text/css"/>
-    <link rel="stylesheet" th:href="@{/assets/glyphicons/glyphicons.css}" type="text/css"/>
-    <link rel="stylesheet" th:href="@{/assets/font-awesome/css/font-awesome.min.css}" type="text/css"/>
-    <link rel="stylesheet" th:href="@{/assets/material-design-icons/material-design-icons.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/assets/animate.css/animate.min.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/assets/glyphicons/glyphicons.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/assets/font-awesome/css/font-awesome.min.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/assets/material-design-icons/material-design-icons.css}" type="text/css" />
 
-    <link rel="stylesheet" th:href="@{/assets/bootstrap/dist/css/bootstrap.min.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/assets/bootstrap/dist/css/bootstrap.min.css}" type="text/css" />
     <!-- build:css @{/assets/styles/app.min.css -->
-    <link rel="stylesheet" th:href="@{/assets/styles/app.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/assets/styles/app.css}" type="text/css" />
     <!-- endbuild -->
-    <link rel="stylesheet" th:href="@{/assets/styles/font.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/assets/styles/font.css}" type="text/css" />
 </head>
+
 <body>
-<div class="app" id="app">
+    <div class="app" id="app">
 
-    <!-- ############ LAYOUT START-->
+        <!-- ############ LAYOUT START-->
 
-    <!-- / -->
+        <!-- / -->
 
-    <!-- content -->
-    <div class="container">
-        <div ui-view class="app-body" id="view">
+        <!-- content -->
+        <div class="container">
+            <div ui-view class="app-body" id="view">
 
-            <div class="col-md-6 center-block">
-                <br/>
-                <button class="btn btn-fw light-blue-500">客户添加</button>
-                <div class="box">
-                    <div class="box-header">
-                        <small>添加客户资料</small>
-                    </div>
-                    <div class="box-divider m-0"></div>
-                    <div class="box-body">
-                        <form role="form" th:action="@{addCustomerNow}">
-                            <div class="form-group">
-                                <label for="customer_name">客户联系人</label>
-                                <input type="text" class="form-control" name="name" id="customer_name"
-                                       placeholder="客户名" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="customer_phone">联系方式</label>
-                                <input type="text" class="form-control" name="phone" id="customer_phone"
-                                       placeholder="电话" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="customer_addr">用户地址</label>
-                                <input type="text" class="form-control" name="addr" id="customer_addr"
-                                       placeholder="地址" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="male">男</label>
-                                <input type="radio" name="sex" id="male" value="true"/>
-                                <label for="female">女</label>
-                                <input type="radio" name="sex" id="female" value="false"/>
-                            </div>
-                            <div class="form-group">
-                                <label for="retail">零售</label>
-                                <input type="radio" name="type" id="retail" value="true">
-                                <label for="retail">批发</label>
-                                <input type="radio" name="type" id="bulk" value="false">
-                            </div>
-                            <button type="submit" class="btn primary m-b ">添加</button>
-                        </form>
+                <div class="col-md-6 center-block">
+                    <br />
+                    <button class="btn btn-fw light-blue-500">客户添加</button>
+                    <div class="box">
+                        <div class="box-header">
+                            <small>添加客户资料</small>
+                        </div>
+                        <div class="box-divider m-0"></div>
+                        <div class="box-body">
+                            <form role="form" th:action="@{addCustomerNow}">
+                                <div class="form-group">
+                                    <label for="customer_name">客户联系人</label>
+                                    <input type="text" class="form-control" name="name" id="customer_name"
+                                        placeholder="客户名" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="customer_phone">联系方式</label>
+                                    <input type="text" class="form-control" name="phone" id="customer_phone"
+                                        placeholder="电话" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="customer_addr">用户地址</label>
+                                    <input type="text" class="form-control" name="addr" id="customer_addr"
+                                        placeholder="地址" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="male">男</label>
+                                    <input type="radio" name="sex" id="male" value="true" />
+                                    <label for="female">女</label>
+                                    <input type="radio" name="sex" id="female" value="false" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="retail">零售</label>
+                                    <input type="radio" name="type" id="retail" value="true">
+                                    <label for="retail">批发</label>
+                                    <input type="radio" name="type" id="bulk" value="false">
+                                </div>
+                                <button type="submit" class="btn primary m-b ">添加</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </div>
 
+            </div>
         </div>
     </div>
-</div>
-<!-- / -->
-<!-- theme switcher -->
+    <!-- / -->
+    <!-- theme switcher -->
 
-<!-- build:js scripts/app.html.js -->
-<!-- jQuery -->
-<script th:src="@{/libs/jquery/jquery/dist/jquery.js}"></script>
-<!-- Bootstrap -->
-<script th:src="@{/libs/jquery/tether/dist/js/tether.min.js}"></script>
-<script th:src="@{/libs/jquery/bootstrap/dist/js/bootstrap.js}"></script>
-<!-- core -->
-<script th:src="@{/libs/jquery/underscore/underscore-min.js}"></script>
-<script th:src="@{/libs/jquery/jQuery-Storage-API/jquery.storageapi.min.js}"></script>
-<script th:src="@{/libs/jquery/PACE/pace.min.js}"></script>
+    <!-- build:js scripts/app.html.js -->
+    <!-- jQuery -->
+    <script th:src="@{/libs/jquery/jquery/dist/jquery.js}"></script>
+    <!-- Bootstrap -->
+    <script th:src="@{/libs/jquery/tether/dist/js/tether.min.js}"></script>
+    <script th:src="@{/libs/jquery/bootstrap/dist/js/bootstrap.js}"></script>
+    <!-- core -->
+    <script th:src="@{/libs/jquery/underscore/underscore-min.js}"></script>
+    <script th:src="@{/libs/jquery/jQuery-Storage-API/jquery.storageapi.min.js}"></script>
+    <script th:src="@{/libs/jquery/PACE/pace.min.js}"></script>
 
-<script th:src="@{/scripts/config.lazyload.js}"></script>
+    <script th:src="@{/scripts/config.lazyload.js}"></script>
 
-<script th:src="@{/scripts/palette.js}"></script>
-<script th:src="@{/scripts/ui-load.js}"></script>
-<script th:src="@{/scripts/ui-jp.js}"></script>
-<script th:src="@{/scripts/ui-include.js}"></script>
-<script th:src="@{/scripts/ui-device.js}"></script>
-<script th:src="@{/scripts/ui-form.js}"></script>
-<script th:src="@{/scripts/ui-nav.js}"></script>
-<script th:src="@{/scripts/ui-screenfull.js}"></script>
-<script th:src="@{/scripts/ui-scroll-to.js}"></script>
-<script th:src="@{/scripts/ui-toggle-class.js}"></script>
+    <script th:src="@{/scripts/palette.js}"></script>
+    <script th:src="@{/scripts/ui-load.js}"></script>
+    <script th:src="@{/scripts/ui-jp.js}"></script>
+    <script th:src="@{/scripts/ui-include.js}"></script>
+    <script th:src="@{/scripts/ui-device.js}"></script>
+    <script th:src="@{/scripts/ui-form.js}"></script>
+    <script th:src="@{/scripts/ui-nav.js}"></script>
+    <script th:src="@{/scripts/ui-screenfull.js}"></script>
+    <script th:src="@{/scripts/ui-scroll-to.js}"></script>
+    <script th:src="@{/scripts/ui-toggle-class.js}"></script>
 
-<script th:src="@{/scripts/app.js}"></script>
+    <script th:src="@{/scripts/app.js}"></script>
 
-<!-- ajax -->
-<script th:src="@{/libs/jquery/jquery-pjax/jquery.pjax.js}"></script>
-<script th:src="@{/scripts/ajax.js}"></script>
-<!-- endbuild -->
+    <!-- ajax -->
+    <script th:src="@{/libs/jquery/jquery-pjax/jquery.pjax.js}"></script>
+    <script th:src="@{/scripts/ajax.js}"></script>
+    <!-- endbuild -->
 </body>
-</html>
 
+</html>

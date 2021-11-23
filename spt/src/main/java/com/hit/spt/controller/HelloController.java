@@ -29,7 +29,6 @@ public class HelloController {
         return "logup";
     }
 
-
     @RequestMapping("addInventory")
     public String addInventory(Model model) {
         return "addInventory";
@@ -40,5 +39,20 @@ public class HelloController {
         return "addOrder";
     }
 
+    // ###以下均待处理###
+    @RequestMapping("inventoryView")
+    public String inventoryView(Model model) {
+        return "inventoryView";
+    }
+
+    @RequestMapping("ordersView")
+    public String ordersView(Model model) {
+        return "ordersView";
+    }
+
+    @RequestMapping("goodsView")
+    public String goodsView(Model model) {
+        return "goodsView";
+    }
 
 }

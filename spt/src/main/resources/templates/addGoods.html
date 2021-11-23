@@ -43,33 +43,33 @@
 
                 <div class="col-md-6 center-block">
                     <br />
-                    <button class="btn btn-fw light-blue-500">货品入库</button>
+                    <button class="btn btn-fw light-blue-500">货品添加</button>
                     <div class="box">
                         <div class="box-header">
-                            <small>添加入库货品信息</small>
+                            <small>添加货品资料</small>
                         </div>
                         <div class="box-divider m-0"></div>
                         <div class="box-body">
-                            <form role="form" method="post" th:action="@{/inventory/add}">
+                            <form role="form" method="post">
                                 <div class="form-group">
-                                    <label for="g_id">货品编号/名称</label>
-                                    <input type="text" class="form-control" name="g_id" id="g_id"
-                                        placeholder="请输入货品编号/名称" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="quantity">货品数量</label>
-                                    <input type="text" class="form-control" name="quantity" id="quantity"
-                                        placeholder="请输入货品数量" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="cost">成本价</label>
-                                    <input type="text" class="form-control" name="cost" id="cost" placeholder="请输入货品成本价"
+                                    <label for="g_id">货品名称</label>
+                                    <input type="text" class="form-control" name="g_id" id="g_id" placeholder="请输入货品名称"
                                         required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="quality">货品质量等级</label>
-                                    <input type="text" class="form-control" name="quality" id="quality"
-                                        placeholder="请输入货品质量等级" required>
+                                    <label for="retail_price">零售价</label>
+                                    <input type="text" class="form-control" name="retail_price" id="retail_price"
+                                        placeholder="请输入货品计划零售价" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="trade_price">批发价</label>
+                                    <input type="text" class="form-control" name="trade_price" id="trade_price"
+                                        placeholder="请输入货品计划批发价" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="desc">货品描述</label>
+                                    <input type="text" class="form-control" name="desc" id="desc" placeholder="请输入货品描述"
+                                        required>
                                 </div>
                                 <button type="submit" class="btn primary m-b ">放弃</button>
                                 <button type="submit" class="btn primary m-b ">添加</button>
