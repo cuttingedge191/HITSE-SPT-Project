@@ -6,6 +6,7 @@ import com.hit.spt.service.OrderItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Random;
 
 @Service
@@ -25,5 +26,10 @@ public class OrderItemServiceImpl implements OrderItemService {
         while (checkIfExits(OrderId))
             OrderId += 1;
         return OrderId;
+    }
+
+    @Override
+    public List<Orders> getAllOrders(){
+        return ordersMapper.queryAllOrders();
     }
 }

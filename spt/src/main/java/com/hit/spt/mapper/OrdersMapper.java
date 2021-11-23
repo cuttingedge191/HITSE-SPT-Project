@@ -19,4 +19,6 @@ public interface OrdersMapper {
     List<Orders> queryOrdersByType(String type);
 
     int deleteOrdersByOid(Integer o_id);
+
+    List<Orders> queryAllOrders();
 }

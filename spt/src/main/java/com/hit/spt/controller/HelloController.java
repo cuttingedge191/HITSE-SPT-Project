@@ -46,10 +46,6 @@ public class HelloController {
         return "inventoryView";
     }
 
-    @RequestMapping("ordersView")
-    public String ordersView(Model model) {
-        return "ordersView";
-    }
 
     @RequestMapping("goodsView")
     public String goodsView(Model model) {
