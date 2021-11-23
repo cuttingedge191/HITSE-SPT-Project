@@ -41,11 +41,6 @@ public class HelloController {
     }
 
     // ###以下均待处理###
-    @RequestMapping("inventoryView")
-    public String inventoryView(Model model) {
-        return "inventoryView";
-    }
-
 
     @RequestMapping("goodsView")
     public String goodsView(Model model) {
