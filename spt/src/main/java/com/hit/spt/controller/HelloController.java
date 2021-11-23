@@ -36,4 +36,9 @@ public class HelloController {
         return "addInventory";
     }
 
+    @RequestMapping("addOrder")
+    public String addOrder(Model model) {
+        return "addOrder";
+    }
+
 }
