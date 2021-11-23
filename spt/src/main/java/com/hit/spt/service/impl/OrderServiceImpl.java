@@ -42,6 +42,7 @@ public class OrderServiceImpl implements OrderService {
         return orderItemMapper.queryOrderItemWithNameListByOid(o_id);
     }
 
+
     @Override
     public OrderItem generateOrderItem(Integer o_id, String name, Integer quantity, Boolean trade) {
         GoodsInfo goodsInfo = goodsInfoMapper.queryGoodsInfoByName(name);
@@ -66,5 +67,10 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void deleteAllOrderItemByOid(Integer o_id) {
         orderItemMapper.deleteOrderItemByOid(o_id);
+    }
+
+    @Override
+    public void deleteOneOrderItemByOiid(Integer oi_id) {
+        orderItemMapper.deleteOrderItemByOiid(oi_id);
     }
 }

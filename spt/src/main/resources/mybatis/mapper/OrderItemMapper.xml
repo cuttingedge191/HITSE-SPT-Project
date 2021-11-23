@@ -13,6 +13,11 @@
         from order_item
         where o_id = #{o_id}
     </delete>
+    <delete id="deleteOrderItemByOiid" parameterType="java.lang.Integer">
+        delete
+        from order_item
+        where oi_id = #{oi_id}
+    </delete>
     <delete id="deleteOrderItemByGid" parameterType="java.lang.Integer">
         delete
         from order_item

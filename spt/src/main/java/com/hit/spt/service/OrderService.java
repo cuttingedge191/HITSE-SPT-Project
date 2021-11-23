@@ -17,4 +17,6 @@ public interface OrderService {
     void insertOrderItem(OrderItem orderItem);
 
     void deleteAllOrderItemByOid(Integer o_id);
+
+    void deleteOneOrderItemByOiid(Integer oi_id);
 }

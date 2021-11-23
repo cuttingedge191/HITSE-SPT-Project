@@ -59,61 +59,60 @@
                                     <option value="retail">零售</option>
                                 </select>
                             </div>
-                            <!--                            <div class="form-group">-->
-                            <!--                                <label for="customer" class="col-md-4 form-control-label">客户</label>-->
-                            <!--                                <input type="text" class="form-control" name="customer" id="customer" placeholder="客户"-->
-                            <!--                                       required>-->
-                            <!--                            </div>-->
+
                             <div class="form-group">
+                                <label for="customer" class="col-md-4 form-control-label">客户编号</label>
+                                <input type="text" class="form-control col-md-4" name="c_id" id="customer"
+                                       placeholder="客户编号"
+                                       th:value="${c_id}"
+                                       required>
                                 <input type="hidden" th:value="${o_id}" name="o_id">
                                 <label for="item_name" class="col-md-4 form-control-label">货品名称</label>
-                                <input class="form-control" type="text" name="name" id="item_name" placeholder="货品名称"
+                                <input class="form-control col-md-4" type="text" name="item_name" id="item_name"
+                                       placeholder="货品名称"
                                        required>
                                 <label for="item_quantity" class="col-md-4 form-control-label">货品数量</label>
-                                <input class="form-control" type="text" name="quantity" id="item_quantity"
+                                <input class="form-control col-md-4" type="text" name="quantity" id="item_quantity"
                                        placeholder="货品数量" required>
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn info m-b ">添加</button>
                             </div>
                         </form>
-                        <div class="Box">
-                            <div class="box-header">
-                                <small>货品信息的表格预览，展示已经添加的货品项</small>
-                            </div>
-                            <table class="table table-hover b-t">
-                                <thead>
-                                <tr>
-                                    <th>货品编号</th>
-                                    <th>货品名称</th>
-                                    <th>货品数量</th>
-                                    <th>总价</th>
-                                    <th>操作</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr th:each="orderItem:${orderItemWithNameList}">
-                                    <td th:text="${orderItem.g_id}"></td>
-                                    <td th:text="${orderItem.name}"></td>
-                                    <td th:text="${orderItem.quantity}"></td>
-                                    <td th:text="${orderItem.price}"></td>
-                                    <td>
-                                        <button class="btn btn-sm btn-danger deletebtn" del_url="???">删除</button>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
+                        <form th:action="@{/commitOrder}">
+                            <div class="Box">
+                                <div class="box-header">
+                                    <small>货品信息的表格预览，展示已经添加的货品项</small>
+                                </div>
+                                <table class="table table-hover b-t">
+                                    <thead>
+                                    <tr>
+                                        <th>货品编号</th>
+                                        <th>货品名称</th>
+                                        <th>货品数量</th>
+                                        <th>总价</th>
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="orderItem:${orderItemWithNameList}">
+                                        <td th:text="${orderItem.g_id}"></td>
+                                        <td th:text="${orderItem.name}"></td>
+                                        <td th:text="${orderItem.quantity}"></td>
+                                        <td th:text="${orderItem.price}"></td>
+                                        <td>
+                                            <a class="btn btn-sm btn-danger deletebtn"
+                                               th:href="@{/deleteOneOrderItem(oi_id=${orderItem.oi_id},o_id=${o_id},c_id=${c_id})}">删除</a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
 
-                            <div class="form-group">
-                                <label for="customer" class="col-md-4 form-control-label">客户用户名</label>
-                                <input type="text" class="form-control col-md-4" name="customer" id="customer"
-                                       placeholder="客户用户名"
-                                       required>
                             </div>
-                        </div>
-                        <button type="submit" class="btn primary m-b ">取消</button>
-                        <button type="submit" class="btn primary m-b ">保存</button>
-
+                            <a class="btn primary m-b"
+                               th:href="@{/commitOrder(method=false,o_id=${o_id},c_id=${c_id})}">取消</a>
+                            <a class="btn primary m-b" th:href="@{/commitOrder(method=true,o_id=${o_id},c_id=${c_id})}">保存</a>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -127,6 +126,7 @@
 <!-- build:js @{scripts/app.html.js} -->
 <!-- jQuery -->
 <script th:src="@{/libs/jquery/jquery/dist/jquery.js}"></script>
+
 <!-- Bootstrap -->
 <script th:src="@{/libs/jquery/tether/dist/js/tether.min.js}"></script>
 <script th:src="@{/libs/jquery/bootstrap/dist/js/bootstrap.js}"></script>

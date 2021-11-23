@@ -15,6 +15,8 @@ public interface OrderItemMapper {
 
     int deleteOrderItemByGid(Integer g_id);
 
+    int deleteOrderItemByOiid(Integer oi_id);
+
     List<OrderItem> queryOrderItemByOid(Integer o_id);
 
     List<OrderItem> queryOrderItemByGid(Integer g_id);
@@ -24,4 +26,5 @@ public interface OrderItemMapper {
     List<OrderItem> queryOrderItemWithNameList();
 
     List<OrderItem> queryOrderItemWithNameListByOid(Integer o_id);
+
 }
