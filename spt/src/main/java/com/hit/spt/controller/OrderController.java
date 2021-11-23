@@ -44,7 +44,7 @@ public class OrderController {
     }
 
     @RequestMapping("deleteOneOrderItem")
-    public String deleteOneOrderItem(Integer oi_id, Integer o_id,Integer c_id, Model model) {
+    public String deleteOneOrderItem(Integer oi_id, Integer o_id, Integer c_id, Model model) {
         // 生成暂存物品列表
         orderService.deleteOneOrderItemByOiid(oi_id);
         List<OrderItem> orderItemWithNameList = orderService.queryOrderItemWithNameListByOid(o_id);
@@ -56,17 +56,19 @@ public class OrderController {
     }
 
     @RequestMapping("commitOrder")
-    public String cancelOrder(boolean method, Integer o_id, Model model) {
-        if (!method)
+    public String commitOrder(boolean method, Integer o_id, Integer c_id, String type) {
+        if (!method) {
             orderService.deleteAllOrderItemByOid(o_id);
-        System.out.println(o_id);
+        } else {
+            orderService.saveOrder(orderService.generateOneOrder(o_id, c_id, type));
+        }
         return "ordersView";
     }
 
     @RequestMapping("ordersView")
     public String ordersView(Model model) {
-        List<Orders> ordersList = orderItemService.getAllOrders();
-        model.addAttribute("orders",ordersList);
+        List<Orders> ordersList = orderService.getAllOrders();
+        model.addAttribute("orders", ordersList);
         // yyyy.mm.dd.hh.mm
         return "ordersView";
     }

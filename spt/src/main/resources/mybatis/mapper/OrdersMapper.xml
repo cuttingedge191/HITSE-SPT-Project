@@ -52,12 +52,17 @@
         from orders
         where o_id = #{o_id}
     </select>
+    <insert id="insertOrder" parameterType="Orders">
+        insert into orders(o_id, c_id, type, status, total_turnover, total_cost, total_profit, time_stamp)
+        values (#{o_id}, #{c_id}, #{type}, #{status}, #{total_turnover}, #{total_cost}, #{total_profit}, #{time_stamp})
+    </insert>
     <delete id="deleteOrdersByOid" parameterType="java.lang.Integer">
         delete
         from orders
         where o_id = #{o_id}
     </delete>
     <select id="queryAllOrders" resultType="Orders">
-        select * from orders
+        select o_id, c_id, type, status, total_turnover, total_cost, total_profit, time_stamp
+        from orders
     </select>
 </mapper>
