@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 public class UserController {
     @Autowired
-    LogInUpService service;
+    LogInUpService logInUpService;
 
     @RequestMapping("user/login")
     public String login(@RequestParam("username") String username, @RequestParam("password") String password, Model model) {
-        if (service.checkPassword(username, password))
+        if (logInUpService.checkPassword(username, password))
             return "index";
         model.addAttribute("msg", "用户名或者密码错误!");
         return "login";
@@ -24,7 +24,7 @@ public class UserController {
 
     @RequestMapping("user/logup")
     public String logup(User user, Model model) {
-        service.registerUser(user);
+        logInUpService.registerUser(user);
         return "login";
     }
 

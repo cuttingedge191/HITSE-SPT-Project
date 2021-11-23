@@ -30,4 +30,10 @@ public class HelloController {
         return "logup";
     }
 
+
+    @RequestMapping("addInventory")
+    public String addInventory(Model model) {
+        return "addInventory";
+    }
+
 }
