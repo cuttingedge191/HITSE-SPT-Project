@@ -39,6 +39,7 @@ public class OrderController {
         model.addAttribute("orderItemWithNameList", orderItemWithNameList);
         model.addAttribute("o_id", o_id);
         model.addAttribute("c_id", c_id);
+        model.addAttribute("type", type);
         return "addOrder";
 
     }
@@ -56,13 +57,16 @@ public class OrderController {
     }
 
     @RequestMapping("commitOrder")
-    public String commitOrder(boolean method, Integer o_id, Integer c_id, String type) {
+    public String commitOrder(boolean method, Integer o_id, Integer c_id, String type, Model model) {
         if (!method) {
             orderService.deleteAllOrderItemByOid(o_id);
         } else {
             orderService.saveOrder(orderService.generateOneOrder(o_id, c_id, type));
         }
-        return "ordersView";
+
+        List<Orders> ordersList = orderService.getAllOrders();
+        model.addAttribute("orders", ordersList);
+        return "redirect:ordersView";
     }
 
     @RequestMapping("ordersView")

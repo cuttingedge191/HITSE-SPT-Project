@@ -60,6 +60,6 @@
         from order_item,
              goods_info
         where order_item.g_id = goods_info.g_id
-          and o_id = order_item.o_id
+          and #{o_id} = order_item.o_id
     </select>
 </mapper>
