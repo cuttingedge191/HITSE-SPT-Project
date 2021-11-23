@@ -189,84 +189,18 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>A1</td>
-                                <td>45</td>
-                                <td>219652</td>
-                                <td data-value="20210418">2021.04.18</td>
-                                <td data-value="1"><span class="label success" title="Active">Active</span></td>
+                            <tr th:each="order:${orders}">
+                                <td th:text="${order.c_id}"></td>
+                                <td th:text="${order.o_id}"></td>
+                                <td th:data-value="${order.total_cost}" th:text="${order.total_cost}"></td>
+                                <td th:text="${order.time_stamp}"></td>
+                                <td th:data-value="${order.status}=='Disabled'?2:(${order.status}=='Active'?1:3)"><span class="label" th:title="${order.status}"
+                                                                          th:text="${order.status}"></span></td>
                                 <td class="m-b btn-groups">
-                                    <button class="btn btn-sm info">详细信息</button>
-                                    <button class="btn btn-sm success">编辑</button>
-                                    <button class="btn btn-sm danger">删除</button>
+                                    <a class="btn btn-sm info">详细信息</a>
+                                    <a class="btn btn-sm success" th:href="@{/upOrder(c_id=${order.o_id})}">编辑</a>
+                                    <a class="btn btn-sm danger" th:href="@{/deOrder(c_id=${order.o_id})}">删除</a>
                                 </td>
-                            </tr>
-                            <tr>
-                                <td>A2</td>
-                                <td>245</td>
-                                <td>25427</td>
-                                <td data-value="20211105">2021.11.05</td>
-                                <td data-value="2"><span class="label" title="Disabled">Disabled</span></td>
-                                <td class="m-b btn-groups">
-                                    <button class="btn btn-sm info">详细信息</button>
-                                    <button class="btn btn-sm success">编辑</button>
-                                    <button class="btn btn-sm danger">删除</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>A3</td>
-                                <td>343265</td>
-                                <td>4532245</td>
-                                <td data-value="20210112">2021.01.12</td>
-                                <td data-value="3"><span class="label warning"
-                                                         title="Suspended">Suspended</span>
-                                </td>
-                                <td class="m-b btn-groups">
-                                    <button class="btn btn-sm info">详细信息</button>
-                                    <button class="btn btn-sm success">编辑</button>
-                                    <button class="btn btn-sm danger">删除</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>B2</td>
-                                <td>354</td>
-                                <td>25425</td>
-                                <td data-value="20210124">2021.01.24</td>
-                                <td data-value="1"><span class="label success" title="Active">Active</span></td>
-                                <td class="m-b btn-groups">
-                                    <button class="btn btn-sm info">详细信息</button>
-                                    <button class="btn btn-sm success">编辑</button>
-                                    <button class="btn btn-sm danger">删除</button>
-                                </td>
-                            <tr>
-                                <td>B6</td>
-                                <td>867</td>
-                                <td>532453</td>
-                                <td data-value="20201211">2020.12.11</td>
-                                <td data-value="3"><span class="label warning"
-                                                         title="Suspended">Suspended</span>
-                                </td>
-                                <td class="m-b btn-groups">
-                                    <button class="btn btn-sm info">详细信息</button>
-                                    <button class="btn btn-sm success">编辑</button>
-                                    <button class="btn btn-sm danger">删除</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>B3</td>
-                                <td>76327</td>
-                                <td>527432</td>
-                                <td data-value="20210114">2021.01.14</td>
-                                <td data-value="2"><span class="label" title="Disabled">Disabled</span></td>
-                                <td><span><a th:href="404.html">修改</a></span></td>
-                            </tr>
-                            <tr>
-                                <td>A9</td>
-                                <td>2165</td>
-                                <td>2452</td>
-                                <td data-value="202111.1">2021.11.01</td>
-                                <td data-value="2"><span class="label" title="Disabled">Disabled</span></td>
-                                <td><span><a th:href="404.html">修改</a></span></td>
                             </tr>
                             </tbody>
                             <tfoot class="hide-if-no-paging">

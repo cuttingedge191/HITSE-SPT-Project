@@ -57,4 +57,7 @@
         from orders
         where o_id = #{o_id}
     </delete>
+    <select id="queryAllOrders" resultType="Orders">
+        select * from orders
+    </select>
 </mapper>

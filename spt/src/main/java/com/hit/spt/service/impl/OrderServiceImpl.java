@@ -73,4 +73,8 @@ public class OrderServiceImpl implements OrderService {
     public void deleteOneOrderItemByOiid(Integer oi_id) {
         orderItemMapper.deleteOrderItemByOiid(oi_id);
     }
+    @Override
+    public List<Orders> getAllOrders(){
+        return ordersMapper.queryAllOrders();
+    }
 }

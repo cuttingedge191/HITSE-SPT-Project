@@ -1,6 +1,7 @@
 package com.hit.spt.service;
 
 import com.hit.spt.pojo.OrderItem;
+import com.hit.spt.pojo.Orders;
 
 
 import java.util.List;
@@ -19,4 +20,5 @@ public interface OrderService {
     void deleteAllOrderItemByOid(Integer o_id);
 
     void deleteOneOrderItemByOiid(Integer oi_id);
+    List<Orders> getAllOrders();
 }
