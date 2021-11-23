@@ -55,8 +55,8 @@
                             <div class="form-group">
                                 <label for="order_type" class="col-md-4 form-control-label">销售单类型</label>
                                 <select class="c-select col-2" id="order_type" name="type">
-                                    <option>批发</option>
-                                    <option>零售</option>
+                                    <option value="trade">批发</option>
+                                    <option value="retail">零售</option>
                                 </select>
                             </div>
                             <!--                            <div class="form-group">-->
@@ -65,11 +65,13 @@
                             <!--                                       required>-->
                             <!--                            </div>-->
                             <div class="form-group">
-                                <input type="hidden" th:value="${o_id}">
-                                <label for="item_id" class="col-md-4 form-control-label">货品编号</label>
-                                <input class="form-control" type="text" id="item_id" placeholder="货品编号">
+                                <input type="hidden" th:value="${o_id}" name="o_id">
+                                <label for="item_name" class="col-md-4 form-control-label">货品名称</label>
+                                <input class="form-control" type="text" name="name" id="item_name" placeholder="货品名称"
+                                       required>
                                 <label for="item_quantity" class="col-md-4 form-control-label">货品数量</label>
-                                <input class="form-control" type="text" id="item_quantity" placeholder="货品数量">
+                                <input class="form-control" type="text" name="quantity" id="item_quantity"
+                                       placeholder="货品数量" required>
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn info m-b ">添加</button>
@@ -90,15 +92,13 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr th:each="orderItemWithName:${orderItemWithNameList}">
-                                    <td th:text="orderItem">1</td>
-                                    <td>Mark</td>
-                                    <td>10</td>
+                                <tr th:each="orderItem:${orderItemWithNameList}">
+                                    <td th:text="${orderItem.g_id}"></td>
+                                    <td th:text="${orderItem.name}"></td>
+                                    <td th:text="${orderItem.quantity}"></td>
+                                    <td th:text="${orderItem.price}"></td>
                                     <td>
-                                        <button class="btn-sm btn-icon white">
-                                            <i class="fa fa-remove">
-                                            </i>
-                                        </button>
+                                        <button class="btn btn-sm btn-danger deletebtn" del_url="???">删除</button>
                                     </td>
                                 </tr>
                                 <tr>
