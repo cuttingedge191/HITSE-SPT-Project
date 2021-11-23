@@ -145,49 +145,46 @@
                 </div>
             </div>
         </div>
-        <!-- / -->
+    </div>
+    <!-- content -->
+    <div id="content" class="app-content box-shadow-z0" role="main">
+        <div ui-view class="app-body" id="view">
 
-        <!-- content -->
-        <div id="content" class="app-content box-shadow-z0" role="main">
-            <div ui-view class="app-body" id="view">
-
-                <!-- ############ PAGE START-->
-                <div class="padding">
-                    <div class="box">
-                        <div class="box-header">
-                            <h2>客户资料查询</h2>
-                        </div>
-                        <div class="table-responsive">
-                            <table class="table table-striped b-t b-b">
-                                <thead>
-                                    <tr>
-                                        <th style="width:7%">ID</th>
-                                        <th style="width:7%">姓名</th>
-                                        <th style="width:7%">类型</th>
-                                        <th style="width:7%">性别</th>
-                                        <th style="width:10%">电话</th>
-                                        <th style="width:10%">地址</th>
-                                        <th style="width:7%">操作</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr th:each="cus:${customers}">
-                                        <td th:text="${cus.c_id}"></td>
-                                        <td th:text="${cus.name}"></td>
-                                        <td th:text="${cus.type}=='retail'?'零售':'批发'"></td>
-                                        <td th:text="${cus.gender}=='female'?'女':'男'"></td>
-                                        <td th:text="${cus.phone}"></td>
-                                        <td th:text="${cus.address}"></td>
-                                        <td>
-                                            <a class="btn btn-sm btn-primary"
-                                                th:href="'/upcos'+'?c_id='+${cus.c_id}">编辑</a>
-                                            <a th:href="'/decos'+'?c_id='+${cus.c_id}"
-                                                class="btn btn-sm btn-danger deleteBtn">删除</a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+            <!-- ############ PAGE START-->
+            <div class="padding">
+                <div class="box">
+                    <div class="box-header">
+                        <h2>客户资料查询</h2>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-striped b-t b-b">
+                            <thead>
+                                <tr>
+                                    <th style="width:7%">ID</th>
+                                    <th style="width:7%">姓名</th>
+                                    <th style="width:7%">类型</th>
+                                    <th style="width:7%">性别</th>
+                                    <th style="width:10%">电话</th>
+                                    <th style="width:10%">地址</th>
+                                    <th style="width:7%">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="cus:${customers}">
+                                    <td th:text="${cus.c_id}"></td>
+                                    <td th:text="${cus.name}"></td>
+                                    <td th:text="${cus.type}=='retail'?'零售':'批发'"></td>
+                                    <td th:text="${cus.gender}=='female'?'女':'男'"></td>
+                                    <td th:text="${cus.phone}"></td>
+                                    <td th:text="${cus.address}"></td>
+                                    <td>
+                                        <a class="btn btn-sm btn-primary" th:href="@{/upcos(c_id=${cus.c_id})}">编辑</a>
+                                        <a class="btn btn-sm btn-danger deleteBtn"
+                                            th:href="@{/decos(c_id=${cus.c_id})}">删除</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
                 <!--/-->

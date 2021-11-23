@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+
 @Mapper
 @Repository
 public interface OrderItemMapper {
@@ -19,4 +20,6 @@ public interface OrderItemMapper {
     List<OrderItem> queryOrderItemByGid(Integer g_id);
 
     List<OrderItem> queryOrderItemList();
+
+    List<OrderItem> queryOrderItemWithNameList();
 }

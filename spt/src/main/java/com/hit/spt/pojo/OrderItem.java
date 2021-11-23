@@ -14,4 +14,5 @@ public class OrderItem {
     private Integer quantity;
     private Double cost;
     private Double price;
+    private String name;
 }
