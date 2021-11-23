@@ -31,145 +31,145 @@
 </head>
 
 <body>
-<div class="app" id="app">
+    <div class="app" id="app">
 
-    <!-- ############ LAYOUT START-->
+        <!-- ############ LAYOUT START-->
 
-    <!-- aside -->
-    <div id="aside" class="app-aside modal nav-dropdown">
-        <!-- fluid app aside -->
-        <div class="left navside dark dk" data-layout="column">
-            <div class="navbar no-radius">
-                <!-- brand -->
-                <a class="navbar-brand">
-                    <!-- 原来的图标
+        <!-- aside -->
+        <div id="aside" class="app-aside modal nav-dropdown">
+            <!-- fluid app aside -->
+            <div class="left navside dark dk" data-layout="column">
+                <div class="navbar no-radius">
+                    <!-- brand -->
+                    <a class="navbar-brand">
+                        <!-- 原来的图标
                         <div ui-include="'@{/assets/images/logo.svg'"></div>
                         <img th:src="@{/assets/images/logo.png}" alt="." class="hide">
                     -->
-                    <span class="hidden-folded inline">通用批发零售</span><br>
-                    <span class="hidden-folded inline">业务管理系统</span>
-                </a>
-                <!-- /brand -->
-            </div>
-            <div class="hide-scroll" data-flex>
-                <nav class="scroll nav-light">
+                        <span class="hidden-folded inline">通用批发零售</span><br>
+                        <span class="hidden-folded inline">业务管理系统</span>
+                    </a>
+                    <!-- /brand -->
+                </div>
+                <div class="hide-scroll" data-flex>
+                    <nav class="scroll nav-light">
 
-                    <ul class="nav" ui-nav>
-                        <li class="nav-header hidden-folded">
-                            <small class="text-muted">主要功能</small>
-                        </li>
+                        <ul class="nav" ui-nav>
+                            <li class="nav-header hidden-folded">
+                                <small class="text-muted">主要功能</small>
+                            </li>
 
-                        <li>
-                            <a th:href="main.html">
+                            <li>
+                                <a th:href="main.html">
                                     <span class="nav-icon">
                                         <i class="material-icons">&#xe3fc;
                                             <span ui-include="'@{/assets/images/i_0.svg'"></span>
                                         </i>
                                     </span>
-                                <span class="nav-text">概览界面</span>
-                            </a>
-                        </li>
+                                    <span class="nav-text">概览界面</span>
+                                </a>
+                            </li>
 
-                        <li>
-                            <a th:href="404.html">
+                            <li>
+                                <a th:href="404.html">
                                     <span class="nav-icon">
                                         <i class="material-icons">&#xe5c3;
                                             <span ui-include="'@{/assets/images/i_1.svg'"></span>
                                         </i>
                                     </span>
-                                <span class="nav-text">货品管理</span>
-                            </a>
-                        </li>
+                                    <span class="nav-text">货品管理</span>
+                                </a>
+                            </li>
 
-                        <li>
-                            <a th:href="404.html">
+                            <li>
+                                <a th:href="404.html">
                                     <span class="nav-icon">
                                         <i class="material-icons">&#xe8f0;
                                             <span ui-include="'@{/assets/images/i_2.svg'"></span>
                                         </i>
                                     </span>
-                                <span class="nav-text">库存管理</span>
-                            </a>
-                        </li>
+                                    <span class="nav-text">库存管理</span>
+                                </a>
+                            </li>
 
-                        <li>
-                            <a th:href="404.html">
+                            <li>
+                                <a th:href="404.html">
                                     <span class="nav-icon">
                                         <i class="material-icons">&#xe8d2;
                                             <span ui-include="'@{/assets/images/i_3.svg'"></span>
                                         </i>
                                     </span>
-                                <span class="nav-text">销售管理</span>
-                            </a>
-                        </li>
+                                    <span class="nav-text">销售管理</span>
+                                </a>
+                            </li>
 
-                        <li>
-                            <a th:href="404.html">
+                            <li>
+                                <a th:href="404.html">
                                     <span class="nav-icon">
                                         <i class="material-icons">&#xe429;
                                             <span ui-include="'@{/assets/images/i_4.svg'"></span>
                                         </i>
                                     </span>
-                                <span class="nav-text">客户管理</span>
-                            </a>
-                        </li>
+                                    <span class="nav-text">客户管理</span>
+                                </a>
+                            </li>
 
-                        <li>
-                            <a th:href="404.html">
+                            <li>
+                                <a th:href="404.html">
                                     <span class="nav-icon">
                                         <i class="material-icons">&#xe3e8;
                                             <span ui-include="'@{/assets/images/i_5.svg'"></span>
                                         </i>
                                     </span>
-                                <span class="nav-text">系统用户管理</span>
-                            </a>
-                        </li>
+                                    <span class="nav-text">系统用户管理</span>
+                                </a>
+                            </li>
 
-                        <li class="nav-header hidden-folded">
-                            <small class="text-muted">关于</small>
-                        </li>
+                            <li class="nav-header hidden-folded">
+                                <small class="text-muted">关于</small>
+                            </li>
 
-                        <li class="hidden-folded">
-                            <a th:href="404.html">
+                            <li class="hidden-folded">
+                                <a th:href="404.html">
                                     <span class="nav-icon">
                                         <i class="material-icons">&#xe39e;
                                             <span ui-include="'@{/assets/images/i_6.svg'"></span>
                                         </i>
                                     </span>
-                                <span class="nav-text">开发者信息</span>
-                            </a>
-                        </li>
+                                    <span class="nav-text">开发者信息</span>
+                                </a>
+                            </li>
 
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </div>
-    <!-- / -->
-
-    <!-- content -->
-    <div id="content" class="app-content box-shadow-z0" role="main">
-        <div ui-view class="app-body" id="view">
-
-            <!-- ############ PAGE START-->
-            <div class="p-a white lt box-shadow">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <h4 class="mb-0 _300">【问候语】</h4>
-                    </div>
+                        </ul>
+                    </nav>
                 </div>
             </div>
-            <div class="padding">
-                <div class="row">
+        </div>
+        <!-- / -->
 
-                    <div class="col-sm-6">
-                        <div class="box">
-                            <div class="box-header">
-                                <h3>库存概览</h3>
-                                <small class="block text-muted">不确定如何做</small>
-                            </div>
-                            <div class="box-body">
-                                <div ui-jp="chart" ui-options=" {
+        <!-- content -->
+        <div id="content" class="app-content box-shadow-z0" role="main">
+            <div ui-view class="app-body" id="view">
+
+                <!-- ############ PAGE START-->
+                <div class="p-a white lt box-shadow">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h4 class="mb-0 _300">【问候语】</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="padding">
+                    <div class="row">
+
+                        <div class="col-sm-6">
+                            <div class="box">
+                                <div class="box-header">
+                                    <h3>库存概览</h3>
+                                    <small class="block text-muted">不确定如何做</small>
+                                </div>
+                                <div class="box-body">
+                                    <div ui-jp="chart" ui-options=" {
                       tooltip : {
                           trigger: 'item',
                           formatter: '{a} <br/>{b} : {c} ({d}%)'
@@ -196,19 +196,19 @@
                           }
                       ]
                     }" style="height:300px">
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="col-sm-6">
-                        <div class="box">
-                            <div class="box-header">
-                                <h3>经营概览</h3>
-                                <small class="block text-muted">不确定如何做</small>
-                            </div>
-                            <div class="box-body">
-                                <div ui-jp="chart" ui-options=" {
+                        <div class="col-sm-6">
+                            <div class="box">
+                                <div class="box-header">
+                                    <h3>经营概览</h3>
+                                    <small class="block text-muted">不确定如何做</small>
+                                </div>
+                                <div class="box-body">
+                                    <div ui-jp="chart" ui-options=" {
                           tooltip : {
                               trigger: 'axis'
                           },
@@ -265,6 +265,7 @@
                               }
                           ]
                         }" style="height:300px">
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -273,41 +274,40 @@
             </div>
         </div>
     </div>
-</div>
-<!-- ############ PAGE END-->
+    <!-- ############ PAGE END-->
 
-<!-- ############ LAYOUT END-->
+    <!-- ############ LAYOUT END-->
 
-<!-- build:js scripts/app.html.js} -->
-<!-- jQuery -->
-<script th:src="@{/libs/jquery/jquery/dist/jquery.js}"></script>
-<!-- Bootstrap -->
-<script th:src="@{/libs/jquery/tether/dist/js/tether.min.js}"></script>
-<script th:src="@{/libs/jquery/bootstrap/dist/js/bootstrap.js}"></script>
-<!-- core -->
-<script th:src="@{/libs/jquery/underscore/underscore-min.js}"></script>
-<script th:src="@{/libs/jquery/jQuery-Storage-API/jquery.storageapi.min.js}"></script>
-<script th:src="@{/libs/jquery/PACE/pace.min.js}"></script>
+    <!-- build:js scripts/app.html.js} -->
+    <!-- jQuery -->
+    <script th:src="@{/libs/jquery/jquery/dist/jquery.js}"></script>
+    <!-- Bootstrap -->
+    <script th:src="@{/libs/jquery/tether/dist/js/tether.min.js}"></script>
+    <script th:src="@{/libs/jquery/bootstrap/dist/js/bootstrap.js}"></script>
+    <!-- core -->
+    <script th:src="@{/libs/jquery/underscore/underscore-min.js}"></script>
+    <script th:src="@{/libs/jquery/jQuery-Storage-API/jquery.storageapi.min.js}"></script>
+    <script th:src="@{/libs/jquery/PACE/pace.min.js}"></script>
 
-<script th:src="@{scripts/config.lazyload.js}"></script>
+    <script th:src="@{scripts/config.lazyload.js}"></script>
 
-<script th:src="@{scripts/palette.js}"></script>
-<script th:src="@{scripts/ui-load.js}"></script>
-<script th:src="@{scripts/ui-jp.js}"></script>
-<script th:src="@{scripts/ui-include.js}"></script>
-<script th:src="@{scripts/ui-device.js}"></script>
-<script th:src="@{scripts/ui-form.js}"></script>
-<script th:src="@{scripts/ui-nav.js}"></script>
-<script th:src="@{scripts/ui-screenfull.js}"></script>
-<script th:src="@{scripts/ui-scroll-to.js}"></script>
-<script th:src="@{scripts/ui-toggle-class.js}"></script>
+    <script th:src="@{scripts/palette.js}"></script>
+    <script th:src="@{scripts/ui-load.js}"></script>
+    <script th:src="@{scripts/ui-jp.js}"></script>
+    <script th:src="@{scripts/ui-include.js}"></script>
+    <script th:src="@{scripts/ui-device.js}"></script>
+    <script th:src="@{scripts/ui-form.js}"></script>
+    <script th:src="@{scripts/ui-nav.js}"></script>
+    <script th:src="@{scripts/ui-screenfull.js}"></script>
+    <script th:src="@{scripts/ui-scroll-to.js}"></script>
+    <script th:src="@{scripts/ui-toggle-class.js}"></script>
 
-<script th:src="@{scripts/app.js}"></script>
+    <script th:src="@{scripts/app.js}"></script>
 
-<!-- ajax -->
-<script th:src="@{/libs/jquery/jquery-pjax/jquery.pjax.js}"></script>
-<script th:src="@{scripts/ajax.js}"></script>
-<!-- endbuild -->
+    <!-- ajax -->
+    <script th:src="@{/libs/jquery/jquery-pjax/jquery.pjax.js}"></script>
+    <script th:src="@{scripts/ajax.js}"></script>
+    <!-- endbuild -->
 </body>
 
 </html>

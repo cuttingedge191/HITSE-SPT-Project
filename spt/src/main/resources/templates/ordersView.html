@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>通用批发零售业务管理系统</title>
+    <title>Flatkit - HTML Version | Bootstrap 4 Web App Kit with AngularJS</title>
     <meta name="description" content="Admin, Dashboard, Bootstrap, Bootstrap 4, Angular, AngularJS" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,13 +18,12 @@
     <link rel="shortcut icon" sizes="196x196" th:href="@{/assets/images/logo.png}">
 
     <!-- style -->
-    <link rel="stylesheet" th:href="@{/assets/animate/animate.min.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/assets/animate.css/animate.min.css}" type="text/css" />
     <link rel="stylesheet" th:href="@{/assets/glyphicons/glyphicons.css}" type="text/css" />
     <link rel="stylesheet" th:href="@{/assets/font-awesome/css/font-awesome.min.css}" type="text/css" />
     <link rel="stylesheet" th:href="@{/assets/material-design-icons/material-design-icons.css}" type="text/css" />
-
     <link rel="stylesheet" th:href="@{/assets/bootstrap/dist/css/bootstrap.min.css}" type="text/css" />
-    <!-- build:css @{assets/styles/app.min.css} -->
+    <!-- build:css @{/assets/styles/app.min.css} -->
     <link rel="stylesheet" th:href="@{/assets/styles/app.css}" type="text/css" />
     <!-- endbuild -->
     <link rel="stylesheet" th:href="@{/assets/styles/font.css}" type="text/css" />
@@ -43,9 +42,9 @@
                     <!-- brand -->
                     <a class="navbar-brand">
                         <!-- 原来的图标
-                        <div ui-include="'@{/assets/images/logo.svg'"></div>
-                        <img th:src="@{/assets/images/logo.png}" alt="." class="hide">
-                    -->
+                          <div ui-include="'@{/assets/images/logo.svg'"></div>
+                          <img th:src="@{/assets/images/logo.png}" alt="." class="hide">
+                      -->
                         <span class="hidden-folded inline">通用批发零售</span><br>
                         <span class="hidden-folded inline">业务管理系统</span>
                     </a>
@@ -145,53 +144,117 @@
                 </div>
             </div>
         </div>
-    </div>
-    <!-- content -->
-    <div id="content" class="app-content box-shadow-z0" role="main">
-        <div ui-view class="app-body" id="view">
+        <!-- / -->
 
-            <!-- ############ PAGE START-->
-            <div class="padding">
-                <div class="box">
-                    <div class="box-header">
-                        <h2>客户资料查询</h2>
-                    </div>
-                    <div class="table-responsive">
-                        <table class="table table-striped b-t b-b">
-                            <thead>
-                                <tr>
-                                    <th style="width:7%">ID</th>
-                                    <th style="width:7%">姓名</th>
-                                    <th style="width:7%">类型</th>
-                                    <th style="width:7%">性别</th>
-                                    <th style="width:10%">电话</th>
-                                    <th style="width:10%">地址</th>
-                                    <th style="width:7%">操作</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr th:each="cus:${customers}">
-                                    <td th:text="${cus.c_id}"></td>
-                                    <td th:text="${cus.name}"></td>
-                                    <td th:text="${cus.type}=='retail'?'零售':'批发'"></td>
-                                    <td th:text="${cus.gender}=='female'?'女':'男'"></td>
-                                    <td th:text="${cus.phone}"></td>
-                                    <td th:text="${cus.address}"></td>
-                                    <td>
-                                        <a class="btn btn-sm btn-primary" th:href="@{/upcos(c_id=${cus.c_id})}">编辑</a>
-                                        <a class="btn btn-sm btn-danger deleteBtn"
-                                            th:href="@{/decos(c_id=${cus.c_id})}">删除</a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+        <!-- content -->
+        <div id="content" class="app-content box-shadow-z0" role="main">
+            <div ui-view class="app-body" id="view">
+                <!-- ############ PAGE START-->
+                <div class="padding">
+                    <div class="box">
+                        <div class="box-header">
+                            <h2>销售单列表</h2>
+                            <small>销售单业务管理</small>
+                        </div>
+                        <div class="box-body">
+                            搜索: <input id="filter" type="text" class="form-control input-sm w-auto inline m-r" />
+                            <td><span><a th:href="404.html">新增销售单</a></span></td>
+                        </div>
+
+                        <div>
+                            <table class="table m-b-none" ui-jp="footable" data-filter="#filter" data-page-size="5">
+                                <thead>
+                                    <tr>
+                                        <th data-toggle="true">
+                                            客户ID
+                                        </th>
+                                        <th>
+                                            销售单ID
+                                        </th>
+                                        <th data-hide="phone,tablet">
+                                            成交金额
+                                        </th>
+                                        <th data-hide="phone,tablet" data-name="Transaction time">
+                                            成交时间
+                                        </th>
+                                        <th data-hide="phone">
+                                            销售单状态
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>A1</td>
+                                        <td>45</td>
+                                        <td>219652</td>
+                                        <td data-value="20210418">2021.04.18</td>
+                                        <td data-value="1"><span class="label success" title="Active">Active</span></td>
+                                        <td><span><a th:href="404.html">修改</a></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>A2</td>
+                                        <td>245</td>
+                                        <td>25427</td>
+                                        <td data-value="20211105">2021.11.05</td>
+                                        <td data-value="2"><span class="label" title="Disabled">Disabled</span></td>
+                                        <td><span><a th:href="404.html">修改</a></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>A3</td>
+                                        <td>343265</td>
+                                        <td>4532245</td>
+                                        <td data-value="20210112">2021.01.12</td>
+                                        <td data-value="3"><span class="label warning"
+                                                title="Suspended">Suspended</span>
+                                        </td>
+                                        <td><span><a th:href="404.html">修改</a></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>B2</td>
+                                        <td>354</td>
+                                        <td>25425</td>
+                                        <td data-value="20210124">2021.01.24</td>
+                                        <td data-value="1"><span class="label success" title="Active">Active</span></td>
+                                        <td><span><a th:href="404.html">修改</a></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>B6</td>
+                                        <td>867</td>
+                                        <td>532453</td>
+                                        <td data-value="20201211">2020.12.11</td>
+                                        <td data-value="3"><span class="label warning"
+                                                title="Suspended">Suspended</span>
+                                        </td>
+                                        <td><span><a th:href="404.html">修改</a></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>B3</td>
+                                        <td>76327</td>
+                                        <td>527432</td>
+                                        <td data-value="20210114">2021.01.14</td>
+                                        <td data-value="2"><span class="label" title="Disabled">Disabled</span></td>
+                                        <td><span><a th:href="404.html">修改</a></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>A9</td>
+                                        <td>2165</td>
+                                        <td>2452</td>
+                                        <td data-value="202111.1">2021.11.01</td>
+                                        <td data-value="2"><span class="label" title="Disabled">Disabled</span></td>
+                                        <td><span><a th:href="404.html">修改</a></span></td>
+                                    </tr>
+                                </tbody>
+                                <tfoot class="hide-if-no-paging">
+                                    <tr>
+                                        <td colspan="5" class="text-center">
+                                            <ul class="pagination"></ul>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
                     </div>
                 </div>
-                <!--/-->
-
-                <!-- ############ PAGE END-->
-
-                <!-- ############ LAYOUT END-->
 
             </div>
             <!-- build:js @{scripts/app.html.js} -->
@@ -224,8 +287,6 @@
             <script th:src="@{/libs/jquery/jquery-pjax/jquery.pjax.js}"></script>
             <script th:src="@{/scripts/ajax.js}"></script>
             <!-- endbuild -->
-        </div>
-    </div>
 </body>
 
 </html>
