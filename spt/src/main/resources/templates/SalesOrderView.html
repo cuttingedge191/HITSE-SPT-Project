@@ -10,22 +10,22 @@
   <!-- for ios 7 style, multi-resolution icon of 152x152 -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-barstyle" content="black-translucent">
-  <link rel="apple-touch-icon" href="../assets/images/logo.png">
+  <link rel="apple-touch-icon" th:href="@{/assets/images/logo.png}">
   <meta name="apple-mobile-web-app-title" content="Flatkit">
   <!-- for Chrome on Android, multi-resolution icon of 196x196 -->
   <meta name="mobile-web-app-capable" content="yes">
-  <link rel="shortcut icon" sizes="196x196" href="../assets/images/logo.png">
+  <link rel="shortcut icon" sizes="196x196" th:href="@{/assets/images/logo.png}">
   
   <!-- style -->
-  <link rel="stylesheet" href="../assets/animate.css/animate.min.css" type="text/css" />
-  <link rel="stylesheet" href="../assets/glyphicons/glyphicons.css" type="text/css" />
-  <link rel="stylesheet" href="../assets/font-awesome/css/font-awesome.min.css" type="text/css" />
-  <link rel="stylesheet" href="../assets/material-design-icons/material-design-icons.css" type="text/css" />
-  <link rel="stylesheet" href="../assets/bootstrap/dist/css/bootstrap.min.css" type="text/css" />
-  <!-- build:css ../assets/styles/app.min.css -->
-  <link rel="stylesheet" href="../assets/styles/app.css" type="text/css" />
+  <link rel="stylesheet" th:href="@{/assets/animate.css/animate.min.css}" type="text/css" />
+  <link rel="stylesheet" th:href="@{/assets/glyphicons/glyphicons.css}" type="text/css" />
+  <link rel="stylesheet" th:href="@{/assets/font-awesome/css/font-awesome.min.css}" type="text/css" />
+  <link rel="stylesheet" th:href="@{/assets/material-design-icons/material-design-icons.css}" type="text/css" />
+  <link rel="stylesheet" th:href="@{/assets/bootstrap/dist/css/bootstrap.min.css}" type="text/css" />
+  <!-- build:css @{/assets/styles/app.min.css} -->
+  <link rel="stylesheet" th:href="@{/assets/styles/app.css}" type="text/css" />
   <!-- endbuild -->
-  <link rel="stylesheet" href="../assets/styles/font.css" type="text/css" />
+  <link rel="stylesheet" th:href="@{/assets/styles/font.css}" type="text/css" />
 </head>
 <body>
   <div class="app" id="app">
@@ -39,7 +39,7 @@
     </div>
     <div class="box-body">
       搜索: <input id="filter" type="text" class="form-control input-sm w-auto inline m-r"/>
-      <td><span><a href="404.html">新增销售单</a></span></td>
+      <td><span><a th:href="404.html">新增销售单</a></span></td>
     </div>
 
     <div>
@@ -70,7 +70,7 @@
               <td>219652</td>
               <td data-value="20210418">2021.04.18</td>
               <td data-value="1"><span class="label success" title="Active">Active</span></td>
-              <td><span><a href="404.html">修改</a></span></td>
+              <td><span><a th:href="404.html">修改</a></span></td>
           </tr>
           <tr>
               <td>A2</td>
@@ -78,7 +78,7 @@
               <td>25427</td>
               <td data-value="20211105">2021.11.05</td>
               <td data-value="2"><span class="label" title="Disabled">Disabled</span></td>
-              <td><span><a href="404.html">修改</a></span></td>
+              <td><span><a th:href="404.html">修改</a></span></td>
           </tr>
           <tr>
               <td>A3</td>
@@ -87,7 +87,7 @@
               <td data-value="20210112">2021.01.12</td>
               <td data-value="3"><span class="label warning" title="Suspended">Suspended</span>
               </td>
-              <td><span><a href="404.html">修改</a></span></td>
+              <td><span><a th:href="404.html">修改</a></span></td>
           </tr>
           <tr>
               <td>B2</td>
@@ -95,7 +95,7 @@
               <td>25425</td>
               <td data-value="20210124">2021.01.24</td>
               <td data-value="1"><span class="label success" title="Active">Active</span></td>
-              <td><span><a href="404.html">修改</a></span></td>
+              <td><span><a th:href="404.html">修改</a></span></td>
           </tr>
           <tr>
               <td>B6</td>
@@ -104,7 +104,7 @@
               <td data-value="20201211">2020.12.11</td>
               <td data-value="3"><span class="label warning" title="Suspended">Suspended</span>
               </td>
-              <td><span><a href="404.html">修改</a></span></td>
+              <td><span><a th:href="404.html">修改</a></span></td>
           </tr>
           <tr>
               <td>B3</td>
@@ -112,7 +112,7 @@
               <td>527432</td>
               <td data-value="20210114">2021.01.14</td>
               <td data-value="2"><span class="label" title="Disabled">Disabled</span></td>
-              <td><span><a href="404.html">修改</a></span></td>
+              <td><span><a th:href="404.html">修改</a></span></td>
           </tr>
           <tr>
               <td>A9</td>
@@ -120,7 +120,7 @@
               <td>2452</td>
               <td data-value="202111.1">2021.11.01</td>
               <td data-value="2"><span class="label" title="Disabled">Disabled</span></td>
-              <td><span><a href="404.html">修改</a></span></td>
+              <td><span><a th:href="404.html">修改</a></span></td>
           </tr>
         </tbody>
         <tfoot class="hide-if-no-paging">
@@ -136,34 +136,34 @@
 </div>
 
   </div>
-<!-- build:js scripts/app.html.js -->
+<!-- build:js scripts/app.html.js} -->
 <!-- jQuery -->
-  <script src="../libs/jquery/jquery/dist/jquery.js"></script>
+  <script th:src="@{/libs/jquery/jquery/dist/jquery.js}"></script>
 <!-- Bootstrap -->
-  <script src="../libs/jquery/tether/dist/js/tether.min.js"></script>
-  <script src="../libs/jquery/bootstrap/dist/js/bootstrap.js"></script>
+  <script th:src="@{/libs/jquery/tether/dist/js/tether.min.js}"></script>
+  <script th:src="@{/libs/jquery/bootstrap/dist/js/bootstrap.js}"></script>
 <!-- core -->
-  <script src="../libs/jquery/underscore/underscore-min.js"></script>
-  <script src="../libs/jquery/jQuery-Storage-API/jquery.storageapi.min.js"></script>
-  <script src="../libs/jquery/PACE/pace.min.js"></script>
+  <script th:src="@{/libs/jquery/underscore/underscore-min.js}"></script>
+  <script th:src="@{/libs/jquery/jQuery-Storage-API/jquery.storageapi.min.js}"></script>
+  <script th:src="@{/libs/jquery/PACE/pace.min.js}"></script>
 
-  <script src="scripts/config.lazyload.js"></script>
-  <script src="scripts/palette.js"></script>
-  <script src="scripts/ui-load.js"></script>
-  <script src="scripts/ui-jp.js"></script>
-  <script src="scripts/ui-include.js"></script>
-  <script src="scripts/ui-device.js"></script>
-  <script src="scripts/ui-form.js"></script>
-  <script src="scripts/ui-nav.js"></script>
-  <script src="scripts/ui-screenfull.js"></script>
-  <script src="scripts/ui-scroll-to.js"></script>
-  <script src="scripts/ui-toggle-class.js"></script>
+  <script th:src="@{/scripts/config.lazyload.js}"></script>
+  <script th:src="@{/scripts/palette.js}"></script>
+  <script th:src="@{/scripts/ui-load.js}"></script>
+  <script th:src="@{/scripts/ui-jp.js}"></script>
+  <script th:src="@{/scripts/ui-include.js}"></script>
+  <script th:src="@{/scripts/ui-device.js}"></script>
+  <script th:src="@{/scripts/ui-form.js}"></script>
+  <script th:src="@{/scripts/ui-nav.js}"></script>
+  <script th:src="@{/scripts/ui-screenfull.js}"></script>
+  <script th:src="@{/scripts/ui-scroll-to.js}"></script>
+  <script th:src="@{/scripts/ui-toggle-class.js}"></script>
 
-  <script src="scripts/app.js"></script>
+  <script th:src="@{/scripts/app.js}"></script>
 
   <!-- ajax -->
-  <script src="../libs/jquery/jquery-pjax/jquery.pjax.js"></script>
-  <script src="scripts/ajax.js"></script>
+  <script th:src="@{/libs/jquery/jquery-pjax/jquery.pjax.js}"></script>
+  <script th:src="@{/scripts/ajax.js}"></script>
 <!-- endbuild -->
 </body>
 </html>

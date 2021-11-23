@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="zh">
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <title>通用批发零售业务管理系统</title>
-    <meta name="description" content="Admin, Dashboard, Bootstrap, Bootstrap 4, Angular, AngularJS" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui" />
+    <meta name="description" content="Admin, Dashboard, Bootstrap, Bootstrap 4, Angular, AngularJS"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <!-- for ios 7 style, multi-resolution icon of 152x152 -->
@@ -17,16 +17,16 @@
     <link rel="shortcut icon" sizes="196x196" th:href="@{/assets/images/logo.png}">
 
     <!-- style -->
-    <link rel="stylesheet" th:href="@{/assets/animate/animate.min.css}" type="text/css" />
-    <link rel="stylesheet" th:href="@{/assets/glyphicons/glyphicons.css}" type="text/css" />
-    <link rel="stylesheet" th:href="@{/assets/font-awesome/css/font-awesome.min.css}" type="text/css" />
-    <link rel="stylesheet" th:href="@{/assets/material-design-icons/material-design-icons.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/assets/animate/animate.min.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/assets/glyphicons/glyphicons.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/assets/font-awesome/css/font-awesome.min.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/assets/material-design-icons/material-design-icons.css}" type="text/css"/>
 
-    <link rel="stylesheet" th:href="@{/assets/bootstrap/dist/css/bootstrap.min.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/assets/bootstrap/dist/css/bootstrap.min.css}" type="text/css"/>
     <!-- build:css @{assets/styles/app.min.css} -->
-    <link rel="stylesheet" th:href="@{/assets/styles/app.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/assets/styles/app.css}" type="text/css"/>
     <!-- endbuild -->
-    <link rel="stylesheet" th:href="@{/assets/styles/font.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/assets/styles/font.css}" type="text/css"/>
 </head>
 <body>
 <div class="app" id="app">
@@ -158,28 +158,29 @@
                         <table class="table table-striped b-t b-b">
                             <thead>
                             <tr>
-                                <th  style="width:7%">ID</th>
-                                <th  style="width:7%">姓名</th>
-                                <th  style="width:7%">类型</th>
-                                <th  style="width:7%">性别</th>
-                                <th  style="width:10%">电话</th>
-                                <th  style="width:10%">地址</th>
+                                <th style="width:7%">ID</th>
+                                <th style="width:7%">姓名</th>
+                                <th style="width:7%">类型</th>
+                                <th style="width:7%">性别</th>
+                                <th style="width:10%">电话</th>
+                                <th style="width:10%">地址</th>
                                 <th style="width:7%">操作</th>
                             </tr>
                             </thead>
                             <tbody>
-                                <tr th:each="cus:${customers}">
-                                    <td th:text="${cus.c_id}"></td>
-                                    <td th:text="${cus.name}"></td>
-                                    <td th:text="${cus.type}=='retail'?'零售':'批发'"></td>
-                                    <td th:text="${cus.gender}=='female'?'女':'男'"></td>
-                                    <td th:text="${cus.phone}"></td>
-                                    <td th:text="${cus.address}"></td>
-                                    <td>
-                                        <a class="btn btn-sm btn-primary" th:href="'/upcos'+'?c_id='+${cus.c_id}">编辑</a>
-                                        <a th:href="'/decos'+'?c_id='+${cus.c_id}" class="btn btn-sm btn-danger deleteBtn">删除</a>
-                                    </td>
-                                </tr>
+                            <tr th:each="cus:${customers}">
+                                <td th:text="${cus.c_id}"></td>
+                                <td th:text="${cus.name}"></td>
+                                <td th:text="${cus.type}=='retail'?'零售':'批发'"></td>
+                                <td th:text="${cus.gender}=='female'?'女':'男'"></td>
+                                <td th:text="${cus.phone}"></td>
+                                <td th:text="${cus.address}"></td>
+                                <td>
+                                    <a class="btn btn-sm btn-primary" th:href="@{/upcos(c_id=${cus.c_id})}">编辑</a>
+                                    <a class="btn btn-sm btn-danger deleteBtn"
+                                       th:href="@{/decos(c_id=${cus.c_id})}">删除</a>
+                                </td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>

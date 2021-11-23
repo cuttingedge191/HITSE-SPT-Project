@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
+@RequestMapping
 public class HelloController {
     @Autowired
     ClientInfoService clientInfoService;

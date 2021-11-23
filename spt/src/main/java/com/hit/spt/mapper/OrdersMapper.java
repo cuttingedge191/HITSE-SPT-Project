@@ -12,6 +12,8 @@ import java.util.List;
 public interface OrdersMapper {
     List<Orders> queryOrdersByCid(Integer c_id);
 
+    Orders queryOrdersByOid(Integer o_id);
+
     List<Orders> queryOrdersByStatus(String status);
 
     List<Orders> queryOrdersByType(String type);

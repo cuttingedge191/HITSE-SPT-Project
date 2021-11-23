@@ -24,8 +24,10 @@ public class UserController {
 
     @RequestMapping("user/logup")
     public String logup(User user, Model model) {
-        logInUpService.registerUser(user);
-        return "login";
+        if (logInUpService.registerUser(user)) {
+            return "login";
+        }
+        return null;
     }
 
 }

@@ -32,4 +32,16 @@
         select oi_id, o_id, g_id, quantity, cost, price
         from order_item
     </select>
+    <select id="queryOrderItemWithNameList" resultType="OrderItem">
+        select order_item.oi_id,
+               order_item.o_id,
+               order_item.g_id,
+               order_item.quantity,
+               order_item.cost,
+               order_item.price,
+               goods_info.name
+        from order_item,
+             goods_info
+        where order_item.g_id = goods_info.g_id
+    </select>
 </mapper>

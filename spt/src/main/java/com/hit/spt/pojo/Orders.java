@@ -15,4 +15,5 @@ public class Orders {
     private Double total_turnover;
     private Double total_cost;
     private Double total_profit;
+    private String time_stamp;
 }
