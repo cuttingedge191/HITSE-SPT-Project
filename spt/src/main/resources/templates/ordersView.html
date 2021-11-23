@@ -158,7 +158,10 @@
                         </div>
                         <div class="box-body">
                             搜索: <input id="filter" type="text" class="form-control input-sm w-auto inline m-r" />
-                            <td><span><a th:href="@{/addOneOrder}">新增销售单</a></span></td>
+                            <button class="btn btn-icon white" id="addOrder" th:href="@{/addOneOrder}">
+                                <i class="fa fa-plus"></i>
+                            </button>
+                            <label for="addOrder">新增销售单</label>
                         </div>
 
                         <div>
@@ -180,6 +183,9 @@
                                         <th data-hide="phone">
                                             销售单状态
                                         </th>
+                                        <th data-hide="phone">
+                                            操作
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -189,7 +195,11 @@
                                         <td>219652</td>
                                         <td data-value="20210418">2021.04.18</td>
                                         <td data-value="1"><span class="label success" title="Active">Active</span></td>
-                                        <td><span><a th:href="404.html">修改</a></span></td>
+                                        <td class="m-b btn-groups">
+                                            <button class="btn btn-sm info">详细信息</button>
+                                            <button class="btn btn-sm success">编辑</button>
+                                            <button class="btn btn-sm danger">删除</button>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>A2</td>
@@ -197,7 +207,11 @@
                                         <td>25427</td>
                                         <td data-value="20211105">2021.11.05</td>
                                         <td data-value="2"><span class="label" title="Disabled">Disabled</span></td>
-                                        <td><span><a th:href="404.html">修改</a></span></td>
+                                        <td class="m-b btn-groups">
+                                            <button class="btn btn-sm info">详细信息</button>
+                                            <button class="btn btn-sm success">编辑</button>
+                                            <button class="btn btn-sm danger">删除</button>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>A3</td>
@@ -207,7 +221,11 @@
                                         <td data-value="3"><span class="label warning"
                                                 title="Suspended">Suspended</span>
                                         </td>
-                                        <td><span><a th:href="404.html">修改</a></span></td>
+                                        <td class="m-b btn-groups">
+                                            <button class="btn btn-sm info">详细信息</button>
+                                            <button class="btn btn-sm success">编辑</button>
+                                            <button class="btn btn-sm danger">删除</button>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>B2</td>
@@ -215,8 +233,11 @@
                                         <td>25425</td>
                                         <td data-value="20210124">2021.01.24</td>
                                         <td data-value="1"><span class="label success" title="Active">Active</span></td>
-                                        <td><span><a th:href="404.html">修改</a></span></td>
-                                    </tr>
+                                        <td class="m-b btn-groups">
+                                            <button class="btn btn-sm info">详细信息</button>
+                                            <button class="btn btn-sm success">编辑</button>
+                                            <button class="btn btn-sm danger">删除</button>
+                                        </td>
                                     <tr>
                                         <td>B6</td>
                                         <td>867</td>
@@ -225,7 +246,11 @@
                                         <td data-value="3"><span class="label warning"
                                                 title="Suspended">Suspended</span>
                                         </td>
-                                        <td><span><a th:href="404.html">修改</a></span></td>
+                                        <td class="m-b btn-groups">
+                                            <button class="btn btn-sm info">详细信息</button>
+                                            <button class="btn btn-sm success">编辑</button>
+                                            <button class="btn btn-sm danger">删除</button>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>B3</td>
@@ -255,8 +280,9 @@
                         </div>
                     </div>
                 </div>
-
             </div>
+        </div>
+    </div>
             <!-- build:js @{scripts/app.html.js} -->
             <!-- jQuery -->
             <script th:src="@{/libs/jquery/jquery/dist/jquery.js}"></script>
