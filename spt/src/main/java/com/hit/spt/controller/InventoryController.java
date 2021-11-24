@@ -15,14 +15,26 @@ public class InventoryController {
     @Autowired
     InventoryService inventoryService;
 
+    /**
+     * 添加库存实体类
+     *
+     * @param inventory 库存实体类，参照sql中的结构
+     * @return 进行网页转发，转发至addInventory
+     */
     @RequestMapping("inventory/add")
     public String addInventory(Inventory inventory) {
         inventoryService.insertInventoryChange(inventory);
         return "addInventory";
     }
 
+    /**
+     * 查看库存信息
+     *
+     * @param model 是视图，可以添加属性，传递信息
+     * @return 转发至inventoryView
+     */
     @RequestMapping("inventoryView")
-    public String inventoryView(Model model){
+    public String inventoryView(Model model) {
         List<Inventory> inventories = inventoryService.queryInventoryWithGnameList();
         model.addAttribute("inventories", inventories);
         return "inventoryView";
