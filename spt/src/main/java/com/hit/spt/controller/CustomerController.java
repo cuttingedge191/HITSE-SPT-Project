@@ -23,50 +23,43 @@ public class CustomerController {
     @Autowired
     ClientInfoService clientInfoService;
 
-    @RequestMapping({"addCustomerNow", "upcosNow"})
+    @RequestMapping({"addCustomerNow", "upcosNow", "clientInfoSearch", "decos"})
     public String addCustomerNow(String c_id, String name, String phone,String addr, String sex, String type, Model model, HttpServletRequest request){
         String uri = request.getRequestURI();
 //        System.out.println(uri);
+        // 删除客户
+        if (uri.charAt(1) == 'd'){
+            int ic_id = Integer.parseInt(c_id);
+            clientInfoService.deleteCustomer(ic_id);
+        }
+        // 参数不合法（应该不能通过前端检查），直接返回“客户管理”
         if(name == null || phone == null || addr == null || sex == null || type == null){
             List<Customer> customers = clientInfoService.showAllCustoms();
             model.addAttribute("customers", customers);
             return "clientInfoSearch";
         }
+        // 将表单返回内容抓换成数据库的格式
         String gender = sex.equals("true") ? "male" : "female";
         String c_type = type.equals("true") ? "retail" : "bulk";
         Customer customer = null;
+        // 添加客户
         if (uri.charAt(1) == 'a'){
             customer = new Customer(null, c_type ,name ,gender ,phone ,addr);
             clientInfoService.insertCustomer(customer);
         }
+        // 更新客户
         else if(uri.charAt(1) == 'u'){
             customer = new Customer(Integer.parseInt(c_id), c_type ,name ,gender ,phone ,addr);
             clientInfoService.updateCustomer(customer);
         }
         List<Customer> customers = clientInfoService.showAllCustoms();
         model.addAttribute("customers", customers);
-        return "clientInfoSearch";
-    }
-
-    @RequestMapping("clientInfoSearch")
-    public String clientInfoSearch(Model model) {
-        List<Customer> customers = clientInfoService.showAllCustoms();
-        model.addAttribute("customers", customers);
-        return "clientInfoSearch";
+        return "redirect:clientInfoSearch";
     }
 
     @RequestMapping("addCustomer")
     public String addCustomer() {
         return "addCustomer";
-    }
-
-    @RequestMapping("decos")
-    public String decos(String c_id, Model model){
-        int ic_id = Integer.parseInt(c_id);
-        clientInfoService.deleteCustomer(ic_id);
-        List<Customer> customers = clientInfoService.showAllCustoms();
-        model.addAttribute("customers", customers);
-        return "clientInfoSearch";
     }
 
     @RequestMapping("upcos")
@@ -76,6 +69,4 @@ public class CustomerController {
         model.addAttribute("customer", customer);
         return "updateCustomer";
     }
-//    @RequestMapping("upcosNow")
-//    public String upcosNow()
 }
