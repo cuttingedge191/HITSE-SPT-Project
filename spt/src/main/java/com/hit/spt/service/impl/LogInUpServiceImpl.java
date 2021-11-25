@@ -17,6 +17,12 @@ public class LogInUpServiceImpl implements LogInUpService {
         return user != null && user.getPassword().equals(password);
     }
 
+    /**
+     * 根据用户信息进行注册
+     *
+     * @param user 用户信息
+     * @return 改动的行数
+     */
     @Override
     public boolean registerUser(User user) {
 
