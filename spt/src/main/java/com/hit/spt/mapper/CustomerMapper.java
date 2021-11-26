@@ -19,4 +19,6 @@ public interface CustomerMapper {
     int updateCustomerById(Customer customer);
 
     Customer queryCustomerById(Integer c_id);
+    // 根据type（批发零售）返回customer
+    List<Customer> queryCustomerByType(String type);
 }

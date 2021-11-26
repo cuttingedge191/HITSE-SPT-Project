@@ -9,6 +9,11 @@
         from customer_info
         where c_id=#{c_id}
     </select>
+    <select id="queryCustomerByType" resultType="Customer" parameterType="java.lang.String">
+        select c_id, type, name, gender, phone, address
+        from customer_info
+        where type=#{type}
+    </select>
     <select id="queryCustomerList" resultType="Customer">
         select *
         from spt.customer_info

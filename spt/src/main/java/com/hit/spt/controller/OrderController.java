@@ -1,20 +1,27 @@
 package com.hit.spt.controller;
 
+import com.hit.spt.pojo.Customer;
+import com.hit.spt.pojo.GoodsInfo;
 import com.hit.spt.pojo.OrderItem;
 import com.hit.spt.pojo.Orders;
 import com.hit.spt.service.OrderService;
+import com.hit.spt.service.impl.ClientInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping
 public class OrderController {
     @Autowired
     OrderService orderService;
+
+    @Autowired
+    ClientInfoService clientInfoService;
 
     /**
      * 新建一个订单，并添加商品
@@ -31,6 +38,12 @@ public class OrderController {
         }
         Integer OrderId = orderService.genOrderId();
         model.addAttribute("o_id", OrderId);
+//        List<Customer> customers = clientInfoService.showAllCustoms();
+        // 按照批发类型选择客户
+        List<Customer> wholesale_customers = clientInfoService.queryCustomerByType("批发");
+        model.addAttribute("wholesale_customers", wholesale_customers);
+        // 货物列表
+//        List<GoodsInfo> goodsInfos =
         return "addOrder";
     }
 
