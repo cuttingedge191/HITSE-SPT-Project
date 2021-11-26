@@ -20,4 +20,6 @@ public interface LogInUpService {
      */
     boolean registerUser(User user);
 
+    boolean checkUsernameIfExits(String user);
+
 }

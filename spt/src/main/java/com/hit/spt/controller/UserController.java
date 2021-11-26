@@ -33,7 +33,7 @@ public class UserController {
     /**
      * 进行注册
      *
-     * @param user 囊括了所有的用户信息，打包到user中
+     * @param user  囊括了所有的用户信息，打包到user中
      * @param model
      * @return
      */
@@ -42,7 +42,8 @@ public class UserController {
         if (logInUpService.registerUser(user)) {
             return "login";
         }
-        return null;
+        model.addAttribute("msg", "用户名已存在");
+        return "logup";
     }
 
 }
