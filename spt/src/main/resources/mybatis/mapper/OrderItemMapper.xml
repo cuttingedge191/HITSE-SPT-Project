@@ -37,7 +37,7 @@
         select oi_id, o_id, g_id, quantity, cost, price
         from order_item
     </select>
-    <select id="queryOrderItemWithNameList" resultType="OrderItem" >
+    <select id="queryOrderItemWithNameList" resultType="OrderItem">
         select order_item.oi_id,
                order_item.o_id,
                order_item.g_id,
@@ -62,4 +62,18 @@
         where order_item.g_id = goods_info.g_id
           and #{o_id} = order_item.o_id
     </select>
+    <select id="queryOrderItemByOidGid" resultType="OrderItem">
+        select oi_id, o_id, g_id, quantity, cost, price
+        from order_item
+        where o_id = #{o_id}
+          and g_id = #{g_id}
+    </select>
+    <update id="updateOrderItem" parameterType="OrderItem">
+        update order_item
+        set quantity = #{quantity},
+            price    = #{price},
+            cost     = #{cost}
+        where o_id = #{o_id}
+          and g_id = #{g_id}
+    </update>
 </mapper>

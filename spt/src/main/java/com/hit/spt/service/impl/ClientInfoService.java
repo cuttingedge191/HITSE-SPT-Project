@@ -31,7 +31,6 @@ public class ClientInfoService {
         return customerMapper.queryCustomerById(c_id);
     }
     public List<Customer> queryCustomerByType(String type) {
-        List<Customer> customers = customerMapper.queryCustomerByType(type);
-        return customers;
+        return customerMapper.queryCustomerByType(type);
     }
 }

@@ -1,8 +1,7 @@
 package com.hit.spt.service.impl;
 
-import com.hit.spt.mapper.GoodsInfoMapper;
-import com.hit.spt.mapper.OrderItemMapper;
-import com.hit.spt.mapper.OrdersMapper;
+import com.hit.spt.mapper.*;
+import com.hit.spt.pojo.Customer;
 import com.hit.spt.pojo.GoodsInfo;
 import com.hit.spt.pojo.OrderItem;
 import com.hit.spt.pojo.Orders;
@@ -26,6 +25,9 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     GoodsInfoMapper goodsInfoMapper;
 
+    @Autowired
+    CustomerMapper customerMapper;
+
     @Override
     public boolean checkIfExits(Integer o_id) {
         Orders orders = ordersMapper.queryOrdersByOid(o_id);
@@ -45,9 +47,18 @@ public class OrderServiceImpl implements OrderService {
         return orderItemMapper.queryOrderItemWithNameListByOid(o_id);
     }
 
-
+    /**
+     * 为当前订单生成一个商品对象
+     *
+     * @param o_id     当前订单的o_id
+     * @param name     添加的商品名称
+     * @param quantity 添加商品的数量
+     * @param trade    批发还是零售
+     * @return 一个带详细信息的商品项
+     */
     @Override
     public OrderItem generateOrderItem(Integer o_id, String name, Integer quantity, Boolean trade) {
+        // 生成一个带有详细信息的goodsInfo
         GoodsInfo goodsInfo = goodsInfoMapper.queryGoodsInfoByName(name);
         OrderItem orderItem = new OrderItem();
         orderItem.setName(name);
@@ -62,9 +73,30 @@ public class OrderServiceImpl implements OrderService {
         return orderItem;
     }
 
+    /**
+     * 这里将一个订购的商品项放入当前的订单中，但是要注意的是，
+     * 如果当前的商品是第一次添加商品是直接将该商品项插入数据库
+     * 反之则更新在数据库中的商品数量，即合并。
+     *
+     * @param orderItem 待添加的商品
+     */
     @Override
     public void insertOrderItem(OrderItem orderItem) {
+
         orderItemMapper.insertOrderItem(orderItem);
+    }
+
+    @Override
+    public void addOneOrderItem(OrderItem orderItem) {
+        OrderItem prevOrderItem = orderItemMapper.queryOrderItemByOidGid(orderItem.getO_id(), orderItem.getG_id());
+        if (prevOrderItem == null) {
+            orderItemMapper.insertOrderItem(orderItem);
+        } else {
+            prevOrderItem.setQuantity(prevOrderItem.getQuantity() + orderItem.getQuantity());
+            prevOrderItem.setCost(prevOrderItem.getCost() + orderItem.getCost());
+            prevOrderItem.setPrice(prevOrderItem.getPrice() + orderItem.getPrice());
+            orderItemMapper.updateOrderItem(prevOrderItem);
+        }
     }
 
     @Override
@@ -88,13 +120,18 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Orders generateOneOrder(Integer o_id, Integer c_id, String type) {
+    public List<GoodsInfo> getGoodsInfoList() {
+        return goodsInfoMapper.queryGoodsInfoList();
+    }
+
+    @Override
+    public Orders generateOneOrder(Integer o_id, String cname, String type) {
         Orders order = new Orders();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String date = df.format(new Date());
-
+        List<Customer> customers = customerMapper.queryCustomerByName(cname);
         order.setO_id(o_id);
-        order.setC_id(c_id);
+        order.setC_id(customers.get(0).getC_id());
         order.setTime_stamp(date);
         order.setTotal_cost(0.0);
         order.setTotal_turnover(0.0);

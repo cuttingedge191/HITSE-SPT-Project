@@ -11,6 +11,8 @@ import java.util.List;
 public interface OrderItemMapper {
     int insertOrderItem(OrderItem orderItem);
 
+    int updateOrderItem(OrderItem orderItem);
+
     int deleteOrderItemByOid(Integer o_id);
 
     int deleteOrderItemByGid(Integer g_id);
@@ -26,5 +28,7 @@ public interface OrderItemMapper {
     List<OrderItem> queryOrderItemWithNameList();
 
     List<OrderItem> queryOrderItemWithNameListByOid(Integer o_id);
+
+    OrderItem queryOrderItemByOidGid(Integer o_id, Integer g_id);
 
 }

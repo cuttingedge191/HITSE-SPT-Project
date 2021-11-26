@@ -7,6 +7,7 @@ import com.hit.spt.mapper.UserMapper;
 import com.hit.spt.pojo.Customer;
 import com.hit.spt.pojo.OrderItem;
 import com.hit.spt.pojo.User;
+import com.hit.spt.service.LogInUpService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -27,10 +28,13 @@ class SptApplicationTests {
     @Autowired
     OrderItemMapper orderItemMapper;
 
+    @Autowired
+    LogInUpService logInUpService;
+
     @Test
     public void testOrderItemMapper() {
         Integer a = null;
-        System.out.println((int)a);
+        System.out.println((int) a);
     }
 //    @Test
 //    public void testCustomerMapper() {
@@ -49,5 +53,10 @@ class SptApplicationTests {
 //        System.out.println(userMapper.queryUserByName("Lian"));
 //        System.out.println(userMapper.queryUserList());
 //    }
+
+    @Test
+    public void testService() {
+        System.out.println(logInUpService.checkUsernameIfExits("bbb"));
+    }
 
 }
