@@ -115,7 +115,7 @@
               </li>
 
               <li>
-                <a th:href="404.html">
+                <a th:href="@{/userInfoSearch}">
                   <span class="nav-icon">
                     <i class="material-icons">&#xe3e8;
                       <span ui-include="'@{/assets/images/i_5.svg'"></span>
@@ -160,10 +160,10 @@
 
             <div class="dker p-a text-right">
               Search: <input id="filter" type="text" class="form-control input-sm w-auto inline m-r" />
-              <button class="btn btn-icon white" id="inventoryCheck">
+              <a th:href="@{/addInventory}" class="btn btn-icon white" id="inventoryCheck">
                 <i class="fa fa-plus"></i>
-              </button>
-              <label for="inventoryCheck">库存盘点</label>
+              </a>
+              <a th:href="@{/inventoryCheck}" class="btn white" for="inventoryCheck">库存盘点</a>
             </div>
             <div>
               <table class="table m-b-none" ui-jp="footable" data-filter="#filter" data-page-size="5">
@@ -183,7 +183,7 @@
                     <td th:text="${inventory.i_id}"></td>
                     <td th:text="${inventory.name}"></td>
                     <td></td>
-                    <td th:text="${inventory.cost}"></td>
+                    <td th:text="${inventory.retail_price}"></td>
                     <td th:text="${inventory.quantity}"></td>
                     <td th:text="${inventory.quality}"></td>
                     <td class="m-b btn-groups">

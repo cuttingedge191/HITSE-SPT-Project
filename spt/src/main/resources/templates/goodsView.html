@@ -115,7 +115,7 @@
                             </li>
 
                             <li>
-                                <a th:href="404.html">
+                                <a th:href="@{/userInfoSearch}">
                                     <span class="nav-icon">
                                         <i class="material-icons">&#xe3e8;
                                             <span ui-include="'@{/assets/images/i_5.svg'"></span>
@@ -160,9 +160,9 @@
 
                         <div class="dker p-a text-right">
                             Search: <input id="filter" type="text" class="form-control input-sm w-auto inline m-r" />
-                            <button class="btn btn-icon white" id="addGoods">
+                            <a th:href="@{/addGoods}" class="btn btn-icon white" id="addGoods">
                                 <i class="fa fa-plus"></i>
-                            </button>
+                            </a>
                             <label for="addGoods">添加新货品</label>
                         </div>
                         <div>
@@ -178,12 +178,13 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>11</td>
-                                        <td>晨光钢笔</td>
-                                        <td>5</td>
-                                        <td>4789</td>
-                                        <td>20</td>
+                                    <tr th:each="good:${goods}">
+                                        <td th:text="${good.g_id}"></td>
+                                        <td th:text="${good.name}"></td>
+                                        <td th:text="${good.cost}"></td>
+<!--                                        <td th:text="${.retail_price}"></td>-->
+                                        <td th:text="${good.retail_price}"></td>
+                                        <td th:text="${good.trade_price}"></td>
                                         <td class="m-b btn-groups">
                                             <button class="btn btn-sm info">详细信息</button>
                                             <button class="btn btn-sm success">编辑</button>
