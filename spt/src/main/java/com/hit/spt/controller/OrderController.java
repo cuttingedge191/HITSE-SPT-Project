@@ -40,7 +40,7 @@ public class OrderController {
         model.addAttribute("o_id", OrderId);
 //        List<Customer> customers = clientInfoService.showAllCustoms();
         // 按照批发类型选择客户
-        List<Customer> wholesale_customers = clientInfoService.queryCustomerByType("批发");
+        List<Customer> wholesale_customers = clientInfoService.queryCustomerByType("bulk");
         model.addAttribute("wholesale_customers", wholesale_customers);
         // 货物列表
 //        List<GoodsInfo> goodsInfos =
