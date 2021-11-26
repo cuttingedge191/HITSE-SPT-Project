@@ -2,11 +2,13 @@ package com.hit.spt.controller;
 
 import com.hit.spt.pojo.Inventory;
 import com.hit.spt.service.InventoryService;
+import org.apache.coyote.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -41,5 +43,31 @@ public class InventoryController {
     @RequestMapping("inventoryCheck")
     public String inventoryCheck(Model model){
         return "inventoryCheck";
+    }
+
+    @RequestMapping({"addInventoryNow", "updateInventoryNow"})
+    public String addInventoryNow(Inventory inventory, Model model, HttpServletRequest request){
+        String uri = request.getRequestURI();
+        if(uri.charAt(1) == 'a') {
+            List<Inventory> inventory1 = inventoryService.selectInventoryByName(inventory.getName());
+            if(inventory1 != null){
+                inventory.setI_id(inventory1.get(0).getI_id());
+                inventoryService.mergeInventory(inventory);
+            }else {
+                inventoryService.insertInventoryWithGoodName(inventory);
+            }
+        }else if(uri.charAt(1) == 'u'){
+            inventoryService.updateInventory(inventory);
+        }
+        List<Inventory> inventories = inventoryService.queryInventoryWithGnameList();
+        model.addAttribute("inventories", inventories);
+        return "inventoryView";
+    }
+
+    @RequestMapping("updateInventory")
+    public String updateInventory(Integer i_id, Model model){
+        Inventory inventory = inventoryService.queryInventoryById(i_id);
+        model.addAttribute("inventory", inventory);
+        return "updateInventory";
     }
 }

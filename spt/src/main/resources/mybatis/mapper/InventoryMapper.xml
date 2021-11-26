@@ -4,6 +4,34 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.hit.spt.mapper.InventoryMapper">
+    <insert id="insertInventoryWithGoodName" parameterType="Inventory">
+        insert into inventory(g_id, quantity, quality)
+        select goods_info.g_id, #{quantity}, #{quality}
+        from goods_info
+        where goods_info.name = #{name}
+    </insert>
+    <select id="queryInventoryById" parameterType="java.lang.Integer" resultType="Inventory">
+        select inventory.i_id, inventory.g_id, inventory.quantity, inventory.quality, goods_info.name
+        from inventory, goods_info
+        where inventory.i_id = #{i_id} and goods_info.g_id = inventory.g_id
+    </select>
+    <select id="selectInventoryByName" parameterType="java.lang.String" resultType="Inventory">
+        select inventory.i_id, inventory.g_id, inventory.quantity, inventory.quality
+        from goods_info, inventory
+        where inventory.g_id = goods_info.g_id
+    </select>
+    <update id="updateInventory" parameterType="Inventory">
+        update inventory
+        set quantity = #{quantity},
+            quality = #{quality}
+        where i_id = #{i_id}
+    </update>
+    <update id="mergeInventory" parameterType="Inventory">
+        update inventory
+        set inventory.quantity = #{quantity} + inventory.quantity,
+            inventory.quality = #{quality}
+        where inventory.i_id = 1
+    </update>
     <insert id="insertInventory" parameterType="Inventory">
         insert into inventory(g_id, quantity, quality)
         values (#{g_id}, #{quantity}, #{quality})

@@ -2,6 +2,7 @@ package com.hit.spt.mapper;
 
 
 import com.hit.spt.pojo.GoodsInfo;
+import com.hit.spt.pojo.Inventory;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -21,4 +22,6 @@ public interface GoodsInfoMapper {
     Integer deleteGoodsInfoByGid(Integer g_id);
 
     List<GoodsInfo> queryGoodsInfoList();
+
+    Inventory queryInventoryById(Integer i_id);
 }

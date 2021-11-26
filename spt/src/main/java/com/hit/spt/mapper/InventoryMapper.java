@@ -18,4 +18,14 @@ public interface InventoryMapper {
     List<Inventory> queryInventoryList();
 
     List<Inventory> queryInventoryWithGnameList();
+
+    Integer insertInventoryWithGoodName(Inventory inventory);
+
+    List<Inventory> selectInventoryByName(String name);
+
+    Integer updateInventory(Inventory inventory);
+
+    Inventory queryInventoryById(Integer i_id);
+
+    Integer mergeInventory(Inventory inventory);
 }

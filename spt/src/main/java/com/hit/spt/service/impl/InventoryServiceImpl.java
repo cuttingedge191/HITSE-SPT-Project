@@ -31,4 +31,29 @@ public class InventoryServiceImpl implements InventoryService {
     public List<Inventory> queryInventoryWithGnameList() {
         return inventoryMapper.queryInventoryWithGnameList();
     }
+
+    @Override
+    public Integer updateInventory(Inventory inventory){
+        return inventoryMapper.updateInventory(inventory);
+    }
+
+    @Override
+    public Inventory queryInventoryById(Integer i_id){
+        return inventoryMapper.queryInventoryById(i_id);
+    }
+
+    @Override
+    public Integer insertInventoryWithGoodName(Inventory inventory){
+        return inventoryMapper.insertInventoryWithGoodName(inventory);
+    }
+
+    @Override
+    public List<Inventory> selectInventoryByName(String name){
+        return inventoryMapper.selectInventoryByName(name);
+    }
+
+    @Override
+    public Integer mergeInventory(Inventory inventory){
+        return inventoryMapper.mergeInventory(inventory);
+    }
 }

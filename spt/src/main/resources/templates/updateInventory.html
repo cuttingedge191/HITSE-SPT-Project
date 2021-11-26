@@ -43,28 +43,28 @@
 
                 <div class="col-md-6 center-block">
                     <br />
-                    <button class="btn btn-fw light-blue-500">货品入库</button>
+                    <button class="btn btn-fw light-blue-500">货品编辑</button>
                     <div class="box">
                         <div class="box-header">
                             <small>添加入库货品信息</small>
                         </div>
                         <div class="box-divider m-0"></div>
                         <div class="box-body">
-                            <form role="form" method="post" th:action="@{/addInventoryNow}">
+                            <form role="form" method="post" th:action="@{/updateInventoryNow}">
                                 <div class="form-group">
-                                    <label for="name">货品名称</label>
-                                    <input type="text" class="form-control" name="name" id="name"
-                                        placeholder="请输入货品编号/名称" required>
+                                    <label for="name" >货品名称</label>
+                                    <input type="text" readonly="readonly"  class="form-control" name="name" id="name"
+                                        th:placeholder="${inventory.name}" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="quantity">货品数量</label>
                                     <input type="text" class="form-control" name="quantity" id="quantity"
-                                        placeholder="请输入货品数量" required>
+                                        th:placeholder="${inventory.quantity}" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="quality">货品质量等级</label>
                                     <input type="text" class="form-control" name="quality" id="quality"
-                                        placeholder="请输入货品质量等级" required>
+                                        th:placeholder="${inventory.quality}" required>
                                 </div>
                                 <button type="submit" class="btn primary m-b ">放弃</button>
                                 <button type="submit" class="btn primary m-b ">添加</button>

@@ -1,6 +1,7 @@
 package com.hit.spt.service;
 
 import com.hit.spt.pojo.GoodsInfo;
+import com.hit.spt.pojo.Inventory;
 
 import java.util.List;
 

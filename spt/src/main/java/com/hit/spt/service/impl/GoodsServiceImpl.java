@@ -20,6 +20,7 @@ public class GoodsServiceImpl implements GoodsService{
 
     @Override
     public Integer insertGoods(GoodsInfo goodsInfo){
+
         return goodsInfoMapper.insertGoodsInfo(goodsInfo);
     }
 }
