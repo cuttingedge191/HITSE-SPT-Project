@@ -40,7 +40,7 @@ CREATE TABLE `customer_info` (
 
 LOCK TABLES `customer_info` WRITE;
 /*!40000 ALTER TABLE `customer_info` DISABLE KEYS */;
-INSERT INTO `customer_info` VALUES (2,'retail','小建','male','13684611082','Harbin'),(3,'retail','锐捷','female','13684611082','Harbin');
+INSERT INTO `customer_info` VALUES (2,'retail','小建','male','1368462','Harbin'),(3,'retail','锐捷','female','13846112','Harbin');
 /*!40000 ALTER TABLE `customer_info` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-11-23 18:25:53
+-- Dump completed on 2021-11-26 16:26:41

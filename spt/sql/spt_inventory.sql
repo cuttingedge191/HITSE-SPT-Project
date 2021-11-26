@@ -24,6 +24,7 @@ DROP TABLE IF EXISTS `inventory`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `inventory` (
   `i_id` int(11) NOT NULL AUTO_INCREMENT,
+  `il_id` int(11) NOT NULL,
   `g_id` int(11) NOT NULL,
   `quantity` int(11) NOT NULL DEFAULT '1',
   `quality` varchar(45) DEFAULT '一般',
@@ -38,7 +39,7 @@ CREATE TABLE `inventory` (
 
 LOCK TABLES `inventory` WRITE;
 /*!40000 ALTER TABLE `inventory` DISABLE KEYS */;
-INSERT INTO `inventory` VALUES (1,1,256,'nice');
+INSERT INTO `inventory` VALUES (1,1,1,256,'nice');
 /*!40000 ALTER TABLE `inventory` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-11-23 18:25:53
+-- Dump completed on 2021-11-26 16:26:41

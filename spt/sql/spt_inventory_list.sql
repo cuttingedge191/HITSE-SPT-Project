@@ -16,29 +16,29 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `databasechangeloglock`
+-- Table structure for table `inventory_list`
 --
 
-DROP TABLE IF EXISTS `databasechangeloglock`;
+DROP TABLE IF EXISTS `inventory_list`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `databasechangeloglock` (
-  `ID` int(11) NOT NULL,
-  `LOCKED` bit(1) NOT NULL,
-  `LOCKGRANTED` datetime DEFAULT NULL,
-  `LOCKEDBY` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `inventory_list` (
+  `il_id` int(11) NOT NULL AUTO_INCREMENT,
+  `inventory_name` varchar(45) NOT NULL,
+  `inventory_info` varchar(45) DEFAULT NULL,
+  `inventory_prior` tinyint(4) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`il_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `databasechangeloglock`
+-- Dumping data for table `inventory_list`
 --
 
-LOCK TABLES `databasechangeloglock` WRITE;
-/*!40000 ALTER TABLE `databasechangeloglock` DISABLE KEYS */;
-INSERT INTO `databasechangeloglock` VALUES (1,_binary '\0',NULL,NULL);
-/*!40000 ALTER TABLE `databasechangeloglock` ENABLE KEYS */;
+LOCK TABLES `inventory_list` WRITE;
+/*!40000 ALTER TABLE `inventory_list` DISABLE KEYS */;
+INSERT INTO `inventory_list` VALUES (1,'主仓库','备注信息',1);
+/*!40000 ALTER TABLE `inventory_list` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -50,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-11-23 18:25:54
+-- Dump completed on 2021-11-26 16:26:41
