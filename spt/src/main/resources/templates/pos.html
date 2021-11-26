@@ -115,7 +115,7 @@
                             </li>
 
                             <li>
-                                <a th:href="@{/userInfoSearch}">
+                                <a th:href="404.html">
                                     <span class="nav-icon">
                                         <i class="material-icons">&#xe3e8;
                                             <span ui-include="'@{/assets/images/i_5.svg}'"></span>
@@ -149,15 +149,6 @@
 
         <!-- content -->
         <div id="content" class="app-content box-shadow-z0" role="main">
-            <!--        <div class="app-header white box-shadow">-->
-            <!--            <div class="navbar navbar-toggleable-sm flex-row align-items-center">-->
-            <!--                &lt;!&ndash; Open side - Naviation on mobile &ndash;&gt;-->
-            <!--                <a data-toggle="modal" data-target="#aside" class="hidden-lg-up mr-3">-->
-            <!--                    <i class="material-icons">&#xe5d2;</i>-->
-            <!--                </a>-->
-            <!--                &lt;!&ndash; / &ndash;&gt;-->
-            <!--            </div>-->
-            <!--        </div>-->
             <div ui-view class="app-body" id="view">
 
                 <!-- ############ PAGE START-->
@@ -171,69 +162,60 @@
                                         <div class="row-inner">
                                             <div class="box">
                                                 <div class="box-header">
-                                                    <h2>新增批发销售单</h2>
-                                                    <small>在这里只能添加批发销售单，对于零售请使用零售POS收银台</small>
+                                                    <h2>POS收款</h2>
+                                                    <small>此处对于零售客户进行POS收款。</small>
                                                 </div>
                                                 <div class="box-divider m-0"></div>
-                                                <div class="box-body">
-                                                    <form role="form" method="post" th:action="@{/addOneOrderItem}">
-                                                        <!--                                                    TODO 删除选择客户类型，只能是批发-->
+                                                <!--<div class="box-body">-->
+                                                <form role="form" method="post" th:action="@{/addOneOrderItem}">
+                                                    <div class="box-body">
                                                         <div class="form-group row">
-                                                            <label for="order_type"
-                                                                class="col-md-4 form-control-label">销售单类型</label>
-                                                            <select class="c-select col-6" id="order_type" name="type">
-                                                                <option value="trade">批发</option>
-                                                                <option value="retail">零售</option>
+                                                            <label for="customer" class="col-md-4 form-control-label">是否为会员</label>
+                                                            <select class="form-control col-md-6" ui-jp="select2" ui-options="{theme: 'bootstrap'}"
+                                                                    name="c_id" id="customer">
+                                                                <option>是</option>
+                                                                <option>否</option>
                                                             </select>
                                                         </div>
                                                         <div class="form-group row">
-                                                            <label for="customer"
-                                                                class="col-md-4 form-control-label">客户名称</label>
-                                                            <select class="form-control col-md-6" ui-jp="select2"
-                                                                ui-options="{theme: 'bootstrap'}" name="c_id"
-                                                                id="customer">
-                                                                <optgroup label="批发客户">
-                                                                    <div th:each="cus:${wholesale_customers}">
+                                                            <label for="customer" class="col-md-4 form-control-label">客户ID</label>
+                                                            <select class="form-control col-md-6" ui-jp="select2" ui-options="{theme: 'bootstrap'}"
+                                                                    name="c_id" id="customer">
+                                                                <optgroup label="零售客户">
+                                                                    <div th:each="cus:${retail_customers}">
                                                                         <option th:text="${cus.name}"></option>
                                                                     </div>
                                                                 </optgroup>
                                                             </select>
                                                             <input type="hidden" th:value="${o_id}" name="o_id">
                                                         </div>
+                                                    </div>
 
+                                                    <div class="box-divider m-0"></div>
+                                                    <div class="box-body">
                                                         <div class="form-group row">
-                                                            <label for="item_name"
-                                                                class="col-md-4 form-control-label">货品名称</label>
-                                                            <select class="form-control col-md-6" ui-jp="select2"
-                                                                ui-options="{theme: 'bootstrap'}" name="item_name"
-                                                                id="item_name">
+                                                            <label for="item_name" class="col-md-4 form-control-label">货品名称</label>
+                                                            <select class="form-control col-md-6" ui-jp="select2" ui-options="{theme: 'bootstrap'}"
+                                                                    name="item_name" id="item_name">
                                                                 <optgroup label="货品名称">
-                                                                    <!--                                                                // TODO 修改成货品列表-->
-                                                                    <div th:each="cus:${wholesale_customers}">
+                                                                    <div th:each="cus:${retail_customers}">
                                                                         <option th:text="${cus.name}"></option>
                                                                     </div>
                                                                 </optgroup>
                                                             </select>
                                                         </div>
+                                                        <div class="form-group row">
+                                                            <label for="item_quantity" class="col-md-4 form-control-label">货品数量</label>
+                                                            <input class="form-control col-md-6" type="text" name="quantity" id="item_quantity"
+                                                                   placeholder="货品数量" required>
+                                                        </div>
+                                                    </div>
 
-                                                        <!--                                                    <div class="form-group row">-->
-                                                        <!--                                                        <label for="item_name" class="col-md-4 form-control-label">货品名称</label>-->
-                                                        <!--                                                        <input class="form-control col-md-6" type="text" name="item_name" id="item_name"-->
-                                                        <!--                                                               placeholder="货品名称"-->
-                                                        <!--                                                               required>-->
-                                                        <!--                                                    </div>-->
-                                                        <div class="form-group row">
-                                                            <label for="item_quantity"
-                                                                class="col-md-4 form-control-label">货品数量</label>
-                                                            <input class="form-control col-md-6" type="text"
-                                                                name="quantity" id="item_quantity" placeholder="货品数量"
-                                                                required>
-                                                        </div>
-                                                        <div class="form-group row">
-                                                            <button type="submit" class="btn info m-b ">添加</button>
-                                                        </div>
-                                                    </form>
-                                                </div>
+                                                    <div class="box-divider m-0"></div>
+                                                    <div class="dker p-a text-right">
+                                                        <button type="submit" class="btn info m-b ">添加</button>
+                                                    </div>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
@@ -256,34 +238,47 @@
                                                         </div>
                                                         <table class="table table-hover b-t">
                                                             <thead>
-                                                                <tr>
-                                                                    <th>货品编号</th>
-                                                                    <th>货品名称</th>
-                                                                    <th>货品数量</th>
-                                                                    <th>总价</th>
-                                                                    <th>操作</th>
-                                                                </tr>
+                                                            <tr>
+                                                                <th>货品编号</th>
+                                                                <th>货品名称</th>
+                                                                <th>货品数量</th>
+                                                                <th>总价</th>
+                                                                <th>操作</th>
+                                                            </tr>
                                                             </thead>
                                                             <tbody>
-                                                                <tr th:each="orderItem:${orderItemWithNameList}">
-                                                                    <td th:text="${orderItem.g_id}"></td>
-                                                                    <td th:text="${orderItem.name}"></td>
-                                                                    <td th:text="${orderItem.quantity}"></td>
-                                                                    <td th:text="${orderItem.price}"></td>
-                                                                    <td>
-                                                                        <a class="btn btn-sm btn-danger deletebtn"
-                                                                            th:href="@{/deleteOneOrderItem(oi_id=${orderItem.oi_id},o_id=${o_id},c_id=${c_id})}">删除</a>
-                                                                    </td>
-                                                                </tr>
+                                                            <tr th:each="orderItem:${orderItemWithNameList}">
+                                                                <td th:text="${orderItem.g_id}"></td>
+                                                                <td th:text="${orderItem.name}"></td>
+                                                                <td th:text="${orderItem.quantity}"></td>
+                                                                <td th:text="${orderItem.price}"></td>
+                                                                <td>
+                                                                    <a class="btn btn-sm btn-danger deletebtn"
+                                                                       th:href="@{/deleteOneOrderItem(oi_id=${orderItem.oi_id},o_id=${o_id},c_id=${c_id})}">删除</a>
+                                                                </td>
+                                                            </tr>
                                                             </tbody>
                                                         </table>
                                                     </div>
-                                                    <a class="btn primary m-b"
-                                                        th:href="@{/commitOrder(method=false,o_id=${o_id},c_id=${c_id})}">取消</a>
-                                                    <a class="btn primary m-b"
-                                                        th:href="@{/commitOrder(method=true,o_id=${o_id},c_id=${c_id},type=${type})}">保存</a>
-                                                    <!--                                                // TODO 提交销售单-->
-                                                    <a class="btn primary m-b">提交</a>
+                                                    <div class="row m-b">
+                                                        <div class="col-md-4">
+                                                            <label>应收：</label>
+                                                            <input type="text" class="form-control" disabled="" placeholder="应收数额">
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label>实收：</label>
+                                                            <input type="text" class="form-control" placeholder="应收数额">
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label>找零：</label>
+                                                            <input type="text" class="form-control" disabled="" placeholder="找零数额">
+                                                        </div>
+                                                    </div>
+                                                    <div class="box-divider m-0"></div>
+                                                    <div class="dker p-a text-right">
+                                                        <a class="btn primary m-b">取消</a>
+                                                        <a class="btn primary m-b">收款</a>
+                                                    </div>
                                                 </form>
                                                 <!-- fields -->
                                                 <!-- / fields -->
@@ -303,7 +298,6 @@
         </div>
         <!-- / -->
     </div>
-
     <!-- ############ PAGE END-->
 
     <!-- ############ LAYOUT END-->

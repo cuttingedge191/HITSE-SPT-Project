@@ -42,6 +42,8 @@ public class OrderController {
         // 按照批发类型选择客户
         List<Customer> wholesale_customers = clientInfoService.queryCustomerByType("bulk");
         model.addAttribute("wholesale_customers", wholesale_customers);
+        List<Customer> retail_customers = clientInfoService.queryCustomerByType("零售");
+        model.addAttribute("retail_customers", retail_customers);
         // 货物列表
 //        List<GoodsInfo> goodsInfos =
         return "addOrder";

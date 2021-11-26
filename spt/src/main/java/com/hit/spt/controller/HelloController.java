@@ -47,4 +47,7 @@ public class HelloController {
         return "goodsView";
     }
 
+    @RequestMapping("userInfoSearch")
+    public String userInfoSearch(Model model) {return "userInfoSearch"; }
+
 }
