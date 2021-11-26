@@ -23,7 +23,7 @@
         from inventory
     </select>
     <select id="queryInventoryWithGnameList" resultType="Inventory">
-        select goods_info.name, inventory.quality, inventory.i_id, inventory.quality,
+        select goods_info.name, inventory.quality, inventory.i_id, inventory.quantity,
         goods_info.retail_price, goods_info.cost from goods_info, inventory where inventory.g_id = goods_info.g_id
     </select>
 </mapper>

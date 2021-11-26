@@ -10,15 +10,15 @@ import java.util.List;
 @Mapper
 @Repository
 public interface GoodsInfoMapper {
-    int insertGoodsInfo(GoodsInfo goodsInfo);
+    Integer insertGoodsInfo(GoodsInfo goodsInfo);
 
-    int updateGoodsInfo(GoodsInfo goodsInfo);
+    Integer updateGoodsInfo(GoodsInfo goodsInfo);
 
     GoodsInfo queryGoodsInfoByName(String name);
 
     GoodsInfo queryGoodsInfoByGid(Integer g_id);
 
-    int deleteGoodsInfoByGid(Integer g_id);
+    Integer deleteGoodsInfoByGid(Integer g_id);
 
     List<GoodsInfo> queryGoodsInfoList();
 }

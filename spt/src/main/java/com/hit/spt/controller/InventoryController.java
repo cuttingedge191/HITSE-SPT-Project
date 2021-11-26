@@ -18,12 +18,10 @@ public class InventoryController {
     /**
      * 添加库存实体类
      *
-     * @param inventory 库存实体类，参照sql中的结构
      * @return 进行网页转发，转发至addInventory
      */
-    @RequestMapping("inventory/add")
-    public String addInventory(Inventory inventory) {
-        inventoryService.insertInventoryChange(inventory);
+    @RequestMapping("addInventory")
+    public String addInventory() {
         return "addInventory";
     }
 
@@ -39,14 +37,9 @@ public class InventoryController {
         model.addAttribute("inventories", inventories);
         return "inventoryView";
     }
+
+    @RequestMapping("inventoryCheck")
+    public String inventoryCheck(Model model){
+        return "inventoryCheck";
+    }
 }
-
-
-
-
-
-
-
-
-
-
