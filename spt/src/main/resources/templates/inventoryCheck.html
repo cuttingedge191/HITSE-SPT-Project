@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <title>Flatkit - HTML Version | Bootstrap 4 Web App Kit with AngularJS</title>
@@ -15,7 +16,7 @@
   <!-- for Chrome on Android, multi-resolution icon of 196x196 -->
   <meta name="mobile-web-app-capable" content="yes">
   <link rel="shortcut icon" sizes="196x196" href="../assets/images/logo.png">
-  
+
   <!-- style -->
   <link rel="stylesheet" href="../assets/animate.css/animate.min.css" type="text/css" />
   <link rel="stylesheet" href="../assets/glyphicons/glyphicons.css" type="text/css" />
@@ -28,90 +29,91 @@
   <!-- endbuild -->
   <link rel="stylesheet" href="../assets/styles/font.css" type="text/css" />
 </head>
+
 <body>
   <div class="app" id="app">
 
-<!-- ############ LAYOUT START-->
+    <!-- ############ LAYOUT START-->
 
 
-<!-- ############ PAGE START-->
-<div class="padding">
+    <!-- ############ PAGE START-->
+    <div class="padding">
 
-  <h6>库存盘点</h6>
-  <p>盘点库存内的货品是否有多出或减少，以及是否存在之前没有库存管理中已经没有了的货品。</p>
-  <div class="table-responsive box">
-    <table class="table table-striped white">
-      <thead>
-        <tr>
-          <th>货品编号</th>
-          <th>货品名称</th>
-          <th>货品质量</th>
-          <th>现有货品数量</th>
-          <th>实际货品数量</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th class="text-nowrap">Grid behavior</th>
-          <td>Horizontal at all times</td>
-          <td>好</td>
-          <td>40</td>
-          <td><input type="text" placeholder="40" class="form-control w-sm inline"></td>
-        </tr>
-        <tr>
-          <th class="text-nowrap">Container width</th>
-          <td>34rem</td>
-          <td>好</td>
-          <td>546</td>
-          <td><input type="text" placeholder="546" class="form-control w-sm inline"></td>
-        </tr>
-        <tr>
-          <th class="text-nowrap">Class prefix</th>
-          <td> </td>
-          <td>一般</td>
-          <td>416</td>
-          <td><input type="text" placeholder="416" class="form-control w-sm inline"></td>
-        </tr>
-        <tr>
-          <th class="text-nowrap"># of columns</th>
-          <td colspan="5">12</td>
-        </tr>
-        <tr>
-          <th class="text-nowrap">Gutter width</th>
-          <td colspan="5">1.875rem</td>
-        </tr>
-        <tr>
-          <th class="text-nowrap">Nestable</th>
-          <td colspan="5">Yes</td>
-        </tr>
-        <tr>
-          <th class="text-nowrap">Offsets</th>
-          <td colspan="5">Yes</td>
-        </tr>
-        <tr>
-          <th class="text-nowrap">Column ordering</th>
-          <td colspan="5">Yes</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <h6>库存盘点信息</h6>
-  <div class="row">
-    <div class="col-md-6">
-      <div class="box p-a">
-        <label>盘点人员：</label>
-        <input type="name" class="Inventory manager" id="" placeholder="Inventory manager name">
+      <h6>库存盘点</h6>
+      <p>盘点库存内的货品是否有多出或减少，以及是否存在之前没有库存管理中已经没有了的货品。</p>
+      <div class="table-responsive box">
+        <table class="table table-striped white">
+          <thead>
+            <tr>
+              <th>货品编号</th>
+              <th>货品名称</th>
+              <th>货品质量</th>
+              <th>现有货品数量</th>
+              <th>实际货品数量</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th class="text-nowrap">Grid behavior</th>
+              <td>Horizontal at all times</td>
+              <td>好</td>
+              <td>40</td>
+              <td><input type="text" placeholder="40" class="form-control w-sm inline"></td>
+            </tr>
+            <tr>
+              <th class="text-nowrap">Container width</th>
+              <td>34rem</td>
+              <td>好</td>
+              <td>546</td>
+              <td><input type="text" placeholder="546" class="form-control w-sm inline"></td>
+            </tr>
+            <tr>
+              <th class="text-nowrap">Class prefix</th>
+              <td> </td>
+              <td>一般</td>
+              <td>416</td>
+              <td><input type="text" placeholder="416" class="form-control w-sm inline"></td>
+            </tr>
+            <tr>
+              <th class="text-nowrap"># of columns</th>
+              <td colspan="5">12</td>
+            </tr>
+            <tr>
+              <th class="text-nowrap">Gutter width</th>
+              <td colspan="5">1.875rem</td>
+            </tr>
+            <tr>
+              <th class="text-nowrap">Nestable</th>
+              <td colspan="5">Yes</td>
+            </tr>
+            <tr>
+              <th class="text-nowrap">Offsets</th>
+              <td colspan="5">Yes</td>
+            </tr>
+            <tr>
+              <th class="text-nowrap">Column ordering</th>
+              <td colspan="5">Yes</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-    </div>
-  </div>
 
-  <div class="row">
-    <div class="col-md-6">
-      <div class="box p-a">
-        <label>盘点日期：</label>
-        <div class="form-group">
-          <div class='input-group date' ui-jp="datetimepicker" ui-options="{
+      <h6>库存盘点信息</h6>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="box p-a">
+            <label>盘点人员：</label>
+            <input type="name" class="Inventory manager" id="" placeholder="Inventory manager name">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="box p-a">
+            <label>盘点日期：</label>
+            <div class="form-group">
+              <div class='input-group date' ui-jp="datetimepicker" ui-options="{
                 format: 'DD/MM/YYYY',
                 icons: {
                   time: 'fa fa-clock-o',
@@ -125,52 +127,52 @@
                   close: 'fa fa-remove'
                 }
               }">
-              <input type='text' class="form-control" />
-              <span class="input-group-addon">
+                <input type='text' class="form-control" />
+                <span class="input-group-addon">
                   <span class="fa fa-calendar"></span>
-              </span>
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-  <h6>其他描述信息</h6>
-  <div class="row">
-    <div class="col-sm-10">
-      <textarea class="form-control" rows="2"></textarea>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-sm-12">
-      <div class="dker p-a text-right">
-        <p class="btn-groups">
-          <button class="btn btn-outline b-primary text-primary">确认</button>
-          <button class="btn btn-outline b-black text-black">退出</button>
-        </p>
+      <h6>其他描述信息</h6>
+      <div class="row">
+        <div class="col-sm-10">
+          <textarea class="form-control" rows="2"></textarea>
+        </div>
       </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="dker p-a text-right">
+            <p class="btn-groups">
+              <button class="btn btn-outline b-primary text-primary">确认</button>
+              <button class="btn btn-outline b-black text-black">退出</button>
+            </p>
+          </div>
+        </div>
+      </div>
+
+
     </div>
+
+    <!-- ############ PAGE END-->
+
   </div>
-
-
-</div>
-
-<!-- ############ PAGE END-->
-
-    </div>
   </div>
   <!-- / -->
 
-<!-- ############ LAYOUT END-->
+  <!-- ############ LAYOUT END-->
 
   </div>
-<!-- build:js scripts/app.html.js -->
-<!-- jQuery -->
+  <!-- build:js scripts/app.html.js -->
+  <!-- jQuery -->
   <script src="../libs/jquery/jquery/dist/jquery.js"></script>
-<!-- Bootstrap -->
+  <!-- Bootstrap -->
   <script src="../libs/jquery/tether/dist/js/tether.min.js"></script>
   <script src="../libs/jquery/bootstrap/dist/js/bootstrap.js"></script>
-<!-- core -->
+  <!-- core -->
   <script src="../libs/jquery/underscore/underscore-min.js"></script>
   <script src="../libs/jquery/jQuery-Storage-API/jquery.storageapi.min.js"></script>
   <script src="../libs/jquery/PACE/pace.min.js"></script>
@@ -193,6 +195,7 @@
   <!-- ajax -->
   <script src="../libs/jquery/jquery-pjax/jquery.pjax.js"></script>
   <script src="scripts/ajax.js"></script>
-<!-- endbuild -->
+  <!-- endbuild -->
 </body>
+
 </html>
