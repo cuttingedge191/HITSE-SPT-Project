@@ -39,4 +39,7 @@ public class HelloController {
 
 
 
+    @RequestMapping("userInfoSearch")
+    public String userInfoSearch(Model model) {return "userInfoSearch"; }
+
 }
