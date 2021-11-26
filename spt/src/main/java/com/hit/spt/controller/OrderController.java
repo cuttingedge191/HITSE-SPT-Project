@@ -99,6 +99,7 @@ public class OrderController {
      * @param model  传递信息
      * @return 重定向，防止刷新后产生键值重复的问题
      */
+    
     @RequestMapping("commitOrder")
     public String commitOrder(boolean method, Integer o_id, String cname, String type, Model model) {
         if (!method) {
