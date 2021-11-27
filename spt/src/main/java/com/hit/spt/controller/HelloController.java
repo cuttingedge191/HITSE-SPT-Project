@@ -46,4 +46,14 @@ public class HelloController {
         return "pos";
     }
 
+    @RequestMapping("inventoryTrans")
+    public String inventoryTrans(Model model) {
+        return "inventoryTrans";
+    }
+
+    @RequestMapping("orderReview")
+    public String orderReview(Model model) {
+        return "orderReview";
+    }
+
 }

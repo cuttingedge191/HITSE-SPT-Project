@@ -21,7 +21,7 @@ public class OrdersViewController {
     @RequestMapping("deleteOrder")
     public String deleteOrder(Integer o_id) {
         orderService.deleteAllOrderItemByOid(o_id);
-        orderService.de
+        return null;
     }
 
 
