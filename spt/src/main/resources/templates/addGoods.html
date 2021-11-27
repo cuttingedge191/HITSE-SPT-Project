@@ -76,6 +76,10 @@
                                     <input type="text" class="form-control" name="description" id="description" placeholder="请输入货品描述"
                                         required>
                                 </div>
+                                <div>
+                                    <label style="color: red;" th:text="${goodsExistWarning}=='true'?'货品存在，请输入其他货品，或换一个名称':''"
+                                           th:if="${goodsExistWarning}=='true'"></label>
+                                </div>
                                 <button type="submit" class="btn primary m-b ">放弃</button>
                                 <button type="submit" class="btn primary m-b ">添加</button>
                             </form>

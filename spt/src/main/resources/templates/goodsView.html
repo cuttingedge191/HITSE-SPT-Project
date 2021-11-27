@@ -188,7 +188,7 @@
                                         <td class="m-b btn-groups">
                                             <button class="btn btn-sm info">详细信息</button>
                                             <a class="btn btn-sm success">编辑</a>
-                                            <button class="btn btn-sm danger">删除</button>
+                                            <a th:href="@{/deleteGoods(g_id=${good.g_id})}" class="btn btn-sm danger">删除</a>
                                         </td>
                                     </tr>
                                 </tbody>

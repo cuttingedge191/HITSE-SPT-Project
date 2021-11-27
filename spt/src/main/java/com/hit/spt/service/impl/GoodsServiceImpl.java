@@ -23,4 +23,14 @@ public class GoodsServiceImpl implements GoodsService{
 
         return goodsInfoMapper.insertGoodsInfo(goodsInfo);
     }
+
+    @Override
+    public GoodsInfo queryGoodsInfoByName(String name){
+        return goodsInfoMapper.queryGoodsInfoByName(name);
+    }
+
+    @Override
+    public Integer deleteGoodsByGid(Integer g_id){
+        return goodsInfoMapper.deleteGoodsInfoByGid(g_id);
+    }
 }
