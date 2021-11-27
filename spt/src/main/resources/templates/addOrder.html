@@ -106,7 +106,7 @@
                                 </li>
                                 <li>
                                     <a th:href="@{/inventoryTrans}">
-                                        <span class="nav-text">库存调动</span>
+                                        <span class="nav-text">库存调度</span>
                                     </a>
                                 </li>
                             </ul>
@@ -254,6 +254,7 @@
                                             <div class="box-divider m-0"></div>
                                             <div class="box-body">
                                                 <form role="form" method="post" th:action="@{/addOneOrderItem}">
+                                                    <input type="hidden" th:value="${o_id}" name="o_id">
                                                     <div class="form-group row">
                                                         <label for="customer"
                                                                class="col-md-4 form-control-label">客户名称</label>
