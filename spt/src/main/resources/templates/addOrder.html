@@ -254,8 +254,7 @@
                                             <div class="box-divider m-0"></div>
                                             <div class="box-body">
                                                 <form role="form" method="post" th:action="@{/addOneOrderItem}">
-                                                    <!--                                                    TODO 删除选择客户类型，只能是批发-->
-                                                    <p th:value="${o_id}"></p>
+                                                    <input type="hidden" th:value="${o_id}" name="o_id">
                                                     <div class="form-group row">
                                                         <label for="order_type"
                                                                class="col-md-4 form-control-label">销售单类型</label>
@@ -277,9 +276,7 @@
                                                                 </div>
                                                             </optgroup>
                                                         </select>
-                                                        <input type="hidden" th:value="${o_id}" name="o_id">
                                                     </div>
-
                                                     <div class="form-group row">
                                                         <label for="item_name"
                                                                class="col-md-4 form-control-label">货品名称</label>
@@ -287,7 +284,6 @@
                                                                 ui-options="{theme: 'bootstrap'}" name="item_name"
                                                                 id="item_name">
                                                             <optgroup label="货品名称">
-                                                                <!--                                                                // TODO 修改成货品列表-->
                                                                 <div th:each="goodInfo:${goodsInfoList}">
                                                                     <option th:text="${goodInfo.name}"></option>
                                                                 </div>

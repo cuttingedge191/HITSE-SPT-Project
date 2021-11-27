@@ -14,6 +14,8 @@ public interface OrderService {
 
     List<OrderItem> queryOrderItemWithNameListByOid(Integer o_id);
 
+    int calcTotalPriceByOid(Integer o_id);
+
     OrderItem generateOrderItem(Integer o_id, String name, Integer quantity, Boolean trade);
 
     int saveOrder(Orders orders);

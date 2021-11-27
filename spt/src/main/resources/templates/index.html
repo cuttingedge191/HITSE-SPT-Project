@@ -2,10 +2,10 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <title>通用批发零售业务管理系统</title>
-    <meta name="description" content="Admin, Dashboard, Bootstrap, Bootstrap 4, Angular, AngularJS" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui" />
+    <meta name="description" content="Admin, Dashboard, Bootstrap, Bootstrap 4, Angular, AngularJS"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <!-- for ios 7 style, multi-resolution icon of 152x152 -->
@@ -18,235 +18,235 @@
     <link rel="shortcut icon" sizes="196x196" th:href="@{/assets/images/logo.png}">
 
     <!-- style -->
-    <link rel="stylesheet" th:href="@{/assets/animate.css/animate.min.css}" type="text/css" />
-    <link rel="stylesheet" th:href="@{/assets/glyphicons/glyphicons.css}" type="text/css" />
-    <link rel="stylesheet" th:href="@{/assets/font-awesome/css/font-awesome.min.css}" type="text/css" />
-    <link rel="stylesheet" th:href="@{/assets/material-design-icons/material-design-icons.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/assets/animate.css/animate.min.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/assets/glyphicons/glyphicons.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/assets/font-awesome/css/font-awesome.min.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/assets/material-design-icons/material-design-icons.css}" type="text/css"/>
 
-    <link rel="stylesheet" th:href="@{/assets/bootstrap/dist/css/bootstrap.min.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/assets/bootstrap/dist/css/bootstrap.min.css}" type="text/css"/>
     <!-- build:css @{/assets/styles/app.min.css} -->
-    <link rel="stylesheet" th:href="@{/assets/styles/app.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/assets/styles/app.css}" type="text/css"/>
     <!-- endbuild -->
-    <link rel="stylesheet" th:href="@{/assets/styles/font.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/assets/styles/font.css}" type="text/css"/>
 </head>
 
 <body>
-    <div class="app" id="app">
+<div class="app" id="app">
 
-        <!-- ############ LAYOUT START-->
+    <!-- ############ LAYOUT START-->
 
-        <!-- aside -->
-        <div id="aside" class="app-aside modal nav-dropdown">
-            <!-- fluid app aside -->
-            <div class="left navside dark dk" data-layout="column">
-                <div class="navbar no-radius">
-                    <!-- brand -->
-                    <a class="navbar-brand">
-                        <!-- 原来的图标
-                    <div ui-include="'@{/assets/images/logo.svg'"></div>
-                    <img th:src="@{/assets/images/logo.png}" alt="." class="hide">
-                -->
-                        <span class="hidden-folded inline">通用批发零售</span><br>
-                        <span class="hidden-folded inline">业务管理系统</span>
-                    </a>
-                    <!-- /brand -->
-                </div>
-                <div class="hide-scroll" data-flex>
-                    <nav class="scroll nav-light">
+    <!-- aside -->
+    <div id="aside" class="app-aside modal nav-dropdown">
+        <!-- fluid app aside -->
+        <div class="left navside dark dk" data-layout="column">
+            <div class="navbar no-radius">
+                <!-- brand -->
+                <a class="navbar-brand">
+                    <!-- 原来的图标
+                <div ui-include="'@{/assets/images/logo.svg'"></div>
+                <img th:src="@{/assets/images/logo.png}" alt="." class="hide">
+            -->
+                    <span class="hidden-folded inline">通用批发零售</span><br>
+                    <span class="hidden-folded inline">业务管理系统</span>
+                </a>
+                <!-- /brand -->
+            </div>
+            <div class="hide-scroll" data-flex>
+                <nav class="scroll nav-light">
 
-                        <ul class="nav" ui-nav>
-                            <li class="nav-header hidden-folded">
-                                <small class="text-muted">主要功能</small>
-                            </li>
+                    <ul class="nav" ui-nav>
+                        <li class="nav-header hidden-folded">
+                            <small class="text-muted">主要功能</small>
+                        </li>
 
-                            <li>
-                                <a th:href="@{/index}">
+                        <li>
+                            <a th:href="@{/index}">
                                     <span class="nav-icon">
                                         <i class="material-icons">&#xe3fc;
                                             <span ui-include="'@{/assets/images/i_0.svg'"></span>
                                         </i>
                                     </span>
-                                    <span class="nav-text">概览界面</span>
-                                </a>
-                            </li>
+                                <span class="nav-text">概览界面</span>
+                            </a>
+                        </li>
 
-                            <li>
-                                <a th:href="@{/goodsView}">
+                        <li>
+                            <a th:href="@{/goodsView}">
                                     <span class="nav-icon">
                                         <i class="material-icons">&#xe5c3;
                                             <span ui-include="'@{/assets/images/i_1.svg'"></span>
                                         </i>
                                     </span>
-                                    <span class="nav-text">货品管理</span>
-                                </a>
-                            </li>
+                                <span class="nav-text">货品管理</span>
+                            </a>
+                        </li>
 
-                            <li>
-                                <a>
+                        <li>
+                            <a>
                                     <span class="nav-caret">
                                         <i class="fa fa-caret-down"></i>
                                     </span>
-                                    <span class="nav-icon">
+                                <span class="nav-icon">
                                         <i class="material-icons">&#xe8f0;
                                             <span ui-include="'@{/assets/images/i_2.svg'"></span>
                                         </i>
                                     </span>
-                                    <span class="nav-text">库存管理</span>
-                                </a>
-                                <ul class="nav-sub">
-                                    <li>
-                                        <a th:href="@{/inventoryView}">
-                                            <span class="nav-text">库存查询</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a th:href="@{/inventoryCheck}">
-                                            <span class="nav-text">库存盘点</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a th:href="@{/inventoryTrans}">
-                                            <span class="nav-text">库存调动</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
+                                <span class="nav-text">库存管理</span>
+                            </a>
+                            <ul class="nav-sub">
+                                <li>
+                                    <a th:href="@{/inventoryView}">
+                                        <span class="nav-text">库存查询</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a th:href="@{/inventoryCheck}">
+                                        <span class="nav-text">库存盘点</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a th:href="@{/inventoryTrans}">
+                                        <span class="nav-text">库存调动</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
 
-                            <li>
-                                <a>
+                        <li>
+                            <a>
                                     <span class="nav-caret">
                                         <i class="fa fa-caret-down"></i>
                                     </span>
-                                    <span class="nav-icon">
+                                <span class="nav-icon">
                                         <i class="material-icons">&#xe8d2;
                                             <span ui-include="'@{/assets/images/i_3.svg'"></span>
                                         </i>
                                     </span>
-                                    <span class="nav-text">销售管理</span>
-                                </a>
-                                <ul class="nav-sub">
-                                    <li>
-                                        <a th:href="@{/ordersView}">
-                                            <span class="nav-text">销售单查询</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a th:href="@{/addOrder}">
-                                            <span class="nav-text">新增批发销售单</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a th:href="@{/pos}">
-                                            <span class="nav-text">零售POS收银台</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
+                                <span class="nav-text">销售管理</span>
+                            </a>
+                            <ul class="nav-sub">
+                                <li>
+                                    <a th:href="@{/ordersView}">
+                                        <span class="nav-text">销售单查询</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a th:href="@{/addOrder}">
+                                        <span class="nav-text">新增批发销售单</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a th:href="@{/addPosOrder}">
+                                        <span class="nav-text">零售POS收银台</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
 
-                            <li>
-                                <a th:href="@{/clientInfoSearch}">
+                        <li>
+                            <a th:href="@{/clientInfoSearch}">
                                     <span class="nav-icon">
                                         <i class="material-icons">&#xe429;
                                             <span ui-include="'@{/assets/images/i_4.svg'"></span>
                                         </i>
                                     </span>
-                                    <span class="nav-text">客户管理</span>
-                                </a>
-                            </li>
+                                <span class="nav-text">客户管理</span>
+                            </a>
+                        </li>
 
-                            <li>
-                                <a th:href="@{/userInfoSearch}">
+                        <li>
+                            <a th:href="@{/userInfoSearch}">
                                     <span class="nav-icon">
                                         <i class="material-icons">&#xe3e8;
                                             <span ui-include="'@{/assets/images/i_5.svg'"></span>
                                         </i>
                                     </span>
-                                    <span class="nav-text">系统用户管理</span>
-                                </a>
-                            </li>
+                                <span class="nav-text">系统用户管理</span>
+                            </a>
+                        </li>
 
-                            <li class="nav-header hidden-folded">
-                                <small class="text-muted">个人账号服务</small>
-                            </li>
+                        <li class="nav-header hidden-folded">
+                            <small class="text-muted">个人账号服务</small>
+                        </li>
 
-                            <li>
-                                <a th:href="@{/account}">
+                        <li>
+                            <a th:href="@{/account}">
                                     <span class="nav-icon">
                                         <i class="material-icons">&#xe1b8;
                                             <span ui-include="'@{/assets/images/i_8.svg'"></span>
                                         </i>
                                     </span>
-                                    <span class="nav-text">账号信息修改</span>
-                                </a>
-                            </li>
+                                <span class="nav-text">账号信息修改</span>
+                            </a>
+                        </li>
 
-                            <li>
-                                <a th:href="@{/login}">
+                        <li>
+                            <a th:href="@{/login}">
                                     <span class="nav-icon">
                                         <i class="material-icons"></i>
                                     </span>
-                                    <span class="nav-text">退出登录</span>
-                                </a>
-                            </li>
+                                <span class="nav-text">退出登录</span>
+                            </a>
+                        </li>
 
-                            <li class="nav-header hidden-folded">
-                                <small class="text-muted">关于</small>
-                            </li>
+                        <li class="nav-header hidden-folded">
+                            <small class="text-muted">关于</small>
+                        </li>
 
-                            <li class="hidden-folded">
-                                <a th:href="@{/about}">
+                        <li class="hidden-folded">
+                            <a th:href="@{/about}">
                                     <span class="nav-icon">
                                         <i class="material-icons">&#xe39e;
                                             <span ui-include="'@{/assets/images/i_6.svg'"></span>
                                         </i>
                                     </span>
-                                    <span class="nav-text">开发者信息</span>
-                                </a>
-                            </li>
+                                <span class="nav-text">开发者信息</span>
+                            </a>
+                        </li>
 
-                        </ul>
-                    </nav>
-                </div>
-                <!-- 用户登录状态显示 -->
-                <div class="b-t">
-                    <div class="nav-fold">
+                    </ul>
+                </nav>
+            </div>
+            <!-- 用户登录状态显示 -->
+            <div class="b-t">
+                <div class="nav-fold">
                         <span class="pull-left">
                             <img th:src="@{/assets/images/a0.jpg}" alt="..." class="w-40 img-circle">
                         </span>
-                        <span class="clear hidden-folded p-x">
+                    <span class="clear hidden-folded p-x">
                             <span class="block _500">【用户姓名】</span>
                             <small class="block text-muted">【用户身份】</small>
                             <small class="block text-muted"><i class="fa fa-circle text-success m-r-sm"></i>在线</small>
                         </span>
-                    </div>
                 </div>
             </div>
         </div>
-        <!-- / -->
+    </div>
+    <!-- / -->
 
-        <!-- content -->
-        <div id="content" class="app-content box-shadow-z0" role="main">
-            <div ui-view class="app-body" id="view">
+    <!-- content -->
+    <div id="content" class="app-content box-shadow-z0" role="main">
+        <div ui-view class="app-body" id="view">
 
-                <!-- ############ PAGE START-->
-                <div class="p-a white lt box-shadow">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <h4 class="mb-0 _300">【问候语】</h4>
-                        </div>
+            <!-- ############ PAGE START-->
+            <div class="p-a white lt box-shadow">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h4 class="mb-0 _300">【问候语】</h4>
                     </div>
                 </div>
-                <div class="padding">
-                    <div class="row">
+            </div>
+            <div class="padding">
+                <div class="row">
 
-                        <div class="col-sm-6">
-                            <div class="box">
-                                <div class="box-header">
-                                    <h3>库存概览</h3>
-                                    <small class="block text-muted">不确定如何做</small>
-                                </div>
-                                <div class="box-body">
-                                    <div ui-jp="chart" ui-options=" {
+                    <div class="col-sm-6">
+                        <div class="box">
+                            <div class="box-header">
+                                <h3>库存概览</h3>
+                                <small class="block text-muted">不确定如何做</small>
+                            </div>
+                            <div class="box-body">
+                                <div ui-jp="chart" ui-options=" {
                       tooltip : {
                           trigger: 'item',
                           formatter: '{a} <br/>{b} : {c} ({d}%)'
@@ -273,19 +273,19 @@
                           }
                       ]
                     }" style="height:300px">
-                                    </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="col-sm-6">
-                            <div class="box">
-                                <div class="box-header">
-                                    <h3>经营概览</h3>
-                                    <small class="block text-muted">不确定如何做</small>
-                                </div>
-                                <div class="box-body">
-                                    <div ui-jp="chart" ui-options=" {
+                    <div class="col-sm-6">
+                        <div class="box">
+                            <div class="box-header">
+                                <h3>经营概览</h3>
+                                <small class="block text-muted">不确定如何做</small>
+                            </div>
+                            <div class="box-body">
+                                <div ui-jp="chart" ui-options=" {
                           tooltip : {
                               trigger: 'axis'
                           },
@@ -342,7 +342,6 @@
                               }
                           ]
                         }" style="height:300px">
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -351,40 +350,41 @@
             </div>
         </div>
     </div>
-    <!-- ############ PAGE END-->
+</div>
+<!-- ############ PAGE END-->
 
-    <!-- ############ LAYOUT END-->
+<!-- ############ LAYOUT END-->
 
-    <!-- build:js scripts/app.html.js} -->
-    <!-- jQuery -->
-    <script th:src="@{/libs/jquery/jquery/dist/jquery.js}"></script>
-    <!-- Bootstrap -->
-    <script th:src="@{/libs/jquery/tether/dist/js/tether.min.js}"></script>
-    <script th:src="@{/libs/jquery/bootstrap/dist/js/bootstrap.js}"></script>
-    <!-- core -->
-    <script th:src="@{/libs/jquery/underscore/underscore-min.js}"></script>
-    <script th:src="@{/libs/jquery/jQuery-Storage-API/jquery.storageapi.min.js}"></script>
-    <script th:src="@{/libs/jquery/PACE/pace.min.js}"></script>
+<!-- build:js scripts/app.html.js} -->
+<!-- jQuery -->
+<script th:src="@{/libs/jquery/jquery/dist/jquery.js}"></script>
+<!-- Bootstrap -->
+<script th:src="@{/libs/jquery/tether/dist/js/tether.min.js}"></script>
+<script th:src="@{/libs/jquery/bootstrap/dist/js/bootstrap.js}"></script>
+<!-- core -->
+<script th:src="@{/libs/jquery/underscore/underscore-min.js}"></script>
+<script th:src="@{/libs/jquery/jQuery-Storage-API/jquery.storageapi.min.js}"></script>
+<script th:src="@{/libs/jquery/PACE/pace.min.js}"></script>
 
-    <script th:src="@{/scripts/config.lazyload.js}"></script>
+<script th:src="@{/scripts/config.lazyload.js}"></script>
 
-    <script th:src="@{/scripts/palette.js}"></script>
-    <script th:src="@{/scripts/ui-load.js}"></script>
-    <script th:src="@{/scripts/ui-jp.js}"></script>
-    <script th:src="@{/scripts/ui-include.js}"></script>
-    <script th:src="@{/scripts/ui-device.js}"></script>
-    <script th:src="@{/scripts/ui-form.js}"></script>
-    <script th:src="@{/scripts/ui-nav.js}"></script>
-    <script th:src="@{/scripts/ui-screenfull.js}"></script>
-    <script th:src="@{/scripts/ui-scroll-to.js}"></script>
-    <script th:src="@{/scripts/ui-toggle-class.js}"></script>
+<script th:src="@{/scripts/palette.js}"></script>
+<script th:src="@{/scripts/ui-load.js}"></script>
+<script th:src="@{/scripts/ui-jp.js}"></script>
+<script th:src="@{/scripts/ui-include.js}"></script>
+<script th:src="@{/scripts/ui-device.js}"></script>
+<script th:src="@{/scripts/ui-form.js}"></script>
+<script th:src="@{/scripts/ui-nav.js}"></script>
+<script th:src="@{/scripts/ui-screenfull.js}"></script>
+<script th:src="@{/scripts/ui-scroll-to.js}"></script>
+<script th:src="@{/scripts/ui-toggle-class.js}"></script>
 
-    <script th:src="@{/scripts/app.js}"></script>
+<script th:src="@{/scripts/app.js}"></script>
 
-    <!-- ajax -->
-    <script th:src="@{/libs/jquery/jquery-pjax/jquery.pjax.js}"></script>
-    <script th:src="@{/scripts/ajax.js}"></script>
-    <!-- endbuild -->
+<!-- ajax -->
+<script th:src="@{/libs/jquery/jquery-pjax/jquery.pjax.js}"></script>
+<script th:src="@{/scripts/ajax.js}"></script>
+<!-- endbuild -->
 </body>
 
 </html>
