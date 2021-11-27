@@ -245,49 +245,36 @@
                                         <th>实际货品数量</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <th class="text-nowrap">Grid behavior</th>
-                                        <td>Horizontal at all times</td>
-                                        <td>好</td>
-                                        <td>40</td>
-                                        <td><input type="text" placeholder="40" class="form-control w-sm inline"></td>
-                                    </tr>
-                                    <tr>
-                                        <th class="text-nowrap">Container width</th>
-                                        <td>34rem</td>
-                                        <td>好</td>
-                                        <td>546</td>
-                                        <td><input type="text" placeholder="546" class="form-control w-sm inline"></td>
-                                    </tr>
-                                    <tr>
-                                        <th class="text-nowrap">Class prefix</th>
-                                        <td> </td>
-                                        <td>一般</td>
-                                        <td>416</td>
-                                        <td><input type="text" placeholder="416" class="form-control w-sm inline"></td>
-                                    </tr>
-                                    <tr>
-                                        <th class="text-nowrap"># of columns</th>
-                                        <td colspan="5">12</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="text-nowrap">Gutter width</th>
-                                        <td colspan="5">1.875rem</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="text-nowrap">Nestable</th>
-                                        <td colspan="5">Yes</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="text-nowrap">Offsets</th>
-                                        <td colspan="5">Yes</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="text-nowrap">Column ordering</th>
-                                        <td colspan="5">Yes</td>
-                                    </tr>
-                                </tbody>
+                                <form name="myform">
+                                    <tbody>
+                                        <tr th:each="inventory:${inventories}">
+                                            <th class="text-nowrap" th:text="${inventory.i_id}"></th>
+                                            <td th:text="${inventory.name}"></td>
+                                            <td th:text="${inventory.quality}"></td>
+                                            <td th:text="${inventory.quantity}"></td>
+                                            <td><input type="text"  th:placeholder="${inventory.quantity}" th:value="${inventory.quantity}"
+                                                       th:id="${inventory.i_id} + '_quantity'" class="form-control w-sm inline"></td>
+                                        </tr>
+                                    </tbody>
+                                </form>
+                                <script th:inline="javascript">
+
+                                    function alerti(){
+                                        var form = document.createElement("form");
+                                        form.method = "post";
+                                        var inventories = [[${inventories}]]
+                                        for (let i = 0; i < inventories.length; i ++){
+                                            var input = document.createElement("input");
+                                            input.name = "inventory";
+                                            inventories[i].quantity = document.getElementById(inventories[i].i_id+"_quantity").value;
+                                            input.value = JSON.stringify(inventories[i]);
+                                            form.appendChild(input);
+                                        }
+                                        form.action = /*[[@{/checkInventory}]]*/;
+                                        $(document.body).append(form)
+                                        form.submit()
+                                    }
+                                </script>
                             </table>
 
                             <h6>库存盘点信息</h6>
@@ -340,7 +327,7 @@
                                 <div class="col-sm-12">
                                     <div class="dker p-a text-right">
                                         <p class="btn-groups">
-                                            <button class="btn btn-outline b-primary text-primary">确认</button>
+                                            <button class="btn btn-outline b-primary text-primary" onclick="alerti()">确认</button>
                                             <button class="btn btn-outline b-black text-black">退出</button>
                                         </p>
                                     </div>

@@ -41,10 +41,10 @@ public class HelloController {
     @RequestMapping("userInfoSearch")
     public String userInfoSearch(Model model) {return "userInfoSearch"; }
 
-    @RequestMapping("pos")
-    public String posForRetail(Model model) {
-        return "pos";
-    }
+//    @RequestMapping("pos")
+//    public String posForRetail(Model model) {
+//        return "pos";
+//    }
 
     @RequestMapping("inventoryTrans")
     public String inventoryTrans(Model model) {

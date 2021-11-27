@@ -47,6 +47,16 @@ public class OrderServiceImpl implements OrderService {
         return orderItemMapper.queryOrderItemWithNameListByOid(o_id);
     }
 
+    @Override
+    public int calcTotalPriceByOid(Integer o_id) {
+        int result = 0;
+        List<OrderItem> itemList = orderItemMapper.queryOrderItemByOid(o_id);
+        for (OrderItem item : itemList) {
+            result += item.getPrice();
+        }
+        return result;
+    }
+
     /**
      * 为当前订单生成一个商品对象
      *
@@ -123,7 +133,6 @@ public class OrderServiceImpl implements OrderService {
     public List<GoodsInfo> getGoodsInfoList() {
         return goodsInfoMapper.queryGoodsInfoList();
     }
-
 
 
     @Override

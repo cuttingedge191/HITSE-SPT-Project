@@ -26,36 +26,44 @@ public class OrderController {
 
 
     /**
-     * 新建一个订单，并添加商品
-     *
-     * @param model model，传递信息
-     * @param o_id  订单id
-     * @return 转发到addOrder
+     * @param o_id      当前订单的o_id，如果没有就生成
+     * @param item_name 货品名称
+     * @param quantity  数量
+     * @param cname     客户名，用于绑定c_id
+     * @param request   请求
+     * @param model     传参数
+     * @return 转发
      */
     @RequestMapping({"addOrder", "addOneOrderItem"})
-    public String addOneOrder(Integer o_id, String item_name, Integer quantity, String type, String cname, HttpServletRequest request, Model model) {
+    public String addOneOrder(Integer o_id, String item_name, Integer quantity, String cname, HttpServletRequest request, Model model) {
+        String type = "trade";
         if (request.getRequestURI().equals("/addOneOrderItem")) {
-            boolean trade = type.equals("trade");
-
-            OrderItem orderItem = orderService.generateOrderItem(o_id, item_name, quantity, trade);
-            orderService.addOneOrderItem(orderItem);
-            // 生成暂存物品列表
-            List<OrderItem> orderItemWithNameList = orderService.queryOrderItemWithNameListByOid(o_id);
-            model.addAttribute("orderItemWithNameList", orderItemWithNameList);
-            model.addAttribute("cname", cname);
-            model.addAttribute("type", type);
+            genOrderItemForOrder(o_id, item_name, quantity, type, cname, model);
         }
-
         if (o_id != null) {
             model.addAttribute("o_id", o_id);
         } else {
             Integer OrderId = orderService.genOrderId();
             model.addAttribute("o_id", OrderId);
         }
-
-        return getGoodsCustomerInfo(model, o_id);
+        return getGoodsCustomerInfo(model, o_id, type, "addOrder");
     }
 
+    @RequestMapping({"pos", "addOnePosOrderItem"})
+    public String addPosOrder(Integer o_id, String item_name, Integer quantity, String cname, HttpServletRequest request, Model model) {
+        String type = "retail";
+        if (request.getRequestURI().equals("/addOnePosOrderItem")) {
+            genOrderItemForOrder(o_id, item_name, quantity, type, cname, model);
+            model.addAttribute("totalPrice", orderService.calcTotalPriceByOid(o_id));
+        }
+        if (o_id != null) {
+            model.addAttribute("o_id", o_id);
+        } else {
+            Integer OrderId = orderService.genOrderId();
+            model.addAttribute("o_id", OrderId);
+        }
+        return getGoodsCustomerInfo(model, o_id, type, "pos");
+    }
 
     /**
      * 删除订单中的一个商品
@@ -66,28 +74,24 @@ public class OrderController {
      * @param model model传递信息
      * @return 转发到addOrder
      */
-    @RequestMapping("deleteOneOrderItem")
-    public String deleteOneOrderItem(Integer oi_id, Integer o_id, String cname, Model model) {
+    @RequestMapping({"deleteOneOrderItem", "deleteOnePosOrderItem"})
+    public String deleteOneOrderItem(Integer oi_id, Integer o_id, String cname, String type, Model model, HttpServletRequest request) {
+        String view = "addOrder";
         // 生成暂存物品列表
         orderService.deleteOneOrderItemByOiid(oi_id);
+
+        if (request.getRequestURI().equals("/deleteOnePosOrderItem")) {
+            view = "pos";
+            model.addAttribute("totalPrice", orderService.calcTotalPriceByOid(o_id));
+        }
+
         List<OrderItem> orderItemWithNameList = orderService.queryOrderItemWithNameListByOid(o_id);
         model.addAttribute("orderItemWithNameList", orderItemWithNameList);
         model.addAttribute("o_id", o_id);
         model.addAttribute("cname", cname);
-        return getGoodsCustomerInfo(model, o_id);
-
+        return getGoodsCustomerInfo(model, o_id, type, view);
     }
 
-    private String getGoodsCustomerInfo(Model model, Integer o_id) {
-        List<GoodsInfo> goodsInfoList = orderService.getGoodsInfoList();
-        model.addAttribute("goodsInfoList", goodsInfoList);
-        List<OrderItem> orderItemWithNameList = orderService.queryOrderItemWithNameListByOid(o_id);
-        model.addAttribute("orderItemWithNameList", orderItemWithNameList);
-        List<Customer> trade_customers = clientInfoService.queryCustomerByType("trade");
-        // System.out.println(trade_customers);
-        model.addAttribute("trade_customers", trade_customers);
-        return "addOrder";
-    }
 
     /**
      * 提交订单的动作，可能是取消或者保存
@@ -99,13 +103,14 @@ public class OrderController {
      * @param model  传递信息
      * @return 重定向，防止刷新后产生键值重复的问题
      */
-    
+
     @RequestMapping("commitOrder")
     public String commitOrder(boolean method, Integer o_id, String cname, String type, Model model) {
         if (!method) {
             orderService.deleteAllOrderItemByOid(o_id);
         } else {
-            orderService.saveOrder(orderService.generateOneOrder(o_id, cname, type));
+            if (orderService.queryOrderItemWithNameListByOid(o_id).size() > 0)
+                orderService.saveOrder(orderService.generateOneOrder(o_id, cname, type));
         }
         List<Orders> ordersList = orderService.getAllOrders();
         model.addAttribute("orders", ordersList);
@@ -124,6 +129,53 @@ public class OrderController {
         model.addAttribute("orders", ordersList);
         // yyyy.mm.dd.hh.mm
         return "ordersView";
+    }
+
+    /**
+     * 将于该订单绑定的货品信息进行传送
+     *
+     * @param model 传参
+     * @param o_id  订单id
+     * @return 转发
+     */
+    private String getGoodsCustomerInfo(Model model, Integer o_id, String type, String view) {
+        List<GoodsInfo> goodsInfoList = orderService.getGoodsInfoList();
+        model.addAttribute("goodsInfoList", goodsInfoList);
+        List<OrderItem> orderItemWithNameList = orderService.queryOrderItemWithNameListByOid(o_id);
+        model.addAttribute("orderItemWithNameList", orderItemWithNameList);
+        if (type != null && type.equals("trade")) {
+            List<Customer> trade_customers = clientInfoService.queryCustomerByType("trade");
+            // System.out.println(trade_customers);
+            model.addAttribute("trade_customers", trade_customers);
+        } else {
+            List<Customer> retail_customers = clientInfoService.queryCustomerByType("retail");
+            // System.out.println(trade_customers);
+            model.addAttribute("retail_customers", retail_customers);
+        }
+
+        return view;
+    }
+
+    /**
+     * 根据相关信息，生成order_item，并与当前订单绑定
+     *
+     * @param o_id      订单id
+     * @param item_name 物品名
+     * @param quantity  数量
+     * @param type      交易模式
+     * @param cname     客户名
+     * @param model     传参
+     */
+    private void genOrderItemForOrder(Integer o_id, String item_name, Integer quantity, String type, String cname, Model model) {
+        boolean trade = type != null && type.equals("trade");
+
+        OrderItem orderItem = orderService.generateOrderItem(o_id, item_name, quantity, trade);
+        orderService.addOneOrderItem(orderItem);
+        // 生成暂存物品列表
+        List<OrderItem> orderItemWithNameList = orderService.queryOrderItemWithNameListByOid(o_id);
+        model.addAttribute("orderItemWithNameList", orderItemWithNameList);
+        model.addAttribute("cname", cname);
+        model.addAttribute("type", type);
     }
 }
 
