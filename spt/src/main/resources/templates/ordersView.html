@@ -233,15 +233,9 @@
                         <h2>销售单列表</h2>
                         <small>销售单业务管理</small>
                     </div>
-                    <div class="box-body">
-                        搜索: <input id="filter" type="text" class="form-control input-sm w-auto inline m-r"/>
-                        <button class="btn btn-icon white" id="addOrder"
-                                onclick="window.location.href='/addOneOrder'">
-                            <i class="fa fa-plus"></i>
-                        </button>
-                        <label for="addOrder">新增销售单</label>
+                    <div class="dker p-a text-right">
+                        搜索：<input id="filter" type="text" class="form-control input-sm w-auto inline m-r" />
                     </div>
-
                     <div>
                         <table class="table m-b-none" ui-jp="footable" data-filter="#filter" data-page-size="7">
                             <thead>
@@ -266,14 +260,7 @@
                                             <span class="label" th:title="${order.status}"
                                                   th:text="${order.status}"></span></td>
                                 <td class="m-b btn-groups">
-                                    <a class="btn btn-sm info">详细信息</a>
-                                    <a class="btn btn-sm success"
-                                       th:href="@{/updateOrder(o_id=${order.o_id})}">编辑</a>
-                                    <a class="btn btn-sm white">审核</a>
-                                    <a class="btn btn-sm primary">收款</a>
-                                    <a class="btn btn-sm warning">退款审核</a>
-                                    <a class="btn btn-sm danger"
-                                       th:href="@{/deleteOrder(o_id=${order.o_id})}">删除</a>
+                                    <a class="btn btn-sm info" th:href="@{/updateOrder(o_id=${order.o_id})}">详情/编辑</a>
                                 </td>
                             </tr>
                             </tbody>
