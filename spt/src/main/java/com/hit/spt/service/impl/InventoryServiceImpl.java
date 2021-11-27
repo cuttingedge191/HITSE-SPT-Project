@@ -56,4 +56,9 @@ public class InventoryServiceImpl implements InventoryService {
     public Integer mergeInventory(Inventory inventory){
         return inventoryMapper.mergeInventory(inventory);
     }
+    
+    @Override
+    public Integer deleteInventoryByIID(Integer i_id){
+        return inventoryMapper.deleteInventoryByIId(i_id);
+    }
 }
