@@ -32,7 +32,7 @@ public class OrderController {
      * @param o_id  订单id
      * @return 转发到addOrder
      */
-    @RequestMapping({"addOneOrder", "addOneOrderItem"})
+    @RequestMapping({"addOrder", "addOneOrderItem"})
     public String addOneOrder(Integer o_id, String item_name, Integer quantity, String type, String cname, HttpServletRequest request, Model model) {
         if (request.getRequestURI().equals("/addOneOrderItem")) {
             boolean trade = type.equals("trade");
@@ -84,7 +84,7 @@ public class OrderController {
         List<OrderItem> orderItemWithNameList = orderService.queryOrderItemWithNameListByOid(o_id);
         model.addAttribute("orderItemWithNameList", orderItemWithNameList);
         List<Customer> trade_customers = clientInfoService.queryCustomerByType("trade");
-        System.out.println(trade_customers);
+        // System.out.println(trade_customers);
         model.addAttribute("trade_customers", trade_customers);
         return "addOrder";
     }
