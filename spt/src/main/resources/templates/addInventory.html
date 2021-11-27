@@ -51,11 +51,18 @@
                         <div class="box-divider m-0"></div>
                         <div class="box-body">
                             <form role="form" method="post" th:action="@{/addInventoryNow}">
-                                <div class="form-group">
-                                    <label for="name">货品名称</label>
-                                    <input type="text" class="form-control" name="name" id="name"
-                                        placeholder="请输入货品编号/名称" required>
-                                </div>
+                                <label for="customer"
+                                       class="col-md-4 form-control-label">货品名称</label>
+                                <select class="form-group form-control" ui-jp="select2"
+                                        ui-options="{theme: 'bootstrap'}" name="name"
+                                        id="customer">
+                                    <optgroup label="货品名称">
+                                        <option selected></option>
+                                        <div th:each="info:${goodsInfos}">
+                                            <option th:text="${info.name}"></option>
+                                        </div>
+                                    </optgroup>
+                                </select>
                                 <div class="form-group">
                                     <label for="quantity">货品数量</label>
                                     <input type="text" class="form-control" name="quantity" id="quantity"
