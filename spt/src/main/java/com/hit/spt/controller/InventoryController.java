@@ -1,6 +1,9 @@
 package com.hit.spt.controller;
 
+import com.hit.spt.mapper.GoodsInfoMapper;
+import com.hit.spt.pojo.GoodsInfo;
 import com.hit.spt.pojo.Inventory;
+import com.hit.spt.service.GoodsService;
 import com.hit.spt.service.InventoryService;
 import org.apache.coyote.Request;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,13 +20,18 @@ public class InventoryController {
     @Autowired
     InventoryService inventoryService;
 
+    @Autowired
+    GoodsService goodsService;
+
     /**
      * 添加库存实体类
      *
      * @return 进行网页转发，转发至addInventory
      */
     @RequestMapping("addInventory")
-    public String addInventory() {
+    public String addInventory(Model model) {
+        List<GoodsInfo> goodsInfos = goodsService.getAllGoods();
+        model.addAttribute("goodsInfos", goodsInfos);
         return "addInventory";
     }
 
@@ -57,6 +65,7 @@ public class InventoryController {
                 inventoryService.insertInventoryWithGoodName(inventory);
             }
         }else if(uri.charAt(1) == 'u'){
+            if (inventory != null)
             inventoryService.updateInventory(inventory);
         }else if(uri.charAt(1) == 'd'){
             inventoryService.deleteInventoryByIID(inventory.getI_id());
