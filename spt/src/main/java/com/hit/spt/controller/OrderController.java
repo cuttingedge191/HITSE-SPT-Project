@@ -84,7 +84,7 @@ public class OrderController {
         List<OrderItem> orderItemWithNameList = orderService.queryOrderItemWithNameListByOid(o_id);
         model.addAttribute("orderItemWithNameList", orderItemWithNameList);
         List<Customer> trade_customers = clientInfoService.queryCustomerByType("trade");
-        System.out.println(trade_customers);
+        // System.out.println(trade_customers);
         model.addAttribute("trade_customers", trade_customers);
         return "addOrder";
     }
