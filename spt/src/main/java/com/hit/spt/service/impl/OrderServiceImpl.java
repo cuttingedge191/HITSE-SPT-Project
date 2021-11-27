@@ -124,6 +124,8 @@ public class OrderServiceImpl implements OrderService {
         return goodsInfoMapper.queryGoodsInfoList();
     }
 
+
+
     @Override
     public Orders generateOneOrder(Integer o_id, String cname, String type) {
         Orders order = new Orders();
