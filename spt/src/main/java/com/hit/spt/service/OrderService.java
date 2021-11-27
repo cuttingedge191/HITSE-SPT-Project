@@ -16,6 +16,10 @@ public interface OrderService {
 
     OrderItem generateOrderItem(Integer o_id, String name, Integer quantity, Boolean trade);
 
+    int saveOrder(Orders orders);
+
+    void addOneOrderItem(OrderItem orderItem);
+
     void insertOrderItem(OrderItem orderItem);
 
     void deleteAllOrderItemByOid(Integer o_id);
@@ -26,9 +30,7 @@ public interface OrderService {
 
     List<Orders> getAllOrders();
 
-    int saveOrder(Orders orders);
-
     List<GoodsInfo> getGoodsInfoList();
 
-    void addOneOrderItem(OrderItem orderItem);
+
 }

@@ -62,7 +62,28 @@
         where o_id = #{o_id}
     </delete>
     <select id="queryAllOrders" resultType="Orders">
-        select o_id, c_id, type, status, total_turnover, total_cost, total_profit, time_stamp
+        select o_id,
+               c_id,
+               type,
+               status,
+               total_turnover,
+               total_cost,
+               total_profit,
+               time_stamp
         from orders
+    </select>
+    <select id="queryAllOrdersWithCname" resultType="Orders">
+        select orders.o_id,
+               customer_info.name,
+               orders.c_id,
+               orders.type,
+               orders.status,
+               orders.total_turnover,
+               orders.total_cost,
+               orders.total_profit,
+               orders.time_stamp
+        from orders,
+             customer_info
+        where orders.c_id = customer_info.c_id
     </select>
 </mapper>
