@@ -111,7 +111,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<Orders> getAllOrders() {
-        return ordersMapper.queryAllOrders();
+        return ordersMapper.queryAllOrdersWithCname();
     }
 
     @Override
