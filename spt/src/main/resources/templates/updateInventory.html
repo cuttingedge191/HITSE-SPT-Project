@@ -54,17 +54,17 @@
                                 <div class="form-group">
                                     <label for="name" >货品名称</label>
                                     <input type="text" readonly="readonly"  class="form-control" name="name" id="name"
-                                        th:placeholder="${inventory.name}" required>
+                                        th:placeholder="${inventory.name}" th:value="${inventory.name}" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="quantity">货品数量</label>
                                     <input type="text" class="form-control" name="quantity" id="quantity"
-                                        th:placeholder="${inventory.quantity}" required>
+                                        th:placeholder="${inventory.quantity}" th:value="${inventory.quantity}" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="quality">货品质量等级</label>
                                     <input type="text" class="form-control" name="quality" id="quality"
-                                        th:placeholder="${inventory.quality}" required>
+                                        th:placeholder="${inventory.quality}" th:value="${inventory.quality}" required>
                                 </div>
                                 <input type="number" hidden th:value="${inventory.i_id}" name="i_id">
                                 <button type="submit" class="btn primary m-b ">放弃</button>
