@@ -187,11 +187,11 @@
                                                         <select class="form-control col-md-6" ui-jp="select2"
                                                                 ui-options="{theme: 'bootstrap'}"
                                                                 name="cname" id="customer">
-<!--                                                            <optgroup label="零售客户">-->
-<!--                                                                <div th:each="cus:${retail_customers}">-->
-<!--                                                                    <option th:text="${cus.name}"></option>-->
-<!--                                                                </div>-->
-<!--                                                            </optgroup>-->
+                                                            <!--                                                            <optgroup label="零售客户">-->
+                                                            <!--                                                                <div th:each="cus:${retail_customers}">-->
+                                                            <!--                                                                    <option th:text="${cus.name}"></option>-->
+                                                            <!--                                                                </div>-->
+                                                            <!--                                                            </optgroup>-->
                                                             <optgroup label="零售客户">
                                                                 <option th:if="${cname}!=null" th:text="${cname}"
                                                                         selected></option>
@@ -279,22 +279,25 @@
                                                     <div class="col-md-4">
                                                         <label>应收：</label>
                                                         <input type="text" class="form-control" disabled=""
+                                                               id="totalPrice"
                                                                th:value="${totalPrice}">
                                                     </div>
                                                     <div class="col-md-4">
                                                         <label>实收：</label>
-                                                        <input type="text" class="form-control" placeholder="应收数额">
+                                                        <input type="text" class="form-control" id="sumReceived"
+                                                               placeholder="应收数额" onchange="calcChange()">
                                                     </div>
                                                     <div class="col-md-4">
                                                         <label>找零：</label>
                                                         <input type="text" class="form-control" disabled=""
+                                                               id="giveChange"
                                                                value="找零数额">
                                                     </div>
                                                 </div>
                                                 <div class="box-divider m-0"></div>
                                                 <div class="dker p-a text-right">
-                                                    <a class="btn primary m-b">取消</a>
-                                                    <a class="btn primary m-b">收款</a>
+                                                    <a class="btn primary m-b" th:href="@{/commitOrder(method=false,o_id=${o_id},cname=${cname})}">取消</a>
+                                                    <a class="btn primary m-b"  th:href="@{/commitOrder(method=true,o_id=${o_id},cname=${cname},type=${type})}">收款</a>
                                                 </div>
                                             </form>
                                             <!-- fields -->
@@ -315,10 +318,14 @@
     </div>
     <!-- / -->
 </div>
-<!-- ############ PAGE END-->
 
-<!-- ############ LAYOUT END-->
-<!-- build:js @{scripts/app.html.js} -->
+<script>
+    function calcChange() {
+        let a = document.getElementById("totalPrice").value
+        let b = document.getElementById("sumReceived").value
+        document.getElementById("giveChange").value = b - a
+    }
+</script>
 <!-- jQuery -->
 <script th:src="@{/libs/jquery/jquery/dist/jquery.js}"></script>
 
