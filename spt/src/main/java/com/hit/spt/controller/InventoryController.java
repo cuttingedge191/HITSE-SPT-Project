@@ -45,12 +45,12 @@ public class InventoryController {
         return "inventoryCheck";
     }
 
-    @RequestMapping({"addInventoryNow", "updateInventoryNow"})
+    @RequestMapping({"addInventoryNow", "updateInventoryNow", "deleteInventoryNow"})
     public String addInventoryNow(Inventory inventory, Model model, HttpServletRequest request){
         String uri = request.getRequestURI();
         if(uri.charAt(1) == 'a') {
             List<Inventory> inventory1 = inventoryService.selectInventoryByName(inventory.getName());
-            if(inventory1 != null){
+            if(! inventory1.isEmpty()){
                 inventory.setI_id(inventory1.get(0).getI_id());
                 inventoryService.mergeInventory(inventory);
             }else {
@@ -58,6 +58,8 @@ public class InventoryController {
             }
         }else if(uri.charAt(1) == 'u'){
             inventoryService.updateInventory(inventory);
+        }else if(uri.charAt(1) == 'd'){
+            inventoryService.deleteInventoryByIID(inventory.getI_id());
         }
         List<Inventory> inventories = inventoryService.queryInventoryWithGnameList();
         model.addAttribute("inventories", inventories);

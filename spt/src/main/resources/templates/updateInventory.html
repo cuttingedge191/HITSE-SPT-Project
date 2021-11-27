@@ -66,6 +66,7 @@
                                     <input type="text" class="form-control" name="quality" id="quality"
                                         th:placeholder="${inventory.quality}" required>
                                 </div>
+                                <input type="number" hidden th:value="${inventory.i_id}" name="i_id">
                                 <button type="submit" class="btn primary m-b ">放弃</button>
                                 <button type="submit" class="btn primary m-b ">添加</button>
                             </form>

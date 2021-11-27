@@ -20,4 +20,6 @@ public interface InventoryService {
     public List<Inventory> selectInventoryByName(String name);
 
     public Integer mergeInventory(Inventory inventory);
+
+    public Integer deleteInventoryByIID(Integer i_id);
 }

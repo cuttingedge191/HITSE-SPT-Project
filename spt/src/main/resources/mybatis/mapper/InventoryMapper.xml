@@ -18,8 +18,13 @@
     <select id="selectInventoryByName" parameterType="java.lang.String" resultType="Inventory">
         select inventory.i_id, inventory.g_id, inventory.quantity, inventory.quality
         from goods_info, inventory
-        where inventory.g_id = goods_info.g_id
+        where inventory.g_id = goods_info.g_id and goods_info.name = #{name}
     </select>
+    <delete id="deleteInventoryByIId" parameterType="java.lang.Integer">
+        delete
+        from inventory
+        where inventory.i_id = #{i_id}
+    </delete>
     <update id="updateInventory" parameterType="Inventory">
         update inventory
         set quantity = #{quantity},
@@ -27,10 +32,9 @@
         where i_id = #{i_id}
     </update>
     <update id="mergeInventory" parameterType="Inventory">
-        update inventory
-        set inventory.quantity = #{quantity} + inventory.quantity,
-            inventory.quality = #{quality}
-        where inventory.i_id = 1
+        update inventory, goods_info
+        set inventory.quantity = #{quantity} + inventory.quantity, inventory.quality = #{quality}
+        where inventory.g_id = goods_info.g_id and goods_info.name = #{name}
     </update>
     <insert id="insertInventory" parameterType="Inventory">
         insert into inventory(g_id, quantity, quality)

@@ -28,4 +28,6 @@ public interface InventoryMapper {
     Inventory queryInventoryById(Integer i_id);
 
     Integer mergeInventory(Inventory inventory);
+
+    Integer deleteInventoryByIId(Integer i_id);
 }
