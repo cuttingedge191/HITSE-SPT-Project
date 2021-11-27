@@ -170,9 +170,8 @@
                 <thead>
                   <tr>
                     <th data-toggle="true">库存编号</th>
-                    <th>货品名称</th>
-                    <th data-hide="phone,tablet">货品分类</th>
-                    <th data-hide="phone,tablet">成本价</th>
+                    <th data-hide="phone">货品名称</th>
+                    <th data-hide="phone">成本价</th>
                     <th data-hide="phone">数量</th>
                     <th data-hide="phone">质量</th>
                     <th data-hide="phone">操作</th>
@@ -182,7 +181,6 @@
                   <tr th:each="inventory:${inventories}">
                     <td th:text="${inventory.i_id}"></td>
                     <td th:text="${inventory.name}"></td>
-                    <td></td>
                     <td th:text="${inventory.retail_price}"></td>
                     <td th:text="${inventory.quantity}"></td>
                     <td th:text="${inventory.quality}"></td>

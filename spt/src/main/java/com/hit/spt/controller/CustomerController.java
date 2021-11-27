@@ -40,7 +40,7 @@ public class CustomerController {
         }
         // 将表单返回内容抓换成数据库的格式
         String gender = sex.equals("true") ? "male" : "female";
-        String c_type = type.equals("true") ? "retail" : "bulk";
+        String c_type = type.equals("true") ? "retail" : "trade";
         Customer customer = null;
         // 添加客户
         if (uri.charAt(1) == 'a'){
