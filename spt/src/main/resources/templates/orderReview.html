@@ -249,7 +249,7 @@
                                                         </div>
                                                         <div class="sl-item b-success">
                                                             <div class="sl-content">
-                                                                <div class="sl-date text-muted">【时间】</div>
+                                                                <div class="sl-date text-muted">已完成</div>
                                                                 <p>销售单提交</p>
                                                             </div>
                                                         </div>
@@ -296,20 +296,27 @@
                                             <form th:action="@{/404}">
                                                 <div class="row-col">
                                                     <form>
-                                                        <div class="form-group row">
-                                                            <label for="customer"
-                                                                   class="col-md-4 form-control-label">客户名称</label>
-                                                            <input class="form-control" type="text"
-                                                                   name="customer" id="customer" placeholder="绑定客户名"
-                                                                   disabled="">
+
+
+                                                        <div class="row m-b">
+                                                            <div class="col-md-4">
+                                                                <label for="customer">客户名称：</label>
+                                                                <input type="text" class="form-control" disabled=""
+                                                                       name="customer" id="customer" placeholder="绑定客户名">
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <label for="deal_time">提交时间：</label>
+                                                                <input type="text" class="form-control" disabled=""
+                                                                       name="deal_time" id="deal_time" placeholder="绑定提交时间">
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <label>成交额：</label>
+                                                                <input type="text" class="form-control" disabled=""
+                                                                       name = "turnover" id="turnover" placeholder="绑定成交金额">
+                                                            </div>
                                                         </div>
-                                                        <div class="form-group row">
-                                                            <label for="deal_time"
-                                                                   class="col-md-4 form-control-label">提交时间</label>
-                                                            <input class="form-control" type="text"
-                                                                   name="deal_time" id="deal_time" placeholder="绑定提交时间"
-                                                                   disabled="">
-                                                        </div>
+
+
                                                         <div class="form-group row">
                                                             <label for="moreInfo"
                                                                    class="col-md-4 form-control-label">备注</label>
@@ -323,7 +330,8 @@
                                                             <th>货品编号</th>
                                                             <th>货品名称</th>
                                                             <th>货品数量</th>
-                                                            <th>库存数量?</th>
+                                                            <th>单项成交额</th>
+                                                            <th>出库详情</th>
                                                         </tr>
                                                         </thead>
                                                         <tbody>
@@ -332,7 +340,10 @@
                                                             <td th:text="${orderItem.name}"></td>
                                                             <td th:text="${orderItem.quantity}"></td>
                                                             <td th:text="${orderItem.price}"></td>
-                                                            <td th:text=""></td>
+                                                            <td class="m-b btn-groups">
+                                                                <a class="btn btn-sm success">查看/修改</a>
+                                                                <!--TODO 用alert？？-->
+                                                            </td>
                                                         </tr>
                                                         </tbody>
                                                     </table>
