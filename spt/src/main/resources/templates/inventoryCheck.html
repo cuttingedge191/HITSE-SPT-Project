@@ -261,6 +261,7 @@
 
                                     function alerti(){
                                         var form = document.createElement("form");
+                                        form.method = "post";
                                         var inventories = [[${inventories}]]
                                         for (let i = 0; i < inventories.length; i ++){
                                             var input = document.createElement("input");
