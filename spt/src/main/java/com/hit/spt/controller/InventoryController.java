@@ -1,5 +1,6 @@
 package com.hit.spt.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.hit.spt.mapper.GoodsInfoMapper;
 import com.hit.spt.pojo.GoodsInfo;
 import com.hit.spt.pojo.Inventory;
@@ -10,8 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -50,6 +53,8 @@ public class InventoryController {
 
     @RequestMapping("inventoryCheck")
     public String inventoryCheck(Model model){
+        List<Inventory> inventories = inventoryService.queryInventoryWithGnameList();
+        model.addAttribute("inventories", inventories);
         return "inventoryCheck";
     }
 
@@ -80,5 +85,21 @@ public class InventoryController {
         Inventory inventory = inventoryService.queryInventoryById(i_id);
         model.addAttribute("inventory", inventory);
         return "updateInventory";
+    }
+
+    @RequestMapping("checkInventory")
+    public String checkInventory(@RequestParam("inventory") List<String> inventory, Model model){
+        for(String inv:inventory){
+            JSONObject jbo = JSONObject.parseObject(inv);
+            Inventory inventory1 = new Inventory();
+            inventory1.setI_id(jbo.getInteger("i_id"));
+            inventory1.setG_id(jbo.getInteger("g_id"));
+            inventory1.setQuality(jbo.getString("quality"));
+            inventory1.setQuantity(jbo.getInteger("quantity"));
+            inventoryService.updateInventory(inventory1);
+        }
+        List<Inventory> inventories = inventoryService.queryInventoryWithGnameList();
+        model.addAttribute("inventories", inventories);
+        return "inventoryCheck";
     }
 }
