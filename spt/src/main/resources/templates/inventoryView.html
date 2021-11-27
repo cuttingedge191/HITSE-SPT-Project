@@ -235,12 +235,37 @@
               <small>以下是现有库存资料</small>
             </div>
 
-            <div class="dker p-a text-right">
-              Search: <input id="filter" type="text" class="form-control input-sm w-auto inline m-r" />
-              <a th:href="@{/addInventory}" class="btn btn-icon white" id="inventoryCheck">
-                <i class="fa fa-plus"></i>
-              </a>
-              <a th:href="@{/inventoryCheck}" class="btn white" for="inventoryCheck">库存盘点</a>
+              <div class="row">
+<!--                  <div class="dker p-a text-right">-->
+                <div class="col-md-6">
+                    <div class="input-group select2-bootstrap-prepend m-b">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button" data-select2-open="select2-input-group-append">
+                        <span class="fa fa-search"></span>
+                        </button>
+                    </span>
+<!--                        TODO 多选框 绑定仓库-->
+                    <select id="select2-input-group-append" class="form-control select2-multiple m-b" multiple ui-jp="select2" ui-options="{theme: 'bootstrap'}">
+                        <option>仓库1</option>
+                        <option>仓库2</option>
+                        <option>仓库3</option>
+                        <option>仓库4</option>
+                    </select>
+                    </div>
+                </div>
+<!--                  </div>-->
+                <div class="col-md-6">
+                    搜索: <input id="filter" type="text" class="form-control input-sm w-auto inline m-r" />
+                    <a th:href="@{/addInventory}" class="btn btn-icon white" id="inventoryCheck">
+                        <i class="fa fa-plus"></i>
+                    </a>
+                    <a th:href="@{/inventoryCheck}" class="btn white" for="inventoryCheck">库存盘点</a>
+                </div>
+<!--              搜索: <input id="filter" type="text" class="form-control input-sm w-auto inline m-r" />-->
+<!--              <a th:href="@{/addInventory}" class="btn btn-icon white" id="inventoryCheck">-->
+<!--                <i class="fa fa-plus"></i>-->
+<!--              </a>-->
+<!--              <a th:href="@{/inventoryCheck}" class="btn white" for="inventoryCheck">库存盘点</a>-->
             </div>
             <div>
               <table class="table m-b-none" ui-jp="footable" data-filter="#filter" data-page-size="5">
