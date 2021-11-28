@@ -21,9 +21,11 @@ public class OrdersViewController {
 
     @RequestMapping("updateOrder")
     public String updateOrder(Integer o_id, Model model) {
+        System.out.println(o_id);
         Orders orders = ordersMapper.queryOrdersByOid(o_id);
         model.addAttribute("type", orders.getType());
         model.addAttribute("cname", orders.getName());
+        model.addAttribute("o_id", o_id);
         orderService.getGoodsCustomerInfo(model, o_id, orders.getType());
         return "updateOrder";
     }
