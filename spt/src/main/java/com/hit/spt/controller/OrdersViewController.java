@@ -24,10 +24,13 @@ public class OrdersViewController {
         Orders orders = ordersMapper.queryOrdersByOid(o_id);
         model.addAttribute("type", orders.getType());
         model.addAttribute("cname", orders.getName());
-
-
         orderService.getGoodsCustomerInfo(model, o_id, orders.getType());
         return "updateOrder";
+    }
+
+    @RequestMapping("commitUpdateOrder")
+    public String commitUpDateOrder() {
+        return "redirect:ordersView";
     }
 
     @RequestMapping("deleteOrder")

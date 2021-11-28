@@ -108,15 +108,13 @@ public class OrderController {
      */
 
     @RequestMapping("commitOrder")
-    public String commitOrder(boolean method, Integer o_id, String cname, String type, Model model) {
+    public String commitOrder(boolean method, Integer o_id, String cname, String type) {
         if (!method) {
             orderService.deleteAllOrderItemByOid(o_id);
         } else {
             if (orderService.queryOrderItemWithNameListByOid(o_id).size() > 0)
                 orderService.saveOrder(orderService.generateOneOrder(o_id, cname, type));
         }
-        List<Orders> ordersList = orderService.getAllOrders();
-        model.addAttribute("orders", ordersList);
         return "redirect:ordersView";
     }
 
@@ -130,10 +128,7 @@ public class OrderController {
     public String ordersView(Model model) {
         List<Orders> ordersList = orderService.getAllOrders();
         model.addAttribute("orders", ordersList);
-        // yyyy.mm.dd.hh.mm
         return "ordersView";
     }
-
-
 }
 
