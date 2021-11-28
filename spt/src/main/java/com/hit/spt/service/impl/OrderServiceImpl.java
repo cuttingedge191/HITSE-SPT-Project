@@ -167,10 +167,9 @@ public class OrderServiceImpl implements OrderService {
      *
      * @param model 传参
      * @param o_id  订单id
-     * @return 转发
      */
     @Override
-    public String getGoodsCustomerInfo(Model model, Integer o_id, String type, String view) {
+    public void getGoodsCustomerInfo(Model model, Integer o_id, String type) {
         List<GoodsInfo> goodsInfoList = getGoodsInfoList();
         model.addAttribute("goodsInfoList", goodsInfoList);
         List<OrderItem> orderItemWithNameList = queryOrderItemWithNameListByOid(o_id);
@@ -185,7 +184,6 @@ public class OrderServiceImpl implements OrderService {
             model.addAttribute("retail_customers", retail_customers);
         }
 
-        return view;
     }
 
     /**
