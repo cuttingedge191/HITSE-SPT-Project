@@ -346,7 +346,7 @@
                                                             <td th:text="${orderItem.price}"></td>
                                                             <td>
                                                                 <a class="btn btn-sm btn-danger deletebtn"
-                                                                   th:href="@{/deleteOnePosOrderItem(oi_id=${orderItem.oi_id},o_id=${o_id},cname=${cname})}">删除</a>
+                                                                   th:href="@{/deleteOnePosOrderItem(oi_id=${orderItem.oi_id},o_id=${o_id},cname=${cname},type='retail')}">删除</a>
                                                             </td>
                                                         </tr>
                                                         </tbody>
@@ -374,7 +374,7 @@
                                                 <div class="box-divider m-0"></div>
                                                 <div class="dker p-a text-right">
                                                     <a class="btn primary m-b" th:href="@{/commitOrder(method=false,o_id=${o_id},cname=${cname})}">取消</a>
-                                                    <a class="btn primary m-b"  th:href="@{/commitOrder(method=true,o_id=${o_id},cname=${cname},type=${type})}">收款</a>
+                                                    <a class="btn primary m-b"  th:href="@{/commitOrder(method=true,o_id=${o_id},cname=${cname},type='retail')}">收款</a>
                                                 </div>
                                             </form>
                                             <!-- fields -->

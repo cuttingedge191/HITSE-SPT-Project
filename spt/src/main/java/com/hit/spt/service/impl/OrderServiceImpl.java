@@ -206,6 +206,5 @@ public class OrderServiceImpl implements OrderService {
         List<OrderItem> orderItemWithNameList = queryOrderItemWithNameListByOid(o_id);
         model.addAttribute("orderItemWithNameList", orderItemWithNameList);
         model.addAttribute("cname", cname);
-        model.addAttribute("type", type);
     }
 }
