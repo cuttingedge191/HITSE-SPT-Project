@@ -234,7 +234,8 @@
                             <h2>库存盘点</h2>
                             <small>盘点库存内的货品是否有异常变动</small>
                         </div>
-                        <div class="table-responsive box">
+                        <div class="box-divider m-0"></div>
+                        <div class="box-body">
                             <table class="table table-striped white">
                                 <thead>
                                     <tr>
@@ -278,43 +279,39 @@
                             </table>
 
                             <h6>库存盘点信息</h6>
-                            <div class="row">
+                            <div class="row m-b">
                                 <div class="col-md-6">
                                     <div class="box p-a">
                                         <label>盘点人员：</label>
-                                        <input type="name" class="Inventory manager" id=""
+                                        <input type="name" class="form-control" id=""
                                             placeholder="Inventory manager name">
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="row">
                                 <div class="col-md-6">
                                     <div class="box p-a">
                                         <label>盘点日期：</label>
-                                        <div class="form-group">
                                             <div class='input-group date' ui-jp="datetimepicker" ui-options="{
-                format: 'DD/MM/YYYY',
-                icons: {
-                  time: 'fa fa-clock-o',
-                  date: 'fa fa-calendar',
-                  up: 'fa fa-chevron-up',
-                  down: 'fa fa-chevron-down',
-                  previous: 'fa fa-chevron-left',
-                  next: 'fa fa-chevron-right',
-                  today: 'fa fa-screenshot',
-                  clear: 'fa fa-trash',
-                  close: 'fa fa-remove'
-                }
-              }">
+                                                format: 'DD/MM/YYYY',
+                                                icons: {
+                                                    time: 'fa fa-clock-o',
+                                                    date: 'fa fa-calendar',
+                                                    up: 'fa fa-chevron-up',
+                                                    down: 'fa fa-chevron-down',
+                                                    previous: 'fa fa-chevron-left',
+                                                    next: 'fa fa-chevron-right',
+                                                    today: 'fa fa-screenshot',
+                                                    clear: 'fa fa-trash',
+                                                    close: 'fa fa-remove'
+                                                }
+                                            }">
                                                 <input type='text' class="form-control" />
                                                 <span class="input-group-addon">
                                                     <span class="fa fa-calendar"></span>
                                                 </span>
                                             </div>
-                                        </div>
                                     </div>
-                                </div>
+                            </div>
                             </div>
                             <h6>其他描述信息</h6>
                             <div class="row">
@@ -322,15 +319,15 @@
                                     <textarea class="form-control" rows="2"></textarea>
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="dker p-a text-right">
-                                        <p class="btn-groups">
-                                            <button class="btn btn-outline b-primary text-primary" onclick="alerti()">确认</button>
-                                            <button class="btn btn-outline b-black text-black">退出</button>
-                                        </p>
-                                    </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="dker p-a text-right">
+                                    <p class="btn-groups">
+                                        <button class="btn btn-outline b-primary text-primary" onclick="alerti()">确认</button>
+                                        <button class="btn btn-outline b-black text-black">退出</button>
+                                    </p>
                                 </div>
                             </div>
                         </div>
