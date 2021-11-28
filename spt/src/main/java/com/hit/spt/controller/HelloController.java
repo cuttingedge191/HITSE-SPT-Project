@@ -40,6 +40,10 @@ public class HelloController {
 
     @RequestMapping("userInfoSearch")
     public String userInfoSearch(Model model) {return "userInfoSearch"; }
+    @RequestMapping("addUser")
+    public String addUser() {
+        return "addUser";
+    }
 
 //    @RequestMapping("pos")
 //    public String posForRetail(Model model) {

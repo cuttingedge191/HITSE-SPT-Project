@@ -1,41 +1,41 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="zh">
+<html xmlns:th="http://www.thymeleaf.org" lang="">
 
 <head>
-  <meta charset="utf-8" />
-  <title>Flatkit - HTML Version | Bootstrap 4 Web App Kit with AngularJS</title>
-  <meta name="description" content="Admin, Dashboard, Bootstrap, Bootstrap 4, Angular, AngularJS" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8" />
+    <title>SPT addCustomer</title>
+    <meta name="description" content="Admin, Dashboard, Bootstrap, Bootstrap 4, Angular, AngularJS" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <!-- for ios 7 style, multi-resolution icon of 152x152 -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-barstyle" content="black-translucent">
-  <link rel="apple-touch-icon" th:href="@{/assets/images/logo.png}">
-  <meta name="apple-mobile-web-app-title" content="Flatkit">
-  <!-- for Chrome on Android, multi-resolution icon of 196x196 -->
-  <meta name="mobile-web-app-capable" content="yes">
-  <link rel="shortcut icon" sizes="196x196" th:href="@{/assets/images/logo.png}">
+    <!-- for ios 7 style, multi-resolution icon of 152x152 -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-barstyle" content="black-translucent">
+    <link rel="apple-touch-icon" th:href="@{/assets/images/logo.png}">
+    <meta name="apple-mobile-web-app-title" content="Flatkit">
+    <!-- for Chrome on Android, multi-resolution icon of 196x196 -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="shortcut icon" sizes="196x196" th:href="@{/assets/images/logo.png}">
 
-  <!-- style -->
-  <link rel="stylesheet" th:href="@{/assets/animate.css/animate.min.css}" type="text/css" />
-  <link rel="stylesheet" th:href="@{/assets/glyphicons/glyphicons.css}" type="text/css" />
-  <link rel="stylesheet" th:href="@{/assets/font-awesome/css/font-awesome.min.css}" type="text/css" />
-  <link rel="stylesheet" th:href="@{/assets/material-design-icons/material-design-icons.css}" type="text/css" />
+    <!-- style -->
+    <link rel="stylesheet" th:href="@{/assets/animate.css/animate.min.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/assets/glyphicons/glyphicons.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/assets/font-awesome/css/font-awesome.min.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/assets/material-design-icons/material-design-icons.css}" type="text/css" />
 
-  <link rel="stylesheet" th:href="@{/assets/bootstrap/dist/css/bootstrap.min.css}" type="text/css" />
-  <!-- build:css @{assets/styles/app.min.css} -->
-  <link rel="stylesheet" th:href="@{/assets/styles/app.css}" type="text/css" />
-  <!-- endbuild -->
-  <link rel="stylesheet" th:href="@{/assets/styles/font.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/assets/bootstrap/dist/css/bootstrap.min.css}" type="text/css" />
+    <!-- build:css @{/assets/styles/app.min.css -->
+    <link rel="stylesheet" th:href="@{/assets/styles/app.css}" type="text/css" />
+    <!-- endbuild -->
+    <link rel="stylesheet" th:href="@{/assets/styles/font.css}" type="text/css" />
 </head>
 
 <body>
 <div class="app" id="app">
 
-  <!-- ############ LAYOUT START-->
+    <!-- ############ LAYOUT START-->
 
-  <!-- aside -->
+    <!-- aside -->
     <div id="aside" class="app-aside modal nav-dropdown">
         <!-- fluid app aside -->
         <div class="left navside dark dk" data-layout="column">
@@ -222,72 +222,74 @@
             </div>
         </div>
     </div>
-  <!-- / -->
+    <!-- / -->
 
-  <!-- content -->
-  <div id="content" class="app-content box-shadow-z0" role="main">
-    <div ui-view class="app-body" id="view">
+    <!-- / -->
 
-      <!-- ############ PAGE START-->
-      <div class="padding">
-        <div class="box">
-          <div class="box-header">
-            <h2>用户管理</h2>
-          </div>
-          <div class="dker p-a text-right">
-            Search: <input id="filter" type="text" class="form-control input-sm w-auto inline m-r" />
-            <button class="btn btn-icon white" id="addCustomer"
-                    onclick="window.location.href='/addUser.html'">
-              <i class="fa fa-plus"></i>
-            </button>
-            <label for="addCustomer">注册新用户</label>
-          </div>
-          <div class="table-responsive">
-            <table class="table m-b-none" ui-jp="footable" data-filter="#filter" data-page-size="7">
-              <thead>
-              <tr>
-                <th style="width:8%">ID</th>
-                <th style="width:8%">姓名</th>
-                <th style="width:8%">性别</th>
-                  <th style="width:8%">职位</th>
-                <th style="width:8%">登录名</th>
-                <th style="width:8%">登录密码</th>
-                <th style="width:10%">操作</th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr>
-                <td>1</td>
-                <td>Jian</td>
-                <td>男</td>
-                <td>Harbin</td>
-                <td>Ali</td>
-                <td>123456</td>
-                  <td class="m-b btn-groups">
-                      <button class="btn btn-sm info">详细信息</button>
-                      <button class="btn btn-sm success">编辑</button>
-                      <button class="btn btn-sm danger">删除</button>
-                  </td>
-              </tr>
-              </tbody>
-            </table>
-          </div>
+    <!-- content -->
+    <div class="container">
+        <div ui-view class="app-body" id="view">
+
+            <div class="col-md-6 center-block">
+                <br />
+                <button class="btn btn-fw light-blue-500">用户添加</button>
+                <div class="box">
+                    <div class="box-header">
+                        <small>添加用户资料</small>
+                    </div>
+                    <div class="box-divider m-0"></div>
+                    <div class="box-body">
+                        <form role="form" th:action="@{add}">
+                            <div class="form-group">
+                                <label for="name">姓名</label>
+                                <input type="text" class="form-control" name="name" id="user_name"
+                                       placeholder="姓名" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="customer_phone">职务</label>
+                                <input type="text" class="form-control" name="phone" id="user_position"
+                                       placeholder="职务" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="single">权限</label>
+                                <select id="single" class="form-control select2" ui-jp="select2" ui-options="{theme: 'bootstrap'}">
+                                    <option value="AK">1</option>
+                                    <option value="HI">2</option>
+                                    <option value="AK">3</option>
+                                    <option value="HI">4</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="user_username">用户名</label>
+                                <input type="text" class="form-control" name="addr" id="user_username"
+                                       placeholder="用户名" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="user_password">密码</label>
+                                <input type="text" class="form-control" name="addr" id="user_password"
+                                       placeholder="密码" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="male">男</label>
+                                <input type="radio" name="sex" id="male" value="true" />
+                                <label for="female">女</label>
+                                <input type="radio" name="sex" id="female" value="false" />
+                            </div>
+
+                            <button type="submit" class="btn primary m-b ">添加</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
         </div>
-      </div>
     </div>
-    <!--/-->
-
-    <!-- ############ PAGE END-->
-
-    <!-- ############ LAYOUT END-->
-  </div>
-
-  <!-- ############ PAGE END-->
-
-  <!-- ############ LAYOUT END-->
-
 </div>
-<!-- build:js @{scripts/app.html.js} -->
+<!-- / -->
+<!-- theme switcher -->
+
+<!-- build:js scripts/app.html.js -->
 <!-- jQuery -->
 <script th:src="@{/libs/jquery/jquery/dist/jquery.js}"></script>
 <!-- Bootstrap -->
