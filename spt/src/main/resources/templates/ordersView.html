@@ -255,13 +255,14 @@
                                 <td th:text="${order.name}"></td>
                                 <td th:text="${order.total_turnover}"></td>
                                 <td th:text="${order.time_stamp}"></td>
-                                <td th:data-value="${order.status}=='Disabled'?2:(${order.status}=='Active'?1:3)">
-                                            <span class="label" th:title="${order.status}"
-                                                  th:text="${order.status}"></span></td>
+                                <td><span th:class="${order.status}=='unchecked' ? 'label' : (${order.status}=='paid' ?'label green-500':(${order.status}=='failed'?'label danger':'label warn'))"
+                                          th:text="${order.status}"></span></td>
+
                                 <td th:text="${order.type} == 'trade' ? '批发':'零售'"></td>
                                 <td class="m-b btn-groups">
-                                    <a class="btn btn-sm success" th:href="@{/orderReview}" >详情</a>
-                                    <a class="btn btn-sm info" th:href="@{/updateOrder(o_id=${order.o_id})}" th:if="${order.type} == 'trade'">编辑</a>
+                                    <a class="btn btn-sm success" th:href="@{/orderReview}">详情</a>
+                                    <a class="btn btn-sm info" th:href="@{/updateOrder(o_id=${order.o_id})}"
+                                       th:if="${order.type} == 'trade'">编辑</a>
 
                                 </td>
                             </tr>
