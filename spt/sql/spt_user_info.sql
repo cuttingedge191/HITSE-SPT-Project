@@ -33,7 +33,7 @@ CREATE TABLE `user_info` (
   PRIMARY KEY (`u_id`),
   UNIQUE KEY `u_id_UNIQUE` (`u_id`),
   UNIQUE KEY `username_UNIQUE` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,7 +42,7 @@ CREATE TABLE `user_info` (
 
 LOCK TABLES `user_info` WRITE;
 /*!40000 ALTER TABLE `user_info` DISABLE KEYS */;
-INSERT INTO `user_info` VALUES (1,'Jian','male','Harbin',0,'Ali','123456'),(2,'Lian','male','Harbin',0,'Bad','123456'),(3,'ren','male','Harbin',1,'aa','123'),(4,'ren','male','Harbin',1,'aaa','123'),(5,'小建','male','harbin',NULL,'nihao','asdasd'),(6,'锐捷','male','harbin',1,'1190201801','asas');
+INSERT INTO `user_info` VALUES (9,'系统管理员','male','???',5,'admin','admin');
 /*!40000 ALTER TABLE `user_info` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -55,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-11-26 16:26:41
+-- Dump completed on 2021-11-28 23:24:37

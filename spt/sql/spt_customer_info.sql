@@ -31,7 +31,7 @@ CREATE TABLE `customer_info` (
   `address` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`c_id`),
   UNIQUE KEY `cid_UNIQUE` (`c_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +40,7 @@ CREATE TABLE `customer_info` (
 
 LOCK TABLES `customer_info` WRITE;
 /*!40000 ALTER TABLE `customer_info` DISABLE KEYS */;
-INSERT INTO `customer_info` VALUES (2,'retail','小建','male','1368462','Harbin'),(3,'retail','锐捷','female','13846112','Harbin');
+INSERT INTO `customer_info` VALUES (3,'trade','锐捷','female','13846112','Harbin'),(4,'retail','aaaa','female','12345678901','地址'),(5,'trade','bbbb','female','1111111111','2222'),(6,'trade','1111','male','2222','3333');
 /*!40000 ALTER TABLE `customer_info` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-11-26 16:26:41
+-- Dump completed on 2021-11-28 23:24:38
