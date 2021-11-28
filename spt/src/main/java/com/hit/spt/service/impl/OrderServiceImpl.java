@@ -9,6 +9,7 @@ import com.hit.spt.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -27,6 +28,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     CustomerMapper customerMapper;
+
+    @Autowired
+    ClientInfoService clientInfoService;
 
     @Override
     public boolean checkIfExits(Integer o_id) {
@@ -156,5 +160,54 @@ public class OrderServiceImpl implements OrderService {
         order.setStatus("unchecked");
 
         return order;
+    }
+
+    /**
+     * 将于该订单绑定的货品信息进行传送
+     *
+     * @param model 传参
+     * @param o_id  订单id
+     * @return 转发
+     */
+    @Override
+    public String getGoodsCustomerInfo(Model model, Integer o_id, String type, String view) {
+        List<GoodsInfo> goodsInfoList = getGoodsInfoList();
+        model.addAttribute("goodsInfoList", goodsInfoList);
+        List<OrderItem> orderItemWithNameList = queryOrderItemWithNameListByOid(o_id);
+        model.addAttribute("orderItemWithNameList", orderItemWithNameList);
+        if (type != null && type.equals("trade")) {
+            List<Customer> trade_customers = clientInfoService.queryCustomerByType("trade");
+            // System.out.println(trade_customers);
+            model.addAttribute("trade_customers", trade_customers);
+        } else {
+            List<Customer> retail_customers = clientInfoService.queryCustomerByType("retail");
+            // System.out.println(trade_customers);
+            model.addAttribute("retail_customers", retail_customers);
+        }
+
+        return view;
+    }
+
+    /**
+     * 根据相关信息，生成order_item，并与当前订单绑定
+     *
+     * @param o_id      订单id
+     * @param item_name 物品名
+     * @param quantity  数量
+     * @param type      交易模式
+     * @param cname     客户名
+     * @param model     传参
+     */
+    @Override
+    public void genOrderItemForOrder(Integer o_id, String item_name, Integer quantity, String type, String cname, Model model) {
+        boolean trade = type != null && type.equals("trade");
+
+        OrderItem orderItem = generateOrderItem(o_id, item_name, quantity, trade);
+        addOneOrderItem(orderItem);
+        // 生成暂存物品列表
+        List<OrderItem> orderItemWithNameList = queryOrderItemWithNameListByOid(o_id);
+        model.addAttribute("orderItemWithNameList", orderItemWithNameList);
+        model.addAttribute("cname", cname);
+        model.addAttribute("type", type);
     }
 }

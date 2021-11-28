@@ -38,7 +38,7 @@ public class OrderController {
     public String addOneOrder(Integer o_id, String item_name, Integer quantity, String cname, HttpServletRequest request, Model model) {
         String type = "trade";
         if (request.getRequestURI().equals("/addOneOrderItem")) {
-            genOrderItemForOrder(o_id, item_name, quantity, type, cname, model);
+            orderService.genOrderItemForOrder(o_id, item_name, quantity, type, cname, model);
         }
         if (o_id != null) {
             model.addAttribute("o_id", o_id);
@@ -46,14 +46,14 @@ public class OrderController {
             Integer OrderId = orderService.genOrderId();
             model.addAttribute("o_id", OrderId);
         }
-        return getGoodsCustomerInfo(model, o_id, type, "addOrder");
+        return orderService.getGoodsCustomerInfo(model, o_id, type, "addOrder");
     }
 
     @RequestMapping({"pos", "addOnePosOrderItem"})
     public String addPosOrder(Integer o_id, String item_name, Integer quantity, String cname, HttpServletRequest request, Model model) {
         String type = "retail";
         if (request.getRequestURI().equals("/addOnePosOrderItem")) {
-            genOrderItemForOrder(o_id, item_name, quantity, type, cname, model);
+            orderService.genOrderItemForOrder(o_id, item_name, quantity, type, cname, model);
             model.addAttribute("totalPrice", orderService.calcTotalPriceByOid(o_id));
         }
         if (o_id != null) {
@@ -62,7 +62,7 @@ public class OrderController {
             Integer OrderId = orderService.genOrderId();
             model.addAttribute("o_id", OrderId);
         }
-        return getGoodsCustomerInfo(model, o_id, type, "pos");
+        return orderService.getGoodsCustomerInfo(model, o_id, type, "pos");
     }
 
     /**
@@ -89,7 +89,7 @@ public class OrderController {
         model.addAttribute("orderItemWithNameList", orderItemWithNameList);
         model.addAttribute("o_id", o_id);
         model.addAttribute("cname", cname);
-        return getGoodsCustomerInfo(model, o_id, type, view);
+        return orderService.getGoodsCustomerInfo(model, o_id, type, view);
     }
 
 
@@ -131,51 +131,6 @@ public class OrderController {
         return "ordersView";
     }
 
-    /**
-     * 将于该订单绑定的货品信息进行传送
-     *
-     * @param model 传参
-     * @param o_id  订单id
-     * @return 转发
-     */
-    private String getGoodsCustomerInfo(Model model, Integer o_id, String type, String view) {
-        List<GoodsInfo> goodsInfoList = orderService.getGoodsInfoList();
-        model.addAttribute("goodsInfoList", goodsInfoList);
-        List<OrderItem> orderItemWithNameList = orderService.queryOrderItemWithNameListByOid(o_id);
-        model.addAttribute("orderItemWithNameList", orderItemWithNameList);
-        if (type != null && type.equals("trade")) {
-            List<Customer> trade_customers = clientInfoService.queryCustomerByType("trade");
-            // System.out.println(trade_customers);
-            model.addAttribute("trade_customers", trade_customers);
-        } else {
-            List<Customer> retail_customers = clientInfoService.queryCustomerByType("retail");
-            // System.out.println(trade_customers);
-            model.addAttribute("retail_customers", retail_customers);
-        }
 
-        return view;
-    }
-
-    /**
-     * 根据相关信息，生成order_item，并与当前订单绑定
-     *
-     * @param o_id      订单id
-     * @param item_name 物品名
-     * @param quantity  数量
-     * @param type      交易模式
-     * @param cname     客户名
-     * @param model     传参
-     */
-    private void genOrderItemForOrder(Integer o_id, String item_name, Integer quantity, String type, String cname, Model model) {
-        boolean trade = type != null && type.equals("trade");
-
-        OrderItem orderItem = orderService.generateOrderItem(o_id, item_name, quantity, trade);
-        orderService.addOneOrderItem(orderItem);
-        // 生成暂存物品列表
-        List<OrderItem> orderItemWithNameList = orderService.queryOrderItemWithNameListByOid(o_id);
-        model.addAttribute("orderItemWithNameList", orderItemWithNameList);
-        model.addAttribute("cname", cname);
-        model.addAttribute("type", type);
-    }
 }
 

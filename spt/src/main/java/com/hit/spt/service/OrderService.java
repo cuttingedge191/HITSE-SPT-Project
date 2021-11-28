@@ -3,6 +3,7 @@ package com.hit.spt.service;
 import com.hit.spt.pojo.GoodsInfo;
 import com.hit.spt.pojo.OrderItem;
 import com.hit.spt.pojo.Orders;
+import org.springframework.ui.Model;
 
 
 import java.util.List;
@@ -33,6 +34,8 @@ public interface OrderService {
     List<Orders> getAllOrders();
 
     List<GoodsInfo> getGoodsInfoList();
+    public String getGoodsCustomerInfo(Model model, Integer o_id, String type, String view);
+    public void genOrderItemForOrder(Integer o_id, String item_name, Integer quantity, String type, String cname, Model model);
 
 
 }

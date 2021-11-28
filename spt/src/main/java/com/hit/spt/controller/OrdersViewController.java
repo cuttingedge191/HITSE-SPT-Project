@@ -15,6 +15,7 @@ public class OrdersViewController {
 
     @RequestMapping("updateOrder")
     public String updateOrder(Integer o_id, Model model) {
+        System.out.println("updateOrder");
         return null;
     }
 
