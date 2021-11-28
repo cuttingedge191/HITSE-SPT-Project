@@ -46,7 +46,8 @@ public class OrderController {
             Integer OrderId = orderService.genOrderId();
             model.addAttribute("o_id", OrderId);
         }
-        return orderService.getGoodsCustomerInfo(model, o_id, type, "addOrder");
+        orderService.getGoodsCustomerInfo(model, o_id, type);
+        return "addOrder";
     }
 
     @RequestMapping({"pos", "addOnePosOrderItem"})
@@ -62,7 +63,8 @@ public class OrderController {
             Integer OrderId = orderService.genOrderId();
             model.addAttribute("o_id", OrderId);
         }
-        return orderService.getGoodsCustomerInfo(model, o_id, type, "pos");
+        orderService.getGoodsCustomerInfo(model, o_id, type);
+        return "pos";
     }
 
     /**
@@ -89,7 +91,8 @@ public class OrderController {
         model.addAttribute("orderItemWithNameList", orderItemWithNameList);
         model.addAttribute("o_id", o_id);
         model.addAttribute("cname", cname);
-        return orderService.getGoodsCustomerInfo(model, o_id, type, view);
+        orderService.getGoodsCustomerInfo(model, o_id, type);
+        return view;
     }
 
 

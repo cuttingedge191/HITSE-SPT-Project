@@ -34,8 +34,8 @@ public interface OrderService {
     List<Orders> getAllOrders();
 
     List<GoodsInfo> getGoodsInfoList();
-    public String getGoodsCustomerInfo(Model model, Integer o_id, String type, String view);
-    public void genOrderItemForOrder(Integer o_id, String item_name, Integer quantity, String type, String cname, Model model);
+    void getGoodsCustomerInfo(Model model, Integer o_id, String type);
+    void genOrderItemForOrder(Integer o_id, String item_name, Integer quantity, String type, String cname, Model model);
 
 
 }
