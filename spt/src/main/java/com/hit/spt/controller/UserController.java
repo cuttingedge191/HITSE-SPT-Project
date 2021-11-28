@@ -2,6 +2,7 @@ package com.hit.spt.controller;
 
 import com.hit.spt.mapper.CustomerMapper;
 import com.hit.spt.mapper.UserMapper;
+import com.hit.spt.pojo.Customer;
 import com.hit.spt.pojo.User;
 import com.hit.spt.service.LogInUpService;
 import com.hit.spt.service.UserService;
@@ -75,5 +76,17 @@ public class UserController {
         User user = UserService.queryUserByUid(iu_id);
         model.addAttribute("user", user);
         return "updateUser";
+    }
+
+    @RequestMapping("upUserNow")
+    public String updateUserNow(String u_id, String name, String position, String username, String password, String sex, String level, Model model) {
+        // 参数不合法（应该不能通过前端检查），直接返回“系统用户管理”
+        if (name == null || position == null || username == null || password == null || sex == null || level == null) {
+            return "redirect:userInfoSearch";
+        }
+        String gender = sex.equals("true") ? "male" : "female";
+        User user = new User(Integer.parseInt(u_id), name, gender, position, Integer.parseInt(level), username, password);
+        UserService.updateUser(user);
+        return "redirect:userInfoSearch";
     }
 }

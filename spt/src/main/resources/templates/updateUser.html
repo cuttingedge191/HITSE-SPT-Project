@@ -232,57 +232,58 @@
 
             <div class="col-md-6 center-block">
                 <br />
-                <button class="btn btn-fw light-blue-500">用户添加</button>
+                <button class="btn btn-fw light-blue-500">系统用户管理</button>
                 <div class="box">
                     <div class="box-header">
-                        <small>添加用户资料</small>
+                        <small>在这里管理其他用户的账号信息及在系统内的权限</small>
                     </div>
                     <div class="box-divider m-0"></div>
                     <div class="box-body">
-                        <form role="form" th:action="@{add}">
+                        <form role="form" method="post" th:action="@{upUserNow}">
                             <div class="form-group">
                                 <label for="name">姓名</label>
-                                <input type="text" class="form-control" name="name" id="user_name"
-                                       placeholder="姓名" required>
+                                <input type="text" class="form-control" name="name" id="name"
+                                       th:placeholder="${user.name}" th:value="${user.name}" required>
+                                <input type="hidden" name="u_id" th:value="${user.u_id}">
                             </div>
                             <div class="form-group">
-                                <label for="customer_phone">职务</label>
-                                <input type="text" class="form-control" name="phone" id="user_position"
-                                       placeholder="职务" required>
+                                <label for="position">职务</label>
+                                <input type="text" class="form-control" name="position" id="position"
+                                       th:placeholder="${user.position}" th:value="${user.position}" required>
                             </div>
                             <div class="form-group">
-                                <label for="single">权限</label>
-                                <select id="single" class="form-control select2" ui-jp="select2" ui-options="{theme: 'bootstrap'}">
-                                    <option value="AK">1</option>
-                                    <option value="HI">2</option>
-                                    <option value="AK">3</option>
-                                    <option value="HI">4</option>
+                                <label for="level">权限级</label>
+                                <select id="level" name="level" class="form-control select2" ui-jp="select2" ui-options="{theme: 'bootstrap'}">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="user_username">用户名</label>
-                                <input type="text" class="form-control" name="addr" id="user_username"
-                                       placeholder="用户名" required>
+                                <label for="username">用户名</label>
+                                <input type="text" class="form-control" name="username" id="username"
+                                       th:placeholder="${user.username}" th:value="${user.username}" required>
                             </div>
                             <div class="form-group">
-                                <label for="user_password">密码</label>
-                                <input type="text" class="form-control" name="addr" id="user_password"
-                                       placeholder="密码" required>
+                                <label for="password">密码</label>
+                                <input type="text" class="form-control" name="password" id="password"
+                                       th:placeholder="${user.password}" th:value="${user.password}" required>
                             </div>
-
                             <div class="form-group">
                                 <label for="male">男</label>
-                                <input type="radio" name="sex" id="male" value="true" />
+                                <input type="radio" name="sex" id="male" value="true"
+                                       th:checked="${user.gender}=='male'?'true':'false'"/>
                                 <label for="female">女</label>
-                                <input type="radio" name="sex" id="female" value="false" />
+                                <input type="radio" name="sex" id="female" value="false"
+                                       th:checked="${user.gender}=='female'?'true':'false'"/>
                             </div>
-
-                            <button type="submit" class="btn primary m-b ">添加</button>
+                            <button type="submit" class="btn primary m-b ">保存修改</button>
                         </form>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
