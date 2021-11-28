@@ -12,7 +12,13 @@ public interface UserMapper {
 
     int insertUser(User user);
 
+    void deleteUserByUid(int u_id);
+
+    int updateUser(User user);
+
     List<User> queryUserList();
+
+    User queryUserByUid(int u_id);
 
     List<User> queryUserByName(String name);
 

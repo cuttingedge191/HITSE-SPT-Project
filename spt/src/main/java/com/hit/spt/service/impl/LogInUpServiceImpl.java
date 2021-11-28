@@ -6,8 +6,6 @@ import com.hit.spt.service.LogInUpService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class LogInUpServiceImpl implements LogInUpService {
     @Autowired
@@ -36,9 +34,7 @@ public class LogInUpServiceImpl implements LogInUpService {
 
     @Override
     public boolean checkUsernameIfExits(String username) {
-
         User user = userMapper.queryUserByUsername(username);
         return user != null;
-
     }
 }

@@ -2,17 +2,23 @@ package com.hit.spt.controller;
 
 import com.hit.spt.pojo.User;
 import com.hit.spt.service.LogInUpService;
+import com.hit.spt.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 @Controller
 
 public class UserController {
     @Autowired
     LogInUpService logInUpService;
+
+    @Autowired
+    UserService UserService;
 
     /**
      * 进行登录
@@ -46,4 +52,25 @@ public class UserController {
         return "logup";
     }
 
+    @RequestMapping("userInfoSearch")
+    public String userInfoSearch(Model model) {
+        List<User> userList = UserService.queryUserList();
+        model.addAttribute("userList", userList);
+        return "userInfoSearch";
+    }
+
+    @RequestMapping("deUser")
+    public String deleteUser(String u_id, Model model) {
+        int iu_id = Integer.parseInt(u_id);
+        UserService.deleteUserByUid(iu_id);
+        return "redirect:userInfoSearch";
+    }
+
+    @RequestMapping("upUser")
+    public String updateUser(String u_id, Model model) {
+        int iu_id = Integer.parseInt(u_id);
+        User user = UserService.queryUserByUid(iu_id);
+        model.addAttribute("user", user);
+        return "updateUser";
+    }
 }

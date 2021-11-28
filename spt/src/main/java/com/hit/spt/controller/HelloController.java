@@ -30,21 +30,7 @@ public class HelloController {
         return "logup";
     }
 
-    // 不再使用了，转至OrderController
-//    @RequestMapping("addOrder")
-//    public String addOrder(Model model) {
-//        return "addOrder";
-//    }
-
     // ###以下均待处理###
-
-    @RequestMapping("userInfoSearch")
-    public String userInfoSearch(Model model) {return "userInfoSearch"; }
-
-//    @RequestMapping("pos")
-//    public String posForRetail(Model model) {
-//        return "pos";
-//    }
 
     @RequestMapping("inventoryTrans")
     public String inventoryTrans(Model model) {

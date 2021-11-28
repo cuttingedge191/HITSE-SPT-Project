@@ -232,41 +232,42 @@
       <div class="padding">
         <div class="box">
           <div class="box-header">
-            <h2>用户管理</h2>
+            <h2>系统用户管理</h2>
           </div>
           <div class="dker p-a text-right">
-            Search: <input id="filter" type="text" class="form-control input-sm w-auto inline m-r" />
-            <button class="btn btn-icon white" id="addCustomer"
-                    onclick="window.location.href='/addCustomer'">
+            搜索：<input id="filter" type="text" class="form-control input-sm w-auto inline m-r" />
+            <button class="btn btn-icon white" id="addUser"
+                    onclick="window.location.href='/addUser'">
               <i class="fa fa-plus"></i>
             </button>
-            <label for="addCustomer">注册新用户</label>
+            <label for="addUser">注册新用户</label>
           </div>
-          <div class="table-responsive">
+          <div>
             <table class="table m-b-none" ui-jp="footable" data-filter="#filter" data-page-size="7">
               <thead>
               <tr>
-                <th style="width:8%">ID</th>
+                <th style="width:7%">ID</th>
                 <th style="width:8%">姓名</th>
                 <th style="width:8%">性别</th>
-                  <th style="width:8%">职位</th>
-                <th style="width:8%">登录名</th>
-                <th style="width:8%">登录密码</th>
-                <th style="width:10%">操作</th>
+                <th style="width:10%">职位</th>
+                <th style="width:10%">权限级</th>
+                <th style="width:10%">用户名</th>
+                <th style="width:15%">操作</th>
               </tr>
               </thead>
               <tbody>
-              <tr>
-                <td>1</td>
-                <td>Jian</td>
-                <td>男</td>
-                <td>Harbin</td>
-                <td>Ali</td>
-                <td>123456</td>
-                  <td class="m-b btn-groups">
-                      <button class="btn btn-sm info">详细信息</button>
-                      <button class="btn btn-sm success">编辑</button>
-                      <button class="btn btn-sm danger">删除</button>
+              <tr th:each="user:${userList}">
+                  <td th:text="${user.u_id}"></td>
+                  <td th:text="${user.name}"></td>
+                  <td th:text="${user.gender}=='female'?'女':'男'"></td>
+                  <td th:text="${user.position}"></td>
+                  <td th:text="${user.level}"></td>
+                  <td th:text="${user.username}"></td>
+                  <td>
+                      <a class="btn btn-sm btn-primary"
+                         th:href="@{/upUser(u_id=${user.u_id})}">详情/编辑</a>
+                      <a class="btn btn-sm btn-danger deleteBtn"
+                         th:href="@{/deUser(u_id=${user.u_id})}">删除</a>
                   </td>
               </tr>
               </tbody>
