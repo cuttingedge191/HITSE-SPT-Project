@@ -12,7 +12,7 @@ public class User {
     private String name;
     private String gender;
     private String position;
-    private Integer level = 1;
+    private Integer level ;
     private String username;
     private String password;
 }

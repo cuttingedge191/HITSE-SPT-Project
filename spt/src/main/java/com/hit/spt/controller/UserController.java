@@ -1,5 +1,7 @@
 package com.hit.spt.controller;
 
+import com.hit.spt.mapper.CustomerMapper;
+import com.hit.spt.mapper.UserMapper;
 import com.hit.spt.pojo.User;
 import com.hit.spt.service.LogInUpService;
 import com.hit.spt.service.UserService;
@@ -30,8 +32,9 @@ public class UserController {
      */
     @RequestMapping("user/login")
     public String login(@RequestParam("username") String username, @RequestParam("password") String password, Model model) {
-        if (logInUpService.checkPassword(username, password))
+        if (logInUpService.checkPassword(username, password)) {
             return "index";
+        }
         model.addAttribute("msg", "用户名或者密码错误!");
         return "login";
     }
