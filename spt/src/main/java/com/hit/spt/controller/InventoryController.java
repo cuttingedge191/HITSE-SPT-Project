@@ -1,6 +1,7 @@
 package com.hit.spt.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.fasterxml.jackson.datatype.jsr310.ser.YearSerializer;
 import com.hit.spt.mapper.GoodsInfoMapper;
 import com.hit.spt.pojo.GoodsInfo;
 import com.hit.spt.pojo.Inventory;
@@ -89,14 +90,22 @@ public class InventoryController {
 
     @RequestMapping("checkInventory")
     public String checkInventory(@RequestParam("inventory") List<String> inventory, Model model){
-        for(String inv:inventory){
-            JSONObject jbo = JSONObject.parseObject(inv);
-            Inventory inventory1 = new Inventory();
-            inventory1.setI_id(jbo.getInteger("i_id"));
-            inventory1.setG_id(jbo.getInteger("g_id"));
-            inventory1.setQuality(jbo.getString("quality"));
-            inventory1.setQuantity(jbo.getInteger("quantity"));
-            inventoryService.updateInventory(inventory1);
+        if(! inventory.isEmpty()) {
+            if (inventory.get(0).charAt(inventory.get(0).length() - 1) != '}') {
+                for (int i = 1; i < inventory.size(); i++) {
+                    inventory.set(0, inventory.get(0) + ',' + inventory.get(i));
+                }
+            }
+            inventory = inventory.subList(0, 1);
+            for (String inv : inventory) {
+                JSONObject jbo = JSONObject.parseObject(inv);
+                Inventory inventory1 = new Inventory();
+                inventory1.setI_id(jbo.getInteger("i_id"));
+                inventory1.setG_id(jbo.getInteger("g_id"));
+                inventory1.setQuality(jbo.getString("quality"));
+                inventory1.setQuantity(jbo.getInteger("quantity"));
+                inventoryService.updateInventory(inventory1);
+            }
         }
         List<Inventory> inventories = inventoryService.queryInventoryWithGnameList();
         model.addAttribute("inventories", inventories);

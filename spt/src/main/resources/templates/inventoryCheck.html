@@ -259,7 +259,10 @@
                                     </tbody>
                                 </form>
                                 <script th:inline="javascript">
-
+                                    $(function(){
+                                        var inventories = [[${inventories}]]
+                                        document.getElementById("ack").disabled = (inventories.length === 0);
+                                    })
                                     function alerti(){
                                         var form = document.createElement("form");
                                         form.method = "post";
@@ -325,7 +328,7 @@
                             <div class="col-sm-12">
                                 <div class="dker p-a text-right">
                                     <p class="btn-groups">
-                                        <button class="btn btn-outline b-primary text-primary" onclick="alerti()">确认</button>
+                                        <button id="ack" class="btn btn-outline b-primary text-primary" onclick="alerti()">确认</button>
                                         <button class="btn btn-outline b-black text-black">退出</button>
                                     </p>
                                 </div>
