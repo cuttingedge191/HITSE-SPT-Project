@@ -247,28 +247,34 @@
                                                                 <p>销售单创建</p>
                                                             </div>
                                                         </div>
-                                                        <div class="sl-item b-success">
+                                                        <div th:class="${theOrder.status}=='draft'? 'sl-item b-info':'sl-item b-success'">
+                                                            <p th:class="sl-icon"
+                                                               th:if="${theOrder.status}=='draft'"></p>
                                                             <div class="sl-content">
-                                                                <div class="sl-date text-muted">已完成</div>
+                                                                <div class="sl-date text-muted"
+                                                                     th:text="${theOrder.status}=='failed'?'已退回':'已完成'"></div>
                                                                 <p>销售单提交</p>
                                                             </div>
                                                         </div>
-                                                        <div class="sl-item b-info">
-                                                            <div class="sl-icon">
-                                                                <i class="fa fa-bolt text-info"></i>
-                                                            </div>
+                                                        <div th:class="${theOrder.status}=='draft'?'sl-item':(${theOrder.status}=='unchecked'?'sl-item b-info':'sl-item b-success')">
+                                                            <p th:class="sl-icon"
+                                                               th:if="${theOrder.status}=='unchecked'"></p>
                                                             <div class="sl-content">
                                                                 <div class="sl-date text-muted">当前</div>
                                                                 <p>销售单审核</p>
                                                             </div>
                                                         </div>
-                                                        <div class="sl-item">
+                                                        <div th:class="${theOrder.status}=='checked'?'sl-item b-info':((${theOrder.status}=='unchecked' or ${theOrder.status}=='draft')?'sl-item':'sl-item b-success')">
+                                                            <p th:class="sl-icon"
+                                                               th:if="${theOrder.status}=='checked'"></p>
                                                             <div class="sl-content">
                                                                 <div class="sl-date text-muted">等待</div>
                                                                 <p>销售单收款</p>
                                                             </div>
                                                         </div>
-                                                        <div class="sl-item">
+                                                        <div th:class="${theOrder.status}=='paid'?'sl-item b-success':'sl-item'">
+                                                            <p th:class="sl-icon"
+                                                               th:if="${theOrder.status}=='paid'"></p>
                                                             <div class="sl-content">
                                                                 <div class="sl-date text-muted">流程终止</div>
                                                                 <p>销售单完成</p>
@@ -295,35 +301,38 @@
                                             <!-- TODO 数据绑定 -->
                                             <form th:action="@{/404}">
                                                 <div class="row-col">
-                                                    <form>
-
-
-                                                        <div class="row m-b">
-                                                            <div class="col-md-4">
-                                                                <label for="customer">客户名称：</label>
-                                                                <input type="text" class="form-control" disabled=""
-                                                                       name="customer" id="customer" placeholder="绑定客户名">
-                                                            </div>
-                                                            <div class="col-md-4">
-                                                                <label for="deal_time">提交时间：</label>
-                                                                <input type="text" class="form-control" disabled=""
-                                                                       name="deal_time" id="deal_time" placeholder="绑定提交时间">
-                                                            </div>
-                                                            <div class="col-md-4">
-                                                                <label>成交额：</label>
-                                                                <input type="text" class="form-control" disabled=""
-                                                                       name = "turnover" id="turnover" placeholder="绑定成交金额">
-                                                            </div>
+                                                    <div class="row m-b">
+                                                        <div class="col-md-3">
+                                                            <label for="cname">客户名称：</label>
+                                                            <input type="text" class="form-control" disabled=""
+                                                                   name="cname" id="cname"
+                                                                   th:value="${theOrder.name}">
                                                         </div>
-
-
-                                                        <div class="form-group row">
-                                                            <label for="moreInfo"
-                                                                   class="col-md-4 form-control-label">备注</label>
-                                                            <input class="form-control" type="text"
-                                                                   name="moreInfo" id="moreInfo" placeholder="选填">
+                                                        <div class="col-md-2">
+                                                            <label for="total_turnover">成交额：</label>
+                                                            <input type="text" class="form-control" disabled=""
+                                                                   name="total_turnover" id="total_turnover"
+                                                                   th:value="${theOrder.total_turnover}">
                                                         </div>
-                                                    </form>
+                                                        <div class="col-md-2">
+                                                            <label for="total_profit">总利润：</label>
+                                                            <input type="text" class="form-control" disabled=""
+                                                                   name="total_profit" id="total_profit"
+                                                                   th:value="${theOrder.total_profit}">
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label for="time_stamp">提交时间：</label>
+                                                            <input type="text" class="form-control" disabled=""
+                                                                   name="time_stamp" id="time_stamp"
+                                                                   th:value="${theOrder.time_stamp}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="moreInfo"
+                                                               class="col-md-4 form-control-label">备注</label>
+                                                        <input class="form-control" type="text"
+                                                               name="moreInfo" id="moreInfo" placeholder="选填">
+                                                    </div>
                                                     <table class="table table-hover b-t">
                                                         <thead>
                                                         <tr>
@@ -350,14 +359,14 @@
                                                 </div>
                                                 <span class="pull-right">
                                                     <a class="btn info m-b"
-                                                        th:href="@{/ordersView}">返回</a>
+                                                       th:href="@{/ordersView}">返回</a>
                                                     <!-- TODO 操作实现-->
                                                     <a class="btn primary m-b"
-                                                        th:href="@{/404}">通过</a>
+                                                       th:href="@{/auditOrder(status='checked',o_id=${theOrder.o_id})}">通过</a>
                                                     <a class="btn btn-danger m-b"
-                                                        th:href="@{/404}">拒绝</a>
+                                                       th:href="@{/auditOrder(status='failed',o_id=${theOrder.o_id})}">拒绝</a>
                                                     <a class="btn primary m-b"
-                                                        th:href="@{/404}">确认收款</a>
+                                                       th:href="@{/auditOrder(status='paid',o_id=${theOrder.o_id})}">确认收款</a>
                                                 </span>
                                             </form>
                                             <!-- fields -->

@@ -37,9 +37,12 @@ public class HelloController {
         return "inventoryTrans";
     }
 
-    @RequestMapping("orderReview")
-    public String orderReview(Model model) {
-        return "orderReview";
-    }
+
+
+
+//    @RequestMapping("orderReview")
+//    public String orderReview(Model model) {
+//        return "orderReview";
+//    }
 
 }
