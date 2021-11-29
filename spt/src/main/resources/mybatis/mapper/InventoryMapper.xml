@@ -4,6 +4,10 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.hit.spt.mapper.InventoryMapper">
+    <select id="queryWarehouseList" resultType="Inventory">
+        select inventory_list.il_id, inventory_list.inventory_name
+        from inventory_list
+    </select>
     <insert id="insertInventoryWithGoodName" parameterType="Inventory">
         insert into inventory(g_id, quantity, quality)
         select goods_info.g_id, #{quantity}, #{quality}
@@ -37,8 +41,8 @@
         where inventory.g_id = goods_info.g_id and goods_info.name = #{name}
     </update>
     <insert id="insertInventory" parameterType="Inventory">
-        insert into inventory(g_id, quantity, quality)
-        values (#{g_id}, #{quantity}, #{quality})
+        insert into inventory(g_id, quantity, quality, il_id)
+        value (#{g_id}, #{quantity}, #{quality}, #{il_id})
     </insert>
     <delete id="deleteInventoryByGid" parameterType="java.lang.Integer">
         delete
@@ -55,7 +59,7 @@
         from inventory
     </select>
     <select id="queryInventoryWithGnameList" resultType="Inventory">
-        select goods_info.name, inventory.quality, inventory.i_id, inventory.quantity, inventory.g_id,
-        goods_info.retail_price, goods_info.cost from goods_info, inventory where inventory.g_id = goods_info.g_id
+        select goods_info.name, inventory.quality, inventory.i_id, inventory.quantity, inventory.g_id, inventory_list.inventory_name,
+        goods_info.retail_price, goods_info.cost from goods_info, inventory, inventory_list where inventory.g_id = goods_info.g_id and inventory_list.il_id = inventory.il_id
     </select>
 </mapper>

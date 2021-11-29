@@ -30,4 +30,6 @@ public interface InventoryMapper {
     Integer mergeInventory(Inventory inventory);
 
     Integer deleteInventoryByIId(Integer i_id);
+
+    List<Inventory> queryWarehouseList();
 }
