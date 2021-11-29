@@ -9,7 +9,7 @@ import org.springframework.ui.Model;
 import java.util.List;
 
 public interface OrderService {
-    boolean checkIfExits(Integer i_od);
+    boolean checkIfExits(Integer o_id);
 
     Integer genOrderId();
 
@@ -29,12 +29,14 @@ public interface OrderService {
 
     void deleteOneOrderItemByOiid(Integer oi_id);
 
-    Orders generateOneOrder(Integer o_id, String cname, String type);
+    Orders generateOneOrder(Integer o_id, String cname, String type, String status);
 
     List<Orders> getAllOrders();
 
     List<GoodsInfo> getGoodsInfoList();
+
     void getGoodsCustomerInfo(Model model, Integer o_id, String type);
+
     void genOrderItemForOrder(Integer o_id, String item_name, Integer quantity, String type, String cname, Model model);
 
 

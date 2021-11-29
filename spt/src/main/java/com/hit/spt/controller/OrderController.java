@@ -103,7 +103,6 @@ public class OrderController {
      * @param o_id   传递订单id
      * @param cname  客户name
      * @param type   是否批发，trade or retail
-     * @param model  传递信息
      * @return 重定向，防止刷新后产生键值重复的问题
      */
 
@@ -112,8 +111,15 @@ public class OrderController {
         if (!method) {
             orderService.deleteAllOrderItemByOid(o_id);
         } else {
-            if (orderService.queryOrderItemWithNameListByOid(o_id).size() > 0)
-                orderService.saveOrder(orderService.generateOneOrder(o_id, cname, type));
+            if (orderService.queryOrderItemWithNameListByOid(o_id).size() > 0) {
+                String status = type.equals("trade") ? "unchecked" : "paid";
+                if (orderService.checkIfExits(o_id))
+                    return "redirect:ordersView";
+                orderService.saveOrder(orderService.generateOneOrder(o_id, cname, type, status));
+            } else {
+                orderService.deleteAllOrderItemByOid(o_id);
+            }
+
         }
         return "redirect:ordersView";
     }

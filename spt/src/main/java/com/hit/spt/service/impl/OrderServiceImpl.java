@@ -116,6 +116,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void deleteAllOrderItemByOid(Integer o_id) {
         orderItemMapper.deleteOrderItemByOid(o_id);
+        ordersMapper.deleteOrdersByOid(o_id);
     }
 
     @Override
@@ -140,7 +141,7 @@ public class OrderServiceImpl implements OrderService {
 
 
     @Override
-    public Orders generateOneOrder(Integer o_id, String cname, String type) {
+    public Orders generateOneOrder(Integer o_id, String cname, String type, String status) {
         Orders order = new Orders();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String date = df.format(new Date());
@@ -157,7 +158,7 @@ public class OrderServiceImpl implements OrderService {
         }
         order.setTotal_profit(order.getTotal_turnover() - order.getTotal_cost());
         order.setType(type);
-        order.setStatus("unchecked");
+        order.setStatus(status);
 
         return order;
     }
