@@ -244,32 +244,37 @@
                                 </div>
                                 <div class="box-divider m-0"></div>
                                 <div class="box-body">
-                                    <form role="form" method="post" th:action="@{/addGoodsNow}">
+                                    <form role="form" method="post" th:action="@{/updateGoodsNow}">
                                         <div class="form-group">
                                             <label for="name">货品名称</label>
-                                            <input type="text" class="form-control" name="name" id="name" placeholder="请输入货品名称"
-                                                   required>
+                                            <input type="text" class="form-control" name="name" id="name"
+                                                   th:placeholder="${good.name}" th:value="${good.name}" required>
                                         </div>
                                         <div class="form-group">
-                                            <label for="g_id">货品条码</label>
-                                            <input type="text" class="form-control" name="g_id" id="g_id" placeholder="请输入货品条码"
-                                                   disabled="">
+                                            <label for="g_id_view">货品条码</label>
+                                            <input type="text" class="form-control" name="g_id_view" id="g_id_view"
+                                                   th:placeholder="${good.g_id}" th:value="${good.g_id}" disabled="">
+                                            <input type="hidden" class="form-control" name="g_id" id="g_id" th:value="${good.g_id}">
                                         </div>
-
+                                        <div class="form-group">
+                                            <label for="cost_view">成本（系统根据库存自动计算）</label>
+                                            <input type="text" class="form-control" name="cost_view" id="cost_view"
+                                                   th:placeholder="${good.cost}" th:value="${good.cost}=='-1.0'?'缺货':${good.cost}" disabled="">
+                                        </div>
                                         <div class="form-group">
                                             <label for="retail_price">零售价</label>
                                             <input type="text" class="form-control" name="retail_price" id="retail_price"
-                                                   placeholder="请输入货品计划零售价" required>
+                                                   th:placeholder="${good.retail_price}" th:value="${good.retail_price}" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="trade_price">批发价</label>
                                             <input type="text" class="form-control" name="trade_price" id="trade_price"
-                                                   placeholder="请输入货品计划批发价" required>
+                                                   th:placeholder="${good.trade_price}" th:value="${good.trade_price}" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="description">货品描述</label>
-                                            <input type="text" class="form-control" name="description" id="description" placeholder="请输入货品描述"
-                                                   required>
+                                            <input type="text" class="form-control" name="description" id="description"
+                                                   th:placeholder="${good.description}" th:value="${good.description}">
                                         </div>
                                         <div>
                                             <label style="color: red;" th:text="${goodsExistWarning}=='true'?'货品存在，请输入其他货品，或换一个名称':''"

@@ -6,8 +6,10 @@ import com.hit.spt.pojo.Inventory;
 import java.util.List;
 
 public interface GoodsService {
-    public List<GoodsInfo> getAllGoods();
-    public Integer insertGoods(GoodsInfo goodsInfo);
-    public GoodsInfo queryGoodsInfoByName(String name);
-    public Integer deleteGoodsByGid(Integer g_id);
+    List<GoodsInfo> getAllGoods();
+    Integer insertGoods(GoodsInfo goodsInfo);
+    Integer updateGoods(GoodsInfo goodsInfo);
+    GoodsInfo queryGoodsInfoByName(String name);
+    GoodsInfo queryGoodsInfoByGid(Long g_id);
+    Integer deleteGoodsByGid(Long g_id);
 }

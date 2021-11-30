@@ -18,7 +18,7 @@
         from order_item
         where oi_id = #{oi_id}
     </delete>
-    <delete id="deleteOrderItemByGid" parameterType="java.lang.Integer">
+    <delete id="deleteOrderItemByGid" parameterType="java.lang.Long">
         delete
         from order_item
         where g_id = #{g_id}
@@ -28,7 +28,7 @@
         from order_item
         where o_id = #{o_id}
     </select>
-    <select id="queryOrderItemByGid" parameterType="java.lang.Integer" resultType="OrderItem">
+    <select id="queryOrderItemByGid" parameterType="java.lang.Long" resultType="OrderItem">
         select oi_id, o_id, g_id, quantity, cost, price
         from order_item
         where g_id = #{g_id}

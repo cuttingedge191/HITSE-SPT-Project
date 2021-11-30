@@ -17,9 +17,9 @@ public interface GoodsInfoMapper {
 
     GoodsInfo queryGoodsInfoByName(String name);
 
-    GoodsInfo queryGoodsInfoByGid(Integer g_id);
+    GoodsInfo queryGoodsInfoByGid(Long g_id);
 
-    Integer deleteGoodsInfoByGid(Integer g_id);
+    Integer deleteGoodsInfoByGid(Long g_id);
 
     List<GoodsInfo> queryGoodsInfoList();
 

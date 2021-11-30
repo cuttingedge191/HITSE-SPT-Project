@@ -17,10 +17,31 @@ public class GoodsController {
     GoodsService goodsService;
 
     @RequestMapping("addGoods")
-    public String addGoods(Model model){
+    public String addGoods(Model model) {
         return "addGoods";
     }
 
+    @RequestMapping("updateGoods")
+    public String updateGoods(String g_id, Model model) {
+        long lg_id = Long.parseLong(g_id);
+        GoodsInfo good = goodsService.queryGoodsInfoByGid(lg_id);
+        model.addAttribute("good", good);
+        return "updateGoods";
+    }
+
+    @RequestMapping("updateGoodsNow")
+    public String updateGoodsNow(String name, String g_id, String cost, String retail_price, String trade_price, String description, Model model) {
+        // 参数不合法（应该不能通过前端检查），直接返回“货品管理”
+        if (retail_price == null || trade_price == null) {
+            return "redirect:goodsView";
+        }
+        Long lg_id = Long.parseLong(g_id);
+        Double dRPrice = Double.parseDouble(retail_price);
+        Double dTPrice = Double.parseDouble(trade_price);
+        GoodsInfo good = new GoodsInfo(lg_id, name, (double) 0, dRPrice, dTPrice, description);
+        goodsService.updateGoods(good);
+        return "redirect:goodsView";
+    }
 
     @RequestMapping({"addGoodsNow", "deleteGoods"})
     public String ADCSGoods(GoodsInfo good, Model model, HttpServletRequest request){
