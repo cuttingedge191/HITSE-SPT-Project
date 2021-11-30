@@ -246,7 +246,6 @@
                                         ui-options="{theme: 'bootstrap'}" name="name"
                                         id="customer">
                                     <optgroup label="货品名称">
-                                        <option selected></option>
                                         <div th:each="info:${goodsInfos}">
                                             <option th:text="${info.name}"></option>
                                         </div>
