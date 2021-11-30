@@ -61,4 +61,9 @@ public class InventoryServiceImpl implements InventoryService {
     public Integer deleteInventoryByIID(Integer i_id){
         return inventoryMapper.deleteInventoryByIId(i_id);
     }
+
+    @Override
+    public List<Inventory> queryWarehouseList(){
+        return inventoryMapper.queryWarehouseList();
+    }
 }
