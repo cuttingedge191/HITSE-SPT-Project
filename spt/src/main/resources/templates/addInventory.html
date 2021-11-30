@@ -239,7 +239,7 @@
                         </div>
                         <div class="box-divider m-0"></div>
                         <div class="box-body">
-                            <form role="form" method="post" th:action="@{/addInventoryNow}">
+                            <form role="form" method="get" th:action="@{/addInventoryNow}">
                                 <label for="customer"
                                        class="col-md-4 form-control-label">货品名称</label>
                                 <select class="form-group form-control" ui-jp="select2"
@@ -261,6 +261,18 @@
                                     <input type="text" class="form-control" name="quality" id="quality"
                                         placeholder="请输入货品质量等级" required>
                                 </div>
+                                <label class="col-md-4 form-control-label">仓库</label>
+                                <select class="form-group form-control" ui-jp="select2"
+                                        ui-options="{theme: 'bootstrap'}" name="il_id"
+                                        id="warehouse">
+                                    <optgroup label="仓库名称">
+                                        <option selected></option>
+                                        <div th:each="list:${inventory_lists}">
+                                            <option th:text="${list.inventory_name}" th:value="${list.il_id}"></option>
+                                        </div>
+                                    </optgroup>
+                                </select>
+
                                 <button type="submit" class="btn primary m-b ">放弃</button>
                                 <button type="submit" class="btn primary m-b ">添加</button>
                             </form>

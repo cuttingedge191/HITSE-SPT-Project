@@ -15,4 +15,6 @@ public class Inventory {
     private String name;
     private Double retail_price;
     private Double cost;
+    private String inventory_name;
+    private Integer il_id;
 }

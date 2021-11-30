@@ -240,6 +240,7 @@
                                 <thead>
                                     <tr>
                                         <th>货品编号</th>
+                                        <th>所在仓库</th>
                                         <th>货品名称</th>
                                         <th>货品质量</th>
                                         <th>现有货品数量</th>
@@ -250,6 +251,7 @@
                                     <tbody>
                                         <tr th:each="inventory:${inventories}">
                                             <th class="text-nowrap" th:text="${inventory.i_id}"></th>
+                                            <td th:text="${inventory.inventory_name}"></td>
                                             <td th:text="${inventory.name}"></td>
                                             <td th:text="${inventory.quality}"></td>
                                             <td th:text="${inventory.quantity}"></td>

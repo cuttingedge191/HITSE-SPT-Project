@@ -22,4 +22,6 @@ public interface InventoryService {
     public Integer mergeInventory(Inventory inventory);
 
     public Integer deleteInventoryByIID(Integer i_id);
+
+    public List<Inventory> queryWarehouseList();
 }

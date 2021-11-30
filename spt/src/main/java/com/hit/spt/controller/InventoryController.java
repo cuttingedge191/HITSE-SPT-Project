@@ -36,6 +36,8 @@ public class InventoryController {
     public String addInventory(Model model) {
         List<GoodsInfo> goodsInfos = goodsService.getAllGoods();
         model.addAttribute("goodsInfos", goodsInfos);
+        List<Inventory> inventory_lists = inventoryService.queryWarehouseList();
+        model.addAttribute("inventory_lists", inventory_lists);
         return "addInventory";
     }
 
@@ -64,7 +66,7 @@ public class InventoryController {
         String uri = request.getRequestURI();
         if(uri.charAt(1) == 'a') {
             List<Inventory> inventory1 = inventoryService.selectInventoryByName(inventory.getName());
-            if(! inventory1.isEmpty()){
+            if(! inventory1.isEmpty() && inventory1.get(0).getI_id().equals(inventory.getI_id())){
                 inventory.setI_id(inventory1.get(0).getI_id());
                 inventoryService.mergeInventory(inventory);
             }else {
