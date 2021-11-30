@@ -256,20 +256,22 @@
                                                    th:placeholder="${good.g_id}" th:value="${good.g_id}" disabled="">
                                             <input type="hidden" class="form-control" name="g_id" id="g_id" th:value="${good.g_id}">
                                         </div>
-                                        <div class="form-group">
+                                        <div class="row m-b">
+                                        <div class="col-md-4">
                                             <label for="cost_view">成本（系统根据库存自动计算）</label>
                                             <input type="text" class="form-control" name="cost_view" id="cost_view"
                                                    th:placeholder="${good.cost}" th:value="${good.cost}=='-1.0'?'缺货':${good.cost}" disabled="">
                                         </div>
-                                        <div class="form-group">
+                                        <div class="col-md-4">
                                             <label for="retail_price">零售价</label>
                                             <input type="text" class="form-control" name="retail_price" id="retail_price"
                                                    th:placeholder="${good.retail_price}" th:value="${good.retail_price}" required>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="col-md-4">
                                             <label for="trade_price">批发价</label>
                                             <input type="text" class="form-control" name="trade_price" id="trade_price"
                                                    th:placeholder="${good.trade_price}" th:value="${good.trade_price}" required>
+                                        </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="description">货品描述</label>
