@@ -12,6 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -32,8 +34,14 @@ public class UserController {
      * @return 转发到主页（暂时没有）
      */
     @RequestMapping("user/login")
-    public String login(@RequestParam("username") String username, @RequestParam("password") String password, Model model) {
+    public String login(@RequestParam("username") String username, @RequestParam("password") String password, Model model, HttpServletRequest request) {
         if (logInUpService.checkPassword(username, password)) {
+            HttpSession session = request.getSession();
+            User user = UserService.queryUserByUsername(username);
+            session.setAttribute("name", user.getName());
+            session.setAttribute("level", user.getLevel());
+            session.setAttribute("position", user.getPosition());
+            session.setMaxInactiveInterval(30);
             return "index";
         }
         model.addAttribute("msg", "用户名或者密码错误!");

@@ -9,6 +9,8 @@ public interface UserService {
 
     User queryUserByUid(int u_id);
 
+    User queryUserByUsername(String username);
+
     void deleteUserByUid(int u_id);
 
     int updateUser(User user);

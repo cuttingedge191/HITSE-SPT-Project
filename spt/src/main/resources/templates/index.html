@@ -181,7 +181,7 @@
                         </li>
 
                         <li>
-                            <a th:href="@{/login}">
+                            <a th:href="@{/logout}">
                                     <span class="nav-icon">
                                         <i class="material-icons"></i>
                                     </span>
@@ -214,8 +214,8 @@
                             <img th:src="@{/assets/images/a0.jpg}" alt="..." class="w-40 img-circle">
                         </span>
                     <span class="clear hidden-folded p-x">
-                            <span class="block _500">【用户姓名】</span>
-                            <small class="block text-muted">【用户身份】</small>
+                            <span class="block _500" th:text="${session.name}">【用户姓名】</span>
+                            <small class="block text-muted" th:text="${session.position}">【用户身份】</small>
                             <small class="block text-muted"><i class="fa fa-circle text-success m-r-sm"></i>在线</small>
                         </span>
                 </div>
