@@ -66,15 +66,22 @@ public class InventoryController {
         String uri = request.getRequestURI();
         if(uri.charAt(1) == 'a') {
             List<Inventory> inventory1 = inventoryService.selectInventoryByName(inventory.getName());
-            if(! inventory1.isEmpty() && inventory1.get(0).getI_id().equals(inventory.getI_id())){
-                inventory.setI_id(inventory1.get(0).getI_id());
+            if((!inventory1.isEmpty()) && inventory1.get(0).getIl_id().equals(inventory.getIl_id())){
+                inventory.setIl_id(inventory1.get(0).getIl_id());
                 inventoryService.mergeInventory(inventory);
             }else {
                 inventoryService.insertInventoryWithGoodName(inventory);
             }
         }else if(uri.charAt(1) == 'u'){
-            if (inventory != null)
-            inventoryService.updateInventory(inventory);
+            if (inventory != null) {
+                Inventory inventory_old = inventoryService.queryInventoryById(inventory.getI_id());
+                if(inventory.getQuantity() >= inventory_old.getQuantity()){
+                    inventoryService.deleteInventoryByIID(inventory.getI_id());
+                }else{
+                    inventory.setQuantity(inventory_old.getQuantity() - inventory.getQuantity());
+                    inventoryService.updateInventory(inventory);
+                }
+            }
         }else if(uri.charAt(1) == 'd'){
             inventoryService.deleteInventoryByIID(inventory.getI_id());
         }
@@ -112,5 +119,29 @@ public class InventoryController {
         List<Inventory> inventories = inventoryService.queryInventoryWithGnameList();
         model.addAttribute("inventories", inventories);
         return "inventoryCheck";
+    }
+
+    @RequestMapping("inventoryTrans")
+    public String inventoryTrans(Model model) {
+        List<Inventory> inventories = inventoryService.queryInventoryWithGnameList();
+        model.addAttribute("inventories", inventories);
+        List<Inventory> inventory_lists = inventoryService.queryWarehouseList();
+        model.addAttribute("inventory_lists", inventory_lists);
+        return "inventoryTrans";
+    }
+
+    @RequestMapping("addOneTransformItem")
+    public String addOneTransformItem(Integer swarehouse, Integer dwarehouse, Integer quantity, Integer item_name){
+        Inventory source_inventory = inventoryService.queryInventoryByIdAndIlID(item_name, swarehouse);
+        Inventory destination_inventory = inventoryService.queryInventoryByIdAndIlID(item_name, swarehouse);
+        Integer source_quantity = 0;
+        Integer dest_quantity = 0;
+        if(!swarehouse.equals(dwarehouse)){
+            source_inventory.setQuantity(source_inventory.getQuantity() - quantity);
+            destination_inventory.setQuantity(destination_inventory.getQuantity() - quantity);
+        }
+        source_quantity = source_inventory.getQuantity();
+        dest_quantity = destination_inventory.getQuantity();
+        return null;
     }
 }

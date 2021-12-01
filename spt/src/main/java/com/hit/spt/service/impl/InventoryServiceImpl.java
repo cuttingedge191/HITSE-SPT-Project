@@ -66,4 +66,9 @@ public class InventoryServiceImpl implements InventoryService {
     public List<Inventory> queryWarehouseList(){
         return inventoryMapper.queryWarehouseList();
     }
+
+    @Override
+    public Inventory queryInventoryByIdAndIlID(Integer g_id, Integer il_id){
+        return  inventoryMapper.queryInventoryByIdAndIlID(g_id, il_id);
+    }
 }

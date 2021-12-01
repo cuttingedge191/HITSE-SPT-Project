@@ -9,8 +9,8 @@
         from inventory_list
     </select>
     <insert id="insertInventoryWithGoodName" parameterType="Inventory">
-        insert into inventory(g_id, quantity, quality)
-        select goods_info.g_id, #{quantity}, #{quality}
+        insert into inventory(g_id, quantity, quality, il_id)
+        select goods_info.g_id, #{quantity}, #{quality}, #{il_id}
         from goods_info
         where goods_info.name = #{name}
     </insert>
@@ -20,7 +20,7 @@
         where inventory.i_id = #{i_id} and goods_info.g_id = inventory.g_id
     </select>
     <select id="selectInventoryByName" parameterType="java.lang.String" resultType="Inventory">
-        select inventory.i_id, inventory.g_id, inventory.quantity, inventory.quality
+        select inventory.i_id, inventory.g_id, inventory.quantity, inventory.quality, inventory.il_id
         from goods_info, inventory
         where inventory.g_id = goods_info.g_id and goods_info.name = #{name}
     </select>
@@ -59,7 +59,13 @@
         from inventory
     </select>
     <select id="queryInventoryWithGnameList" resultType="Inventory">
-        select goods_info.name, inventory.quality, inventory.i_id, inventory.quantity, inventory.g_id, inventory_list.inventory_name,
+        select goods_info.name, inventory.quality, inventory.i_id, inventory.quantity, inventory.g_id, inventory_list.inventory_name, inventory.il_id,
         goods_info.retail_price, goods_info.cost from goods_info, inventory, inventory_list where inventory.g_id = goods_info.g_id and inventory_list.il_id = inventory.il_id
+    </select>
+    <select id="queryInventoryByIdAndIlID" resultType="Inventory" parameterType="java.lang.Integer">
+        select goods_info.name, inventory.quality, inventory.i_id, inventory.quantity, inventory.g_id, inventory_list.inventory_name, inventory.il_id,
+               goods_info.retail_price, goods_info.cost from goods_info, inventory, inventory_list
+        where inventory.g_id = goods_info.g_id and inventory_list.il_id = inventory.il_id and
+              inventory.g_id = #{g_id} and inventory.il_id = #{il_id}
     </select>
 </mapper>

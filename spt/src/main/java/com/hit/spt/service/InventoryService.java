@@ -24,4 +24,6 @@ public interface InventoryService {
     public Integer deleteInventoryByIID(Integer i_id);
 
     public List<Inventory> queryWarehouseList();
+
+    Inventory queryInventoryByIdAndIlID(Integer g_id, Integer il_id);
 }

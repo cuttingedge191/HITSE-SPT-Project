@@ -32,4 +32,6 @@ public interface InventoryMapper {
     Integer deleteInventoryByIId(Integer i_id);
 
     List<Inventory> queryWarehouseList();
+
+    Inventory queryInventoryByIdAndIlID(Integer g_id, Integer il_id);
 }

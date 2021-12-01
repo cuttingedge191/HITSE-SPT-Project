@@ -43,7 +43,7 @@
 
                 <div class="col-md-6 center-block">
                     <br />
-                    <button class="btn btn-fw light-blue-500">货品编辑</button>
+                    <button class="btn btn-fw light-blue-500">货品出库</button>
                     <div class="box">
                         <div class="box-header">
                             <small>添加入库货品信息</small>
@@ -57,9 +57,9 @@
                                         th:placeholder="${inventory.name}" th:value="${inventory.name}" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="quantity">货品数量</label>
+                                    <label for="quantity" th:text="'货品数量: ' + ${inventory.quantity}" ></label>
                                     <input type="text" class="form-control" name="quantity" id="quantity"
-                                        th:placeholder="${inventory.quantity}" th:value="${inventory.quantity}" required>
+                                        th:placeholder="'出库数量 <' + ${inventory.quantity}" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="quality">货品质量等级</label>
@@ -68,7 +68,7 @@
                                 </div>
                                 <input type="number" hidden th:value="${inventory.i_id}" name="i_id">
                                 <button type="submit" class="btn primary m-b ">放弃</button>
-                                <button type="submit" class="btn primary m-b ">添加</button>
+                                <button type="submit" class="btn primary m-b ">出库</button>
                             </form>
                         </div>
                     </div>
