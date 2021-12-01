@@ -58,6 +58,8 @@ public class InventoryController {
     public String inventoryCheck(Model model){
         List<Inventory> inventories = inventoryService.queryInventoryWithGnameList();
         model.addAttribute("inventories", inventories);
+        List<Inventory> inventory_lists = inventoryService.queryWarehouseList();
+        model.addAttribute("inventory_lists", inventory_lists);
         return "inventoryCheck";
     }
 
@@ -110,7 +112,7 @@ public class InventoryController {
                 JSONObject jbo = JSONObject.parseObject(inv);
                 Inventory inventory1 = new Inventory();
                 inventory1.setI_id(jbo.getInteger("i_id"));
-                inventory1.setG_id(jbo.getInteger("g_id"));
+                inventory1.setG_id(jbo.getLong("g_id"));
                 inventory1.setQuality(jbo.getString("quality"));
                 inventory1.setQuantity(jbo.getInteger("quantity"));
                 inventoryService.updateInventory(inventory1);

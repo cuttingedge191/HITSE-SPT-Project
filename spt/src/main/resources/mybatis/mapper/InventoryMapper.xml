@@ -44,15 +44,15 @@
         insert into inventory(g_id, quantity, quality, il_id)
         value (#{g_id}, #{quantity}, #{quality}, #{il_id})
     </insert>
-    <delete id="deleteInventoryByGid" parameterType="java.lang.Integer">
+    <delete id="deleteInventoryByGid" parameterType="java.lang.Long">
         delete
         from inventory
         where g_id = #{g_id}
     </delete>
-    <select id="queryInventoryByGid" parameterType="java.lang.Integer" resultType="Inventory">
+    <select id="queryInventoryByGid" parameterType="java.lang.Long" resultType="Inventory">
         select i_id, g_id, quantity, quality
         from inventory
-        where gid = #{g_id}
+        where g_id = #{g_id}
     </select>
     <select id="queryInventoryList" resultType="Inventory">
         select i_id, g_id, quantity, quality

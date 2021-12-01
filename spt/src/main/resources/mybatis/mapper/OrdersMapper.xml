@@ -50,8 +50,10 @@
                orders.total_profit,
                orders.time_stamp,
                customer_info.name
-        from orders,customer_info
-        where orders.o_id = #{o_id} and customer_info.c_id = orders.c_id
+        from orders,
+             customer_info
+        where orders.o_id = #{o_id}
+          and customer_info.c_id = orders.c_id
     </select>
     <insert id="insertOrder" parameterType="Orders">
         insert into orders(o_id, c_id, type, status, total_turnover, total_cost, total_profit, time_stamp)
@@ -87,4 +89,9 @@
              customer_info
         where orders.c_id = customer_info.c_id
     </select>
+    <update id="updateOrderStatus">
+        update orders
+        set status = #{status}
+        where o_id = #{o_id}
+    </update>
 </mapper>

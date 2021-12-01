@@ -25,12 +25,22 @@ public class GoodsServiceImpl implements GoodsService{
     }
 
     @Override
+    public Integer updateGoods(GoodsInfo goodsInfo) {
+        return goodsInfoMapper.updateGoodsInfo(goodsInfo);
+    }
+
+    @Override
     public GoodsInfo queryGoodsInfoByName(String name){
         return goodsInfoMapper.queryGoodsInfoByName(name);
     }
 
     @Override
-    public Integer deleteGoodsByGid(Integer g_id){
+    public GoodsInfo queryGoodsInfoByGid(Long g_id) {
+        return goodsInfoMapper.queryGoodsInfoByGid(g_id);
+    }
+
+    @Override
+    public Integer deleteGoodsByGid(Long g_id){
         return goodsInfoMapper.deleteGoodsInfoByGid(g_id);
     }
 }

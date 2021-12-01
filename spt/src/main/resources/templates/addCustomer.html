@@ -227,14 +227,21 @@
         <!-- / -->
 
         <!-- content -->
-        <div class="container">
+        <div id="content" class="app-content box-shadow-z0" role="main">
+
+            <div class="app-header white box-shadow">
+                <div class="navbar navbar-toggleable-sm flex-row align-items-center">
+                    <h4 class="mb-0 _300">添加新客户</h4>
+                </div>
+            </div>
+
             <div ui-view class="app-body" id="view">
 
-                <div class="col-md-6 center-block">
+                <div class="padding">
                     <br />
-                    <button class="btn btn-fw light-blue-500">客户添加</button>
-                    <div class="box">
-                        <div class="box-header">
+                    <div class="row">
+                        <div class="col-md-6 offset-md-3">
+                            <div class="box p-a">                        <div class="box-header">
                             <small>添加客户资料</small>
                         </div>
                         <div class="box-divider m-0"></div>
@@ -256,19 +263,24 @@
                                         placeholder="地址" required>
                                 </div>
                                 <div class="form-group">
+                                    客户性别：
                                     <label for="male">男</label>
                                     <input type="radio" name="sex" id="male" value="true" />
                                     <label for="female">女</label>
                                     <input type="radio" name="sex" id="female" value="false" />
                                 </div>
                                 <div class="form-group">
+                                    客户类型：
                                     <label for="retail">零售</label>
                                     <input type="radio" name="type" id="retail" value="true">
                                     <label for="retail">批发</label>
                                     <input type="radio" name="type" id="trade" value="false">
                                 </div>
+                                <a class="btn danger m-b " th:href="clientInfoSearch">放弃</a>
                                 <button type="submit" class="btn primary m-b ">添加</button>
                             </form>
+                        </div>
+                            </div>
                         </div>
                     </div>
                 </div>

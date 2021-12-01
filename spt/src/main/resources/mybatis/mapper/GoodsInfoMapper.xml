@@ -5,13 +5,12 @@
 
 <mapper namespace="com.hit.spt.mapper.GoodsInfoMapper">
     <select id="insertGoodsInfo" parameterType="GoodsInfo">
-        insert into goods_info(name, cost, retail_price, trade_price, description)
-        values (#{name}, #{cost}, #{retail_price}, #{trade_price}, #{description})
+        insert into goods_info(g_id, name, retail_price, trade_price, description)
+        values (#{g_id}, #{name}, #{retail_price}, #{trade_price}, #{description})
     </select>
     <update id="updateGoodsInfo" parameterType="GoodsInfo">
         update goods_info
         set name         = #{name},
-            cost         = #{cost},
             retail_price = #{retail_price},
             trade_price  = #{trade_price},
             description  = #{description}
@@ -35,9 +34,9 @@
                trade_price,
                description
         from goods_info
-        where name = #{name}
+        where g_id = #{g_id}
     </select>
-    <delete id="deleteGoodsInfoByGid" parameterType="java.lang.Integer">
+    <delete id="deleteGoodsInfoByGid" parameterType="java.lang.Long">
         delete
         from goods_info
         where g_id = #{g_id}

@@ -32,9 +32,4 @@ public class HelloController {
 
     // ###以下均待处理###
 
-    @RequestMapping("orderReview")
-    public String orderReview(Model model) {
-        return "orderReview";
-    }
-
 }

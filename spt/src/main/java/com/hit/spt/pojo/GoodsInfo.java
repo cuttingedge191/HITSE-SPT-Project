@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class GoodsInfo {
-    private Integer g_id;
+    private Long g_id;
     private String name;
     private Double cost;
     private Double retail_price;

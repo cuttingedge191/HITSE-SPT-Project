@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Inventory {
     private Integer i_id;
-    private Integer g_id;
+    private Long g_id;
     private Integer quantity;
     private String quality;
     private String name;

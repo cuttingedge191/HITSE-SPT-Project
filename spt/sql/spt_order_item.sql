@@ -25,13 +25,13 @@ DROP TABLE IF EXISTS `order_item`;
 CREATE TABLE `order_item` (
   `oi_id` int(11) NOT NULL AUTO_INCREMENT,
   `o_id` int(11) NOT NULL,
-  `g_id` int(11) NOT NULL,
+  `g_id` bigint(20) NOT NULL,
   `quantity` int(11) DEFAULT '1',
   `cost` double DEFAULT NULL,
   `price` double DEFAULT NULL,
   PRIMARY KEY (`oi_id`),
   UNIQUE KEY `oi_id_UNIQUE` (`oi_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +40,7 @@ CREATE TABLE `order_item` (
 
 LOCK TABLES `order_item` WRITE;
 /*!40000 ALTER TABLE `order_item` DISABLE KEYS */;
-INSERT INTO `order_item` VALUES (2,1,1,22,22,22),(4,3,1,100,100,100),(5,4,1,10,10,10),(6,5,1,15,15,15),(7,5,3,1,5.5,10.5),(8,6,1,5,5,5),(11,2,5,10,10000,20000);
+INSERT INTO `order_item` VALUES (12,1,5,2,2000,4000),(13,2,5,5,5000,7499.95),(14,3,9787121401367,5,-5,40),(15,4,6947503737252,5,-5,15);
 /*!40000 ALTER TABLE `order_item` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-11-28 23:24:37
+-- Dump completed on 2021-11-30 14:22:16

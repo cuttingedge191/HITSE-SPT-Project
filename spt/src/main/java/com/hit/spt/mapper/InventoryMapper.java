@@ -11,9 +11,9 @@ import java.util.List;
 public interface InventoryMapper {
     int insertInventory(Inventory inventory);
 
-    int deleteInventoryByGid(Integer g_id);
+    int deleteInventoryByGid(Long g_id);
 
-    Inventory queryInventoryByGid(Integer g_id);
+    Inventory queryInventoryByGid(Long g_id);
 
     List<Inventory> queryInventoryList();
 

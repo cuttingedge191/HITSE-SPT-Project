@@ -23,15 +23,15 @@ DROP TABLE IF EXISTS `goods_info`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `goods_info` (
-  `g_id` int(11) NOT NULL AUTO_INCREMENT,
+  `g_id` bigint(20) NOT NULL,
   `name` varchar(45) DEFAULT NULL,
-  `cost` double NOT NULL,
+  `cost` double NOT NULL DEFAULT '-1',
   `retail_price` double DEFAULT NULL,
   `trade_price` double DEFAULT NULL,
   `description` text,
   PRIMARY KEY (`g_id`),
   UNIQUE KEY `gid_UNIQUE` (`g_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +40,7 @@ CREATE TABLE `goods_info` (
 
 LOCK TABLES `goods_info` WRITE;
 /*!40000 ALTER TABLE `goods_info` DISABLE KEYS */;
-INSERT INTO `goods_info` VALUES (5,'系统管理员',1000,2000,1499.99,'系统最高权限');
+INSERT INTO `goods_info` VALUES (6947503737252,'晨光0.5mm黑色签字笔',-1,3,1.5,'测试'),(9787121401367,'2022年计算机网络考研复习指导',-1,65,50,'测试');
 /*!40000 ALTER TABLE `goods_info` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-11-28 23:24:38
+-- Dump completed on 2021-11-30 14:22:16

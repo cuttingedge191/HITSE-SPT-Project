@@ -236,6 +236,25 @@
                         </div>
                         <div class="box-divider m-0"></div>
                         <div class="box-body">
+
+                            <div class="row m-b">
+                                <div class="col-md-5">
+                                    <div class="form-group row">
+                                        <label class="col-md-4 form-control-label">盘点仓库</label>
+                                        <select class="form-group form-control col-sm-6" ui-jp="select2"
+                                                ui-options="{theme: 'bootstrap'}" name="il_id"
+                                                id="warehouse">
+                                            <optgroup label="仓库名称">
+                                                <option selected></option>
+                                                <div th:each="list:${inventory_lists}">
+                                                    <option th:text="${list.inventory_name}" th:value="${list.il_id}"></option>
+                                                </div>
+                                            </optgroup>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
                             <table class="table table-striped white">
                                 <thead>
                                     <tr>

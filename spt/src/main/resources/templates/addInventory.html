@@ -224,16 +224,22 @@
         </div>
         <!-- / -->
 
-        <!-- / -->
-
         <!-- content -->
-        <div class="container">
-            <div ui-view class="app-body" id="view">
+        <div id="content" class="app-content box-shadow-z0" role="main">
 
-                <div class="col-md-6 center-block">
+            <div class="app-header white box-shadow">
+                <div class="navbar navbar-toggleable-sm flex-row align-items-center">
+                    <h4 class="mb-0 _300">库存添加</h4>
+                </div>
+            </div>
+
+            <div ui-view class="app-body" id="view">
+                <div class="padding">
                     <br />
-                    <button class="btn btn-fw light-blue-500">货品入库</button>
-                    <div class="box">
+                    <div class="row">
+                    <div class="col-md-6 offset-md-3">
+                        <div class="box p-a">
+
                         <div class="box-header">
                             <small>添加入库货品信息</small>
                         </div>
@@ -246,12 +252,12 @@
                                         ui-options="{theme: 'bootstrap'}" name="name"
                                         id="customer">
                                     <optgroup label="货品名称">
-                                        <option selected></option>
                                         <div th:each="info:${goodsInfos}">
                                             <option th:text="${info.name}"></option>
                                         </div>
                                     </optgroup>
                                 </select>
+                                <br/>
                                 <div class="form-group">
                                     <label for="quantity">货品数量</label>
                                     <input type="text" class="form-control" name="quantity" id="quantity"
@@ -273,11 +279,14 @@
                                         </div>
                                     </optgroup>
                                 </select>
-
-                                <button type="submit" class="btn primary m-b ">放弃</button>
+                                <br/>
+                                <a class="btn danger m-b " th:href="inventoryView">放弃</a>
                                 <button type="submit" class="btn primary m-b ">添加</button>
                             </form>
                         </div>
+
+                        </div>
+                    </div>
                     </div>
                 </div>
 
