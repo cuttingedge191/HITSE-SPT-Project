@@ -227,14 +227,16 @@
     <!-- / -->
 
     <!-- content -->
-    <div class="container">
-        <div ui-view class="app-body" id="view">
+    <div id="content" class="app-content box-shadow-z0" role="main">
 
-            <div class="col-md-6 center-block">
+            <div ui-view class="app-body" id="view">
+                <div class="padding">
                 <br />
-                <button class="btn btn-fw light-blue-500">系统用户管理</button>
-                <div class="box">
+                    <div class="row">
+                        <div class="col-md-6 offset-md-3">
+                            <div class="box p-a">
                     <div class="box-header">
+                        <h2>更新用户信息</h2>
                         <small>在这里管理其他用户的账号信息及在系统内的权限</small>
                     </div>
                     <div class="box-divider m-0"></div>
@@ -279,12 +281,14 @@
                                 <input type="radio" name="sex" id="female" value="false"
                                        th:checked="${user.gender}=='female'?'true':'false'"/>
                             </div>
+                            <a class="btn danger m-b " th:href="@{/userInfoSearch}">放弃</a>
                             <button type="submit" class="btn primary m-b ">保存修改</button>
                         </form>
                     </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
     </div>
 </div>
 <!-- / -->
