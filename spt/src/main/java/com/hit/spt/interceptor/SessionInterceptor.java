@@ -5,6 +5,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Arrays;
 
 public class SessionInterceptor implements HandlerInterceptor {
     @Override
@@ -30,6 +31,32 @@ public class SessionInterceptor implements HandlerInterceptor {
             arg1.getWriter().write("<script>alert('您当前未登录或会话过期！'); window.location.href='/login';</script>");
             arg1.getWriter().flush();
             return false;
+        }
+
+        // 根据权限所禁止的页面
+        String[][] forbidden_uris= new String[][]{
+                {,},
+                {"goodsView","addGoods","updateGoods",},
+                {"addInventory",},
+                {"inventoryCheck","inventoryView",},
+                {"inventoryTrans","inventoryView",},
+                {"addOrder","ordersView","orderReview","updateOrder",},
+                {"pos","ordersView","orderReview","updateOrder",},
+                {,},
+                {,},
+                {"clientInfoSearch","addCustomer","upcos",},
+                {"userInfoSearch","upUser"}};
+
+        // 权限管理拦截
+        for (int i = 0; i < forbidden_uris.length; ++i) {
+            if (arg0.getSession().getAttribute("permissions").toString().charAt(i) != '1') {
+                if (Arrays.deepToString(forbidden_uris[i]).contains(arg0.getRequestURI().substring(1))) {
+                    arg1.setContentType("text/html;charset=utf-8");
+                    arg1.getWriter().write("<script>alert('您当前没有权限！'); window.location.href='/index';</script>");
+                    arg1.getWriter().flush();
+                    return false;
+                }
+            }
         }
         return true;
     }

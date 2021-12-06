@@ -38,9 +38,20 @@ public class UserController {
         if (logInUpService.checkPassword(username, password)) {
             HttpSession session = request.getSession();
             User user = UserService.queryUserByUsername(username);
+            int level = user.getLevel();
+            int tmp = 1;
+            String rights = "";
             session.setAttribute("name", user.getName());
-            session.setAttribute("level", user.getLevel());
             session.setAttribute("position", user.getPosition());
+            // 权限标志位设置
+            for (int i = 0; i < 32; ++i) {
+                if ((level & tmp) > 0)
+                    rights += "1";
+                else
+                    rights += "0";
+                tmp *= 2;
+            }
+            session.setAttribute("permissions", rights);
             session.setMaxInactiveInterval(1800); // 会话过期时间设置
             return "index";
         }
@@ -82,18 +93,49 @@ public class UserController {
     public String updateUser(String u_id, Model model) {
         int iu_id = Integer.parseInt(u_id);
         User user = UserService.queryUserByUid(iu_id);
+        int level = user.getLevel();
+        int tmp = 1;
+        String rights = "";
+        // 权限标志位设置
+        for (int i = 0; i < 32; ++i) {
+            if ((level & tmp) > 0)
+                rights += "1";
+            else
+                rights += "0";
+            tmp *= 2;
+        }
         model.addAttribute("user", user);
+        model.addAttribute("permissions", rights);
         return "updateUser";
     }
 
     @RequestMapping("upUserNow")
-    public String updateUserNow(String u_id, String name, String position, String username, String password, String sex, String level, Model model) {
+    public String updateUserNow(HttpServletRequest request) {
         // 参数不合法（应该不能通过前端检查），直接返回“系统用户管理”
-        if (name == null || position == null || username == null || password == null || sex == null || level == null) {
+        String u_id = request.getParameter("u_id");
+        String name = request.getParameter("name");
+        String position = request.getParameter("position");
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        String sex = request.getParameter("sex");
+        if (name == null || position == null || username == null || password == null || sex == null) {
             return "redirect:userInfoSearch";
         }
         String gender = sex.equals("true") ? "male" : "female";
-        User user = new User(Integer.parseInt(u_id), name, gender, position, Integer.parseInt(level), username, password);
+
+        // 权限信息转换
+        int level = 0;
+        int tmp = 1;
+        for (Integer i = 1; i <= 11; ++i) {
+            String p = "p" + i;
+            String op = request.getParameter(p);
+            if (op != null)
+                level += tmp;
+            tmp *= 2;
+        }
+
+        // 更新用户信息
+        User user = new User(Integer.parseInt(u_id), name, gender, position, level, username, password);
         UserService.updateUser(user);
         return "redirect:userInfoSearch";
     }
