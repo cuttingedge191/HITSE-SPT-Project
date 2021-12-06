@@ -41,7 +41,7 @@ public class UserController {
             session.setAttribute("name", user.getName());
             session.setAttribute("level", user.getLevel());
             session.setAttribute("position", user.getPosition());
-            session.setMaxInactiveInterval(30);
+            session.setMaxInactiveInterval(1800); // 会话过期时间设置
             return "index";
         }
         model.addAttribute("msg", "用户名或者密码错误!");
