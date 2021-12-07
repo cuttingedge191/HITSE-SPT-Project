@@ -1,15 +1,13 @@
-CREATE DATABASE  IF NOT EXISTS `spt` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `spt`;
--- MySQL dump 10.13  Distrib 8.0.25, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.16, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: spt
+-- Host: localhost    Database: spt
 -- ------------------------------------------------------
--- Server version	8.0.25
+-- Server version	8.0.16
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!50503 SET NAMES utf8 */;
+ SET NAMES utf8 ;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -23,18 +21,18 @@ USE `spt`;
 
 DROP TABLE IF EXISTS `inventory_transaction`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `inventory_transaction` (
-  `iti_id` int NOT NULL AUTO_INCREMENT,
-  `u_id` int NOT NULL,
-  `i_id_s` int NOT NULL,
-  `quantity` int NOT NULL,
-  `il_id_d` int NOT NULL,
-  `g_id` int NOT NULL,
-  `il_id_s` int NOT NULL,
+  `iti_id` int(11) NOT NULL AUTO_INCREMENT,
+  `u_id` int(11) NOT NULL,
+  `i_id_s` int(11) NOT NULL,
+  `il_id_s` int(11) NOT NULL,
+  `il_id_d` int(11) NOT NULL,
+  `g_id` bigint(20) NOT NULL,
+  `quantity` int(11) NOT NULL,
   PRIMARY KEY (`iti_id`),
   UNIQUE KEY `iti_id_UNIQUE` (`iti_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=115 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -55,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-12-07 21:11:32
+-- Dump completed on 2021-12-07 22:12:52
