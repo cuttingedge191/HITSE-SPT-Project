@@ -78,8 +78,13 @@ public class InventoryController {
             cost_old = goodsService.queryGoodsInfoByGid(g_id).getCost();
             cost_new = inventory.getCost();
             inventoryService.mergeInsertInventory(inventory);
-        }else if(uri.charAt(1) == 'u'){
+        } else if (uri.charAt(1) == 'u') {
             if (inventory != null) {
+                g_id = goodsService.queryGoodsInfoByName(inventory.getName()).getG_id();
+                quantity_old = inventoryService.queryQuantityByGid(g_id);
+                quantity_dev = -1 * inventory.getQuantity();
+                cost_old = goodsService.queryGoodsInfoByGid(g_id).getCost();
+                cost_new = cost_old;
                 Inventory inventory_old = inventoryService.queryInventoryByIId(inventory.getI_id());
                 Integer decreaseQuantity = inventory.getQuantity();
                 inventory_old.setQuality(inventory.getQuality());
@@ -96,7 +101,7 @@ public class InventoryController {
         double cost_res = cost_old;
         if (quantity_dev + quantity_old != 0 && cost_new != cost_old) {
             cost_res = (cost_old * quantity_old + cost_new * quantity_dev) / (quantity_dev + quantity_old);
-        } else if (quantity_dev + quantity_old == 0){
+        } else if (quantity_dev + quantity_old == 0) {
             cost_res = -1.0;
         }
 
@@ -148,7 +153,7 @@ public class InventoryController {
     }
 
     @RequestMapping("addTransTransaction")
-    public String addTransTransaction(InventoryTransaction transaction, Model model){
+    public String addTransTransaction(InventoryTransaction transaction, Model model) {
         Inventory inventory = inventoryService.queryInventoryByIId(transaction.getI_id_s());
         transaction.setG_id(inventory.getG_id());
         transaction.setIl_id_s(inventory.getIl_id());
@@ -164,30 +169,30 @@ public class InventoryController {
     }
 
     private void decreaseInventory(Integer decreaseQuantity, Inventory inventory) {
-        if(decreaseQuantity >= inventory.getQuantity()){
+        if (decreaseQuantity >= inventory.getQuantity()) {
             inventoryService.deleteInventoryByIID(inventory.getI_id());
-        }else{
+        } else {
             inventory.setQuantity(inventory.getQuantity() - decreaseQuantity);
             inventoryService.updateInventory(inventory);
         }
     }
 
     @RequestMapping("deleteInventoryTransaction")
-    public String deleteInventoryTransaction(Integer iti_id, Model model){
+    public String deleteInventoryTransaction(Integer iti_id, Model model) {
         inventoryService.deleteInventoryTransactionByItiId(iti_id);
         inventoryService.refreshInventoryTransView(model, httpServletRequest);
         return "inventoryTrans";
     }
 
     @RequestMapping("retreatInventoryTrans")
-    public String retreatInventoryTrans(Integer iti_id, Model model){
+    public String retreatInventoryTrans(Integer iti_id, Model model) {
         inventoryService.deleteInventoryTransactionByItiId(iti_id);
         inventoryService.refreshInventoryTransView(model, httpServletRequest);
         return "inventoryTrans";
     }
 
     @RequestMapping("sureToTransInventory")
-    public String retreatInventoryTrans(Model model){
+    public String retreatInventoryTrans(Model model) {
         Integer u_id = (Integer) httpServletRequest.getSession().getAttribute("u_id");
         inventoryService.deleteInventoryTransactionByUId(u_id);
         inventoryService.refreshInventoryTransView(model, httpServletRequest);
