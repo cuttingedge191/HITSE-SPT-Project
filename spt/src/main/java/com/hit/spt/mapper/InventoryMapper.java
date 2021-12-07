@@ -13,7 +13,7 @@ public interface InventoryMapper {
 
     int deleteInventoryByGid(Long g_id);
 
-    Inventory queryInventoryByGid(Long g_id);
+    List<Integer> queryQuantityByGid(Long g_id);
 
     List<Inventory> queryInventoryList();
 
@@ -25,7 +25,7 @@ public interface InventoryMapper {
 
     Integer updateInventory(Inventory inventory);
 
-    Inventory queryInventoryById(Integer i_id);
+    Inventory queryInventoryByIId(Integer i_id);
 
     Integer mergeInventory(Inventory inventory);
 

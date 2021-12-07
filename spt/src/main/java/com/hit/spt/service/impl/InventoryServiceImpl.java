@@ -55,8 +55,19 @@ public class InventoryServiceImpl implements InventoryService {
     }
 
     @Override
-    public Inventory queryInventoryById(Integer i_id){
-        return inventoryMapper.queryInventoryById(i_id);
+    public Inventory queryInventoryByIId(Integer i_id){
+        return inventoryMapper.queryInventoryByIId(i_id);
+    }
+
+    @Override
+    public Integer queryQuantityByGid(Long g_id) {
+        List<Integer> quantities = inventoryMapper.queryQuantityByGid(g_id);
+        int sum = 0;
+        if (quantities == null)
+            return 0;
+        for (Integer i : quantities)
+            sum += i;
+        return sum;
     }
 
     @Override

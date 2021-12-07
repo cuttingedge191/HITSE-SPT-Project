@@ -49,10 +49,10 @@
         from inventory
         where g_id = #{g_id}
     </delete>
-    <select id="queryInventoryByGid" parameterType="java.lang.Long" resultType="Inventory">
-        select i_id, g_id, quantity, quality
+    <select id="queryQuantityByGid" parameterType="java.lang.Long" resultType="java.lang.Integer">
+        select inventory.quantity
         from inventory
-        where g_id = #{g_id}
+        where inventory.g_id = #{g_id}
     </select>
     <select id="queryInventoryList" resultType="Inventory">
         select i_id, g_id, quantity, quality

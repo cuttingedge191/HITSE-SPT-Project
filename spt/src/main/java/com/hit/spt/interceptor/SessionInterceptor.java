@@ -40,7 +40,7 @@ public class SessionInterceptor implements HandlerInterceptor {
                 {"addInventory",},
                 {"inventoryCheck","inventoryView",},
                 {"inventoryTrans","inventoryView",},
-                {"addOrder","ordersView","orderReview","updateOrder",},
+                {"addOrder","ordersView","orderReview",},
                 {"pos","ordersView","orderReview","updateOrder",},
                 {,},
                 {,},
@@ -48,6 +48,18 @@ public class SessionInterceptor implements HandlerInterceptor {
                 {"userInfoSearch","upUser"}};
 
         // 权限管理拦截
+        // 首先单独判断几个URI
+        if (arg0.getSession().getAttribute("permissions").toString().charAt(3) == '1' ||
+                arg0.getSession().getAttribute("permissions").toString().charAt(4) == '1') {
+            if (arg0.getRequestURI().equals("/inventoryView"))
+                return true;
+        }
+        if (arg0.getSession().getAttribute("permissions").toString().charAt(5) == '1' ||
+                arg0.getSession().getAttribute("permissions").toString().charAt(6) == '1') {
+            if (arg0.getRequestURI().equals("/ordersView") || arg0.getRequestURI().equals("/orderReview"))
+                return true;
+        }
+        // 然后是对上面禁止URI的拦截
         for (int i = 0; i < forbidden_uris.length; ++i) {
             if (arg0.getSession().getAttribute("permissions").toString().charAt(i) != '1') {
                 if (Arrays.deepToString(forbidden_uris[i]).contains(arg0.getRequestURI().substring(1))) {
