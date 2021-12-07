@@ -38,5 +38,9 @@ public interface InventoryService {
 
     Integer insertInventoryTransaction(InventoryTransaction inventoryTransaction);
 
-    void refreshInventoryTransView(Model model, HttpServletRequest httpServletRequest);
+    public void refreshInventoryTransView(Model model, HttpServletRequest httpServletRequest);
+
+    public void deleteInventoryTransactionByItiId(Integer iti_id);
+
+    public void deleteInventoryTransactionByUId(Integer u_id);
 }

@@ -3,6 +3,7 @@ package com.hit.spt.service.impl;
 import com.hit.spt.mapper.GoodsInfoMapper;
 import com.hit.spt.mapper.InventoryMapper;
 import com.hit.spt.mapper.InventoryTransactionMapper;
+import com.hit.spt.pojo.GoodsInfo;
 import com.hit.spt.pojo.Inventory;
 import com.hit.spt.pojo.InventoryTransaction;
 import com.hit.spt.service.InventoryService;
@@ -19,10 +20,11 @@ public class InventoryServiceImpl implements InventoryService {
     InventoryMapper inventoryMapper;
 
     @Autowired
-    InventoryTransactionMapper inventoryTransactionMapper;
+    GoodsInfoMapper goodsInfoMapper;
 
     @Autowired
-    GoodsInfoMapper goodsInfoMapper;
+    InventoryTransactionMapper inventoryTransactionMapper;
+
 
     @Override
     public int insertInventoryChange(Inventory inventory) {
@@ -54,7 +56,7 @@ public class InventoryServiceImpl implements InventoryService {
 
     @Override
     public Inventory queryInventoryByIId(Integer i_id){
-        return inventoryMapper.queryInventoryByIId(i_id);
+        return inventoryMapper.queryInventoryById(i_id);
     }
 
     @Override
@@ -87,8 +89,13 @@ public class InventoryServiceImpl implements InventoryService {
     @Override
     public Integer mergeInsertInventory(Inventory inventory){
         List<Inventory> inventory1 = this.selectInventoryByName(inventory.getName());
-        if((!inventory1.isEmpty()) && inventory1.get(0).getIl_id().equals(inventory.getIl_id())){
-            inventory.setIl_id(inventory1.get(0).getIl_id());
+        int i = 0;
+        Integer inventory1_len = inventory1.size();
+        for(;i<inventory1_len;i++){
+            if(inventory1.get(i).getIl_id().equals(inventory.getIl_id())) break;
+        }
+        if(i < inventory1_len){
+            inventory.setIl_id(inventory1.get(i).getIl_id());
             return this.mergeInventory(inventory);
         }else {
             return this.insertInventoryWithGoodName(inventory);
@@ -110,22 +117,62 @@ public class InventoryServiceImpl implements InventoryService {
     }
     @Override
     public List<InventoryTransaction> getInventoryTransactionWithUid(Integer u_id){
-        List<InventoryTransaction> transactions = inventoryTransactionMapper.getInventoryTransaction(u_id);
+        List<InventoryTransaction> transactions = inventoryTransactionMapper.getInventoryTransactionByUid(u_id);
         int transactions_len = transactions.size();
         for(int i = 0;i < transactions_len;i ++){
             InventoryTransaction inventoryTransaction = transactions.get(i);
-            Inventory s_inventory = inventoryMapper.queryInventoryByIId(inventoryTransaction.getI_id_s());
-            String goods_name = s_inventory.getName();
-            inventoryTransaction.setS_quantity(s_inventory.getQuantity());
-            String s_inventory_name = s_inventory.getInventory_name();
-            Inventory warehouse = inventoryMapper.queryWarehouseByIlID(inventoryTransaction.getIl_id_d());
-            String d_inventory_name = warehouse.getInventory_name();
-            inventoryTransaction.setD_inventory_name(d_inventory_name);
-            inventoryTransaction.setS_inventory_name(s_inventory_name);
-            inventoryTransaction.setGoods_name(goods_name);
+            modifyforTransactionDetail(inventoryTransaction);
         }
         return transactions;
     }
+
+    private void modifyforTransactionDetail(InventoryTransaction inventoryTransaction) {
+
+        GoodsInfo goodsInfo = goodsInfoMapper.queryGoodsInfoByGid(inventoryTransaction.getG_id());
+        String goods_name = goodsInfo.getName();
+        Inventory s_inventory = getInventoryByNameAndIlId(goods_name, inventoryTransaction.getIl_id_s());
+
+        if(s_inventory != null) {
+            inventoryTransaction.setS_quantity(s_inventory.getQuantity());
+        }else{
+            inventoryTransaction.setS_quantity(0);
+        }
+
+        String s_inventory_name = inventoryMapper.queryWarehouseByIlID(inventoryTransaction.getIl_id_s()).getInventory_name();
+        inventoryTransaction.setS_inventory_name(s_inventory_name);
+
+        Inventory warehouse = inventoryMapper.queryWarehouseByIlID(inventoryTransaction.getIl_id_d());
+        String d_inventory_name = warehouse.getInventory_name();
+
+        // 原仓库名，目的仓库名，货物名
+        inventoryTransaction.setD_inventory_name(d_inventory_name);
+        inventoryTransaction.setGoods_name(goods_name);
+
+        // 若目的仓库中有库存，则使用库存值，否则使用0
+        Inventory d_inventory = getInventoryByNameAndIlId(goods_name, inventoryTransaction.getIl_id_d());
+        if(d_inventory != null){
+            inventoryTransaction.setD_quantity(d_inventory.getQuantity());
+            // 若目的库中存在对应的库存
+            inventoryTransaction.setI_id_d(d_inventory.getI_id());
+        }else{
+            inventoryTransaction.setD_quantity(0);
+        }
+    }
+
+    private Inventory getInventoryByNameAndIlId(String name, Integer il_id){
+        List<Inventory> inventory1 = this.selectInventoryByName(name);
+        int k = 0;
+        Integer inventory1_len = inventory1.size();
+        for(;k<inventory1_len;k++){
+            if(inventory1.get(k).getIl_id().equals(il_id)) break;
+        }
+        if(k<inventory1_len){
+            return inventory1.get(k);
+        }else{
+            return null;
+        }
+    }
+
 
     @Override
     public Integer insertInventoryTransaction(InventoryTransaction inventoryTransaction) {
@@ -141,5 +188,45 @@ public class InventoryServiceImpl implements InventoryService {
         Integer u_id = (Integer) httpServletRequest.getSession().getAttribute("u_id");
         List<InventoryTransaction> inventoryTransactions = this.getInventoryTransactionWithUid(u_id);
         model.addAttribute("inventory_transactions", inventoryTransactions);
+    }
+
+    @Override
+    public void deleteInventoryTransactionByItiId(Integer iti_id) {
+        InventoryTransaction inventoryTransaction =  inventoryTransactionMapper.getInventoryTransactionByItiId(iti_id);
+        modifyforTransactionDetail(inventoryTransaction);
+
+        Inventory d_inventory = new Inventory();
+        if(inventoryTransaction.getI_id_d() != null) {
+            d_inventory = this.queryInventoryByIId(inventoryTransaction.getI_id_d());
+        }else return;
+
+        if(d_inventory.getQuantity() < inventoryTransaction.getQuantity()){
+            return;
+        }
+
+        Inventory inventory = new Inventory();
+        inventory.setQuality(d_inventory.getQuality());
+        inventory.setIl_id(inventoryTransaction.getIl_id_s());
+        inventory.setQuantity(inventoryTransaction.getQuantity());
+        inventory.setG_id(d_inventory.getG_id());
+        inventory.setName(d_inventory.getName());
+        this.mergeInsertInventory(inventory);
+
+        this.decreaseInventory(inventoryTransaction.getQuantity(), d_inventory);
+        inventoryTransactionMapper.deleteInventoryTransactionByItiId(iti_id);
+    }
+
+    @Override
+    public void deleteInventoryTransactionByUId(Integer u_id) {
+        inventoryTransactionMapper.deleteInventoryTransactionByUId(u_id);
+    }
+
+    private void decreaseInventory(Integer decreaseQuantity, Inventory inventory) {
+        if(decreaseQuantity >= inventory.getQuantity()){
+            this.deleteInventoryByIID(inventory.getI_id());
+        }else{
+            inventory.setQuantity(inventory.getQuantity() - decreaseQuantity);
+            this.updateInventory(inventory);
+        }
     }
 }

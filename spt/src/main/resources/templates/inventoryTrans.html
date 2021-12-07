@@ -243,7 +243,7 @@
                                                 <small>选择源仓库和目的仓库</small>
                                             </div>
                                             <div class="box-divider m-0"></div>
-                                            <form role="form" method="post" th:action="@{/addTransTransection}">
+                                            <form role="form" method="post" th:action="@{/addTransTransaction}">
                                                 <div class="box-body">
                                                     <div class="form-group row">
                                                         <label for="select1"
@@ -300,7 +300,6 @@
 
                                                             // 只能选择第一个下拉栏能够调度的仓库进行调度
                                                             var inventory_items = $(".inventory_item")
-
                                                             for(var i = 0; i < inventory_items.length;i ++){
                                                                 if($(inventory_items[i]).hasClass("inventory_" + il_id1)){
                                                                     if(!$(".inventory_items:selected").hasClass("inventory_" + il_id1)){
@@ -309,6 +308,10 @@
                                                                     }
                                                                     $(inventory_items[i]).show()
                                                                 }else {
+                                                                    if($("#inventory_items").val() === $(inventory_items[i]).val()){
+                                                                        $("#inventory_items").val(null)
+                                                                        inventory_item_changed()
+                                                                    }
                                                                     $(inventory_items[i]).hide()
                                                                 }
                                                             }
@@ -317,10 +320,14 @@
                                                             // 得到选中的inventory_item对象
                                                             var inventory_items = [[${inventories}]]
                                                             var i_id = $("#inventory_items").val()
-                                                            var i = 0
-                                                            for(;i < inventory_items.length &&
-                                                            inventory_items[i].i_id !== parseInt(i_id);i++){}
-                                                            var quantity = inventory_items[i].quantity
+                                                            var quantity = 0;
+                                                            if(i_id !== null) {
+                                                                var i = 0
+                                                                for (; i < inventory_items.length &&
+                                                                       inventory_items[i].i_id !== parseInt(i_id); i++) {
+                                                                }
+                                                                quantity = inventory_items[i].quantity
+                                                            }
 
                                                             // 修改输入框
                                                             var quantity_input = $("#quantity")
@@ -375,28 +382,43 @@
                                                             <th>货品名称</th>
                                                             <th>源仓库</th>
                                                             <th>源仓库数量</th>
-                                                            <th>目的仓库</th>
-                                                            <th>目的仓库数量</th>
-                                                            <th>调动数量</th>
+                                                            <th>目的库</th>
+                                                            <th>目的库数量</th>
+                                                            <th>已调动数量</th>
                                                             <th></th>
                                                         </tr>
                                                         </thead>
                                                         <tbody>
-                                                        <tr>
-                                                            <td>1</td>
-                                                            <td>sdhbfk</td>
-                                                            <td>30</td>
-                                                            <td>0</td>
-                                                            <td>
-                                                                <a class="btn btn-sm btn-danger deletebtn">删除</a>
-                                                            </td>
+                                                        <tr th:each="inventoryTransaction:${inventory_transactions}">
+                                                            <td th:text="${inventoryTransaction.goods_name}"></td>
+                                                            <td th:text="${inventoryTransaction.s_inventory_name}"></td>
+                                                            <td th:text="${inventoryTransaction.s_quantity}"></td>
+                                                            <td th:text="${inventoryTransaction.d_inventory_name}"></td>
+                                                            <td th:text="${inventoryTransaction.d_quantity}"></td>
+                                                            <td th:text="${inventoryTransaction.quantity}"></td>
                                                         </tr>
                                                         </tbody>
                                                     </table>
                                                 </div>
-                                                <div class="dker p-a text-right">
-                                                    <a class="btn primary m-b">取消</a>
-                                                    <a class="btn primary m-b">确认调货</a>
+                                                <script th:inline="javascript">
+                                                    function retreat(){
+                                                        var inventory_transactions = [[${inventory_transactions}]]
+                                                        var inventory_transacrions_len = inventory_transactions.length
+                                                        var iti_id = inventory_transactions[inventory_transacrions_len - 1].iti_id
+                                                        var form = document.createElement("form");
+                                                        // form.method = "post"
+                                                        var input = document.createElement("input");
+                                                        input.name = "iti_id";
+                                                        input.value = iti_id
+                                                        form.appendChild(input)
+                                                        form.action = /*[[@{/retreatInventoryTrans}]]*/
+                                                        $(document.body).append(form)
+                                                        form.submit()
+                                                    }
+                                                </script>
+                                                <div class="p-a text-right">
+                                                    <a onclick="retreat()" class="btn danger m-b">撤销</a>
+                                                    <a th:href="@{/sureToTransInventory}" class="btn success m-b">确认调货</a>
                                                 </div>
                                             </form>
                                             <!-- fields -->
