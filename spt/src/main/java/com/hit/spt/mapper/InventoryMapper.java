@@ -25,7 +25,7 @@ public interface InventoryMapper {
 
     Integer updateInventory(Inventory inventory);
 
-    Inventory queryInventoryByIId(Integer i_id);
+    Inventory queryInventoryById(Integer i_id);
 
     Integer mergeInventory(Inventory inventory);
 

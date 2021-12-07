@@ -80,7 +80,7 @@ public class InventoryController {
             inventoryService.mergeInsertInventory(inventory);
         }else if(uri.charAt(1) == 'u'){
             if (inventory != null) {
-                Inventory inventory_old = inventoryService.queryInventoryById(inventory.getI_id());
+                Inventory inventory_old = inventoryService.queryInventoryByIId(inventory.getI_id());
                 Integer decreaseQuantity = inventory.getQuantity();
                 inventory_old.setQuality(inventory.getQuality());
                 decreaseInventory(decreaseQuantity, inventory_old);
@@ -149,7 +149,7 @@ public class InventoryController {
 
     @RequestMapping("addTransTransaction")
     public String addTransTransaction(InventoryTransaction transaction, Model model){
-        Inventory inventory = inventoryService.queryInventoryById(transaction.getI_id_s());
+        Inventory inventory = inventoryService.queryInventoryByIId(transaction.getI_id_s());
         transaction.setG_id(inventory.getG_id());
         transaction.setIl_id_s(inventory.getIl_id());
         inventoryService.insertInventoryTransaction(transaction);

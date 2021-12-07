@@ -56,7 +56,7 @@ public class InventoryServiceImpl implements InventoryService {
 
     @Override
     public Inventory queryInventoryByIId(Integer i_id){
-        return inventoryMapper.queryInventoryByIId(i_id);
+        return inventoryMapper.queryInventoryById(i_id);
     }
 
     @Override
@@ -197,7 +197,7 @@ public class InventoryServiceImpl implements InventoryService {
 
         Inventory d_inventory = new Inventory();
         if(inventoryTransaction.getI_id_d() != null) {
-            d_inventory = this.queryInventoryById(inventoryTransaction.getI_id_d());
+            d_inventory = this.queryInventoryByIId(inventoryTransaction.getI_id_d());
         }else return;
 
         if(d_inventory.getQuantity() < inventoryTransaction.getQuantity()){
