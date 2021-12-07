@@ -181,7 +181,7 @@
                         </li>
 
                         <li>
-                            <a th:href="@{/logout}">
+                            <a data-toggle="modal" data-target="#m-a-a" ui-toggle-class="bounce" ui-target="#animate">
                                     <span class="nav-icon">
                                         <i class="material-icons"></i>
                                     </span>
@@ -394,6 +394,24 @@
         </div>
     </div>
     <!-- / -->
+    <!-- .modal -->
+    <div id="m-a-a" class="modal fade animate" data-backdrop="true">
+        <div class="modal-dialog" id="animate">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">退出登录</h5>
+                </div>
+                <div class="modal-body text-center p-lg">
+                    <p>您是否确定退出登录？</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn dark-white p-x-md" data-dismiss="modal">取消</button>
+                    <a class="btn danger p-x-md" th:href="@{/logout}">确认</a>
+                </div>
+            </div><!-- /.modal-content -->
+        </div>
+    </div>
+    <!-- / .modal -->
 </div>
 
 <script>
