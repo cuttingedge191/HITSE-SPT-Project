@@ -105,6 +105,7 @@ public class InventoryServiceImpl implements InventoryService {
             InventoryTransaction inventoryTransaction = transactions.get(i);
             Inventory s_inventory = inventoryMapper.queryInventoryById(inventoryTransaction.getI_id_s());
             String goods_name = s_inventory.getName();
+            inventoryTransaction.setS_quantity(s_inventory.getQuantity());
             String s_inventory_name = s_inventory.getInventory_name();
             Inventory warehouse = inventoryMapper.queryWarehouseByIlID(inventoryTransaction.getIl_id_d());
             String d_inventory_name = warehouse.getInventory_name();
