@@ -253,13 +253,14 @@
                     </select>
                     </div>
                 </div>
-<!--                  </div>-->
                 <div class="col-md-6">
                     搜索: <input id="filter" type="text" class="form-control input-sm w-auto inline m-r" />
-                    <a th:href="@{/addInventory}" class="btn btn-icon white" id="inventoryCheck">
+                    <a th:if="${#strings.substring(session.permissions, 2, 3)=='1'}"
+                       th:href="@{/addInventory}" class="btn btn-icon white" id="addInventory">
                         <i class="fa fa-plus"></i>
                     </a>
-<!--                    <a th:href="@{/inventoryCheck}" class="btn white" for="inventoryCheck">库存盘点</a>-->
+                    <label th:if="${#strings.substring(session.permissions, 2, 3)=='1'}"
+                           for="addInventory">进货入库</label>
                 </div>
             </div>
             <div>

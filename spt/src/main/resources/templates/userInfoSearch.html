@@ -2,38 +2,38 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="zh">
 
 <head>
-  <meta charset="utf-8" />
-  <title>Flatkit - HTML Version | Bootstrap 4 Web App Kit with AngularJS</title>
-  <meta name="description" content="Admin, Dashboard, Bootstrap, Bootstrap 4, Angular, AngularJS" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8"/>
+    <title>Flatkit - HTML Version | Bootstrap 4 Web App Kit with AngularJS</title>
+    <meta name="description" content="Admin, Dashboard, Bootstrap, Bootstrap 4, Angular, AngularJS"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <!-- for ios 7 style, multi-resolution icon of 152x152 -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-barstyle" content="black-translucent">
-  <link rel="apple-touch-icon" th:href="@{/assets/images/logo.png}">
-  <meta name="apple-mobile-web-app-title" content="Flatkit">
-  <!-- for Chrome on Android, multi-resolution icon of 196x196 -->
-  <meta name="mobile-web-app-capable" content="yes">
-  <link rel="shortcut icon" sizes="196x196" th:href="@{/assets/images/logo.png}">
+    <!-- for ios 7 style, multi-resolution icon of 152x152 -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-barstyle" content="black-translucent">
+    <link rel="apple-touch-icon" th:href="@{/assets/images/logo.png}">
+    <meta name="apple-mobile-web-app-title" content="Flatkit">
+    <!-- for Chrome on Android, multi-resolution icon of 196x196 -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="shortcut icon" sizes="196x196" th:href="@{/assets/images/logo.png}">
 
-  <!-- style -->
-  <link rel="stylesheet" th:href="@{/assets/animate.css/animate.min.css}" type="text/css" />
-  <link rel="stylesheet" th:href="@{/assets/glyphicons/glyphicons.css}" type="text/css" />
-  <link rel="stylesheet" th:href="@{/assets/font-awesome/css/font-awesome.min.css}" type="text/css" />
-  <link rel="stylesheet" th:href="@{/assets/material-design-icons/material-design-icons.css}" type="text/css" />
+    <!-- style -->
+    <link rel="stylesheet" th:href="@{/assets/animate.css/animate.min.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/assets/glyphicons/glyphicons.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/assets/font-awesome/css/font-awesome.min.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/assets/material-design-icons/material-design-icons.css}" type="text/css"/>
 
-  <link rel="stylesheet" th:href="@{/assets/bootstrap/dist/css/bootstrap.min.css}" type="text/css" />
-  <!-- build:css @{assets/styles/app.min.css} -->
-  <link rel="stylesheet" th:href="@{/assets/styles/app.css}" type="text/css" />
-  <!-- endbuild -->
-  <link rel="stylesheet" th:href="@{/assets/styles/font.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/assets/bootstrap/dist/css/bootstrap.min.css}" type="text/css"/>
+    <!-- build:css @{assets/styles/app.min.css} -->
+    <link rel="stylesheet" th:href="@{/assets/styles/app.css}" type="text/css"/>
+    <!-- endbuild -->
+    <link rel="stylesheet" th:href="@{/assets/styles/font.css}" type="text/css"/>
 </head>
 
 <body>
 <div class="app" id="app">
 
-  <!-- ############ LAYOUT START-->
+    <!-- ############ LAYOUT START-->
 
     <!-- aside -->
     <div id="aside" class="app-aside modal nav-dropdown">
@@ -224,91 +224,89 @@
     </div>
     <!-- / -->
 
-  <!-- content -->
-  <div id="content" class="app-content box-shadow-z0" role="main">
+    <!-- content -->
+    <div id="content" class="app-content box-shadow-z0" role="main">
 
-    <div ui-view class="app-body" id="view">
+        <div ui-view class="app-body" id="view">
 
-      <!-- ############ PAGE START-->
-      <div class="padding">
-        <div class="box">
-          <div class="box-header">
-              <h2>系统用户管理页面</h2>
-              <small>系统用户管理</small>
-          </div>
-          <div class="dker p-a text-right">
-            搜索：<input id="filter" type="text" class="form-control input-sm w-auto inline m-r" />
-<!--            <button class="btn btn-icon white" id="addUser"-->
-<!--                    onclick="window.location.href='/addUser'">-->
-<!--              <i class="fa fa-plus"></i>-->
-<!--            </button>-->
-<!--            <label for="addUser">注册新用户</label>-->
-          </div>
-          <div>
-            <table class="table m-b-none" ui-jp="footable" data-filter="#filter" data-page-size="7">
-              <thead>
-              <tr>
-                <th style="width:10%">ID</th>
-                <th style="width:15%">姓名</th>
-                <th style="width:10%">性别</th>
-                <th style="width:15%">职位</th>
-                <th style="width:15%">用户名</th>
-                <th style="width:15%">操作</th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr th:each="user:${userList}">
-                  <td th:text="${user.u_id}"></td>
-                  <td th:text="${user.name}"></td>
-                  <td th:text="${user.gender}=='female'?'女':'男'"></td>
-                  <td th:text="${user.position}"></td>
-                  <td th:text="${user.username}"></td>
-                  <td>
-                      <a class="btn btn-sm btn-primary"
-                         th:href="@{/upUser(u_id=${user.u_id})}">详情/编辑</a>
-                      <a class="btn btn-sm btn-danger deleteBtn" data-toggle="modal" data-target="#m-sm">删除</a>
-<!--                      <a class="btn btn-sm btn-danger deleteBtn"-->
-<!--                         th:href="@{/deUser(u_id=${user.u_id})}">删除</a>-->
-                      <!-- small modal -->
-                      <div id="m-sm" class="modal" data-backdrop="true">
-                          <div class="row-col h-v">
-                              <div class="row-cell v-m">
-                                  <div class="modal-dialog modal-sm">
-                                      <div class="modal-content">
-                                          <div class="modal-header">
-                                              <h5 class="modal-title">删除用户</h5>
-                                          </div>
-                                          <div class="modal-body text-center p-lg">
-                                              <p>您确定要删除该用户吗?</p>
-                                          </div>
-                                          <div class="modal-footer">
-                                              <button type="button" class="btn dark-white p-x-md" data-dismiss="modal">取消</button>
-                                              <a class="btn danger p-x-md" th:href="@{/deUser(u_id=${user.u_id})}">确定</a>
-                                          </div>
-                                      </div><!-- /.modal-content -->
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                      <!-- small modal -->
-                  </td>
-              </tr>
-              </tbody>
-            </table>
-          </div>
+            <!-- ############ PAGE START-->
+            <div class="padding">
+                <div class="box">
+                    <div class="box-header">
+                        <h2>系统用户管理页面</h2>
+                        <small>系统用户管理</small>
+                    </div>
+                    <div class="dker p-a text-right">
+                        搜索：<input id="filter" type="text" class="form-control input-sm w-auto inline m-r"/>
+                        <!--            <button class="btn btn-icon white" id="addUser"-->
+                        <!--                    onclick="window.location.href='/addUser'">-->
+                        <!--              <i class="fa fa-plus"></i>-->
+                        <!--            </button>-->
+                        <!--            <label for="addUser">注册新用户</label>-->
+                    </div>
+                    <div>
+                        <table class="table m-b-none" ui-jp="footable" data-filter="#filter" data-page-size="7">
+                            <thead>
+                            <tr>
+                                <th style="width:10%">ID</th>
+                                <th style="width:15%">姓名</th>
+                                <th style="width:10%">性别</th>
+                                <th style="width:15%">职位</th>
+                                <th style="width:15%">用户名</th>
+                                <th style="width:15%">操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="user:${userList}">
+                                <td th:text="${user.u_id}"></td>
+                                <td th:text="${user.name}"></td>
+                                <td th:text="${user.gender}=='female'?'女':'男'"></td>
+                                <td th:text="${user.position}"></td>
+                                <td th:text="${user.username}"></td>
+                                <td>
+                                    <a class="btn btn-sm btn-primary"
+                                       th:href="@{/upUser(u_id=${user.u_id})}">详情/编辑</a>
+                                    <a class="btn btn-sm danger" data-toggle="modal" data-target="#m-sm">删除</a>
+                                    <!-- small modal -->
+                                    <div id="m-sm" class="modal" data-backdrop="true">
+                                        <div class="row-col h-v">
+                                            <div class="row-cell v-m">
+                                                <div class="modal-dialog modal-sm">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title">删除用户</h5>
+                                                        </div>
+                                                        <div class="modal-body text-center p-lg">
+                                                            <p>您确定要删除该用户吗?</p>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn dark-white p-x-md"
+                                                                    data-dismiss="modal">取消
+                                                            </button>
+                                                            <a class="btn danger p-x-md"
+                                                               th:href="@{/deUser(u_id=${user.u_id})}">确定</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- small modal -->
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
+        <!--/-->
+
+        <!-- ############ PAGE END-->
+
+        <!-- ############ LAYOUT END-->
     </div>
-    <!--/-->
 
-    <!-- ############ PAGE END-->
-
-    <!-- ############ LAYOUT END-->
-  </div>
-
-  <!-- ############ PAGE END-->
-
-  <!-- ############ LAYOUT END-->
     <!-- .modal -->
     <div id="m-a-a" class="modal fade animate" data-backdrop="true">
         <div class="modal-dialog" id="animate">
@@ -323,7 +321,7 @@
                     <button type="button" class="btn dark-white p-x-md" data-dismiss="modal">取消</button>
                     <a class="btn danger p-x-md" th:href="@{/logout}">确认</a>
                 </div>
-            </div><!-- /.modal-content -->
+            </div>
         </div>
     </div>
     <!-- / .modal -->
