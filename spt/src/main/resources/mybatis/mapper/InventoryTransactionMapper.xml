@@ -4,15 +4,30 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.hit.spt.mapper.InventoryTransactionMapper">
-    <select id="getInventoryTransaction" resultType="InventoryTransaction" parameterType="java.lang.Integer">
+    <select id="getInventoryTransactionByUid" resultType="InventoryTransaction" parameterType="java.lang.Integer">
         select inventory_transaction.iti_id, inventory_transaction.u_id,
                inventory_transaction.i_id_s, inventory_transaction.il_id_d,
-               inventory_transaction.quantity
+               inventory_transaction.quantity, inventory_transaction.g_id,
+               inventory_transaction.il_id_s
         from inventory_transaction
         where inventory_transaction.u_id = #{u_id}
     </select>
+    <select id="getInventoryTransactionByItiId" resultType="InventoryTransaction" parameterType="java.lang.Integer">
+        select inventory_transaction.iti_id, inventory_transaction.u_id,
+               inventory_transaction.i_id_s, inventory_transaction.il_id_d,
+               inventory_transaction.quantity, inventory_transaction.g_id,
+               inventory_transaction.il_id_s
+        from inventory_transaction
+        where inventory_transaction.iti_id = #{iti_id}
+    </select>
     <insert id="insertInventoryTransaction" parameterType="InventoryTransaction">
-        insert inventory_transaction(u_id, i_id_s, il_id_d, quantity)
-        select #{u_id}, #{i_id_s}, #{il_id_d}, #{quantity}
+        insert inventory_transaction(u_id, i_id_s, il_id_d, quantity, g_id, il_id_s)
+        select #{u_id}, #{i_id_s}, #{il_id_d}, #{quantity}, #{g_id}, #{il_id_s}
     </insert>
+    <delete id="deleteInventoryTransactionByItiId" parameterType="java.lang.Integer">
+        delete from inventory_transaction where iti_id = #{iti_id}
+    </delete>
+    <delete id="deleteInventoryTransactionByUId" parameterType="java.lang.Integer">
+        delete from inventory_transaction where u_id = #{u_id}
+    </delete>
 </mapper>

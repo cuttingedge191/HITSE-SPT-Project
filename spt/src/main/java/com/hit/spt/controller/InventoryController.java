@@ -1,14 +1,11 @@
 package com.hit.spt.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.fasterxml.jackson.datatype.jsr310.ser.YearSerializer;
-import com.hit.spt.mapper.GoodsInfoMapper;
 import com.hit.spt.pojo.GoodsInfo;
 import com.hit.spt.pojo.Inventory;
 import com.hit.spt.pojo.InventoryTransaction;
 import com.hit.spt.service.GoodsService;
 import com.hit.spt.service.InventoryService;
-import org.apache.coyote.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,8 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -75,12 +70,9 @@ public class InventoryController {
         }else if(uri.charAt(1) == 'u'){
             if (inventory != null) {
                 Inventory inventory_old = inventoryService.queryInventoryById(inventory.getI_id());
-                if(inventory.getQuantity() >= inventory_old.getQuantity()){
-                    inventoryService.deleteInventoryByIID(inventory.getI_id());
-                }else{
-                    inventory.setQuantity(inventory_old.getQuantity() - inventory.getQuantity());
-                    inventoryService.updateInventory(inventory);
-                }
+                Integer decreaseQuantity = inventory.getQuantity();
+                inventory_old.setQuality(inventory.getQuality());
+                decreaseInventory(decreaseQuantity, inventory_old);
             }
         }else if(uri.charAt(1) == 'd'){
             inventoryService.deleteInventoryByIID(inventory.getI_id());
@@ -126,15 +118,51 @@ public class InventoryController {
         return "inventoryTrans";
     }
 
-    @RequestMapping("addTransTransection")
-    public String addTransTransection(Model model){
-        return null;
-    }
-
-    @RequestMapping("addOneTransformItem")
-    public String addOneTransformItem(InventoryTransaction transaction, Model model){
+    @RequestMapping("addTransTransaction")
+    public String addTransTransaction(InventoryTransaction transaction, Model model){
+        Inventory inventory = inventoryService.queryInventoryById(transaction.getI_id_s());
+        transaction.setG_id(inventory.getG_id());
+        transaction.setIl_id_s(inventory.getIl_id());
         inventoryService.insertInventoryTransaction(transaction);
+
+        Integer decreaseInteger = transaction.getQuantity();
+        decreaseInventory(decreaseInteger, inventory);
+        inventory.setIl_id(transaction.getIl_id_d());
+        inventory.setQuantity(transaction.getQuantity());
+        inventoryService.mergeInsertInventory(inventory);
         inventoryService.refreshInventoryTransView(model, httpServletRequest);
         return "inventoryTrans";
     }
+
+    private void decreaseInventory(Integer decreaseQuantity, Inventory inventory) {
+        if(decreaseQuantity >= inventory.getQuantity()){
+            inventoryService.deleteInventoryByIID(inventory.getI_id());
+        }else{
+            inventory.setQuantity(inventory.getQuantity() - decreaseQuantity);
+            inventoryService.updateInventory(inventory);
+        }
+    }
+
+    @RequestMapping("deleteInventoryTransaction")
+    public String deleteInventoryTransaction(Integer iti_id, Model model){
+        inventoryService.deleteInventoryTransactionByItiId(iti_id);
+        inventoryService.refreshInventoryTransView(model, httpServletRequest);
+        return "inventoryTrans";
+    }
+
+    @RequestMapping("retreatInventoryTrans")
+    public String retreatInventoryTrans(Integer iti_id, Model model){
+        inventoryService.deleteInventoryTransactionByItiId(iti_id);
+        inventoryService.refreshInventoryTransView(model, httpServletRequest);
+        return "inventoryTrans";
+    }
+
+    @RequestMapping("sureToTransInventory")
+    public String retreatInventoryTrans(Model model){
+        Integer u_id = (Integer) httpServletRequest.getSession().getAttribute("u_id");
+        inventoryService.deleteInventoryTransactionByUId(u_id);
+        inventoryService.refreshInventoryTransView(model, httpServletRequest);
+        return "inventoryTrans";
+    }
+
 }
