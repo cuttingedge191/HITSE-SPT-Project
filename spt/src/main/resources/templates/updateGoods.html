@@ -70,7 +70,7 @@
                                 </a>
                             </li>
 
-                            <li>
+                            <li th:if="${#strings.substring(session.permissions, 1, 2)=='1'}">
                                 <a th:href="@{/goodsView}">
                                     <span class="nav-icon">
                                         <i class="material-icons">&#xe5c3;
@@ -81,7 +81,7 @@
                                 </a>
                             </li>
 
-                            <li>
+                            <li th:if="${#strings.substring(session.permissions, 2, 5)!='000'}">
                                 <a>
                                     <span class="nav-caret">
                                         <i class="fa fa-caret-down"></i>
@@ -99,12 +99,12 @@
                                             <span class="nav-text">库存查询</span>
                                         </a>
                                     </li>
-                                    <li>
+                                    <li th:if="${#strings.substring(session.permissions, 3, 4)=='1'}">
                                         <a th:href="@{/inventoryCheck}">
                                             <span class="nav-text">库存盘点</span>
                                         </a>
                                     </li>
-                                    <li>
+                                    <li th:if="${#strings.substring(session.permissions, 4, 5)=='1'}">
                                         <a th:href="@{/inventoryTrans}">
                                             <span class="nav-text">库存调度</span>
                                         </a>
@@ -112,7 +112,7 @@
                                 </ul>
                             </li>
 
-                            <li>
+                            <li th:if="${#strings.substring(session.permissions, 5, 9)!='0000'}">
                                 <a>
                                     <span class="nav-caret">
                                         <i class="fa fa-caret-down"></i>
@@ -130,12 +130,12 @@
                                             <span class="nav-text">销售单查询</span>
                                         </a>
                                     </li>
-                                    <li>
+                                    <li th:if="${#strings.substring(session.permissions, 5, 6)=='1'}">
                                         <a th:href="@{/addOrder}">
                                             <span class="nav-text">新增批发销售单</span>
                                         </a>
                                     </li>
-                                    <li>
+                                    <li th:if="${#strings.substring(session.permissions, 6, 7)=='1'}">
                                         <a th:href="@{/pos}">
                                             <span class="nav-text">零售POS收银台</span>
                                         </a>
@@ -143,7 +143,7 @@
                                 </ul>
                             </li>
 
-                            <li>
+                            <li th:if="${#strings.substring(session.permissions, 9, 10)=='1'}">
                                 <a th:href="@{/clientInfoSearch}">
                                     <span class="nav-icon">
                                         <i class="material-icons">&#xe429;
@@ -154,7 +154,7 @@
                                 </a>
                             </li>
 
-                            <li>
+                            <li th:if="${#strings.substring(session.permissions, 10, 11)=='1'}">
                                 <a th:href="@{/userInfoSearch}">
                                     <span class="nav-icon">
                                         <i class="material-icons">&#xe3e8;
@@ -234,8 +234,8 @@
                         <div class="col-md-6 offset-md-3">
                             <div class="box p-a">
                                 <div class="box-header">
-                                    <h2>货品详细资料/修改</h2>
-                                    <small>以下为未修改的货品</small>
+                                    <h2>货品详情/修改</h2>
+                                    <small>以下为货品资料，支持仅查看或修改并保存</small>
                                 </div>
                                 <div class="box-divider m-0"></div>
                                 <div class="box-body">
@@ -253,7 +253,7 @@
                                         </div>
                                         <div class="row m-b">
                                         <div class="col-md-4">
-                                            <label for="cost_view">成本（系统根据库存自动计算）</label>
+                                            <label for="cost_view">成本（根据库存自动计算）</label>
                                             <input type="text" class="form-control" name="cost_view" id="cost_view"
                                                    th:placeholder="${good.cost}" th:value="${good.cost}=='-1.0'?'缺货':${good.cost}" disabled="">
                                         </div>
@@ -273,12 +273,8 @@
                                             <input type="text" class="form-control" name="description" id="description"
                                                    th:placeholder="${good.description}" th:value="${good.description}">
                                         </div>
-                                        <div>
-                                            <label style="color: red;" th:text="${goodsExistWarning}=='true'?'货品存在，请输入其他货品，或换一个名称':''"
-                                                   th:if="${goodsExistWarning}=='true'"></label>
-                                        </div>
-                                        <a class="btn danger m-b " th:href="@{/goodsView}">放弃</a>
-                                        <button type="submit" class="btn primary m-b ">修改</button>
+                                        <a class="btn danger m-b " th:href="@{/goodsView}">不保存返回</a>
+                                        <button type="submit" class="btn primary m-b ">保存修改</button>
                                     </form>
                                 </div>
                             </div>

@@ -40,7 +40,7 @@ CREATE TABLE `goods_info` (
 
 LOCK TABLES `goods_info` WRITE;
 /*!40000 ALTER TABLE `goods_info` DISABLE KEYS */;
-INSERT INTO `goods_info` VALUES (6947503737252,'晨光0.5mm黑色签字笔',-1,3,1.5,'测试'),(9787121401367,'2022年计算机网络考研复习指导',-1,65,50,'测试');
+INSERT INTO `goods_info` VALUES (1234567890123,'测试商品',-1,2000,1499.99,'测试'),(6947503737252,'晨光0.5mm黑色签字笔',-1,3,1.5,'测试'),(9787121401367,'2022年计算机网络考研复习指导',-1,65,50,'测试');
 /*!40000 ALTER TABLE `goods_info` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-11-30 14:22:16
+-- Dump completed on 2021-12-06 22:27:54

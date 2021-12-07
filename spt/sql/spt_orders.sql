@@ -42,7 +42,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (1,4,'retail','unchecked',4000,2000,2000,'2021-11-28 23:39:01'),(2,3,'trade','unchecked',7499.95,5000,2499.95,'2021-11-29 00:05:10'),(3,3,'trade','unchecked',40,-5,45,'2021-11-29 17:02:53'),(4,4,'retail','paid',15,-5,20,'2021-11-29 18:20:19');
+INSERT INTO `orders` VALUES (3,3,'trade','paid',40,-5,45,'2021-11-29 17:02:53'),(4,4,'retail','paid',15,-5,20,'2021-11-29 18:20:19');
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -55,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-11-30 14:22:17
+-- Dump completed on 2021-12-06 22:27:54
