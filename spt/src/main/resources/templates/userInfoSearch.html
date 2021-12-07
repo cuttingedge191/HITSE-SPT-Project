@@ -248,12 +248,11 @@
             <table class="table m-b-none" ui-jp="footable" data-filter="#filter" data-page-size="7">
               <thead>
               <tr>
-                <th style="width:7%">ID</th>
-                <th style="width:8%">姓名</th>
-                <th style="width:8%">性别</th>
-                <th style="width:10%">职位</th>
-                <th style="width:10%">权限级</th>
-                <th style="width:10%">用户名</th>
+                <th style="width:10%">ID</th>
+                <th style="width:15%">姓名</th>
+                <th style="width:10%">性别</th>
+                <th style="width:15%">职位</th>
+                <th style="width:15%">用户名</th>
                 <th style="width:15%">操作</th>
               </tr>
               </thead>
@@ -263,7 +262,6 @@
                   <td th:text="${user.name}"></td>
                   <td th:text="${user.gender}=='female'?'女':'男'"></td>
                   <td th:text="${user.position}"></td>
-                  <td th:text="${user.level}"></td>
                   <td th:text="${user.username}"></td>
                   <td>
                       <a class="btn btn-sm btn-primary"

@@ -234,8 +234,8 @@
                         <div class="col-md-6 offset-md-3">
                             <div class="box p-a">
                                 <div class="box-header">
-                                    <h2>货品详细资料/修改</h2>
-                                    <small>以下为未修改的货品</small>
+                                    <h2>货品详情/修改</h2>
+                                    <small>以下为货品资料，支持仅查看或修改并保存</small>
                                 </div>
                                 <div class="box-divider m-0"></div>
                                 <div class="box-body">
@@ -253,7 +253,7 @@
                                         </div>
                                         <div class="row m-b">
                                         <div class="col-md-4">
-                                            <label for="cost_view">成本（系统根据库存自动计算）</label>
+                                            <label for="cost_view">成本（根据库存自动计算）</label>
                                             <input type="text" class="form-control" name="cost_view" id="cost_view"
                                                    th:placeholder="${good.cost}" th:value="${good.cost}=='-1.0'?'缺货':${good.cost}" disabled="">
                                         </div>
@@ -273,12 +273,8 @@
                                             <input type="text" class="form-control" name="description" id="description"
                                                    th:placeholder="${good.description}" th:value="${good.description}">
                                         </div>
-                                        <div>
-                                            <label style="color: red;" th:text="${goodsExistWarning}=='true'?'货品存在，请输入其他货品，或换一个名称':''"
-                                                   th:if="${goodsExistWarning}=='true'"></label>
-                                        </div>
-                                        <a class="btn danger m-b " th:href="@{/goodsView}">放弃</a>
-                                        <button type="submit" class="btn primary m-b ">修改</button>
+                                        <a class="btn danger m-b " th:href="@{/goodsView}">不保存返回</a>
+                                        <button type="submit" class="btn primary m-b ">保存修改</button>
                                     </form>
                                 </div>
                             </div>

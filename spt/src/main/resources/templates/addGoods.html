@@ -251,12 +251,6 @@
                                                    required>
                                         </div>
                                         <div class="form-group">
-                                            <label for="cost">成本</label>
-                                            <input type="text" class="form-control" name="cost" id="cost" placeholder="请输入成本"
-                                                   required>
-                                        </div>
-
-                                        <div class="form-group">
                                             <label for="retail_price">零售价</label>
                                             <input type="text" class="form-control" name="retail_price" id="retail_price"
                                                    placeholder="请输入货品计划零售价" required>
@@ -272,8 +266,8 @@
                                                    required>
                                         </div>
                                         <div>
-                                            <label style="color: red;" th:text="${goodsExistWarning}=='true'?'货品存在，请输入其他货品，或换一个名称':''"
-                                                   th:if="${goodsExistWarning}=='true'"></label>
+                                            <label style="color: red;" th:text="${goodsExistWarning=='true'?'货品信息已存在（条码或名称重复），请输入其他货品！':''}"
+                                                   th:if="${goodsExistWarning=='true'}"></label>
                                         </div>
                                         <a class="btn danger m-b " th:href="@{/goodsView}">放弃</a>
                                         <button type="submit" class="btn primary m-b ">添加</button>

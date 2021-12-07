@@ -17,7 +17,7 @@ public class GoodsController {
     GoodsService goodsService;
 
     @RequestMapping("addGoods")
-    public String addGoods(Model model) {
+    public String addGoods() {
         return "addGoods";
     }
 
@@ -30,7 +30,7 @@ public class GoodsController {
     }
 
     @RequestMapping("updateGoodsNow")
-    public String updateGoodsNow(String name, String g_id, String cost, String retail_price, String trade_price, String description, Model model) {
+    public String updateGoodsNow(String name, String g_id, String retail_price, String trade_price, String description) {
         // 参数不合法（应该不能通过前端检查），直接返回“货品管理”
         if (retail_price == null || trade_price == null) {
             return "redirect:goodsView";
@@ -38,7 +38,7 @@ public class GoodsController {
         Long lg_id = Long.parseLong(g_id);
         Double dRPrice = Double.parseDouble(retail_price);
         Double dTPrice = Double.parseDouble(trade_price);
-        GoodsInfo good = new GoodsInfo(lg_id, name, (double) 0, dRPrice, dTPrice, description);
+        GoodsInfo good = new GoodsInfo(lg_id, name, (double) -1, dRPrice, dTPrice, description);
         goodsService.updateGoods(good);
         return "redirect:goodsView";
     }
@@ -48,18 +48,17 @@ public class GoodsController {
         String uri = request.getRequestURI();
         if (uri.charAt(1) == 'a') {
             GoodsInfo goodsInfo1 = goodsService.queryGoodsInfoByName(good.getName());
-            if (goodsInfo1 == null) {
+            GoodsInfo goodsInfo2 = goodsService.queryGoodsInfoByGid(good.getG_id());
+            if (goodsInfo1 == null && goodsInfo2 == null) {
                 goodsService.insertGoods(good);
             } else {
                 model.addAttribute("goodsExistWarning", "true");
                 return "addGoods";
             }
-        }else if (uri.charAt(1) == 'd'){
+        } else if (uri.charAt(1) == 'd') {
             goodsService.deleteGoodsByGid(good.getG_id());
         }
-        List<GoodsInfo> goodsInfos = goodsService.getAllGoods();
-        model.addAttribute("goods", goodsInfos);
-        return "goodsView";
+        return "redirect:goodsView";
     }
 
     @RequestMapping("goodsView")
