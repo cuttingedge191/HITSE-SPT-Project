@@ -253,10 +253,18 @@
                                     </optgroup>
                                 </select>
                                 <br/>
-                                <div class="form-group">
-                                    <label for="quantity">货品数量</label>
-                                    <input type="text" class="form-control" name="quantity" id="quantity"
-                                        placeholder="请输入货品数量" oninput="if(value<0)value=0" required>
+                                <div class="row m-b">
+                                    <div class="col-md-6">
+                                        <label for="quantity">货品数量</label>
+                                        <input type="text" class="form-control" name="quantity" id="quantity"
+                                            placeholder="请输入货品数量" oninput="if(value<0)value=0" required>
+                                    </div>
+<!--                                <div class="form-group">-->
+                                    <div class="col-md-6">
+                                        <label for="quantity">货品单件成本价</label>
+                                        <input type="text" class="form-control" name="" id=""
+                                            placeholder="请输入货品成本价" oninput="if(value<0)value=0" required>
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="quality">货品质量等级</label>
