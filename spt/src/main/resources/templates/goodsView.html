@@ -263,7 +263,30 @@
                                         <td th:text="${good.trade_price}"></td>
                                         <td class="m-b btn-groups">
                                             <a class="btn btn-sm success" th:href="@{/updateGoods(g_id=${good.g_id})}">详细/编辑</a>
-                                            <a th:href="@{/deleteGoods(g_id=${good.g_id})}" class="btn btn-sm danger">删除</a>
+                                            <a class="btn btn-sm danger" data-toggle="modal" data-target="#m-sm">删除</a>
+<!--                                            <a th:href="@{/deleteGoods(g_id=${good.g_id})}" class="btn btn-sm danger">删除</a>-->
+                                            <!-- small modal -->
+                                            <div id="m-sm" class="modal" data-backdrop="true">
+                                                <div class="row-col h-v">
+                                                    <div class="row-cell v-m">
+                                                        <div class="modal-dialog modal-sm">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title">删除货品</h5>
+                                                                </div>
+                                                                <div class="modal-body text-center p-lg">
+                                                                    <p>您确定要删除该货品吗?</p>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn dark-white p-x-md" data-dismiss="modal">取消</button>
+                                                                    <a class="btn danger p-x-md" th:href="@{/deleteGoods(g_id=${good.g_id})}">确定</a>
+                                                                </div>
+                                                            </div><!-- /.modal-content -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- small modal -->
                                         </td>
                                     </tr>
                                 </tbody>
