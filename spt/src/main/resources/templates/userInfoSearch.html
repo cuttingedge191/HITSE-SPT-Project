@@ -238,11 +238,11 @@
           </div>
           <div class="dker p-a text-right">
             搜索：<input id="filter" type="text" class="form-control input-sm w-auto inline m-r" />
-            <button class="btn btn-icon white" id="addUser"
-                    onclick="window.location.href='/addUser'">
-              <i class="fa fa-plus"></i>
-            </button>
-            <label for="addUser">注册新用户</label>
+<!--            <button class="btn btn-icon white" id="addUser"-->
+<!--                    onclick="window.location.href='/addUser'">-->
+<!--              <i class="fa fa-plus"></i>-->
+<!--            </button>-->
+<!--            <label for="addUser">注册新用户</label>-->
           </div>
           <div>
             <table class="table m-b-none" ui-jp="footable" data-filter="#filter" data-page-size="7">
@@ -266,8 +266,31 @@
                   <td>
                       <a class="btn btn-sm btn-primary"
                          th:href="@{/upUser(u_id=${user.u_id})}">详情/编辑</a>
-                      <a class="btn btn-sm btn-danger deleteBtn"
-                         th:href="@{/deUser(u_id=${user.u_id})}">删除</a>
+                      <a class="btn btn-sm btn-danger deleteBtn" data-toggle="modal" data-target="#m-sm">删除</a>
+<!--                      <a class="btn btn-sm btn-danger deleteBtn"-->
+<!--                         th:href="@{/deUser(u_id=${user.u_id})}">删除</a>-->
+                      <!-- small modal -->
+                      <div id="m-sm" class="modal" data-backdrop="true">
+                          <div class="row-col h-v">
+                              <div class="row-cell v-m">
+                                  <div class="modal-dialog modal-sm">
+                                      <div class="modal-content">
+                                          <div class="modal-header">
+                                              <h5 class="modal-title">删除用户</h5>
+                                          </div>
+                                          <div class="modal-body text-center p-lg">
+                                              <p>您确定要删除该用户吗?</p>
+                                          </div>
+                                          <div class="modal-footer">
+                                              <button type="button" class="btn dark-white p-x-md" data-dismiss="modal">取消</button>
+                                              <a class="btn danger p-x-md" th:href="@{/deUser(u_id=${user.u_id})}">确定</a>
+                                          </div>
+                                      </div><!-- /.modal-content -->
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <!-- small modal -->
                   </td>
               </tr>
               </tbody>
