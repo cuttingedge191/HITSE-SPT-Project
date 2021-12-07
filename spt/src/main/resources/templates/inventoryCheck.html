@@ -275,7 +275,8 @@
                                             <td th:text="${inventory.quality}"></td>
                                             <td th:text="${inventory.quantity}"></td>
                                             <td><input type="text"  th:placeholder="${inventory.quantity}" th:value="${inventory.quantity}"
-                                                       th:id="${inventory.i_id} + '_quantity'" class="form-control w-sm inline"></td>
+                                                       th:id="${inventory.i_id} + '_quantity'" class="form-control w-sm inline"
+                                            oninput="if(value<0)value=0"></td>
                                         </tr>
                                     </tbody>
                                 </form>

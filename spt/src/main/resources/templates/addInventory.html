@@ -256,7 +256,7 @@
                                 <div class="form-group">
                                     <label for="quantity">货品数量</label>
                                     <input type="text" class="form-control" name="quantity" id="quantity"
-                                        placeholder="请输入货品数量" required>
+                                        placeholder="请输入货品数量" oninput="if(value<0)value=0" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="quality">货品质量等级</label>

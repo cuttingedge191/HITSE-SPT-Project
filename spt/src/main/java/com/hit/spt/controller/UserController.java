@@ -38,6 +38,7 @@ public class UserController {
         if (logInUpService.checkPassword(username, password)) {
             HttpSession session = request.getSession();
             User user = UserService.queryUserByUsername(username);
+            session.setAttribute("u_id", user.getU_id());
             session.setAttribute("name", user.getName());
             session.setAttribute("level", user.getLevel());
             session.setAttribute("position", user.getPosition());

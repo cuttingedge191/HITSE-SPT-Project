@@ -5,6 +5,7 @@ import com.fasterxml.jackson.datatype.jsr310.ser.YearSerializer;
 import com.hit.spt.mapper.GoodsInfoMapper;
 import com.hit.spt.pojo.GoodsInfo;
 import com.hit.spt.pojo.Inventory;
+import com.hit.spt.pojo.InventoryTransaction;
 import com.hit.spt.service.GoodsService;
 import com.hit.spt.service.InventoryService;
 import org.apache.coyote.Request;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +29,8 @@ public class InventoryController {
     @Autowired
     GoodsService goodsService;
 
+    @Autowired
+    HttpServletRequest httpServletRequest;
     /**
      * 添加库存实体类
      *
@@ -67,13 +71,7 @@ public class InventoryController {
     public String addInventoryNow(Inventory inventory, Model model, HttpServletRequest request){
         String uri = request.getRequestURI();
         if(uri.charAt(1) == 'a') {
-            List<Inventory> inventory1 = inventoryService.selectInventoryByName(inventory.getName());
-            if((!inventory1.isEmpty()) && inventory1.get(0).getIl_id().equals(inventory.getIl_id())){
-                inventory.setIl_id(inventory1.get(0).getIl_id());
-                inventoryService.mergeInventory(inventory);
-            }else {
-                inventoryService.insertInventoryWithGoodName(inventory);
-            }
+            inventoryService.mergeInsertInventory(inventory);
         }else if(uri.charAt(1) == 'u'){
             if (inventory != null) {
                 Inventory inventory_old = inventoryService.queryInventoryById(inventory.getI_id());
@@ -107,7 +105,6 @@ public class InventoryController {
                     inventory.set(0, inventory.get(0) + ',' + inventory.get(i));
                 }
             }
-            inventory = inventory.subList(0, 1);
             for (String inv : inventory) {
                 JSONObject jbo = JSONObject.parseObject(inv);
                 Inventory inventory1 = new Inventory();
@@ -125,25 +122,19 @@ public class InventoryController {
 
     @RequestMapping("inventoryTrans")
     public String inventoryTrans(Model model) {
-        List<Inventory> inventories = inventoryService.queryInventoryWithGnameList();
-        model.addAttribute("inventories", inventories);
-        List<Inventory> inventory_lists = inventoryService.queryWarehouseList();
-        model.addAttribute("inventory_lists", inventory_lists);
+        inventoryService.refreshInventoryTransView(model, httpServletRequest);
         return "inventoryTrans";
     }
 
-    @RequestMapping("addOneTransformItem")
-    public String addOneTransformItem(Integer swarehouse, Integer dwarehouse, Integer quantity, Integer item_name){
-        Inventory source_inventory = inventoryService.queryInventoryByIdAndIlID(item_name, swarehouse);
-        Inventory destination_inventory = inventoryService.queryInventoryByIdAndIlID(item_name, swarehouse);
-        Integer source_quantity = 0;
-        Integer dest_quantity = 0;
-        if(!swarehouse.equals(dwarehouse)){
-            source_inventory.setQuantity(source_inventory.getQuantity() - quantity);
-            destination_inventory.setQuantity(destination_inventory.getQuantity() - quantity);
-        }
-        source_quantity = source_inventory.getQuantity();
-        dest_quantity = destination_inventory.getQuantity();
+    @RequestMapping("addTransTransection")
+    public String addTransTransection(Model model){
         return null;
+    }
+
+    @RequestMapping("addOneTransformItem")
+    public String addOneTransformItem(InventoryTransaction transaction, Model model){
+        inventoryService.insertInventoryTransaction(transaction);
+        inventoryService.refreshInventoryTransView(model, httpServletRequest);
+        return "inventoryTrans";
     }
 }

@@ -247,7 +247,8 @@
                                 <div class="form-group">
                                     <label for="quantity" th:text="'货品数量: ' + ${inventory.quantity}" ></label>
                                     <input type="text" class="form-control" name="quantity" id="quantity"
-                                        th:placeholder="'出库数量 <' + ${inventory.quantity}" required>
+                                        th:placeholder="'出库数量 <' + ${inventory.quantity}" required
+                                    th:oninput="'if(parseInt(value)>' + ${inventory.quantity} + ')value=' + ${inventory.quantity} + ';else if(parseInt(value)<0)value=0'">
                                 </div>
                                 <div class="form-group">
                                     <label for="quality">货品质量等级</label>

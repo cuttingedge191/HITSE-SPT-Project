@@ -30,7 +30,7 @@
     <link rel="stylesheet" th:href="@{/assets/styles/font.css}" type="text/css"/>
 </head>
 
-<body>
+<body onload="on_body_load()">
 <div class="app" id="app">
 
     <!-- ############ LAYOUT START-->
@@ -243,60 +243,106 @@
                                                 <small>选择源仓库和目的仓库</small>
                                             </div>
                                             <div class="box-divider m-0"></div>
-                                            <form role="form" method="post" th:action="@{/addOneOrderItem}">
+                                            <form role="form" method="post" th:action="@{/addTransTransection}">
                                                 <div class="box-body">
-                                                    <!--TODO 删除选择客户类型，只能是批发-->
-                                                    <p th:value="${o_id}"></p>
                                                     <div class="form-group row">
-                                                        <label for="order_type"
+                                                        <label for="select1"
                                                                class="col-md-4 form-control-label">源仓库</label>
-                                                        <select class="form-control col-md-6" ui-jp="select2"
-                                                                ui-options="{theme: 'bootstrap'}" name="type">
+                                                        <select class="form-control col-md-6" ui-jp="select1" id="select1"
+                                                                ui-options="{theme: 'bootstrap'}" name="il_id_s" onchange="select1_onchange()">
                                                             <!--TODO 绑定仓库名称   每次选择源仓库，之前添加的货品调度情况全部清空-->
-                                                            <option value="trade">仓库1</option>
-                                                            <option value="trade">仓库2</option>
-                                                            <option value="trade">仓库3</option>
+                                                            <option th:each="inventory_list:${inventory_lists}"
+                                                                    th:class="'select1 inventory_' + ${inventory_list.il_id}" th:value="${inventory_list.il_id}" th:text="${inventory_list.inventory_name}"></option>
                                                         </select>
                                                     </div>
                                                     <div class="form-group row">
-                                                        <label for="customer"
+                                                        <label for="select2"
                                                                class="col-md-4 form-control-label">目的仓库</label>
-                                                        <select class="form-control col-md-6" ui-jp="select2"
-                                                                ui-options="{theme: 'bootstrap'}" name="cname"
-                                                                id="customer">
+                                                        <select class="form-control col-md-6" ui-jp="select2" id="select2"
+                                                                ui-options="{theme: 'bootstrap'}" name="il_id_d">
                                                             <!--                                                            TODO 源仓库选了目的仓库就不再选了-->
-                                                            <option value="trade">仓库1</option>
-                                                            <option value="trade">仓库2</option>
-                                                            <option value="trade">仓库3</option>
+                                                            <option th:each="inventory_list:${inventory_lists}" th:value="${inventory_list.il_id}"
+                                                                    th:class="'select2 inventory_' + ${inventory_list.il_id}" th:text="${inventory_list.inventory_name}"></option>
                                                         </select>
-                                                        <input type="hidden" th:value="${o_id}" name="o_id">
                                                     </div>
                                                 </div>
 
                                                 <div class="box-divider m-0"></div>
                                                 <div class="box-body">
                                                     <div class="form-group row">
-                                                        <label for="item_name"
+                                                        <label for="inventory_items"
                                                                class="col-md-4 form-control-label">仓库货品名称</label>
-                                                        <select class="form-control col-md-6" ui-jp="select2"
-                                                                ui-options="{theme: 'bootstrap'}" name="item_name"
-                                                                id="item_name">
+                                                        <select class="form-control col-md-6" ui-jp="inventory_items"
+                                                                ui-options="{theme: 'bootstrap'}" name="i_id_s"
+                                                                id="inventory_items" onchange="inventory_item_changed()">
                                                             <optgroup label="库存货品名称">
                                                                 <!--TODO 修改成货品列表-->
-                                                                <div th:each="goodInfo:${goodsInfoList}">
-                                                                    <option th:text="${goodInfo.name}"></option>
-                                                                </div>
+                                                                <option th:each="inventory:${inventories}"
+                                                                         th:class="'inventory_item inventory_' + ${inventory.il_id}" th:text="${inventory.name}" th:value="${inventory.i_id}"></option>
                                                             </optgroup>
                                                         </select>
                                                     </div>
+                                                    <script th:inline="javascript">
+                                                        function reveal_all(index,obj) {
+                                                            $(obj).show()
+                                                        }
+                                                        function select1_onchange(){
+                                                            // 异常第二个下拉栏中与第一个下拉栏相同的仓库
+                                                            var il_id1 = $(":selected.select1").val()
+                                                            $(".select2").each(reveal_all)
+                                                            $(".select2.inventory_" + il_id1).hide()
+                                                            var select2 = $(".select2")
+
+                                                            // 只能选择与第一个仓库不同的仓库，作为缺省值
+                                                            var i = 0
+                                                            for(;select2.length>i && $(select2[i]).val() === il_id1; i++){}
+                                                            $("#select2").val($(select2[i]).val())
+
+                                                            // 只能选择第一个下拉栏能够调度的仓库进行调度
+                                                            var inventory_items = $(".inventory_item")
+
+                                                            for(var i = 0; i < inventory_items.length;i ++){
+                                                                if($(inventory_items[i]).hasClass("inventory_" + il_id1)){
+                                                                    if(!$(".inventory_items:selected").hasClass("inventory_" + il_id1)){
+                                                                        $("#inventory_items").val($(inventory_items[i]).val())
+                                                                        inventory_item_changed()
+                                                                    }
+                                                                    $(inventory_items[i]).show()
+                                                                }else {
+                                                                    $(inventory_items[i]).hide()
+                                                                }
+                                                            }
+                                                        }
+                                                        function inventory_item_changed(){
+                                                            // 得到选中的inventory_item对象
+                                                            var inventory_items = [[${inventories}]]
+                                                            var i_id = $("#inventory_items").val()
+                                                            var i = 0
+                                                            for(;i < inventory_items.length &&
+                                                            inventory_items[i].i_id !== parseInt(i_id);i++){}
+                                                            var quantity = inventory_items[i].quantity
+
+                                                            // 修改输入框
+                                                            var quantity_input = $("#quantity")
+                                                            quantity_input.val(quantity)
+                                                            quantity_input.attr("placeholder", quantity)
+                                                        }
+                                                        function on_body_load(){
+                                                            inventory_item_changed()
+                                                            select1_onchange()
+                                                        }
+                                                        $(on_body_load)
+                                                    </script>
                                                     <div class="form-group row">
-                                                        <label for="item_quantity"
+                                                        <label for="quantity"
                                                                class="col-md-4 form-control-label">货品数量</label>
                                                         <!--TODO 默认填入库存内最大数量-->
                                                         <input class="form-control col-md-6" type="text"
-                                                               name="quantity" id="item_quantity" placeholder="最大数量"
+                                                               name="quantity" id="quantity"
+                                                               oninput="if(parseInt(value)>placeholder)value=placeholder;else if(value<0)value=0; "
                                                                required>
                                                     </div>
+                                                    <input hidden name="u_id" th:value="${session.u_id}">
                                                 </div>
                                                 <div class="box-divider m-0"></div>
                                                 <div class="dker p-a text-right">

@@ -15,9 +15,9 @@
         where goods_info.name = #{name}
     </insert>
     <select id="queryInventoryById" parameterType="java.lang.Integer" resultType="Inventory">
-        select inventory.i_id, inventory.g_id, inventory.quantity, inventory.quality, goods_info.name
-        from inventory, goods_info
-        where inventory.i_id = #{i_id} and goods_info.g_id = inventory.g_id
+        select inventory.i_id, inventory.g_id, inventory.quantity, inventory.quality, goods_info.name, inventory_list.inventory_name
+        from inventory, goods_info, inventory_list
+        where inventory.i_id = #{i_id} and goods_info.g_id = inventory.g_id and inventory_list.il_id = inventory.il_id
     </select>
     <select id="selectInventoryByName" parameterType="java.lang.String" resultType="Inventory">
         select inventory.i_id, inventory.g_id, inventory.quantity, inventory.quality, inventory.il_id
@@ -38,7 +38,7 @@
     <update id="mergeInventory" parameterType="Inventory">
         update inventory, goods_info
         set inventory.quantity = #{quantity} + inventory.quantity, inventory.quality = #{quality}
-        where inventory.g_id = goods_info.g_id and goods_info.name = #{name}
+        where inventory.g_id = goods_info.g_id and goods_info.name = #{name} and inventory.il_id = #{il_id}
     </update>
     <insert id="insertInventory" parameterType="Inventory">
         insert into inventory(g_id, quantity, quality, il_id)
@@ -67,5 +67,10 @@
                goods_info.retail_price, goods_info.cost from goods_info, inventory, inventory_list
         where inventory.g_id = goods_info.g_id and inventory_list.il_id = inventory.il_id and
               inventory.g_id = #{g_id} and inventory.il_id = #{il_id}
+    </select>
+    <select id="queryWarehouseByIlID" resultType="Inventory" parameterType="java.lang.Integer">
+        select inventory_list.inventory_name, inventory_list.il_id
+        from inventory_list
+        where inventory_list.il_id = #{il_id}
     </select>
 </mapper>

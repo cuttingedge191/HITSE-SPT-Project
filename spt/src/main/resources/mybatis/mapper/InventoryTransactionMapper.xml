@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hit.spt.mapper.InventoryTransactionMapper">
+    <select id="getInventoryTransaction" resultType="InventoryTransaction" parameterType="java.lang.Integer">
+        select inventory_transaction.iti_id, inventory_transaction.u_id,
+               inventory_transaction.i_id_s, inventory_transaction.il_id_d,
+               inventory_transaction.quantity
+        from inventory_transaction
+        where inventory_transaction.u_id = #{u_id}
+    </select>
+    <insert id="insertInventoryTransaction" parameterType="InventoryTransaction">
+        insert inventory_transaction(u_id, i_id_s, il_id_d, quantity)
+        select #{u_id}, #{i_id_s}, #{il_id_d}, #{quantity}
+    </insert>
+</mapper>
