@@ -14,27 +14,29 @@ public interface InventoryService {
 
     List<Inventory> queryInventoryWithGnameList();
 
-    public Integer updateInventory(Inventory inventory);
+    Integer updateInventory(Inventory inventory);
 
-    public Inventory queryInventoryById(Integer i_id);
+    Inventory queryInventoryByIId(Integer i_id);
 
-    public Integer insertInventoryWithGoodName(Inventory inventory);
+    Integer queryQuantityByGid(Long g_id);
 
-    public List<Inventory> selectInventoryByName(String name);
+    Integer insertInventoryWithGoodName(Inventory inventory);
 
-    public Integer mergeInventory(Inventory inventory);
+    List<Inventory> selectInventoryByName(String name);
 
-    public Integer deleteInventoryByIID(Integer i_id);
+    Integer mergeInventory(Inventory inventory);
 
-    public List<Inventory> queryWarehouseList();
+    Integer deleteInventoryByIID(Integer i_id);
+
+    List<Inventory> queryWarehouseList();
 
     Inventory queryInventoryByIdAndIlID(Integer g_id, Integer il_id);
 
-    public Integer mergeInsertInventory(Inventory inventory);
+    Integer mergeInsertInventory(Inventory inventory);
 
-    public List<InventoryTransaction> getInventoryTransactionWithUid(Integer u_id);
+    List<InventoryTransaction> getInventoryTransactionWithUid(Integer u_id);
 
-    public Integer insertInventoryTransaction(InventoryTransaction inventoryTransaction);
+    Integer insertInventoryTransaction(InventoryTransaction inventoryTransaction);
 
-    public void refreshInventoryTransView(Model model, HttpServletRequest httpServletRequest);
+    void refreshInventoryTransView(Model model, HttpServletRequest httpServletRequest);
 }

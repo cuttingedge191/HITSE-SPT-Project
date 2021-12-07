@@ -261,11 +261,6 @@
                     </a>
 <!--                    <a th:href="@{/inventoryCheck}" class="btn white" for="inventoryCheck">库存盘点</a>-->
                 </div>
-<!--              搜索: <input id="filter" type="text" class="form-control input-sm w-auto inline m-r" />-->
-<!--              <a th:href="@{/addInventory}" class="btn btn-icon white" id="inventoryCheck">-->
-<!--                <i class="fa fa-plus"></i>-->
-<!--              </a>-->
-<!--              <a th:href="@{/inventoryCheck}" class="btn white" for="inventoryCheck">库存盘点</a>-->
             </div>
             <div>
               <table class="table m-b-none" ui-jp="footable" data-filter="#filter" data-page-size="5">
@@ -285,7 +280,7 @@
                     <td th:text="${inventory.i_id}"></td>
                       <td th:text="${inventory.inventory_name}"></td>
                     <td th:text="${inventory.name}"></td>
-                    <td th:text="${inventory.retail_price}"></td>
+                    <td th:text="${inventory.cost}"></td>
                     <td th:text="${inventory.quantity}"></td>
                     <td th:text="${inventory.quality}"></td>
                     <td class="m-b btn-groups">

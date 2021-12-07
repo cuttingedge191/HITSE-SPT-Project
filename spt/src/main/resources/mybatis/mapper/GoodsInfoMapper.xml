@@ -16,6 +16,11 @@
             description  = #{description}
         where g_id = #{g_id}
     </update>
+    <update id="updateGoodsCost" parameterType="GoodsInfo">
+        update goods_info
+        set   cost = #{cost}
+        where g_id = #{g_id}
+    </update>
     <select id="queryGoodsInfoByName" resultType="GoodsInfo">
         select g_id,
                name,

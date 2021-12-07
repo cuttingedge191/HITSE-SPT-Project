@@ -53,8 +53,19 @@ public class InventoryServiceImpl implements InventoryService {
     }
 
     @Override
-    public Inventory queryInventoryById(Integer i_id){
-        return inventoryMapper.queryInventoryById(i_id);
+    public Inventory queryInventoryByIId(Integer i_id){
+        return inventoryMapper.queryInventoryByIId(i_id);
+    }
+
+    @Override
+    public Integer queryQuantityByGid(Long g_id) {
+        List<Integer> quantities = inventoryMapper.queryQuantityByGid(g_id);
+        int sum = 0;
+        if (quantities == null)
+            return 0;
+        for (Integer i : quantities)
+            sum += i;
+        return sum;
     }
 
     @Override
@@ -103,7 +114,7 @@ public class InventoryServiceImpl implements InventoryService {
         int transactions_len = transactions.size();
         for(int i = 0;i < transactions_len;i ++){
             InventoryTransaction inventoryTransaction = transactions.get(i);
-            Inventory s_inventory = inventoryMapper.queryInventoryById(inventoryTransaction.getI_id_s());
+            Inventory s_inventory = inventoryMapper.queryInventoryByIId(inventoryTransaction.getI_id_s());
             String goods_name = s_inventory.getName();
             inventoryTransaction.setS_quantity(s_inventory.getQuantity());
             String s_inventory_name = s_inventory.getInventory_name();
