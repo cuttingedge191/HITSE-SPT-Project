@@ -14,7 +14,7 @@
         from goods_info
         where goods_info.name = #{name}
     </insert>
-    <select id="queryInventoryById" parameterType="java.lang.Integer" resultType="Inventory">
+    <select id="queryInventoryByIId" parameterType="java.lang.Integer" resultType="Inventory">
         select inventory.i_id, inventory.g_id, inventory.quantity, inventory.quality, goods_info.name, inventory_list.inventory_name
         from inventory, goods_info, inventory_list
         where inventory.i_id = #{i_id} and goods_info.g_id = inventory.g_id and inventory_list.il_id = inventory.il_id
@@ -49,10 +49,10 @@
         from inventory
         where g_id = #{g_id}
     </delete>
-    <select id="queryInventoryByGid" parameterType="java.lang.Long" resultType="Inventory">
-        select i_id, g_id, quantity, quality
+    <select id="queryQuantityByGid" parameterType="java.lang.Long" resultType="java.lang.Integer">
+        select inventory.quantity
         from inventory
-        where g_id = #{g_id}
+        where inventory.g_id = #{g_id}
     </select>
     <select id="queryInventoryList" resultType="Inventory">
         select i_id, g_id, quantity, quality

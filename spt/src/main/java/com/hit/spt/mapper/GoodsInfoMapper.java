@@ -15,6 +15,8 @@ public interface GoodsInfoMapper {
 
     Integer updateGoodsInfo(GoodsInfo goodsInfo);
 
+    Integer updateGoodsCost(GoodsInfo goodsInfo);
+
     GoodsInfo queryGoodsInfoByName(String name);
 
     GoodsInfo queryGoodsInfoByGid(Long g_id);

@@ -30,6 +30,11 @@ public class GoodsServiceImpl implements GoodsService{
     }
 
     @Override
+    public Integer updateCost(GoodsInfo goodsInfo) {
+        return goodsInfoMapper.updateGoodsCost(goodsInfo);
+    }
+
+    @Override
     public GoodsInfo queryGoodsInfoByName(String name){
         return goodsInfoMapper.queryGoodsInfoByName(name);
     }
