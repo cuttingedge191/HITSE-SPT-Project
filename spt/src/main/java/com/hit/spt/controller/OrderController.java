@@ -67,34 +67,6 @@ public class OrderController {
         return "pos";
     }
 
-    /**
-     * 删除订单中的一个商品
-     *
-     * @param oi_id 订单商品编号
-     * @param o_id  指向的订单编号
-     * @param cname 传递客户cname
-     * @param model model传递信息
-     * @return 转发到addOrder
-     */
-    @RequestMapping({"deleteOneOrderItem", "deleteOnePosOrderItem"})
-    public String deleteOneOrderItem(Integer oi_id, Integer o_id, String cname, String type, Model model, HttpServletRequest request) {
-        String view = "addOrder";
-        // 生成暂存物品列表
-        orderService.deleteOneOrderItemByOiid(oi_id);
-
-        if (request.getRequestURI().equals("/deleteOnePosOrderItem")) {
-            view = "pos";
-            model.addAttribute("totalPrice", orderService.calcTotalPriceByOid(o_id));
-        }
-
-        List<OrderItem> orderItemWithNameList = orderService.queryOrderItemWithNameListByOid(o_id);
-        model.addAttribute("orderItemWithNameList", orderItemWithNameList);
-        model.addAttribute("o_id", o_id);
-        model.addAttribute("cname", cname);
-        orderService.getGoodsCustomerInfo(model, o_id, type);
-        return view;
-    }
-
 
     /**
      * 提交订单的动作，可能是取消或者保存
@@ -136,5 +108,34 @@ public class OrderController {
         model.addAttribute("orders", ordersList);
         return "ordersView";
     }
+
+    /**
+     * 删除订单中的一个商品
+     *
+     * @param oi_id 订单商品编号
+     * @param o_id  指向的订单编号
+     * @param cname 传递客户cname
+     * @param model model传递信息
+     * @return 转发到addOrder
+     */
+    @RequestMapping({"deleteOneOrderItem", "deleteOnePosOrderItem"})
+    public String deleteOneOrderItem(Integer oi_id, Integer o_id, String cname, String type, Model model, HttpServletRequest request) {
+        String view = "addOrder";
+        // 生成暂存物品列表
+        orderService.deleteOneOrderItemByOiid(oi_id);
+
+        if (request.getRequestURI().equals("/deleteOnePosOrderItem")) {
+            view = "pos";
+            model.addAttribute("totalPrice", orderService.calcTotalPriceByOid(o_id));
+        }
+
+        List<OrderItem> orderItemWithNameList = orderService.queryOrderItemWithNameListByOid(o_id);
+        model.addAttribute("orderItemWithNameList", orderItemWithNameList);
+        model.addAttribute("o_id", o_id);
+        model.addAttribute("cname", cname);
+        orderService.getGoodsCustomerInfo(model, o_id, type);
+        return view;
+    }
+
 }
 
