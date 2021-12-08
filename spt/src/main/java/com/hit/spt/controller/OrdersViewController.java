@@ -1,6 +1,7 @@
 package com.hit.spt.controller;
 
 import com.hit.spt.mapper.OrdersMapper;
+import com.hit.spt.pojo.OrderItem;
 import com.hit.spt.pojo.Orders;
 import com.hit.spt.service.OrderService;
 import com.hit.spt.service.OrdersViewService;
@@ -38,14 +39,20 @@ public class OrdersViewController {
     }
 
     @RequestMapping("commitUpdateOrder")
-    public String commitUpDateOrder() {
-        return "redirect:ordersView";
+    public String commitUpDateOrder(Integer o_id) {
+        if(o_id != null){
+            List<OrderItem> res = orderService.queryOrderItemWithNameListByOid(o_id);
+            if(res.size() <= 0)
+                ordersMapper.deleteOrdersByOid(o_id);
+        }
+        return auditOrder(o_id, "unchecked");
     }
 
     @RequestMapping("deleteOrder")
     public String deleteOrder(Integer o_id) {
         orderService.deleteAllOrderItemByOid(o_id);
-        return null;
+        ordersMapper.deleteOrdersByOid(o_id);
+        return "redirect:ordersView";
     }
 
 
