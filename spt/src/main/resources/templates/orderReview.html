@@ -364,34 +364,44 @@
 
                                                     <a class="btn primary m-b"
                                                        th:href="@{/autoDelivery(status='checked',o_id=${theOrder.o_id})}"
-                                                       th:if="${theOrder.status} == 'unchecked'">通过</a>
+                                                       th:if="${theOrder.status} == 'unchecked'
+                                                       and ${#strings.substring(session.permissions, 7, 8)}=='1'">通过</a>
 
                                                     <a class="btn danger m-b"
                                                        th:href="@{/auditOrder(status='failed',o_id=${theOrder.o_id})}"
-                                                       th:if="${theOrder.status} == 'unchecked'">拒绝</a>
+                                                       th:if="${theOrder.status} == 'unchecked'
+                                                       and ${#strings.substring(session.permissions, 7, 8)}=='1'">拒绝</a>
 
                                                     <a class="btn primary m-b"
                                                        th:href="@{/auditOrder(status='refund',o_id=${theOrder.o_id})}"
                                                        th:if="${theOrder.status} != 'refund' and ${theOrder.status} != 'closed'
-                                                       and (${theOrder.status} == 'checked' or ${theOrder.status} == 'paid')">申请退款/货</a>
+                                                       and (${theOrder.status} == 'checked' or ${theOrder.status} == 'paid')
+                                                       and ${#strings.substring(session.permissions, 8, 9)}=='1'">申请退款/货</a>
 
                                                     <a class="btn primary m-b"
                                                        th:href="@{/autoDelivery(status='paid',o_id=${theOrder.o_id})}"
-                                                       th:if="${theOrder.status} == 'checked' ">确认收款</a>
+                                                       th:if="${theOrder.status} == 'checked'
+                                                       and ${#strings.substring(session.permissions, 8, 9)}=='1'">确认收款</a>
 
                                                     <a class="btn danger m-b"
                                                        th:href="@{/auditOrder(status='rejectRefund',o_id=${theOrder.o_id})}"
-                                                       th:if="${theOrder.status} == 'refund' and ${theOrder.status} != 'closed'">拒绝退款/货</a>
+                                                       th:if="${theOrder.status} == 'refund' and ${theOrder.status} != 'closed'
+                                                       and ${#strings.substring(session.permissions, 7, 8)}=='1'">拒绝退款/货</a>
 
                                                     <a class="btn primary m-b"
                                                        th:href="@{/refundOrder(status='closed',o_id=${theOrder.o_id})}"
-                                                       th:if="${theOrder.status} == 'refund' and ${theOrder.status} != 'closed'">确认退款/货</a>
+                                                       th:if="${theOrder.status} == 'refund' and ${theOrder.status} != 'closed'
+                                                       and ${#strings.substring(session.permissions, 7, 8)}=='1'">确认退款/货</a>
 
                                                     <a class="btn info m-b"
-                                                       th:href="@{/auditOrder(status='closed',o_id=${theOrder.o_id})}" th:if="${theOrder.status}=='paid'">关闭订单</a>
+                                                       th:href="@{/auditOrder(status='closed',o_id=${theOrder.o_id})}"
+                                                       th:if="${theOrder.status}=='paid'
+                                                       and ${#strings.substring(session.permissions, 7, 8)}=='1'">关闭订单</a>
 
                                                     <a class="btn warning m-b"
-                                                       th:href="@{/deleteOrder(o_id=${theOrder.o_id})}" th:if="${theOrder.status}=='closed' or ${theOrder.status}=='unchecked'">删除订单</a>
+                                                       th:href="@{/deleteOrder(o_id=${theOrder.o_id})}"
+                                                       th:if="(${theOrder.status}=='closed' or ${theOrder.status}=='unchecked')
+                                                       and ${#strings.substring(session.permissions, 7, 8)}=='1'">删除订单</a>
                                             </form>
                                             <!-- fields -->
                                             <!-- / fields -->

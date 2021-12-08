@@ -41,7 +41,7 @@ public class SessionInterceptor implements HandlerInterceptor {
                 {"inventoryCheck","inventoryView",},
                 {"inventoryTrans","inventoryView",},
                 {"addOrder","ordersView","orderReview",},
-                {"pos","ordersView","orderReview","updateOrder",},
+                {"pos","ordersView","orderReview",},
                 {,},
                 {,},
                 {"clientInfoSearch","addCustomer","upcos",},
