@@ -2,10 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="zh">
 
 <head>
-    <meta charset="utf-8"/>
+    <meta charset="utf-8" />
     <title>Flatkit - HTML Version | Bootstrap 4 Web App Kit with AngularJS</title>
-    <meta name="description" content="Admin, Dashboard, Bootstrap, Bootstrap 4, Angular, AngularJS"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui"/>
+    <meta name="description" content="Admin, Dashboard, Bootstrap, Bootstrap 4, Angular, AngularJS" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <!-- for ios 7 style, multi-resolution icon of 152x152 -->
@@ -18,461 +18,469 @@
     <link rel="shortcut icon" sizes="196x196" th:href="@{/assets/images/logo.png}">
 
     <!-- style -->
-    <link rel="stylesheet" th:href="@{/assets/animate/animate.min.css}" type="text/css"/>
-    <link rel="stylesheet" th:href="@{/assets/glyphicons/glyphicons.css}" type="text/css"/>
-    <link rel="stylesheet" th:href="@{/assets/font-awesome/css/font-awesome.min.css}" type="text/css"/>
-    <link rel="stylesheet" th:href="@{/assets/material-design-icons/material-design-icons.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/assets/animate/animate.min.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/assets/glyphicons/glyphicons.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/assets/font-awesome/css/font-awesome.min.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/assets/material-design-icons/material-design-icons.css}" type="text/css" />
 
-    <link rel="stylesheet" th:href="@{/assets/bootstrap/dist/css/bootstrap.min.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/assets/bootstrap/dist/css/bootstrap.min.css}" type="text/css" />
     <!-- build:css @{assets/styles/app.min.css} -->
-    <link rel="stylesheet" th:href="@{/assets/styles/app.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/assets/styles/app.css}" type="text/css" />
     <!-- endbuild -->
-    <link rel="stylesheet" th:href="@{/assets/styles/font.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/assets/styles/font.css}" type="text/css" />
 </head>
 
 <body>
-<div class="app" id="app">
+    <div class="app" id="app">
 
-    <!-- ############ LAYOUT START-->
+        <!-- ############ LAYOUT START-->
 
-    <!-- aside -->
-    <div id="aside" class="app-aside modal nav-dropdown">
-        <!-- fluid app aside -->
-        <div class="left navside dark dk" data-layout="column">
-            <div class="navbar no-radius">
-                <!-- brand -->
-                <a class="navbar-brand">
-                    <!-- 原来的图标
+        <!-- aside -->
+        <div id="aside" class="app-aside modal nav-dropdown">
+            <!-- fluid app aside -->
+            <div class="left navside dark dk" data-layout="column">
+                <div class="navbar no-radius">
+                    <!-- brand -->
+                    <a class="navbar-brand">
+                        <!-- 原来的图标
                 <div ui-include="'@{/assets/images/logo.svg'"></div>
                 <img th:src="@{/assets/images/logo.png}" alt="." class="hide">
             -->
-                    <span class="hidden-folded inline">通用批发零售</span><br>
-                    <span class="hidden-folded inline">业务管理系统</span>
-                </a>
-                <!-- /brand -->
-            </div>
-            <div class="hide-scroll" data-flex>
-                <nav class="scroll nav-light">
+                        <span class="hidden-folded inline">通用批发零售</span><br>
+                        <span class="hidden-folded inline">业务管理系统</span>
+                    </a>
+                    <!-- /brand -->
+                </div>
+                <div class="hide-scroll" data-flex>
+                    <nav class="scroll nav-light">
 
-                    <ul class="nav" ui-nav>
-                        <li class="nav-header hidden-folded">
-                            <small class="text-muted">主要功能</small>
-                        </li>
+                        <ul class="nav" ui-nav>
+                            <li class="nav-header hidden-folded">
+                                <small class="text-muted">主要功能</small>
+                            </li>
 
-                        <li>
-                            <a th:href="@{/index}">
+                            <li>
+                                <a th:href="@{/index}">
                                     <span class="nav-icon">
                                         <i class="material-icons">&#xe3fc;
                                             <span ui-include="'@{/assets/images/i_0.svg'"></span>
                                         </i>
                                     </span>
-                                <span class="nav-text">概览界面</span>
-                            </a>
-                        </li>
+                                    <span class="nav-text">概览界面</span>
+                                </a>
+                            </li>
 
-                        <li th:if="${#strings.substring(session.permissions, 1, 2)=='1'}">
-                            <a th:href="@{/goodsView}">
+                            <li th:if="${#strings.substring(session.permissions, 1, 2)=='1'}">
+                                <a th:href="@{/goodsView}">
                                     <span class="nav-icon">
                                         <i class="material-icons">&#xe5c3;
                                             <span ui-include="'@{/assets/images/i_1.svg'"></span>
                                         </i>
                                     </span>
-                                <span class="nav-text">货品管理</span>
-                            </a>
-                        </li>
+                                    <span class="nav-text">货品管理</span>
+                                </a>
+                            </li>
 
-                        <li th:if="${#strings.substring(session.permissions, 2, 5)!='000'}">
-                            <a>
+                            <li th:if="${#strings.substring(session.permissions, 2, 5)!='000'}">
+                                <a>
                                     <span class="nav-caret">
                                         <i class="fa fa-caret-down"></i>
                                     </span>
-                                <span class="nav-icon">
+                                    <span class="nav-icon">
                                         <i class="material-icons">&#xe8f0;
                                             <span ui-include="'@{/assets/images/i_2.svg'"></span>
                                         </i>
                                     </span>
-                                <span class="nav-text">库存管理</span>
-                            </a>
-                            <ul class="nav-sub">
-                                <li>
-                                    <a th:href="@{/inventoryView}">
-                                        <span class="nav-text">库存查询</span>
-                                    </a>
-                                </li>
-                                <li th:if="${#strings.substring(session.permissions, 3, 4)=='1'}">
-                                    <a th:href="@{/inventoryCheck}">
-                                        <span class="nav-text">库存盘点</span>
-                                    </a>
-                                </li>
-                                <li th:if="${#strings.substring(session.permissions, 4, 5)=='1'}">
-                                    <a th:href="@{/inventoryTrans}">
-                                        <span class="nav-text">库存调度</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
+                                    <span class="nav-text">库存管理</span>
+                                </a>
+                                <ul class="nav-sub">
+                                    <li>
+                                        <a th:href="@{/inventoryView}">
+                                            <span class="nav-text">库存查询</span>
+                                        </a>
+                                    </li>
+                                    <li th:if="${#strings.substring(session.permissions, 3, 4)=='1'}">
+                                        <a th:href="@{/inventoryCheck}">
+                                            <span class="nav-text">库存盘点</span>
+                                        </a>
+                                    </li>
+                                    <li th:if="${#strings.substring(session.permissions, 4, 5)=='1'}">
+                                        <a th:href="@{/inventoryTrans}">
+                                            <span class="nav-text">库存调度</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
 
-                        <li th:if="${#strings.substring(session.permissions, 5, 9)!='0000'}">
-                            <a>
+                            <li th:if="${#strings.substring(session.permissions, 5, 9)!='0000'}">
+                                <a>
                                     <span class="nav-caret">
                                         <i class="fa fa-caret-down"></i>
                                     </span>
-                                <span class="nav-icon">
+                                    <span class="nav-icon">
                                         <i class="material-icons">&#xe8d2;
                                             <span ui-include="'@{/assets/images/i_3.svg'"></span>
                                         </i>
                                     </span>
-                                <span class="nav-text">销售管理</span>
-                            </a>
-                            <ul class="nav-sub">
-                                <li>
-                                    <a th:href="@{/ordersView}">
-                                        <span class="nav-text">销售单查询</span>
-                                    </a>
-                                </li>
-                                <li th:if="${#strings.substring(session.permissions, 5, 6)=='1'}">
-                                    <a th:href="@{/addOrder}">
-                                        <span class="nav-text">新增批发销售单</span>
-                                    </a>
-                                </li>
-                                <li th:if="${#strings.substring(session.permissions, 6, 7)=='1'}">
-                                    <a th:href="@{/pos}">
-                                        <span class="nav-text">零售POS收银台</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
+                                    <span class="nav-text">销售管理</span>
+                                </a>
+                                <ul class="nav-sub">
+                                    <li>
+                                        <a th:href="@{/ordersView}">
+                                            <span class="nav-text">销售单查询</span>
+                                        </a>
+                                    </li>
+                                    <li th:if="${#strings.substring(session.permissions, 5, 6)=='1'}">
+                                        <a th:href="@{/addOrder}">
+                                            <span class="nav-text">新增批发销售单</span>
+                                        </a>
+                                    </li>
+                                    <li th:if="${#strings.substring(session.permissions, 6, 7)=='1'}">
+                                        <a th:href="@{/pos}">
+                                            <span class="nav-text">零售POS收银台</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
 
-                        <li th:if="${#strings.substring(session.permissions, 9, 10)=='1'}">
-                            <a th:href="@{/clientInfoSearch}">
+                            <li th:if="${#strings.substring(session.permissions, 9, 10)=='1'}">
+                                <a th:href="@{/clientInfoSearch}">
                                     <span class="nav-icon">
                                         <i class="material-icons">&#xe429;
                                             <span ui-include="'@{/assets/images/i_4.svg'"></span>
                                         </i>
                                     </span>
-                                <span class="nav-text">客户管理</span>
-                            </a>
-                        </li>
+                                    <span class="nav-text">客户管理</span>
+                                </a>
+                            </li>
 
-                        <li th:if="${#strings.substring(session.permissions, 10, 11)=='1'}">
-                            <a th:href="@{/userInfoSearch}">
+                            <li th:if="${#strings.substring(session.permissions, 10, 11)=='1'}">
+                                <a th:href="@{/userInfoSearch}">
                                     <span class="nav-icon">
                                         <i class="material-icons">&#xe3e8;
                                             <span ui-include="'@{/assets/images/i_5.svg'"></span>
                                         </i>
                                     </span>
-                                <span class="nav-text">系统用户管理</span>
-                            </a>
-                        </li>
+                                    <span class="nav-text">系统用户管理</span>
+                                </a>
+                            </li>
 
-                        <li class="nav-header hidden-folded">
-                            <small class="text-muted">个人账号服务</small>
-                        </li>
+                            <li class="nav-header hidden-folded">
+                                <small class="text-muted">个人账号服务</small>
+                            </li>
 
-                        <li>
-                            <a th:href="@{/account}">
+                            <li>
+                                <a th:href="@{/account}">
                                     <span class="nav-icon">
                                         <i class="material-icons">&#xe1b8;
                                             <span ui-include="'@{/assets/images/i_8.svg'"></span>
                                         </i>
                                     </span>
-                                <span class="nav-text">账号信息修改</span>
-                            </a>
-                        </li>
+                                    <span class="nav-text">账号信息修改</span>
+                                </a>
+                            </li>
 
-                        <li>
-                            <a data-toggle="modal" data-target="#m-a-a" ui-toggle-class="bounce" ui-target="#animate">
+                            <li>
+                                <a data-toggle="modal" data-target="#m-a-a" ui-toggle-class="bounce"
+                                    ui-target="#animate">
                                     <span class="nav-icon">
                                         <i class="material-icons"></i>
                                     </span>
-                                <span class="nav-text">退出登录</span>
-                            </a>
-                        </li>
+                                    <span class="nav-text">退出登录</span>
+                                </a>
+                            </li>
 
-                        <li class="nav-header hidden-folded">
-                            <small class="text-muted">关于</small>
-                        </li>
+                            <li class="nav-header hidden-folded">
+                                <small class="text-muted">关于</small>
+                            </li>
 
-                        <li class="hidden-folded">
-                            <a th:href="@{/about}">
+                            <li class="hidden-folded">
+                                <a th:href="@{/about}">
                                     <span class="nav-icon">
                                         <i class="material-icons">&#xe39e;
                                             <span ui-include="'@{/assets/images/i_6.svg'"></span>
                                         </i>
                                     </span>
-                                <span class="nav-text">开发者信息</span>
-                            </a>
-                        </li>
+                                    <span class="nav-text">开发者信息</span>
+                                </a>
+                            </li>
 
-                    </ul>
-                </nav>
-            </div>
-            <!-- 用户登录状态显示 -->
-            <div class="b-t">
-                <div class="nav-fold">
+                        </ul>
+                    </nav>
+                </div>
+                <!-- 用户登录状态显示 -->
+                <div class="b-t">
+                    <div class="nav-fold">
                         <span class="pull-left">
                             <img th:src="@{/assets/images/a0.jpg}" alt="..." class="w-40 img-circle">
                         </span>
-                    <span class="clear hidden-folded p-x">
+                        <span class="clear hidden-folded p-x">
                             <span class="block _500" th:text="${session.name}">【用户姓名】</span>
                             <small class="block text-muted" th:text="${session.position}">【用户身份】</small>
                             <small class="block text-muted"><i class="fa fa-circle text-success m-r-sm"></i>在线</small>
                         </span>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- / -->
+        <!-- / -->
 
-    <!-- content -->
-    <div id="content" class="app-content box-shadow-z0" role="main">
-        <div ui-view class="app-body" id="view">
+        <!-- content -->
+        <div id="content" class="app-content box-shadow-z0" role="main">
+            <div ui-view class="app-body" id="view">
 
-            <!-- ############ PAGE START-->
-            <div class="app-body-inner">
-                <div class="row-col row-col-xs b-b">
-                    <!-- column -->
-                    <div class="col-sm-4 col-md-3 light bg b-r">
-                        <div class="row-col">
-                            <div class="row-row">
-                                <div class="row-body scrollable hover">
-                                    <div class="row-inner">
-                                        <div class="box">
-                                            <div class="box-header">
-                                                <h2>零售POS收银台</h2>
-                                                <small>此处对于零售客户进行POS收款。</small>
-                                            </div>
-                                            <div class="box-divider m-0"></div>
-                                            <!--<div class="box-body">-->
-                                            <form role="form" method="post" th:action="@{/addOnePosOrderItem}">
-                                                <input type="hidden" th:value="${o_id}" name="o_id">
-                                                <input type="hidden" value="retail" name="type">
-                                                <div class="box-body">
-                                                    <div class="form-group row">
-                                                        <label for="isMember"
-                                                               class="col-md-4 form-control-label">是否为会员</label>
-                                                        <select class="form-control col-md-6" ui-jp="select2"
-                                                                ui-options="{theme: 'bootstrap'}"
-                                                                name="c_id" id="isMember">
-                                                            <option>是</option>
-                                                            <option>否</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="form-group row">
-                                                        <label for="customer"
-                                                               class="col-md-4 form-control-label">客户名</label>
-                                                        <select class="form-control col-md-6" ui-jp="select2"
-                                                                ui-options="{theme: 'bootstrap'}"
-                                                                name="cname" id="customer">
-                                                            <!--                                                            <optgroup label="零售客户">-->
-                                                            <!--                                                                <div th:each="cus:${retail_customers}">-->
-                                                            <!--                                                                    <option th:text="${cus.name}"></option>-->
-                                                            <!--                                                                </div>-->
-                                                            <!--                                                            </optgroup>-->
-                                                            <optgroup label="零售客户">
-                                                                <option th:if="${cname}!=null and ${cname}!=''" th:text="${cname}"
-                                                                        selected></option>
-                                                                <div th:each="cus:${retail_customers}">
-                                                                    <option th:text="${cus.name}"></option>
-                                                                </div>
-                                                            </optgroup>
-                                                        </select>
-                                                    </div>
-                                                </div>
-
-                                                <div class="box-divider m-0"></div>
-                                                <div class="box-body">
-                                                    <div class="form-group row">
-                                                        <label for="item_name"
-                                                               class="col-md-4 form-control-label">货品名称</label>
-                                                        <select class="form-control col-md-6" ui-jp="select2"
-                                                                ui-options="{theme: 'bootstrap'}"
-                                                                name="item_name" id="item_name">
-                                                            <optgroup label="货品名称">
-                                                                <div th:each="goodInfo:${goodsInfoList}">
-                                                                    <option th:text="${goodInfo.name}"></option>
-                                                                </div>
-                                                            </optgroup>
-                                                        </select>
-                                                    </div>
-                                                    <div class="form-group row">
-                                                        <label for="item_quantity" class="col-md-4 form-control-label">货品数量</label>
-                                                        <input class="form-control col-md-6" type="text" name="quantity"
-                                                               id="item_quantity"
-                                                               placeholder="货品数量" required>
-                                                    </div>
-                                                </div>
-
-                                                <div class="box-divider m-0"></div>
-                                                <div class="dker p-a text-right">
-                                                    <button type="submit" class="btn info m-b ">添加</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /column -->
-
-                    <!-- column -->
-                    <div class="col-sm-6 col-md-7">
-                        <div class="row-col">
-                            <div class="row-row">
-                                <div class="row-body">
-                                    <div class="row-inner">
-                                        <div class="padding">
-                                            <form th:action="@{/commitOrder}">
-                                                <div class="row-col">
-                                                    <div class="box-header">
-                                                        <small>货品信息的表格预览，展示已经添加的货品项</small>
-                                                    </div>
-                                                    <table class="table table-hover b-t">
-                                                        <thead>
-                                                        <tr>
-                                                            <th>货品编号</th>
-                                                            <th>货品名称</th>
-                                                            <th>货品数量</th>
-                                                            <th>总价</th>
-                                                            <th>操作</th>
-                                                        </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                        <tr th:each="orderItem:${orderItemWithNameList}">
-                                                            <td th:text="${orderItem.g_id}"></td>
-                                                            <td th:text="${orderItem.name}"></td>
-                                                            <td th:text="${orderItem.quantity}"></td>
-                                                            <td th:text="${orderItem.price}"></td>
-                                                            <td>
-                                                                <a class="btn btn-sm btn-danger deletebtn"
-                                                                   th:href="@{/deleteOnePosOrderItem(oi_id=${orderItem.oi_id},o_id=${o_id},cname=${cname},type='retail')}">删除</a>
-                                                            </td>
-                                                        </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                                <div class="row m-b">
-                                                    <div class="col-md-4">
-                                                        <label>应收：</label>
-                                                        <input type="text" class="form-control" disabled=""
-                                                               id="totalPrice"
-                                                               th:value="${totalPrice}">
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <label>实收：</label>
-                                                        <input type="text" class="form-control" id="sumReceived"
-                                                               placeholder="实收数额" onchange="calcChange()">
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <label>找零：</label>
-                                                        <input type="text" class="form-control" disabled=""
-                                                               id="giveChange"
-                                                               value="找零数额">
-                                                    </div>
+                <!-- ############ PAGE START-->
+                <div class="app-body-inner">
+                    <div class="row-col row-col-xs b-b">
+                        <!-- column -->
+                        <div class="col-sm-4 col-md-3 light bg b-r">
+                            <div class="row-col">
+                                <div class="row-row">
+                                    <div class="row-body scrollable hover">
+                                        <div class="row-inner">
+                                            <div class="box">
+                                                <div class="box-header">
+                                                    <h2>零售POS收银台</h2>
+                                                    <small>此处对于零售客户进行POS收款。</small>
                                                 </div>
                                                 <div class="box-divider m-0"></div>
-                                                <div class="dker p-a text-right">
-                                                    <p style="color:red" th:text="${msg}" th:if="${msg} != null"></p>
-                                                    <a class="btn primary m-b" th:href="@{/commitOrder(method=false,o_id=${o_id},cname=${cname})}">取消</a>
-<!--                                                    <a class="btn primary m-b" th:href="@{/commitOrder(method=true,o_id=${o_id},cname=${cname},type='retail')}">收款</a>-->
-                                                    <a class="btn primary m-b" data-toggle="modal" data-target="#m-b-b">收款</a>
-                                                    <!-- .modal -->
-                                                    <div id="m-b-b" class="modal black-overlay" data-backdrop="false">
-                                                        <div class="modal-dialog">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title">收款与找零</h5>
-                                                                </div>
-                                                                <div class="modal-body text-center p-lg">
-                                                                    <p>找零：</p>
-                                                                    <input id="giveChange2" th:value="${giveChange2}" disabled="">
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                    <button type="button" class="btn dark-white p-x-md" data-dismiss="modal">返回</button>
-                                                                    <a class="btn danger p-x-md" th:href="@{/commitOrder(method=true,o_id=${o_id},cname=${cname},type='retail')}">确定</a>
-                                                                </div>
-                                                            </div><!-- /.modal-content -->
+                                                <!--<div class="box-body">-->
+                                                <form role="form" method="post" th:action="@{/addOnePosOrderItem}">
+                                                    <input type="hidden" th:value="${o_id}" name="o_id">
+                                                    <input type="hidden" value="retail" name="type">
+                                                    <div class="box-body">
+                                                        <div class="form-group row">
+                                                            <label for="isMember"
+                                                                class="col-md-4 form-control-label">是否为会员</label>
+                                                            <select class="form-control col-md-6" ui-jp="select2"
+                                                                ui-options="{theme: 'bootstrap'}" name="c_id"
+                                                                id="isMember">
+                                                                <option>是</option>
+                                                                <option>否</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="customer"
+                                                                class="col-md-4 form-control-label">客户名</label>
+                                                            <select class="form-control col-md-6" ui-jp="select2"
+                                                                ui-options="{theme: 'bootstrap'}" name="cname"
+                                                                id="customer">
+                                                                <!--                                                            <optgroup label="零售客户">-->
+                                                                <!--                                                                <div th:each="cus:${retail_customers}">-->
+                                                                <!--                                                                    <option th:text="${cus.name}"></option>-->
+                                                                <!--                                                                </div>-->
+                                                                <!--                                                            </optgroup>-->
+                                                                <optgroup label="零售客户">
+                                                                    <option th:if="${cname}!=null and ${cname}!=''"
+                                                                        th:text="${cname}" selected></option>
+                                                                    <div th:each="cus:${retail_customers}">
+                                                                        <option th:text="${cus.name}"></option>
+                                                                    </div>
+                                                                </optgroup>
+                                                            </select>
                                                         </div>
                                                     </div>
-                                                    <!-- / .modal -->
-                                                </div>
-                                            </form>
-                                            <!-- fields -->
-                                            <!-- / fields -->
+
+                                                    <div class="box-divider m-0"></div>
+                                                    <div class="box-body">
+                                                        <div class="form-group row">
+                                                            <label for="item_name"
+                                                                class="col-md-4 form-control-label">货品名称</label>
+                                                            <select class="form-control col-md-6" ui-jp="select2"
+                                                                ui-options="{theme: 'bootstrap'}" name="item_name"
+                                                                id="item_name">
+                                                                <optgroup label="货品名称">
+                                                                    <div th:each="goodInfo:${goodsInfoList}">
+                                                                        <option th:text="${goodInfo.name}"></option>
+                                                                    </div>
+                                                                </optgroup>
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="item_quantity"
+                                                                class="col-md-4 form-control-label">货品数量</label>
+                                                            <input class="form-control col-md-6" type="text"
+                                                                name="quantity" id="item_quantity" placeholder="货品数量"
+                                                                required>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="box-divider m-0"></div>
+                                                    <div class="dker p-a text-right">
+                                                        <button type="submit" class="btn info m-b ">添加</button>
+                                                    </div>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <!-- /column -->
+
+                        <!-- column -->
+                        <div class="col-sm-6 col-md-7">
+                            <div class="row-col">
+                                <div class="row-row">
+                                    <div class="row-body">
+                                        <div class="row-inner">
+                                            <div class="padding">
+                                                <form th:action="@{/commitOrder}">
+                                                    <div class="row-col">
+                                                        <div class="box-header">
+                                                            <small>货品信息的表格预览，展示已经添加的货品项</small>
+                                                        </div>
+                                                        <table class="table table-hover b-t">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>货品编号</th>
+                                                                    <th>货品名称</th>
+                                                                    <th>货品数量</th>
+                                                                    <th>总价</th>
+                                                                    <th>操作</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr th:each="orderItem:${orderItemWithNameList}">
+                                                                    <td th:text="${orderItem.g_id}"></td>
+                                                                    <td th:text="${orderItem.name}"></td>
+                                                                    <td th:text="${orderItem.quantity}"></td>
+                                                                    <td th:text="${orderItem.price}"></td>
+                                                                    <td>
+                                                                        <a class="btn btn-sm btn-danger deletebtn"
+                                                                            th:href="@{/deleteOnePosOrderItem(oi_id=${orderItem.oi_id},o_id=${o_id},cname=${cname},type='retail')}">删除</a>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <div class="row m-b">
+                                                        <div class="col-md-4">
+                                                            <label>应收：</label>
+                                                            <input type="text" class="form-control" disabled=""
+                                                                id="totalPrice" th:value="${totalPrice}">
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label>实收：</label>
+                                                            <input type="text" class="form-control" id="sumReceived"
+                                                                placeholder="实收数额" onchange="calcChange()">
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label>找零：</label>
+                                                            <input type="text" class="form-control" disabled=""
+                                                                id="giveChange" value="找零数额">
+                                                        </div>
+                                                    </div>
+                                                    <div class="box-divider m-0"></div>
+                                                    <div class="dker p-a text-right">
+                                                        <p style="color:red" th:text="${msg}" th:if="${msg} != null">
+                                                        </p>
+                                                        <a class="btn primary m-b"
+                                                            th:href="@{/commitOrder(method=false,o_id=${o_id},cname=${cname})}">取消</a>
+                                                        <!--                                                    <a class="btn primary m-b" th:href="@{/commitOrder(method=true,o_id=${o_id},cname=${cname},type='retail')}">收款</a>-->
+                                                        <a class="btn primary m-b" data-toggle="modal"
+                                                            data-target="#m-b-b">收款</a>
+                                                        <!-- .modal -->
+                                                        <div id="m-b-b" class="modal black-overlay"
+                                                            data-backdrop="false">
+                                                            <div class="modal-dialog">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title">收款与找零</h5>
+                                                                    </div>
+                                                                    <div class="modal-body text-center p-lg">
+                                                                        <p>找零：</p>
+                                                                        <input id="giveChange2"
+                                                                            th:value="${giveChange2}" disabled="">
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button"
+                                                                            class="btn dark-white p-x-md"
+                                                                            data-dismiss="modal">返回</button>
+                                                                        <a class="btn danger p-x-md"
+                                                                            th:href="@{/commitOrder(method=true,o_id=${o_id},cname=${cname},type='retail')}">确定</a>
+                                                                    </div>
+                                                                </div><!-- /.modal-content -->
+                                                            </div>
+                                                        </div>
+                                                        <!-- / .modal -->
+                                                    </div>
+                                                </form>
+                                                <!-- fields -->
+                                                <!-- / fields -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /column -->
                     </div>
-                    <!-- /column -->
                 </div>
+
+                <!-- ############ PAGE END-->
+
             </div>
-
-            <!-- ############ PAGE END-->
-
         </div>
-    </div>
-    <!-- / -->
-    <!-- .modal -->
-    <div id="m-a-a" class="modal fade animate" data-backdrop="true">
-        <div class="modal-dialog" id="animate">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">退出登录</h5>
-                </div>
-                <div class="modal-body text-center p-lg">
-                    <p>您是否确定退出登录？</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn dark-white p-x-md" data-dismiss="modal">取消</button>
-                    <a class="btn danger p-x-md" th:href="@{/logout}">确认</a>
-                </div>
-            </div><!-- /.modal-content -->
+        <!-- / -->
+        <!-- .modal -->
+        <div id="m-a-a" class="modal fade animate" data-backdrop="true">
+            <div class="modal-dialog" id="animate">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">退出登录</h5>
+                    </div>
+                    <div class="modal-body text-center p-lg">
+                        <p>您是否确定退出登录？</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn dark-white p-x-md" data-dismiss="modal">取消</button>
+                        <a class="btn danger p-x-md" th:href="@{/logout}">确认</a>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div>
         </div>
+        <!-- / .modal -->
     </div>
-    <!-- / .modal -->
-</div>
 
-<script>
-    function calcChange() {
-        let a = document.getElementById("totalPrice").value
-        let b = document.getElementById("sumReceived").value
-        document.getElementById("giveChange").value = b - a
-        document.getElementById("giveChange2").value = b - a
-    }
-</script>
-<!-- jQuery -->
-<script th:src="@{/libs/jquery/jquery/dist/jquery.js}"></script>
+    <script>
+        function calcChange() {
+            let a = document.getElementById("totalPrice").value
+            let b = document.getElementById("sumReceived").value
+            document.getElementById("giveChange").value = (b - a).toFixed(2)
+            document.getElementById("giveChange2").value = (b - a).toFixed(2)
+        }
+    </script>
+    <!-- jQuery -->
+    <script th:src="@{/libs/jquery/jquery/dist/jquery.js}"></script>
 
-<!-- Bootstrap -->
-<script th:src="@{/libs/jquery/tether/dist/js/tether.min.js}"></script>
-<script th:src="@{/libs/jquery/bootstrap/dist/js/bootstrap.js}"></script>
-<!-- core -->
-<script th:src="@{/libs/jquery/underscore/underscore-min.js}"></script>
-<script th:src="@{/libs/jquery/jQuery-Storage-API/jquery.storageapi.min.js}"></script>
-<script th:src="@{/libs/jquery/PACE/pace.min.js}"></script>
+    <!-- Bootstrap -->
+    <script th:src="@{/libs/jquery/tether/dist/js/tether.min.js}"></script>
+    <script th:src="@{/libs/jquery/bootstrap/dist/js/bootstrap.js}"></script>
+    <!-- core -->
+    <script th:src="@{/libs/jquery/underscore/underscore-min.js}"></script>
+    <script th:src="@{/libs/jquery/jQuery-Storage-API/jquery.storageapi.min.js}"></script>
+    <script th:src="@{/libs/jquery/PACE/pace.min.js}"></script>
 
-<script th:src="@{/scripts/config.lazyload.js}"></script>
+    <script th:src="@{/scripts/config.lazyload.js}"></script>
 
-<script th:src="@{/scripts/palette.js}"></script>
-<script th:src="@{/scripts/ui-load.js}"></script>
-<script th:src="@{/scripts/ui-jp.js}"></script>
-<script th:src="@{/scripts/ui-include.js}"></script>
-<script th:src="@{/scripts/ui-device.js}"></script>
-<script th:src="@{/scripts/ui-form.js}"></script>
-<script th:src="@{/scripts/ui-nav.js}"></script>
-<script th:src="@{/scripts/ui-screenfull.js}"></script>
-<script th:src="@{/scripts/ui-scroll-to.js}"></script>
-<script th:src="@{/scripts/ui-toggle-class.js}"></script>
+    <script th:src="@{/scripts/palette.js}"></script>
+    <script th:src="@{/scripts/ui-load.js}"></script>
+    <script th:src="@{/scripts/ui-jp.js}"></script>
+    <script th:src="@{/scripts/ui-include.js}"></script>
+    <script th:src="@{/scripts/ui-device.js}"></script>
+    <script th:src="@{/scripts/ui-form.js}"></script>
+    <script th:src="@{/scripts/ui-nav.js}"></script>
+    <script th:src="@{/scripts/ui-screenfull.js}"></script>
+    <script th:src="@{/scripts/ui-scroll-to.js}"></script>
+    <script th:src="@{/scripts/ui-toggle-class.js}"></script>
 
-<script th:src="@{/scripts/app.js}"></script>
+    <script th:src="@{/scripts/app.js}"></script>
 
-<!-- ajax -->
-<script th:src="@{/libs/jquery/jquery-pjax/jquery.pjax.js}"></script>
-<script th:src="@{/scripts/ajax.js}"></script>
-<!-- endbuild -->
+    <!-- ajax -->
+    <script th:src="@{/libs/jquery/jquery-pjax/jquery.pjax.js}"></script>
+    <script th:src="@{/scripts/ajax.js}"></script>
+    <!-- endbuild -->
 </body>
 
 </html>
