@@ -350,8 +350,31 @@
                             <div class="col-sm-12">
                                 <div class="dker p-a text-right">
                                     <p class="btn-groups">
-                                        <button id="ack" class="btn btn-outline b-primary text-primary" onclick="alerti()">确认</button>
-                                        <button class="btn btn-outline b-black text-black">退出</button>
+<!--                                        <button id="ack" class="btn btn-outline b-primary text-primary" onclick="alerti()">确认</button>-->
+                                        <button id="ack" class="btn btn-outline b-primary text-primary" data-toggle="modal" data-target="#m-sm">确认</button>
+                                        <!-- small modal -->
+                                    <div id="m-sm" class="modal" data-backdrop="true">
+                                        <div class="row-col h-v">
+                                            <div class="row-cell v-m">
+                                                <div class="modal-dialog modal-sm">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title">库存盘点确认</h5>
+                                                        </div>
+                                                        <div class="modal-body text-center p-lg">
+                                                            <p>您确定完成了库存盘点吗? 确认之后将无法修改！！！</p>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn dark-white p-x-md" data-dismiss="modal">取消</button>
+                                                            <a class="btn danger p-x-md" onclick="alerti()">确定</a>
+                                                        </div>
+                                                    </div><!-- /.modal-content -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- small modal -->
+<!--                                        <button class="btn btn-outline b-black text-black">退出</button>-->
                                     </p>
                                 </div>
                             </div>

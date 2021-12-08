@@ -390,8 +390,31 @@
                                                     <a class="btn info m-b"
                                                        th:href="@{/auditOrder(status='closed',o_id=${theOrder.o_id})}" th:if="${theOrder.status}=='paid'">关闭订单</a>
 
-                                                    <a class="btn warning m-b"
-                                                       th:href="@{/deleteOrder(o_id=${theOrder.o_id})}" th:if="${theOrder.status}=='closed' or ${theOrder.status}=='unchecked'">删除订单</a>
+<!--                                                    <a class="btn warning m-b"-->
+<!--                                                       th:href="@{/deleteOrder(o_id=${theOrder.o_id})}" th:if="${theOrder.status}=='closed' or ${theOrder.status}=='unchecked'">删除订单</a>-->
+                                                    <a class="btn warning m-b" data-toggle="modal" data-target="#m-sm" th:if="${theOrder.status}=='closed' or ${theOrder.status}=='unchecked'">删除</a>
+                                                    <!-- small modal -->
+                                                    <div id="m-sm" class="modal" data-backdrop="true">
+                                                        <div class="row-col h-v">
+                                                            <div class="row-cell v-m">
+                                                                <div class="modal-dialog modal-sm">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title">删除订单</h5>
+                                                                        </div>
+                                                                        <div class="modal-body text-center p-lg">
+                                                                            <p>您确定要删除该订单吗? 删除之后将无法恢复！！！</p>
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button" class="btn dark-white p-x-md" data-dismiss="modal">取消</button>
+                                                                            <a class="btn danger p-x-md" th:href="@{/deleteOrder(o_id=${theOrder.o_id})}">确定</a>
+                                                                        </div>
+                                                                    </div><!-- /.modal-content -->
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- small modal -->
                                             </form>
                                             <!-- fields -->
                                             <!-- / fields -->
