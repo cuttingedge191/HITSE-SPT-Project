@@ -246,7 +246,24 @@ public class OrderServiceImpl implements OrderService {
     public void autoInventoryRefund(List<OrderItem> orderItemList) {
         //TODO 自动回库
         List<Inventory> inventoryLists = inventoryService.queryWarehouseList();
-
+        int min_index = 0;
+        int min = 10000;
+        int inventoryListsLen = inventoryLists.size();
+        for(int i = 0;i < inventoryListsLen;i ++){
+            if(min > inventoryLists.get(i).getInventory_prior()){
+                min = inventoryLists.get(i).getInventory_prior();
+                min_index = i;
+            }
+        }
+        min_index = inventoryLists.get(min_index).getIl_id();
+        for(OrderItem oi:orderItemList){
+            Inventory newInventory = new Inventory();
+            newInventory.setName(oi.getName());
+            newInventory.setG_id(oi.getG_id());
+            newInventory.setIl_id(min_index);
+            newInventory.setQuantity(oi.getQuantity());
+            inventoryService.mergeInsertInventory(newInventory);
+        }
     }
 
 
