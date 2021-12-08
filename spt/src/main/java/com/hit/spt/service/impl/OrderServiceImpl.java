@@ -28,13 +28,14 @@ public class OrderServiceImpl implements OrderService {
     CustomerMapper customerMapper;
 
     @Autowired
-    ClientInfoService clientInfoService;
-
-    @Autowired
     InventoryMapper inventoryMapper;
 
     @Autowired
+    ClientInfoService clientInfoService;
+
+    @Autowired
     InventoryService inventoryService;
+
 
     @Override
     public boolean checkIfExits(Integer o_id) {
@@ -228,13 +229,13 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void autoInventoryDelivery(List<OrderItem> orderItemList) {
         //TODO 自动出库
-        for(OrderItem oi:orderItemList){
+        for (OrderItem oi : orderItemList) {
             List<Inventory> inventories = inventoryMapper.selectInventoryByName(oi.getName());
-            for(Inventory inventory:inventories){
-                if(oi.getQuantity() > inventory.getQuantity()){
+            for (Inventory inventory : inventories) {
+                if (oi.getQuantity() > inventory.getQuantity()) {
                     oi.setQuantity(oi.getQuantity() - inventory.getQuantity());
-                    inventoryService.decreaseInventory(inventory.getQuantity(),inventory);
-                }else{
+                    inventoryService.decreaseInventory(inventory.getQuantity(), inventory);
+                } else {
                     inventoryService.decreaseInventory(oi.getQuantity(), inventory);
                     break;
                 }
@@ -246,37 +247,35 @@ public class OrderServiceImpl implements OrderService {
     public void autoInventoryRefund(List<OrderItem> orderItemList) {
         //TODO 自动回库
         List<Inventory> inventoryLists = inventoryService.queryWarehouseList();
-        int min_index = 0;
-        int min = 10000;
-        int inventoryListsLen = inventoryLists.size();
-        for(int i = 0;i < inventoryListsLen;i ++){
-            if(min > inventoryLists.get(i).getInventory_prior()){
-                min = inventoryLists.get(i).getInventory_prior();
-                min_index = i;
+        Integer il_id = null;
+        Integer prior = 999;
+        for (Inventory inventory : inventoryLists) {
+            if (inventory.getInventory_prior() < prior) {
+                prior = inventory.getInventory_prior();
+                il_id = inventory.getIl_id();
             }
+
         }
-        min_index = inventoryLists.get(min_index).getIl_id();
-        for(OrderItem oi:orderItemList){
-            Inventory newInventory = new Inventory();
-            newInventory.setName(oi.getName());
-            newInventory.setG_id(oi.getG_id());
-            newInventory.setIl_id(min_index);
-            newInventory.setQuantity(oi.getQuantity());
-            inventoryService.mergeInsertInventory(newInventory);
+
+        for (OrderItem orderItem : orderItemList) {
+            Inventory inventory = new Inventory();
+            inventory.setCost(orderItem.getCost() / orderItem.getQuantity());
+            inventory.setName(orderItem.getName());
+            inventory.setQuantity(orderItem.getQuantity());
+            inventory.setIl_id(il_id);
+            inventory.setG_id(orderItem.getG_id());
+            inventoryService.mergeInsertInventory(inventory);
         }
+
     }
 
 
     public int totalQuantity(Long g_id) {
         List<Integer> quantityList = inventoryMapper.queryQuantityByGid(g_id);
         int res = 0;
-
-
         for (Integer quantity : quantityList) {
             res += quantity;
         }
-
-
         return res;
     }
 }

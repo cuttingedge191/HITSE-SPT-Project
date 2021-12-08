@@ -373,7 +373,7 @@
                                                     <a class="btn primary m-b"
                                                        th:href="@{/auditOrder(status='refund',o_id=${theOrder.o_id})}"
                                                        th:if="${theOrder.status} != 'refund' and ${theOrder.status} != 'closed'
-                                                       and (${theOrder.status} == 'checked' or ${theOrder.status} == 'paid')">退款/货</a>
+                                                       and (${theOrder.status} == 'checked' or ${theOrder.status} == 'paid')">申请退款/货</a>
 
                                                     <a class="btn primary m-b"
                                                        th:href="@{/autoDelivery(status='paid',o_id=${theOrder.o_id})}"
@@ -381,11 +381,11 @@
 
                                                     <a class="btn danger m-b"
                                                        th:href="@{/auditOrder(status='rejectRefund',o_id=${theOrder.o_id})}"
-                                                       th:if="${theOrder.status} == 'refund' and ${theOrder.status} != 'closed'">拒绝退货</a>
+                                                       th:if="${theOrder.status} == 'refund' and ${theOrder.status} != 'closed'">拒绝退款/货</a>
 
                                                     <a class="btn primary m-b"
                                                        th:href="@{/refundOrder(status='closed',o_id=${theOrder.o_id})}"
-                                                       th:if="${theOrder.status} == 'refund' and ${theOrder.status} != 'closed'">确认退货</a>
+                                                       th:if="${theOrder.status} == 'refund' and ${theOrder.status} != 'closed'">确认退款/货</a>
 
                                                     <a class="btn info m-b"
                                                        th:href="@{/auditOrder(status='closed',o_id=${theOrder.o_id})}" th:if="${theOrder.status}=='paid'">关闭订单</a>
