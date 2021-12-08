@@ -160,10 +160,10 @@ public class OrderServiceImpl implements OrderService {
         order.setTotal_turnover(0.0);
         List<OrderItem> orderItemList = orderItemMapper.queryOrderItemByOid(o_id);
         for (OrderItem orderItem : orderItemList) {
-            order.setTotal_cost(order.getTotal_cost() + orderItem.getCost());
-            order.setTotal_turnover(order.getTotal_turnover() + orderItem.getPrice());
+            order.setTotal_cost(Math.round(100*(order.getTotal_cost() + orderItem.getCost()))/100.0);
+            order.setTotal_turnover(Math.round(100*(order.getTotal_turnover() + orderItem.getPrice()))/100.0);
         }
-        order.setTotal_profit(order.getTotal_turnover() - order.getTotal_cost());
+        order.setTotal_profit(Math.round(100*(order.getTotal_turnover() - order.getTotal_cost()))/100.0);
         order.setType(type);
         order.setStatus(status);
 
