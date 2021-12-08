@@ -63,7 +63,8 @@ public class OrdersViewController {
 
     @RequestMapping("auditOrder")
     public String auditOrder(Integer o_id, String status) {
-        ordersViewService.updateOrderStatus(o_id, status);
+        if (!status.equals("rejectRefund"))
+            ordersViewService.updateOrderStatus(o_id, status);
         return "redirect:ordersView";
     }
 

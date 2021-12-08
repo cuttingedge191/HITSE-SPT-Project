@@ -256,14 +256,14 @@
                                 <td th:text="${order.total_turnover}"></td>
                                 <td th:text="${order.time_stamp}"></td>
                                 <td><span
-                                        th:class="${order.status}=='unchecked' ? 'label' : (${order.status}=='paid' ?'label green-500':(${order.status}=='failed'?'label danger':'label warn'))"
+                                        th:class="${order.status}=='unchecked' ? 'label' : (${order.status}=='paid' ?'label green-500':(${order.status}=='failed'?'label danger':(${order.status}=='checked'?'label warn' : 'label accent')))"
                                         th:text="${order.status}"></span></td>
 
                                 <td th:text="${order.type} == 'trade' ? '批发':'零售'"></td>
                                 <td class="m-b btn-groups">
                                     <a class="btn btn-sm success" th:href="@{/orderReview(o_id=${order.o_id})}">详情</a>
                                     <a class="btn btn-sm info" th:href="@{/updateOrder(o_id=${order.o_id})}"
-                                       th:if="${order.type} == 'trade'">编辑</a>
+                                       th:if="${order.status != 'paid'}">编辑</a>
 
                                 </td>
                             </tr>
