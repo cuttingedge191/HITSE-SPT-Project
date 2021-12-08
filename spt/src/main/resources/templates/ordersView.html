@@ -269,7 +269,7 @@
                                 <td class="m-b btn-groups">
                                     <a class="btn btn-sm success" th:href="@{/orderReview(o_id=${order.o_id})}">详情</a>
                                     <a class="btn btn-sm info" th:href="@{/updateOrder(o_id=${order.o_id})}"
-                                       th:if="${order.status}!='paid' and ${order.status}!='closed'">编辑</a>
+                                       th:if="${order.status}!='paid' and ${order.status}!='closed' and ${order.status}!='checked'">编辑</a>
 
                                 </td>
                             </tr>
