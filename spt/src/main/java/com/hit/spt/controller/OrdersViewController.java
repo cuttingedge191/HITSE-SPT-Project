@@ -97,7 +97,7 @@ public class OrdersViewController {
             if (currentOrder.getStatus().equals("checked") || currentOrder.getStatus().equals("paid")) {
                 return auditOrder(o_id, status);
             }
-            
+
             if (!orderService.checkIfCanDelivery(orderItemList)) {
                 model.addAttribute("msg", "库存数量不足 无法通过！");
                 return orderReview(o_id, model);

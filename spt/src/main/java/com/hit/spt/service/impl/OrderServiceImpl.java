@@ -278,6 +278,7 @@ public class OrderServiceImpl implements OrderService {
             inventory.setQuantity(orderItem.getQuantity());
             inventory.setIl_id(il_id);
             inventory.setG_id(orderItem.getG_id());
+            inventory.setQuality("nice");
             inventoryService.mergeInsertInventory(inventory);
         }
 
