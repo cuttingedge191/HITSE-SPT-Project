@@ -418,7 +418,30 @@
                                                 </script>
                                                 <div class="p-a text-right">
                                                     <a onclick="retreat()" class="btn danger m-b">撤销</a>
-                                                    <a th:href="@{/sureToTransInventory}" class="btn success m-b">确认调货</a>
+<!--                                                    <a th:href="@{/sureToTransInventory}" class="btn success m-b">确认调货</a>-->
+                                                    <a class="btn success m-b" data-toggle="modal" data-target="#m-sm">确认调货</a>
+                                                    <!-- small modal -->
+                                                    <div id="m-sm" class="modal" data-backdrop="true">
+                                                        <div class="row-col h-v">
+                                                            <div class="row-cell v-m">
+                                                                <div class="modal-dialog modal-sm">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title">调货确认</h5>
+                                                                        </div>
+                                                                        <div class="modal-body text-center p-lg">
+                                                                            <p>您确定要要调货吗? </p>
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button" class="btn dark-white p-x-md" data-dismiss="modal">取消</button>
+                                                                            <a class="btn danger p-x-md" th:href="@{/sureToTransInventory}" >确定</a>
+                                                                        </div>
+                                                                    </div><!-- /.modal-content -->
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- small modal -->
                                                 </div>
                                                 <p style="color:red" th:if="!${warn}">源仓库存货不足，请确认后操作！</p>
                                             </form>

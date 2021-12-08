@@ -374,7 +374,27 @@
                                                 <div class="box-divider m-0"></div>
                                                 <div class="dker p-a text-right">
                                                     <a class="btn primary m-b" th:href="@{/commitOrder(method=false,o_id=${o_id},cname=${cname})}">取消</a>
-                                                    <a class="btn primary m-b"  th:href="@{/commitOrder(method=true,o_id=${o_id},cname=${cname},type='retail')}">收款</a>
+<!--                                                    <a class="btn primary m-b" th:href="@{/commitOrder(method=true,o_id=${o_id},cname=${cname},type='retail')}">收款</a>-->
+                                                    <a class="btn primary m-b" data-toggle="modal" data-target="#m-b-b">收款</a>
+                                                    <!-- .modal -->
+                                                    <div id="m-b-b" class="modal black-overlay" data-backdrop="false">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title">收款与找零</h5>
+                                                                </div>
+                                                                <div class="modal-body text-center p-lg">
+                                                                    <p>找零：</p>
+                                                                    <input id="giveChange2" th:value="${giveChange2}" disabled="">
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn dark-white p-x-md" data-dismiss="modal">No</button>
+                                                                    <a class="btn danger p-x-md" th:href="@{/commitOrder(method=true,o_id=${o_id},cname=${cname},type='retail')}">Yes</a>
+                                                                </div>
+                                                            </div><!-- /.modal-content -->
+                                                        </div>
+                                                    </div>
+                                                    <!-- / .modal -->
                                                 </div>
                                             </form>
                                             <!-- fields -->
@@ -419,6 +439,7 @@
         let a = document.getElementById("totalPrice").value
         let b = document.getElementById("sumReceived").value
         document.getElementById("giveChange").value = b - a
+        document.getElementById("giveChange2").value = b - a
     }
 </script>
 <!-- jQuery -->
