@@ -222,7 +222,7 @@ public class OrderServiceImpl implements OrderService {
 
         for (OrderItem orderItem : orderItemList) {
             int total = totalQuantity(orderItem.getG_id());
-            res = total >= orderItem.getQuantity();
+            res = res && total >= orderItem.getQuantity();
         }
 
         return res;

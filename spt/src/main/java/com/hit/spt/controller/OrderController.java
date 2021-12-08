@@ -38,14 +38,14 @@ public class OrderController {
      * @return 转发
      */
     @RequestMapping({"addOrder", "addOneOrderItem"})
-    public String addOneOrder(Integer o_id, String item_name, Integer quantity, String cname, String ifUpdate,HttpServletRequest request, Model model) {
+    public String addOneOrder(Integer o_id, String item_name, Integer quantity, String cname, String ifUpdate, HttpServletRequest request, Model model) {
         String type = "trade";
         if (request.getRequestURI().equals("/addOneOrderItem")) {
             orderService.genOrderItemForOrder(o_id, item_name, quantity, type, cname, model);
         }
         //update 和 add order不同！！
-        if(ifUpdate != null)
-            return ordersViewController.updateOrder(o_id,model);
+        if (ifUpdate != null)
+            return ordersViewController.updateOrder(o_id, model);
 
         if (o_id != null) {
             model.addAttribute("o_id", o_id);
@@ -60,7 +60,7 @@ public class OrderController {
     @RequestMapping({"pos", "addOnePosOrderItem"})
     public String addPosOrder(Integer o_id, String item_name, Integer quantity, String cname, HttpServletRequest request, Model model) {
         String type = "retail";
-        if (request.getRequestURI().equals("/addOnePosOrderItem")) {
+        if (request != null && request.getRequestURI().equals("/addOnePosOrderItem")) {
             orderService.genOrderItemForOrder(o_id, item_name, quantity, type, cname, model);
             model.addAttribute("totalPrice", orderService.calcTotalPriceByOid(o_id));
         }
@@ -86,19 +86,25 @@ public class OrderController {
      */
 
     @RequestMapping("commitOrder")
-    public String commitOrder(boolean method, Integer o_id, String cname, String type) {
+    public String commitOrder(boolean method, Integer o_id, String cname, String type, Model model, HttpServletRequest request) {
         if (!method) {
-            orderService.deleteAllOrderItemByOid(o_id);
+            ordersViewController.deleteOrder(o_id);
         } else {
             if (orderService.queryOrderItemWithNameListByOid(o_id).size() > 0) {
-                String status = type.equals("trade") ? "unchecked" : "paid";
+                String status = type.equals("trade") ? "unchecked" : "closed";
                 if (orderService.checkIfExits(o_id))
                     return "redirect:ordersView";
                 orderService.saveOrder(orderService.generateOneOrder(o_id, cname, type, status));
+                List<OrderItem> orderItemList = orderService.queryOrderItemWithNameListByOid(o_id);
+
+                if (!orderService.checkIfCanDelivery(orderItemList)) {
+                    model.addAttribute("msg", "库存数量不足 无法通过！");
+                    return this.addPosOrder(o_id,null,null,null,null,model);
+                }
+                ordersViewController.inventoryProcessForOrder(o_id, "closed", model, request);
             } else {
                 orderService.deleteAllOrderItemByOid(o_id);
             }
-
         }
         return "redirect:ordersView";
     }
@@ -126,14 +132,14 @@ public class OrderController {
      * @return 转发到addOrder
      */
     @RequestMapping({"deleteOneOrderItem", "deleteOnePosOrderItem"})
-    public String deleteOneOrderItem(Integer oi_id, Integer o_id, String cname, String type, String ifUpdate,Model model, HttpServletRequest request) {
+    public String deleteOneOrderItem(Integer oi_id, Integer o_id, String cname, String type, String ifUpdate, Model model, HttpServletRequest request) {
         String view = "addOrder";
         // 生成暂存物品列表
         orderService.deleteOneOrderItemByOiid(oi_id);
 
         //update 和 add order不同！！
-        if(ifUpdate != null)
-            return ordersViewController.updateOrder(o_id,model);
+        if (ifUpdate != null)
+            return ordersViewController.updateOrder(o_id, model);
 
         if (request.getRequestURI().equals("/deleteOnePosOrderItem")) {
             view = "pos";

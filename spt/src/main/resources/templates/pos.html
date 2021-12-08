@@ -270,7 +270,7 @@
                                                             <!--                                                                </div>-->
                                                             <!--                                                            </optgroup>-->
                                                             <optgroup label="零售客户">
-                                                                <option th:if="${cname}!=null" th:text="${cname}"
+                                                                <option th:if="${cname}!=null and ${cname}!=''" th:text="${cname}"
                                                                         selected></option>
                                                                 <div th:each="cus:${retail_customers}">
                                                                     <option th:text="${cus.name}"></option>
@@ -362,7 +362,7 @@
                                                     <div class="col-md-4">
                                                         <label>实收：</label>
                                                         <input type="text" class="form-control" id="sumReceived"
-                                                               placeholder="应收数额" onchange="calcChange()">
+                                                               placeholder="应收数额" onchange="calcChange()" required>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <label>找零：</label>
@@ -373,6 +373,7 @@
                                                 </div>
                                                 <div class="box-divider m-0"></div>
                                                 <div class="dker p-a text-right">
+                                                    <p style="color:red" th:text="${msg}" th:if="${msg} != null"></p>
                                                     <a class="btn primary m-b" th:href="@{/commitOrder(method=false,o_id=${o_id},cname=${cname})}">取消</a>
 <!--                                                    <a class="btn primary m-b" th:href="@{/commitOrder(method=true,o_id=${o_id},cname=${cname},type='retail')}">收款</a>-->
                                                     <a class="btn primary m-b" data-toggle="modal" data-target="#m-b-b">收款</a>
