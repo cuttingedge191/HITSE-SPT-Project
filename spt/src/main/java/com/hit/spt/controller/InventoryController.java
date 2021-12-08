@@ -150,6 +150,8 @@ public class InventoryController {
 
     @RequestMapping("inventoryTrans")
     public String inventoryTrans(Model model) {
+
+        model.addAttribute("warn", true);
         inventoryService.refreshInventoryTransView(model, httpServletRequest);
         return "inventoryTrans";
     }
@@ -169,21 +171,28 @@ public class InventoryController {
         inventory.setQuantity(transaction.getQuantity());
         inventoryService.mergeInsertInventory(inventory);
 
+        model.addAttribute("warn", true);
         inventoryService.refreshInventoryTransView(model, httpServletRequest);
         return "inventoryTrans";
     }
 
 
-    @RequestMapping("deleteInventoryTransaction")
-    public String deleteInventoryTransaction(Integer iti_id, Model model) {
-        inventoryService.deleteInventoryTransactionByItiId(iti_id);
-        inventoryService.refreshInventoryTransView(model, httpServletRequest);
-        return "inventoryTrans";
-    }
+//    @RequestMapping("deleteInventoryTransaction")
+//    public String deleteInventoryTransaction(Integer iti_id, Model model) {
+//        boolean success = inventoryService.deleteInventoryTransactionByItiId(iti_id);
+//        if(success) {
+//            model.addAttribute("warn", "false");
+//        }else{
+//            model.addAttribute("warn", "true");
+//        }
+//        inventoryService.refreshInventoryTransView(model, httpServletRequest);
+//        return "inventoryTrans";
+//    }
 
     @RequestMapping("retreatInventoryTrans")
     public String retreatInventoryTrans(Integer iti_id, Model model) {
-        inventoryService.deleteInventoryTransactionByItiId(iti_id);
+        boolean success = inventoryService.deleteInventoryTransactionByItiId(iti_id);
+        model.addAttribute("warn", success);
         inventoryService.refreshInventoryTransView(model, httpServletRequest);
         return "inventoryTrans";
     }

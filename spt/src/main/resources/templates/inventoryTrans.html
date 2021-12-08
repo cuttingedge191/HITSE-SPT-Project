@@ -420,6 +420,7 @@
                                                     <a onclick="retreat()" class="btn danger m-b">撤销</a>
                                                     <a th:href="@{/sureToTransInventory}" class="btn success m-b">确认调货</a>
                                                 </div>
+                                                <p style="color:red" th:if="!${warn}">目的仓库存货不足以撤销，请确认后操作。</p>
                                             </form>
                                             <!-- fields -->
                                             <!-- / fields -->

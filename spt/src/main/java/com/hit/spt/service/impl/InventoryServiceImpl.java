@@ -191,17 +191,17 @@ public class InventoryServiceImpl implements InventoryService {
     }
 
     @Override
-    public void deleteInventoryTransactionByItiId(Integer iti_id) {
+    public boolean deleteInventoryTransactionByItiId(Integer iti_id) {
         InventoryTransaction inventoryTransaction =  inventoryTransactionMapper.getInventoryTransactionByItiId(iti_id);
         modifyforTransactionDetail(inventoryTransaction);
 
         Inventory d_inventory = new Inventory();
         if(inventoryTransaction.getI_id_d() != null) {
             d_inventory = this.queryInventoryByIId(inventoryTransaction.getI_id_d());
-        }else return;
+        }else return false;
 
         if(d_inventory.getQuantity() < inventoryTransaction.getQuantity()){
-            return;
+            return false;
         }
 
         Inventory inventory = new Inventory();
@@ -214,6 +214,7 @@ public class InventoryServiceImpl implements InventoryService {
 
         this.decreaseInventory(inventoryTransaction.getQuantity(), d_inventory);
         inventoryTransactionMapper.deleteInventoryTransactionByItiId(iti_id);
+        return true;
     }
 
     @Override
