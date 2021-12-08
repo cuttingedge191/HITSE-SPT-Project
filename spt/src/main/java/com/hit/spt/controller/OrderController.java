@@ -98,7 +98,7 @@ public class OrderController {
                 List<OrderItem> orderItemList = orderService.queryOrderItemWithNameListByOid(o_id);
 
                 if (!orderService.checkIfCanDelivery(orderItemList)) {
-                    model.addAttribute("msg", "库存数量不足 无法通过！");
+                    model.addAttribute("msg", "库存数量不足，无法操作！");
                     return this.addPosOrder(o_id,null,null,null,null,model);
                 }
                 ordersViewController.inventoryProcessForOrder(o_id, "closed", model, request);
