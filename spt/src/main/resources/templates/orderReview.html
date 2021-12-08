@@ -363,24 +363,30 @@
                                                     <!-- TODO 操作实现-->
                                                     <a class="btn primary m-b"
                                                        th:href="@{/auditOrder(status='checked',o_id=${theOrder.o_id})}"
-                                                       th:if="${theOrder.status != 'refund'}">通过</a>
+                                                       th:if="
+                                                           ${theOrder.status} != 'refund'
+                                                       and ${theOrder.status} != 'closed'
+                                                       and ${theOrder.status} != 'paid'">通过</a>
                                                     <a class="btn danger m-b"
                                                        th:href="@{/auditOrder(status='failed',o_id=${theOrder.o_id})}"
-                                                       th:if="${theOrder.status != 'refund'}">拒绝</a>
+                                                       th:if="${theOrder.status} != 'refund' and ${theOrder.status} != 'closed'and ${theOrder.status} != 'paid'">拒绝</a>
                                                     <a class="btn primary m-b"
                                                        th:href="@{/auditOrder(status='refund',o_id=${theOrder.o_id})}"
-                                                       th:if="${theOrder.status != 'refund'}">退款</a>
+                                                       th:if="${theOrder.status} != 'refund' and ${theOrder.status} != 'closed'">退款</a>
                                                     <a class="btn primary m-b"
                                                        th:href="@{/auditOrder(status='paid',o_id=${theOrder.o_id})}"
-                                                       th:if="${theOrder.status != 'refund'}">确认收款</a>
+                                                       th:if="${theOrder.status} != 'refund' and ${theOrder.status} != 'closed'and ${theOrder.status} != 'paid'">确认收款</a>
 
                                                     <a class="btn danger m-b"
                                                        th:href="@{/auditOrder(status='rejectRefund',o_id=${theOrder.o_id})}"
-                                                       th:if="${theOrder.status == 'refund'}">拒绝退货</a>
+                                                       th:if="${theOrder.status} == 'refund' and ${theOrder.status} != 'closed'">拒绝退货</a>
 
                                                     <a class="btn primary m-b"
                                                        th:href="@{/auditOrder(status='closed',o_id=${theOrder.o_id})}"
-                                                       th:if="${theOrder.status == 'refund'}">确认退货</a>
+                                                       th:if="${theOrder.status} == 'refund' and ${theOrder.status} != 'closed'">确认退货</a>
+
+                                                    <a class="btn info m-b"
+                                                       th:href="@{/ordersView(status='closed')}" th:if="${theOrder.status}=='paid'">关闭订单</a>
                                                 </span>
                                             </form>
                                             <!-- fields -->
