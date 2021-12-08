@@ -37,9 +37,6 @@ public class OrderServiceImpl implements OrderService {
     InventoryService inventoryService;
 
 
-    @Autowired
-    InventoryService inventoryService;
-
     @Override
     public boolean checkIfExits(Integer o_id) {
         Orders orders = ordersMapper.queryOrdersByOid(o_id);
@@ -232,13 +229,13 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void autoInventoryDelivery(List<OrderItem> orderItemList) {
         //TODO 自动出库
-        for(OrderItem oi:orderItemList){
+        for (OrderItem oi : orderItemList) {
             List<Inventory> inventories = inventoryMapper.selectInventoryByName(oi.getName());
-            for(Inventory inventory:inventories){
-                if(oi.getQuantity() > inventory.getQuantity()){
+            for (Inventory inventory : inventories) {
+                if (oi.getQuantity() > inventory.getQuantity()) {
                     oi.setQuantity(oi.getQuantity() - inventory.getQuantity());
-                    inventoryService.decreaseInventory(inventory.getQuantity(),inventory);
-                }else{
+                    inventoryService.decreaseInventory(inventory.getQuantity(), inventory);
+                } else {
                     inventoryService.decreaseInventory(oi.getQuantity(), inventory);
                     break;
                 }
@@ -250,14 +247,24 @@ public class OrderServiceImpl implements OrderService {
     public void autoInventoryRefund(List<OrderItem> orderItemList) {
         //TODO 自动回库
         List<Inventory> inventoryLists = inventoryService.queryWarehouseList();
+        Integer il_id = null;
+        Integer prior = 999;
+        for (Inventory inventory : inventoryLists) {
+            if (inventory.getInventory_prior() < prior) {
+                prior = inventory.getInventory_prior();
+                il_id = inventory.getIl_id();
+            }
 
-//        List<inventoryMapper.queryWarehouseList();
-        for(OrderItem orderItem:orderItemList){
+        }
+
+        for (OrderItem orderItem : orderItemList) {
             Inventory inventory = new Inventory();
-            inventory.setCost(orderItem.getCost()/orderItem.getQuantity());
+            inventory.setCost(orderItem.getCost() / orderItem.getQuantity());
             inventory.setName(orderItem.getName());
             inventory.setQuantity(orderItem.getQuantity());
-//            inventoryService.mergeInsertInventory();
+            inventory.setIl_id(il_id);
+            inventory.setG_id(orderItem.getG_id());
+            inventoryService.mergeInsertInventory(inventory);
         }
 
     }
