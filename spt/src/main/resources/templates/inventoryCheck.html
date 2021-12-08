@@ -2,10 +2,10 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <title>Flatkit - HTML Version | Bootstrap 4 Web App Kit with AngularJS</title>
-    <meta name="description" content="Admin, Dashboard, Bootstrap, Bootstrap 4, Angular, AngularJS" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui" />
+    <meta name="description" content="Admin, Dashboard, Bootstrap, Bootstrap 4, Angular, AngularJS"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <!-- for ios 7 style, multi-resolution icon of 152x152 -->
@@ -18,305 +18,303 @@
     <link rel="shortcut icon" sizes="196x196" href="../assets/images/logo.png">
 
     <!-- style -->
-    <link rel="stylesheet" th:href="@{/assets/animate.css/animate.min.css}" type="text/css" />
-    <link rel="stylesheet" th:href="@{/assets/glyphicons/glyphicons.css}" type="text/css" />
-    <link rel="stylesheet" th:href="@{/assets/font-awesome/css/font-awesome.min.css}" type="text/css" />
-    <link rel="stylesheet" th:href="@{/assets/material-design-icons/material-design-icons.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/assets/animate.css/animate.min.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/assets/glyphicons/glyphicons.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/assets/font-awesome/css/font-awesome.min.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/assets/material-design-icons/material-design-icons.css}" type="text/css"/>
 
-    <link rel="stylesheet" th:href="@{/assets/bootstrap/dist/css/bootstrap.min.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/assets/bootstrap/dist/css/bootstrap.min.css}" type="text/css"/>
     <!-- build:css @{/assets/styles/app.min.css} -->
-    <link rel="stylesheet" th:href="@{/assets/styles/app.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/assets/styles/app.css}" type="text/css"/>
     <!-- endbuild -->
-    <link rel="stylesheet" th:href="@{/assets/styles/font.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/assets/styles/font.css}" type="text/css"/>
 </head>
 
 <body>
-    <div class="app" id="app">
+<div class="app" id="app">
 
-        <!-- ############ LAYOUT START-->
+    <!-- ############ LAYOUT START-->
 
-        <!-- aside -->
-        <div id="aside" class="app-aside modal nav-dropdown">
-            <!-- fluid app aside -->
-            <div class="left navside dark dk" data-layout="column">
-                <div class="navbar no-radius">
-                    <!-- brand -->
-                    <a class="navbar-brand">
-                        <!-- 原来的图标
-                    <div ui-include="'@{/assets/images/logo.svg'"></div>
-                    <img th:src="@{/assets/images/logo.png}" alt="." class="hide">
-                -->
-                        <span class="hidden-folded inline">通用批发零售</span><br>
-                        <span class="hidden-folded inline">业务管理系统</span>
-                    </a>
-                    <!-- /brand -->
-                </div>
-                <div class="hide-scroll" data-flex>
-                    <nav class="scroll nav-light">
+    <!-- aside -->
+    <div id="aside" class="app-aside modal nav-dropdown">
+        <!-- fluid app aside -->
+        <div class="left navside dark dk" data-layout="column">
+            <div class="navbar no-radius">
+                <!-- brand -->
+                <a class="navbar-brand">
+                    <!-- 原来的图标
+                <div ui-include="'@{/assets/images/logo.svg'"></div>
+                <img th:src="@{/assets/images/logo.png}" alt="." class="hide">
+            -->
+                    <span class="hidden-folded inline">通用批发零售</span><br>
+                    <span class="hidden-folded inline">业务管理系统</span>
+                </a>
+                <!-- /brand -->
+            </div>
+            <div class="hide-scroll" data-flex>
+                <nav class="scroll nav-light">
 
-                        <ul class="nav" ui-nav>
-                            <li class="nav-header hidden-folded">
-                                <small class="text-muted">主要功能</small>
-                            </li>
+                    <ul class="nav" ui-nav>
+                        <li class="nav-header hidden-folded">
+                            <small class="text-muted">主要功能</small>
+                        </li>
 
-                            <li>
-                                <a th:href="@{/index}">
+                        <li>
+                            <a th:href="@{/index}">
                                     <span class="nav-icon">
                                         <i class="material-icons">&#xe3fc;
                                             <span ui-include="'@{/assets/images/i_0.svg'"></span>
                                         </i>
                                     </span>
-                                    <span class="nav-text">概览界面</span>
-                                </a>
-                            </li>
+                                <span class="nav-text">概览界面</span>
+                            </a>
+                        </li>
 
-                            <li th:if="${#strings.substring(session.permissions, 1, 2)=='1'}">
-                                <a th:href="@{/goodsView}">
+                        <li th:if="${#strings.substring(session.permissions, 1, 2)=='1'}">
+                            <a th:href="@{/goodsView}">
                                     <span class="nav-icon">
                                         <i class="material-icons">&#xe5c3;
                                             <span ui-include="'@{/assets/images/i_1.svg'"></span>
                                         </i>
                                     </span>
-                                    <span class="nav-text">货品管理</span>
-                                </a>
-                            </li>
+                                <span class="nav-text">货品管理</span>
+                            </a>
+                        </li>
 
-                            <li th:if="${#strings.substring(session.permissions, 2, 5)!='000'}">
-                                <a>
+                        <li th:if="${#strings.substring(session.permissions, 2, 5)!='000'}">
+                            <a>
                                     <span class="nav-caret">
                                         <i class="fa fa-caret-down"></i>
                                     </span>
-                                    <span class="nav-icon">
+                                <span class="nav-icon">
                                         <i class="material-icons">&#xe8f0;
                                             <span ui-include="'@{/assets/images/i_2.svg'"></span>
                                         </i>
                                     </span>
-                                    <span class="nav-text">库存管理</span>
-                                </a>
-                                <ul class="nav-sub">
-                                    <li>
-                                        <a th:href="@{/inventoryView}">
-                                            <span class="nav-text">库存查询</span>
-                                        </a>
-                                    </li>
-                                    <li th:if="${#strings.substring(session.permissions, 3, 4)=='1'}">
-                                        <a th:href="@{/inventoryCheck}">
-                                            <span class="nav-text">库存盘点</span>
-                                        </a>
-                                    </li>
-                                    <li th:if="${#strings.substring(session.permissions, 4, 5)=='1'}">
-                                        <a th:href="@{/inventoryTrans}">
-                                            <span class="nav-text">库存调度</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
+                                <span class="nav-text">库存管理</span>
+                            </a>
+                            <ul class="nav-sub">
+                                <li>
+                                    <a th:href="@{/inventoryView}">
+                                        <span class="nav-text">库存查询</span>
+                                    </a>
+                                </li>
+                                <li th:if="${#strings.substring(session.permissions, 3, 4)=='1'}">
+                                    <a th:href="@{/inventoryCheck}">
+                                        <span class="nav-text">库存盘点</span>
+                                    </a>
+                                </li>
+                                <li th:if="${#strings.substring(session.permissions, 4, 5)=='1'}">
+                                    <a th:href="@{/inventoryTrans}">
+                                        <span class="nav-text">库存调度</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
 
-                            <li th:if="${#strings.substring(session.permissions, 5, 9)!='0000'}">
-                                <a>
+                        <li th:if="${#strings.substring(session.permissions, 5, 9)!='0000'}">
+                            <a>
                                     <span class="nav-caret">
                                         <i class="fa fa-caret-down"></i>
                                     </span>
-                                    <span class="nav-icon">
+                                <span class="nav-icon">
                                         <i class="material-icons">&#xe8d2;
                                             <span ui-include="'@{/assets/images/i_3.svg'"></span>
                                         </i>
                                     </span>
-                                    <span class="nav-text">销售管理</span>
-                                </a>
-                                <ul class="nav-sub">
-                                    <li>
-                                        <a th:href="@{/ordersView}">
-                                            <span class="nav-text">销售单查询</span>
-                                        </a>
-                                    </li>
-                                    <li th:if="${#strings.substring(session.permissions, 5, 6)=='1'}">
-                                        <a th:href="@{/addOrder}">
-                                            <span class="nav-text">新增批发销售单</span>
-                                        </a>
-                                    </li>
-                                    <li th:if="${#strings.substring(session.permissions, 6, 7)=='1'}">
-                                        <a th:href="@{/pos}">
-                                            <span class="nav-text">零售POS收银台</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
+                                <span class="nav-text">销售管理</span>
+                            </a>
+                            <ul class="nav-sub">
+                                <li>
+                                    <a th:href="@{/ordersView}">
+                                        <span class="nav-text">销售单查询</span>
+                                    </a>
+                                </li>
+                                <li th:if="${#strings.substring(session.permissions, 5, 6)=='1'}">
+                                    <a th:href="@{/addOrder}">
+                                        <span class="nav-text">新增批发销售单</span>
+                                    </a>
+                                </li>
+                                <li th:if="${#strings.substring(session.permissions, 6, 7)=='1'}">
+                                    <a th:href="@{/pos}">
+                                        <span class="nav-text">零售POS收银台</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
 
-                            <li th:if="${#strings.substring(session.permissions, 9, 10)=='1'}">
-                                <a th:href="@{/clientInfoSearch}">
+                        <li th:if="${#strings.substring(session.permissions, 9, 10)=='1'}">
+                            <a th:href="@{/clientInfoSearch}">
                                     <span class="nav-icon">
                                         <i class="material-icons">&#xe429;
                                             <span ui-include="'@{/assets/images/i_4.svg'"></span>
                                         </i>
                                     </span>
-                                    <span class="nav-text">客户管理</span>
-                                </a>
-                            </li>
+                                <span class="nav-text">客户管理</span>
+                            </a>
+                        </li>
 
-                            <li th:if="${#strings.substring(session.permissions, 10, 11)=='1'}">
-                                <a th:href="@{/userInfoSearch}">
+                        <li th:if="${#strings.substring(session.permissions, 10, 11)=='1'}">
+                            <a th:href="@{/userInfoSearch}">
                                     <span class="nav-icon">
                                         <i class="material-icons">&#xe3e8;
                                             <span ui-include="'@{/assets/images/i_5.svg'"></span>
                                         </i>
                                     </span>
-                                    <span class="nav-text">系统用户管理</span>
-                                </a>
-                            </li>
+                                <span class="nav-text">系统用户管理</span>
+                            </a>
+                        </li>
 
-                            <li class="nav-header hidden-folded">
-                                <small class="text-muted">个人账号服务</small>
-                            </li>
+                        <li class="nav-header hidden-folded">
+                            <small class="text-muted">个人账号服务</small>
+                        </li>
 
-                            <li>
-                                <a th:href="@{/account}">
+                        <li>
+                            <a th:href="@{/account}">
                                     <span class="nav-icon">
                                         <i class="material-icons">&#xe1b8;
                                             <span ui-include="'@{/assets/images/i_8.svg'"></span>
                                         </i>
                                     </span>
-                                    <span class="nav-text">账号信息修改</span>
-                                </a>
-                            </li>
+                                <span class="nav-text">账号信息修改</span>
+                            </a>
+                        </li>
 
-                            <li>
-                                <a data-toggle="modal" data-target="#m-a-a" ui-toggle-class="bounce" ui-target="#animate">
+                        <li>
+                            <a data-toggle="modal" data-target="#m-a-a" ui-toggle-class="bounce" ui-target="#animate">
                                     <span class="nav-icon">
                                         <i class="material-icons"></i>
                                     </span>
-                                    <span class="nav-text">退出登录</span>
-                                </a>
-                            </li>
+                                <span class="nav-text">退出登录</span>
+                            </a>
+                        </li>
 
-                            <li class="nav-header hidden-folded">
-                                <small class="text-muted">关于</small>
-                            </li>
+                        <li class="nav-header hidden-folded">
+                            <small class="text-muted">关于</small>
+                        </li>
 
-                            <li class="hidden-folded">
-                                <a th:href="@{/about}">
+                        <li class="hidden-folded">
+                            <a th:href="@{/about}">
                                     <span class="nav-icon">
                                         <i class="material-icons">&#xe39e;
                                             <span ui-include="'@{/assets/images/i_6.svg'"></span>
                                         </i>
                                     </span>
-                                    <span class="nav-text">开发者信息</span>
-                                </a>
-                            </li>
+                                <span class="nav-text">开发者信息</span>
+                            </a>
+                        </li>
 
-                        </ul>
-                    </nav>
-                </div>
-                <!-- 用户登录状态显示 -->
-                <div class="b-t">
-                    <div class="nav-fold">
+                    </ul>
+                </nav>
+            </div>
+            <!-- 用户登录状态显示 -->
+            <div class="b-t">
+                <div class="nav-fold">
                         <span class="pull-left">
                             <img th:src="@{/assets/images/a0.jpg}" alt="..." class="w-40 img-circle">
                         </span>
-                        <span class="clear hidden-folded p-x">
+                    <span class="clear hidden-folded p-x">
                             <span class="block _500" th:text="${session.name}">【用户姓名】</span>
                             <small class="block text-muted" th:text="${session.position}">【用户身份】</small>
                             <small class="block text-muted"><i class="fa fa-circle text-success m-r-sm"></i>在线</small>
                         </span>
-                    </div>
                 </div>
             </div>
         </div>
-        <!-- / -->
+    </div>
+    <!-- / -->
 
-        <!-- content -->
-        <div id="content" class="app-content box-shadow-z0" role="main">
-            <div ui-view class="app-body" id="view">
-                <!-- ############ PAGE START-->
-                <div class="padding">
-                    <div class="box">
-                        <div class="box-header">
-                            <h2>库存盘点</h2>
-                            <small>盘点库存内的货品是否有异常变动</small>
+    <!-- content -->
+    <div id="content" class="app-content box-shadow-z0" role="main">
+        <div ui-view class="app-body" id="view">
+            <!-- ############ PAGE START-->
+            <div class="padding">
+                <div class="box">
+                    <div class="box-header">
+                        <h2>库存盘点</h2>
+                        <small>盘点库存内的货品是否有异常变动</small>
+                    </div>
+                    <div class="box-divider m-0"></div>
+                    <div class="box-body">
+
+                        <div class="row m-b">
+                            <div class="col-md-5">
+                                筛选（仓库或货品）: <input id="filter" type="text"
+                                                  class="form-control input-sm w-auto inline m-r"/>
+                            </div>
                         </div>
-                        <div class="box-divider m-0"></div>
-                        <div class="box-body">
 
-                            <div class="row m-b">
-                                <div class="col-md-5">
-                                    <div class="form-group row">
-                                        <label class="col-md-4 form-control-label">盘点仓库</label>
-                                        <select class="form-group form-control col-sm-6 input-sm"
-                                                ui-options="{theme: 'bootstrap'}" id="filter" type="text"
-                                                name="il_id" >
-                                            <optgroup label="仓库名称">
-                                                <option selected></option>
-                                                <div th:each="list:${inventory_lists}">
-                                                    <option th:text="${list.inventory_name}" th:value="${list.il_id}"></option>
-                                                </div>
-                                            </optgroup>
-                                        </select>
-                                    </div>
+                        <table class="table table-striped white" data-filter="#filter" ui-jp="footable" data-page-size="5">
+                            <thead>
+                            <tr>
+                                <th>货品编号</th>
+                                <th>所在仓库</th>
+                                <th>货品名称</th>
+                                <th>货品质量</th>
+                                <th>现有货品数量</th>
+                                <th>实际货品数量</th>
+                            </tr>
+                            </thead>
+                            <form name="myform">
+                                <tbody>
+                                <tr th:each="inventory:${inventories}">
+                                    <th class="text-nowrap" th:text="${inventory.i_id}"></th>
+                                    <td th:text="${inventory.inventory_name}"></td>
+                                    <td th:text="${inventory.name}"></td>
+                                    <td th:text="${inventory.quality}"></td>
+                                    <td th:text="${inventory.quantity}"></td>
+                                    <td><input type="text" th:placeholder="${inventory.quantity}"
+                                               th:value="${inventory.quantity}"
+                                               th:id="${inventory.i_id} + '_quantity'" class="form-control w-sm inline"
+                                               oninput="if(value<0)value=0"></td>
+                                </tr>
+                                </tbody>
+                            </form>
+                            <tfoot class="hide-if-no-paging">
+                            <tr>
+                                <td colspan="5" class="text-center">
+                                    <ul class="pagination"></ul>
+                                </td>
+                            </tr>
+                            </tfoot>
+                            <script th:inline="javascript">
+                                $(function () {
+                                    var inventories = [[${inventories}]]
+                                    document.getElementById("ack").disabled = (inventories.length === 0);
+                                })
+
+                                function alerti() {
+                                    var form = document.createElement("form");
+                                    form.method = "post";
+                                    var inventories = [[${inventories}]]
+                                    for (let i = 0; i < inventories.length; i++) {
+                                        var input = document.createElement("input");
+                                        input.name = "inventory";
+                                        inventories[i].quantity = document.getElementById(inventories[i].i_id + "_quantity").value;
+                                        input.value = JSON.stringify(inventories[i]);
+                                        form.appendChild(input);
+                                    }
+                                    form.action = /*[[@{/checkInventory}]]*/;
+                                    $(document.body).append(form)
+                                    form.submit()
+                                }
+                            </script>
+                        </table>
+
+                        <h6>库存盘点信息</h6>
+                        <div class="row m-b">
+                            <div class="col-md-6">
+                                <div class="box p-a">
+                                    <label>盘点人员：</label>
+                                    <input type="name" class="form-control" id=""
+                                           placeholder="Inventory manager name">
                                 </div>
                             </div>
 
-                            <table class="table table-striped white" data-filter="#filter" ui-jp="footable">
-                                <thead>
-                                    <tr>
-                                        <th>货品编号</th>
-                                        <th>所在仓库</th>
-                                        <th>货品名称</th>
-                                        <th>货品质量</th>
-                                        <th>现有货品数量</th>
-                                        <th>实际货品数量</th>
-                                    </tr>
-                                </thead>
-                                <form name="myform">
-                                    <tbody>
-                                        <tr th:each="inventory:${inventories}">
-                                            <th class="text-nowrap" th:text="${inventory.i_id}"></th>
-                                            <td th:text="${inventory.inventory_name}"></td>
-                                            <td th:text="${inventory.name}"></td>
-                                            <td th:text="${inventory.quality}"></td>
-                                            <td th:text="${inventory.quantity}"></td>
-                                            <td><input type="text"  th:placeholder="${inventory.quantity}" th:value="${inventory.quantity}"
-                                                       th:id="${inventory.i_id} + '_quantity'" class="form-control w-sm inline"
-                                            oninput="if(value<0)value=0"></td>
-                                        </tr>
-                                    </tbody>
-                                </form>
-                                <script th:inline="javascript">
-                                    $(function(){
-                                        var inventories = [[${inventories}]]
-                                        document.getElementById("ack").disabled = (inventories.length === 0);
-                                    })
-                                    function alerti(){
-                                        var form = document.createElement("form");
-                                        form.method = "post";
-                                        var inventories = [[${inventories}]]
-                                        for (let i = 0; i < inventories.length; i ++){
-                                            var input = document.createElement("input");
-                                            input.name = "inventory";
-                                            inventories[i].quantity = document.getElementById(inventories[i].i_id+"_quantity").value;
-                                            input.value = JSON.stringify(inventories[i]);
-                                            form.appendChild(input);
-                                        }
-                                        form.action = /*[[@{/checkInventory}]]*/;
-                                        $(document.body).append(form)
-                                        form.submit()
-                                    }
-                                </script>
-                            </table>
-
-                            <h6>库存盘点信息</h6>
-                            <div class="row m-b">
-                                <div class="col-md-6">
-                                    <div class="box p-a">
-                                        <label>盘点人员：</label>
-                                        <input type="name" class="form-control" id=""
-                                            placeholder="Inventory manager name">
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="box p-a">
-                                        <label>盘点日期：</label>
-                                            <div class='input-group date' ui-jp="datetimepicker" ui-options="{
+                            <div class="col-md-6">
+                                <div class="box p-a">
+                                    <label>盘点日期：</label>
+                                    <div class='input-group date' ui-jp="datetimepicker" ui-options="{
                                                 format: 'DD/MM/YYYY',
                                                 icons: {
                                                     time: 'fa fa-clock-o',
@@ -330,117 +328,120 @@
                                                     close: 'fa fa-remove'
                                                 }
                                             }">
-                                                <input type='text' class="form-control" />
-                                                <span class="input-group-addon">
+                                        <input type='text' class="form-control"/>
+                                        <span class="input-group-addon">
                                                     <span class="fa fa-calendar"></span>
                                                 </span>
-                                            </div>
                                     </div>
-                            </div>
-                            </div>
-                            <h6>其他描述信息</h6>
-                            <div class="row">
-                                <div class="col-sm-10">
-                                    <textarea class="form-control" rows="2"></textarea>
                                 </div>
                             </div>
                         </div>
-
+                        <h6>其他描述信息</h6>
                         <div class="row">
-                            <div class="col-sm-12">
-                                <div class="dker p-a text-right">
-                                    <p class="btn-groups">
-<!--                                        <button id="ack" class="btn btn-outline b-primary text-primary" onclick="alerti()">确认</button>-->
-                                        <button id="ack" class="btn btn-outline b-primary text-primary" data-toggle="modal" data-target="#m-sm">确认</button>
-                                        <!-- small modal -->
-                                    <div id="m-sm" class="modal" data-backdrop="true">
-                                        <div class="row-col h-v">
-                                            <div class="row-cell v-m">
-                                                <div class="modal-dialog modal-sm">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title">库存盘点确认</h5>
-                                                        </div>
-                                                        <div class="modal-body text-center p-lg">
-                                                            <p>您确定完成了库存盘点吗? 确认之后将无法修改！！！</p>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn dark-white p-x-md" data-dismiss="modal">取消</button>
-                                                            <a class="btn danger p-x-md" onclick="alerti()">确定</a>
-                                                        </div>
-                                                    </div><!-- /.modal-content -->
-                                                </div>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" rows="2"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="dker p-a text-right">
+                                <p class="btn-groups">
+                                    <!--                                        <button id="ack" class="btn btn-outline b-primary text-primary" onclick="alerti()">确认</button>-->
+                                    <button id="ack" class="btn btn-outline b-primary text-primary" data-toggle="modal"
+                                            data-target="#m-sm">确认
+                                    </button>
+                                    <!-- small modal -->
+                                <div id="m-sm" class="modal" data-backdrop="true">
+                                    <div class="row-col h-v">
+                                        <div class="row-cell v-m">
+                                            <div class="modal-dialog modal-sm">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">库存盘点确认</h5>
+                                                    </div>
+                                                    <div class="modal-body text-center p-lg">
+                                                        <p>您确定完成了库存盘点吗? 确认之后将无法修改！！！</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn dark-white p-x-md"
+                                                                data-dismiss="modal">取消
+                                                        </button>
+                                                        <a class="btn danger p-x-md" onclick="alerti()">确定</a>
+                                                    </div>
+                                                </div><!-- /.modal-content -->
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- small modal -->
-<!--                                        <button class="btn btn-outline b-black text-black">退出</button>-->
-                                    </p>
                                 </div>
+                                <!-- small modal -->
+                                </p>
                             </div>
                         </div>
-
-
                     </div>
 
-                    <!-- ############ PAGE END-->
 
                 </div>
+
+                <!-- ############ PAGE END-->
+
             </div>
         </div>
-        <!-- / -->
-
-        <!-- ############ LAYOUT END-->
-        <!-- .modal -->
-        <div id="m-a-a" class="modal fade animate" data-backdrop="true">
-            <div class="modal-dialog" id="animate">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">退出登录</h5>
-                    </div>
-                    <div class="modal-body text-center p-lg">
-                        <p>您是否确定退出登录？</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn dark-white p-x-md" data-dismiss="modal">取消</button>
-                        <a class="btn danger p-x-md" th:href="@{/logout}">确认</a>
-                    </div>
-                </div><!-- /.modal-content -->
-            </div>
-        </div>
-        <!-- / .modal -->
-
     </div>
-    <!-- build:js scripts/app.html.js} -->
-    <!-- jQuery -->
-    <script th:src="@{/libs/jquery/jquery/dist/jquery.js}"></script>
-    <!-- Bootstrap -->
-    <script th:src="@{/libs/jquery/tether/dist/js/tether.min.js}"></script>
-    <script th:src="@{/libs/jquery/bootstrap/dist/js/bootstrap.js}"></script>
-    <!-- core -->
-    <script th:src="@{/libs/jquery/underscore/underscore-min.js}"></script>
-    <script th:src="@{/libs/jquery/jQuery-Storage-API/jquery.storageapi.min.js}"></script>
-    <script th:src="@{/libs/jquery/PACE/pace.min.js}"></script>
+    <!-- / -->
 
-    <script th:src="@{/scripts/config.lazyload.js}"></script>
+    <!-- ############ LAYOUT END-->
+    <!-- .modal -->
+    <div id="m-a-a" class="modal fade animate" data-backdrop="true">
+        <div class="modal-dialog" id="animate">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">退出登录</h5>
+                </div>
+                <div class="modal-body text-center p-lg">
+                    <p>您是否确定退出登录？</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn dark-white p-x-md" data-dismiss="modal">取消</button>
+                    <a class="btn danger p-x-md" th:href="@{/logout}">确认</a>
+                </div>
+            </div><!-- /.modal-content -->
+        </div>
+    </div>
+    <!-- / .modal -->
 
-    <script th:src="@{/scripts/palette.js}"></script>
-    <script th:src="@{/scripts/ui-load.js}"></script>
-    <script th:src="@{/scripts/ui-jp.js}"></script>
-    <script th:src="@{/scripts/ui-include.js}"></script>
-    <script th:src="@{/scripts/ui-device.js}"></script>
-    <script th:src="@{/scripts/ui-form.js}"></script>
-    <script th:src="@{/scripts/ui-nav.js}"></script>
-    <script th:src="@{/scripts/ui-screenfull.js}"></script>
-    <script th:src="@{/scripts/ui-scroll-to.js}"></script>
-    <script th:src="@{/scripts/ui-toggle-class.js}"></script>
+</div>
+<!-- build:js scripts/app.html.js} -->
+<!-- jQuery -->
+<script th:src="@{/libs/jquery/jquery/dist/jquery.js}"></script>
+<!-- Bootstrap -->
+<script th:src="@{/libs/jquery/tether/dist/js/tether.min.js}"></script>
+<script th:src="@{/libs/jquery/bootstrap/dist/js/bootstrap.js}"></script>
+<!-- core -->
+<script th:src="@{/libs/jquery/underscore/underscore-min.js}"></script>
+<script th:src="@{/libs/jquery/jQuery-Storage-API/jquery.storageapi.min.js}"></script>
+<script th:src="@{/libs/jquery/PACE/pace.min.js}"></script>
 
-    <script th:src="@{/scripts/app.js}"></script>
+<script th:src="@{/scripts/config.lazyload.js}"></script>
 
-    <!-- ajax -->
-    <script th:src="@{/libs/jquery/jquery-pjax/jquery.pjax.js}"></script>
-    <script th:src="@{/scripts/ajax.js}"></script>
-    <!-- endbuild -->
+<script th:src="@{/scripts/palette.js}"></script>
+<script th:src="@{/scripts/ui-load.js}"></script>
+<script th:src="@{/scripts/ui-jp.js}"></script>
+<script th:src="@{/scripts/ui-include.js}"></script>
+<script th:src="@{/scripts/ui-device.js}"></script>
+<script th:src="@{/scripts/ui-form.js}"></script>
+<script th:src="@{/scripts/ui-nav.js}"></script>
+<script th:src="@{/scripts/ui-screenfull.js}"></script>
+<script th:src="@{/scripts/ui-scroll-to.js}"></script>
+<script th:src="@{/scripts/ui-toggle-class.js}"></script>
+
+<script th:src="@{/scripts/app.js}"></script>
+
+<!-- ajax -->
+<script th:src="@{/libs/jquery/jquery-pjax/jquery.pjax.js}"></script>
+<script th:src="@{/scripts/ajax.js}"></script>
+<!-- endbuild -->
 </body>
 
 </html>

@@ -362,7 +362,7 @@
                                                     <div class="col-md-4">
                                                         <label>实收：</label>
                                                         <input type="text" class="form-control" id="sumReceived"
-                                                               placeholder="应收数额" onchange="calcChange()">
+                                                               placeholder="实收数额" onchange="calcChange()">
                                                     </div>
                                                     <div class="col-md-4">
                                                         <label>找零：</label>
@@ -388,8 +388,8 @@
                                                                     <input id="giveChange2" th:value="${giveChange2}" disabled="">
                                                                 </div>
                                                                 <div class="modal-footer">
-                                                                    <button type="button" class="btn dark-white p-x-md" data-dismiss="modal">No</button>
-                                                                    <a class="btn danger p-x-md" th:href="@{/commitOrder(method=true,o_id=${o_id},cname=${cname},type='retail')}">Yes</a>
+                                                                    <button type="button" class="btn dark-white p-x-md" data-dismiss="modal">返回</button>
+                                                                    <a class="btn danger p-x-md" th:href="@{/commitOrder(method=true,o_id=${o_id},cname=${cname},type='retail')}">确定</a>
                                                                 </div>
                                                             </div><!-- /.modal-content -->
                                                         </div>
