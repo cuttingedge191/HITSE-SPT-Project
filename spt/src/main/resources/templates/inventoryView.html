@@ -239,18 +239,17 @@
 <!--                  <div class="dker p-a text-right">-->
                 <div class="col-md-6">
                     <div class="input-group select2-bootstrap-prepend m-b">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" type="button" data-select2-open="select2-input-group-append">
-                        <span class="fa fa-search"></span>
-                        </button>
-                    </span>
+<!--                    <span class="input-group-btn">-->
+<!--                        <button class="btn btn-default" type="button" data-select2-open="select2-input-group-append">-->
+<!--                        <span class="fa fa-search"></span>-->
+<!--                        </button>-->
+<!--                    </span>-->
 <!--                        TODO 多选框 绑定仓库-->
-                    <select id="select2-input-group-append" class="form-control select2-multiple m-b" multiple ui-jp="select2" ui-options="{theme: 'bootstrap'}">
-                        <option>仓库1</option>
-                        <option>仓库2</option>
-                        <option>仓库3</option>
-                        <option>仓库4</option>
-                    </select>
+<!--                    <select onchange="onSelectInput()" id="select2-input-group-append" class="form-control select2-multiple m-b" multiple ui-jp="select2" ui-options="{theme: 'bootstrap'}">-->
+<!--                        <option th:each="inventory:${inventory_lists}" class="inventory" th:text="${inventory.inventory_name}">-->
+
+<!--                        </option>-->
+<!--                    </select>-->
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -262,7 +261,21 @@
                     <label th:if="${#strings.substring(session.permissions, 2, 3)=='1'}"
                            for="addInventory">进货入库</label>
                 </div>
+
             </div>
+<!--              <script th:inline="javascript">-->
+<!--                  function onSelectInput(){-->
+<!--                      var selected_inventory = $(".inventory:selected")-->
+<!--                      var inventory = selected_inventory.text() + " "-->
+<!--                      var filter_2 = $("#filter_2")-->
+<!--                      var filter = inventory + filter_2.val()-->
+<!--                      var filter_input = $("#filter")-->
+<!--                      console.log(filter)-->
+<!--                      filter_input.text(filter)-->
+<!--                      filter_input.val(filter)-->
+<!--                      filter_input.trigger()-->
+<!--                  }-->
+<!--              </script>-->
             <div>
               <table class="table m-b-none" ui-jp="footable" data-filter="#filter" data-page-size="5">
                 <thead>

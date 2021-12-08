@@ -51,6 +51,8 @@ public class InventoryController {
     public String inventoryView(Model model) {
         List<Inventory> inventories = inventoryService.queryInventoryWithGnameList();
         model.addAttribute("inventories", inventories);
+        List<Inventory> inventory_lists = inventoryService.queryWarehouseList();
+        model.addAttribute("inventory_lists", inventory_lists);
         return "inventoryView";
     }
 
@@ -88,7 +90,7 @@ public class InventoryController {
                 Inventory inventory_old = inventoryService.queryInventoryByIId(inventory.getI_id());
                 Integer decreaseQuantity = inventory.getQuantity();
                 inventory_old.setQuality(inventory.getQuality());
-                decreaseInventory(decreaseQuantity, inventory_old);
+                inventoryService.decreaseInventory(decreaseQuantity, inventory_old);
             }
         } else if (uri.charAt(1) == 'd') {
             g_id = inventoryService.queryInventoryByIId(inventory.getI_id()).getG_id();
@@ -159,23 +161,18 @@ public class InventoryController {
         transaction.setIl_id_s(inventory.getIl_id());
         inventoryService.insertInventoryTransaction(transaction);
 
+
+        // 修改库存
         Integer decreaseInteger = transaction.getQuantity();
-        decreaseInventory(decreaseInteger, inventory);
+        inventoryService.decreaseInventory(decreaseInteger, inventory);
         inventory.setIl_id(transaction.getIl_id_d());
         inventory.setQuantity(transaction.getQuantity());
         inventoryService.mergeInsertInventory(inventory);
+
         inventoryService.refreshInventoryTransView(model, httpServletRequest);
         return "inventoryTrans";
     }
 
-    private void decreaseInventory(Integer decreaseQuantity, Inventory inventory) {
-        if (decreaseQuantity >= inventory.getQuantity()) {
-            inventoryService.deleteInventoryByIID(inventory.getI_id());
-        } else {
-            inventory.setQuantity(inventory.getQuantity() - decreaseQuantity);
-            inventoryService.updateInventory(inventory);
-        }
-    }
 
     @RequestMapping("deleteInventoryTransaction")
     public String deleteInventoryTransaction(Integer iti_id, Model model) {

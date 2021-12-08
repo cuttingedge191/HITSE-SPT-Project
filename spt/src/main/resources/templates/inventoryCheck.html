@@ -241,9 +241,9 @@
                                 <div class="col-md-5">
                                     <div class="form-group row">
                                         <label class="col-md-4 form-control-label">盘点仓库</label>
-                                        <select class="form-group form-control col-sm-6" ui-jp="select2"
-                                                ui-options="{theme: 'bootstrap'}" name="il_id"
-                                                id="warehouse">
+                                        <select class="form-group form-control col-sm-6 input-sm"
+                                                ui-options="{theme: 'bootstrap'}" id="filter" type="text"
+                                                name="il_id" >
                                             <optgroup label="仓库名称">
                                                 <option selected></option>
                                                 <div th:each="list:${inventory_lists}">
@@ -255,7 +255,7 @@
                                 </div>
                             </div>
 
-                            <table class="table table-striped white">
+                            <table class="table table-striped white" data-filter="#filter" ui-jp="footable" data-page-size="5">
                                 <thead>
                                     <tr>
                                         <th>货品编号</th>
