@@ -202,6 +202,8 @@ public class InventoryController {
         Integer u_id = (Integer) httpServletRequest.getSession().getAttribute("u_id");
         inventoryService.deleteInventoryTransactionByUId(u_id);
         inventoryService.refreshInventoryTransView(model, httpServletRequest);
+
+        model.addAttribute("warn", true);
         return "inventoryTrans";
     }
 
