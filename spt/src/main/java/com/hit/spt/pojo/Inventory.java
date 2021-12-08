@@ -17,4 +17,5 @@ public class Inventory {
     private Double cost;
     private String inventory_name;
     private Integer il_id;
+    private Integer inventory_prior;
 }

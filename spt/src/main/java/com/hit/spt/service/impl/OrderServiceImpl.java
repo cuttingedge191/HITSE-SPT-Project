@@ -1,10 +1,8 @@
 package com.hit.spt.service.impl;
 
 import com.hit.spt.mapper.*;
-import com.hit.spt.pojo.Customer;
-import com.hit.spt.pojo.GoodsInfo;
-import com.hit.spt.pojo.OrderItem;
-import com.hit.spt.pojo.Orders;
+import com.hit.spt.pojo.*;
+import com.hit.spt.service.InventoryService;
 import com.hit.spt.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
@@ -34,6 +32,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     InventoryMapper inventoryMapper;
+
+    @Autowired
+    InventoryService inventoryService;
 
     @Override
     public boolean checkIfExits(Integer o_id) {
@@ -227,12 +228,24 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void autoInventoryDelivery(List<OrderItem> orderItemList) {
         //TODO 自动出库
-
+        for(OrderItem oi:orderItemList){
+            List<Inventory> inventories = inventoryMapper.selectInventoryByName(oi.getName());
+            for(Inventory inventory:inventories){
+                if(oi.getQuantity() > inventory.getQuantity()){
+                    oi.setQuantity(oi.getQuantity() - inventory.getQuantity());
+                    inventoryService.decreaseInventory(inventory.getQuantity(),inventory);
+                }else{
+                    inventoryService.decreaseInventory(oi.getQuantity(), inventory);
+                    break;
+                }
+            }
+        }
     }
 
     @Override
     public void autoInventoryRefund(List<OrderItem> orderItemList) {
         //TODO 自动回库
+        List<Inventory> inventoryLists = inventoryService.queryWarehouseList();
 
     }
 
