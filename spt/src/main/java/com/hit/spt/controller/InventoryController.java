@@ -60,8 +60,6 @@ public class InventoryController {
     public String inventoryCheck(Model model) {
         List<Inventory> inventories = inventoryService.queryInventoryWithGnameList();
         model.addAttribute("inventories", inventories);
-        List<Inventory> inventory_lists = inventoryService.queryWarehouseList();
-        model.addAttribute("inventory_lists", inventory_lists);
         return "inventoryCheck";
     }
 

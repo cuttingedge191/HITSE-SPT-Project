@@ -59,8 +59,8 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public int calcTotalPriceByOid(Integer o_id) {
-        int result = 0;
+    public Double calcTotalPriceByOid(Integer o_id) {
+        double result = 0;
         List<OrderItem> itemList = orderItemMapper.queryOrderItemByOid(o_id);
         for (OrderItem item : itemList) {
             result += item.getPrice();
