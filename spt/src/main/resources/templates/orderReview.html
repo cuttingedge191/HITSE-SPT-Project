@@ -358,16 +358,40 @@
                                                     </table>
                                                 </div>
                                                 <span class="pull-right">
+                                                    <p style="color:red" th:text="${msg}" th:if="${msg} != null"></p>
                                                     <a class="btn info m-b"
                                                        th:href="@{/ordersView}">返回</a>
-                                                    <!-- TODO 操作实现-->
+
                                                     <a class="btn primary m-b"
-                                                       th:href="@{/auditOrder(status='checked',o_id=${theOrder.o_id})}">通过</a>
-                                                    <a class="btn btn-danger m-b"
-                                                       th:href="@{/auditOrder(status='failed',o_id=${theOrder.o_id})}">拒绝</a>
+                                                       th:href="@{/autoDelivery(status='checked',o_id=${theOrder.o_id})}"
+                                                       th:if="${theOrder.status} == 'unchecked'">通过</a>
+
+                                                    <a class="btn danger m-b"
+                                                       th:href="@{/auditOrder(status='failed',o_id=${theOrder.o_id})}"
+                                                       th:if="${theOrder.status} == 'unchecked'">拒绝</a>
+
                                                     <a class="btn primary m-b"
-                                                       th:href="@{/auditOrder(status='paid',o_id=${theOrder.o_id})}">确认收款</a>
-                                                </span>
+                                                       th:href="@{/auditOrder(status='refund',o_id=${theOrder.o_id})}"
+                                                       th:if="${theOrder.status} != 'refund' and ${theOrder.status} != 'closed'
+                                                       and (${theOrder.status} == 'checked' or ${theOrder.status} == 'paid')">退款/货</a>
+
+                                                    <a class="btn primary m-b"
+                                                       th:href="@{/autoDelivery(status='paid',o_id=${theOrder.o_id})}"
+                                                       th:if="${theOrder.status} == 'checked' ">确认收款</a>
+
+                                                    <a class="btn danger m-b"
+                                                       th:href="@{/auditOrder(status='rejectRefund',o_id=${theOrder.o_id})}"
+                                                       th:if="${theOrder.status} == 'refund' and ${theOrder.status} != 'closed'">拒绝退货</a>
+
+                                                    <a class="btn primary m-b"
+                                                       th:href="@{/refundOrder(status='closed',o_id=${theOrder.o_id})}"
+                                                       th:if="${theOrder.status} == 'refund' and ${theOrder.status} != 'closed'">确认退货</a>
+
+                                                    <a class="btn info m-b"
+                                                       th:href="@{/auditOrder(status='closed',o_id=${theOrder.o_id})}" th:if="${theOrder.status}=='paid'">关闭订单</a>
+
+                                                    <a class="btn warning m-b"
+                                                       th:href="@{/deleteOrder(o_id=${theOrder.o_id})}" th:if="${theOrder.status}=='closed' or ${theOrder.status}=='unchecked'">删除订单</a>
                                             </form>
                                             <!-- fields -->
                                             <!-- / fields -->
