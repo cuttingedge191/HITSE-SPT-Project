@@ -261,6 +261,7 @@
                                                             </optgroup>
                                                         </select>
                                                         <input type="hidden" th:value="${o_id}" name="o_id">
+                                                        <input type="hidden" th:value="'yes'" name="ifUpdate">
                                                     </div>
 
                                                     <div class="form-group row">
@@ -327,7 +328,7 @@
                                                             <td th:text="${orderItem.price}"></td>
                                                             <td>
                                                                 <a class="btn btn-sm btn-danger deletebtn"
-                                                                   th:href="@{/deleteOneOrderItem(oi_id=${orderItem.oi_id},o_id=${o_id},cname=${cname},type=${type})}">删除</a>
+                                                                   th:href="@{/deleteOneOrderItem(oi_id=${orderItem.oi_id},o_id=${o_id},cname=${cname},type=${type},ifUpdate='yes')}">删除</a>
                                                             </td>
                                                         </tr>
                                                         </tbody>

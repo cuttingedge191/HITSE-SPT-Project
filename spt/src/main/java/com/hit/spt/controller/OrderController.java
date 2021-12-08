@@ -22,6 +22,9 @@ public class OrderController {
     OrderService orderService;
 
     @Autowired
+    OrdersViewController ordersViewController;
+
+    @Autowired
     ClientInfoService clientInfoService;
 
 
@@ -35,11 +38,15 @@ public class OrderController {
      * @return 转发
      */
     @RequestMapping({"addOrder", "addOneOrderItem"})
-    public String addOneOrder(Integer o_id, String item_name, Integer quantity, String cname, HttpServletRequest request, Model model) {
+    public String addOneOrder(Integer o_id, String item_name, Integer quantity, String cname, String ifUpdate,HttpServletRequest request, Model model) {
         String type = "trade";
         if (request.getRequestURI().equals("/addOneOrderItem")) {
             orderService.genOrderItemForOrder(o_id, item_name, quantity, type, cname, model);
         }
+        //update 和 add order不同！！
+        if(ifUpdate != null)
+            return ordersViewController.updateOrder(o_id,model);
+
         if (o_id != null) {
             model.addAttribute("o_id", o_id);
         } else {
@@ -119,10 +126,14 @@ public class OrderController {
      * @return 转发到addOrder
      */
     @RequestMapping({"deleteOneOrderItem", "deleteOnePosOrderItem"})
-    public String deleteOneOrderItem(Integer oi_id, Integer o_id, String cname, String type, Model model, HttpServletRequest request) {
+    public String deleteOneOrderItem(Integer oi_id, Integer o_id, String cname, String type, String ifUpdate,Model model, HttpServletRequest request) {
         String view = "addOrder";
         // 生成暂存物品列表
         orderService.deleteOneOrderItemByOiid(oi_id);
+
+        //update 和 add order不同！！
+        if(ifUpdate != null)
+            return ordersViewController.updateOrder(o_id,model);
 
         if (request.getRequestURI().equals("/deleteOnePosOrderItem")) {
             view = "pos";
@@ -134,6 +145,7 @@ public class OrderController {
         model.addAttribute("o_id", o_id);
         model.addAttribute("cname", cname);
         orderService.getGoodsCustomerInfo(model, o_id, type);
+
         return view;
     }
 
