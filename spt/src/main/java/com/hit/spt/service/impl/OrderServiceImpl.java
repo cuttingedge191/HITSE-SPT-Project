@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import java.text.SimpleDateFormat;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -226,11 +228,23 @@ public class OrderServiceImpl implements OrderService {
         return res;
     }
 
+    private class inventoryComparator implements Comparator<Inventory>{
+
+        @Override
+        public int compare(Inventory o1, Inventory o2) {
+            return o1.getInventory_prior() - o2.getInventory_prior();
+        }
+    }
+
     @Override
     public void autoInventoryDelivery(List<OrderItem> orderItemList) {
         //TODO 自动出库
         for (OrderItem oi : orderItemList) {
             List<Inventory> inventories = inventoryMapper.selectInventoryByName(oi.getName());
+            for (Inventory inventory : inventories) {
+                inventory.setInventory_prior(inventoryMapper.queryWarehouseByIlID(inventory.getIl_id()).getInventory_prior());
+            }
+            inventories.sort(new inventoryComparator());
             for (Inventory inventory : inventories) {
                 if (oi.getQuantity() > inventory.getQuantity()) {
                     oi.setQuantity(oi.getQuantity() - inventory.getQuantity());
