@@ -37,6 +37,9 @@ public class OrderServiceImpl implements OrderService {
     InventoryService inventoryService;
 
 
+    @Autowired
+    InventoryService inventoryService;
+
     @Override
     public boolean checkIfExits(Integer o_id) {
         Orders orders = ordersMapper.queryOrdersByOid(o_id);
@@ -229,12 +232,24 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void autoInventoryDelivery(List<OrderItem> orderItemList) {
         //TODO 自动出库
-
+        for(OrderItem oi:orderItemList){
+            List<Inventory> inventories = inventoryMapper.selectInventoryByName(oi.getName());
+            for(Inventory inventory:inventories){
+                if(oi.getQuantity() > inventory.getQuantity()){
+                    oi.setQuantity(oi.getQuantity() - inventory.getQuantity());
+                    inventoryService.decreaseInventory(inventory.getQuantity(),inventory);
+                }else{
+                    inventoryService.decreaseInventory(oi.getQuantity(), inventory);
+                    break;
+                }
+            }
+        }
     }
 
     @Override
     public void autoInventoryRefund(List<OrderItem> orderItemList) {
         //TODO 自动回库
+        List<Inventory> inventoryLists = inventoryService.queryWarehouseList();
 
 //        List<inventoryMapper.queryWarehouseList();
         for(OrderItem orderItem:orderItemList){

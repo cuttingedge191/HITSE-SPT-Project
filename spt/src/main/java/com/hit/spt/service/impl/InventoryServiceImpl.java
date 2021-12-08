@@ -221,7 +221,8 @@ public class InventoryServiceImpl implements InventoryService {
         inventoryTransactionMapper.deleteInventoryTransactionByUId(u_id);
     }
 
-    private void decreaseInventory(Integer decreaseQuantity, Inventory inventory) {
+    @Override
+    public void decreaseInventory(Integer decreaseQuantity, Inventory inventory) {
         if(decreaseQuantity >= inventory.getQuantity()){
             this.deleteInventoryByIID(inventory.getI_id());
         }else{
