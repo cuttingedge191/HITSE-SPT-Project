@@ -39,5 +39,8 @@ public interface OrderService {
 
     void genOrderItemForOrder(Integer o_id, String item_name, Integer quantity, String type, String cname, Model model);
 
+    boolean checkIfCanDelivery(List<OrderItem> orderItemList);
 
+    void autoInventoryDelivery(List<OrderItem> orderItemList);
+    void autoInventoryRefund(List<OrderItem> orderItemList);
 }

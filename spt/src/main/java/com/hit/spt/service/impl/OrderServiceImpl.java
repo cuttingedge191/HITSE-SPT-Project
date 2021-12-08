@@ -32,6 +32,9 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     ClientInfoService clientInfoService;
 
+    @Autowired
+    InventoryMapper inventoryMapper;
+
     @Override
     public boolean checkIfExits(Integer o_id) {
         Orders orders = ordersMapper.queryOrdersByOid(o_id);
@@ -207,5 +210,43 @@ public class OrderServiceImpl implements OrderService {
         List<OrderItem> orderItemWithNameList = queryOrderItemWithNameListByOid(o_id);
         model.addAttribute("orderItemWithNameList", orderItemWithNameList);
         model.addAttribute("cname", cname);
+    }
+
+    @Override
+    public boolean checkIfCanDelivery(List<OrderItem> orderItemList) {
+        boolean res = true;
+
+        for (OrderItem orderItem : orderItemList) {
+            int total = totalQuantity(orderItem.getG_id());
+            res = total >= orderItem.getQuantity();
+        }
+
+        return res;
+    }
+
+    @Override
+    public void autoInventoryDelivery(List<OrderItem> orderItemList) {
+        //TODO 自动出库
+
+    }
+
+    @Override
+    public void autoInventoryRefund(List<OrderItem> orderItemList) {
+        //TODO 自动回库
+
+    }
+
+
+    public int totalQuantity(Long g_id) {
+        List<Integer> quantityList = inventoryMapper.queryQuantityByGid(g_id);
+        int res = 0;
+
+
+        for (Integer quantity : quantityList) {
+            res += quantity;
+        }
+
+
+        return res;
     }
 }

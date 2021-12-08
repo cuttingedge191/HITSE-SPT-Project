@@ -358,11 +358,12 @@
                                                     </table>
                                                 </div>
                                                 <span class="pull-right">
+                                                    <p style="color:red" th:text="${msg}" th:if="${msg} != null"></p>
                                                     <a class="btn info m-b"
                                                        th:href="@{/ordersView}">返回</a>
 
                                                     <a class="btn primary m-b"
-                                                       th:href="@{/auditOrder(status='checked',o_id=${theOrder.o_id})}"
+                                                       th:href="@{/autoDelivery(status='checked',o_id=${theOrder.o_id})}"
                                                        th:if="${theOrder.status} == 'unchecked'">通过</a>
 
                                                     <a class="btn danger m-b"
@@ -375,7 +376,7 @@
                                                        and (${theOrder.status} == 'checked' or ${theOrder.status} == 'paid')">退款/货</a>
 
                                                     <a class="btn primary m-b"
-                                                       th:href="@{/auditOrder(status='paid',o_id=${theOrder.o_id})}"
+                                                       th:href="@{/autoDelivery(status='paid',o_id=${theOrder.o_id})}"
                                                        th:if="${theOrder.status} == 'checked' ">确认收款</a>
 
                                                     <a class="btn danger m-b"
@@ -383,7 +384,7 @@
                                                        th:if="${theOrder.status} == 'refund' and ${theOrder.status} != 'closed'">拒绝退货</a>
 
                                                     <a class="btn primary m-b"
-                                                       th:href="@{/auditOrder(status='closed',o_id=${theOrder.o_id})}"
+                                                       th:href="@{/refundOrder(status='closed',o_id=${theOrder.o_id})}"
                                                        th:if="${theOrder.status} == 'refund' and ${theOrder.status} != 'closed'">确认退货</a>
 
                                                     <a class="btn info m-b"
