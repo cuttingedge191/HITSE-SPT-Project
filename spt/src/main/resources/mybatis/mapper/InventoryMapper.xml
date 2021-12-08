@@ -69,7 +69,7 @@
               inventory.g_id = #{g_id} and inventory.il_id = #{il_id}
     </select>
     <select id="queryWarehouseByIlID" resultType="Inventory" parameterType="java.lang.Integer">
-        select inventory_list.inventory_name, inventory_list.il_id
+        select inventory_list.inventory_name, inventory_list.il_id, inventory_list.inventory_prior
         from inventory_list
         where inventory_list.il_id = #{il_id}
     </select>
