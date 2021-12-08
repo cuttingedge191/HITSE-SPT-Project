@@ -36,4 +36,5 @@ public interface InventoryMapper {
     Inventory queryInventoryByIdAndIlID(Integer g_id, Integer il_id);
 
     Inventory queryWarehouseByIlID(Integer il_id);
+
 }

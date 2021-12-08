@@ -275,7 +275,7 @@
                                         ui-options="{theme: 'bootstrap'}" name="il_id"
                                         id="warehouse">
                                     <optgroup label="仓库名称">
-                                        <option selected></option>
+
                                         <div th:each="list:${inventory_lists}">
                                             <option th:text="${list.inventory_name}" th:value="${list.il_id}"></option>
                                         </div>

@@ -1,10 +1,8 @@
 package com.hit.spt.service.impl;
 
 import com.hit.spt.mapper.*;
-import com.hit.spt.pojo.Customer;
-import com.hit.spt.pojo.GoodsInfo;
-import com.hit.spt.pojo.OrderItem;
-import com.hit.spt.pojo.Orders;
+import com.hit.spt.pojo.*;
+import com.hit.spt.service.InventoryService;
 import com.hit.spt.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
@@ -30,10 +28,14 @@ public class OrderServiceImpl implements OrderService {
     CustomerMapper customerMapper;
 
     @Autowired
+    InventoryMapper inventoryMapper;
+
+    @Autowired
     ClientInfoService clientInfoService;
 
     @Autowired
-    InventoryMapper inventoryMapper;
+    InventoryService inventoryService;
+
 
     @Override
     public boolean checkIfExits(Integer o_id) {
@@ -234,19 +236,24 @@ public class OrderServiceImpl implements OrderService {
     public void autoInventoryRefund(List<OrderItem> orderItemList) {
         //TODO 自动回库
 
+//        List<inventoryMapper.queryWarehouseList();
+        for(OrderItem orderItem:orderItemList){
+            Inventory inventory = new Inventory();
+            inventory.setCost(orderItem.getCost()/orderItem.getQuantity());
+            inventory.setName(orderItem.getName());
+            inventory.setQuantity(orderItem.getQuantity());
+//            inventoryService.mergeInsertInventory();
+        }
+
     }
 
 
     public int totalQuantity(Long g_id) {
         List<Integer> quantityList = inventoryMapper.queryQuantityByGid(g_id);
         int res = 0;
-
-
         for (Integer quantity : quantityList) {
             res += quantity;
         }
-
-
         return res;
     }
 }

@@ -42,5 +42,6 @@ public interface OrderService {
     boolean checkIfCanDelivery(List<OrderItem> orderItemList);
 
     void autoInventoryDelivery(List<OrderItem> orderItemList);
+
     void autoInventoryRefund(List<OrderItem> orderItemList);
 }
