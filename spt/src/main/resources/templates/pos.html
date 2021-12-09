@@ -265,11 +265,6 @@
                                                             <select class="form-control col-md-6" ui-jp="select2"
                                                                 ui-options="{theme: 'bootstrap'}" name="cname"
                                                                 id="customer">
-                                                                <!--                                                            <optgroup label="零售客户">-->
-                                                                <!--                                                                <div th:each="cus:${retail_customers}">-->
-                                                                <!--                                                                    <option th:text="${cus.name}"></option>-->
-                                                                <!--                                                                </div>-->
-                                                                <!--                                                            </optgroup>-->
                                                                 <optgroup label="零售客户">
                                                                     <option th:if="${cname}!=null and ${cname}!=''"
                                                                         th:text="${cname}" selected></option>
@@ -285,13 +280,13 @@
                                                     <div class="box-body">
                                                         <div class="form-group row">
                                                             <label for="item_name"
-                                                                class="col-md-4 form-control-label">货品名称</label>
+                                                                class="col-md-4 form-control-label">货品条码/名称</label>
                                                             <select class="form-control col-md-6" ui-jp="select2"
                                                                 ui-options="{theme: 'bootstrap'}" name="item_name"
                                                                 id="item_name">
-                                                                <optgroup label="货品名称">
+                                                                <optgroup label="货品条码-名称">
                                                                     <div th:each="goodInfo:${goodsInfoList}">
-                                                                        <option th:text="${goodInfo.name}"></option>
+                                                                        <option th:value="${goodInfo.name}" th:text="${goodInfo.g_id}+'-'+${goodInfo.name}"></option>
                                                                     </div>
                                                                 </optgroup>
                                                             </select>
@@ -333,7 +328,7 @@
                                                         <table class="table table-hover b-t">
                                                             <thead>
                                                                 <tr>
-                                                                    <th>货品编号</th>
+                                                                    <th>货品条码</th>
                                                                     <th>货品名称</th>
                                                                     <th>货品数量</th>
                                                                     <th>总价</th>
