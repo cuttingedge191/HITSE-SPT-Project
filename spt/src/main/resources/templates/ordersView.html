@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8"/>
-    <title>Flatkit - HTML Version | Bootstrap 4 Web App Kit with AngularJS</title>
+    <title>通用批发零售业务管理系统</title>
     <meta name="description" content="Admin, Dashboard, Bootstrap, Bootstrap 4, Angular, AngularJS"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -256,14 +256,18 @@
                                 <td th:text="${order.total_turnover}"></td>
                                 <td th:text="${order.time_stamp}"></td>
                                 <td><span
-                                        th:class=
-                                        "${order.status}=='unchecked' ? 'label'
-                                        :(${order.status}=='paid' ?'label green-500'
-                                        :(${order.status}=='failed'?'label danger'
-                                        :(${order.status}=='checked'?'label warn'
-                                        :(${order.status}=='closed'?'label dark'
+                                        th:class="${order.status}=='unchecked' ? 'label'
+                                        :(${order.status}=='paid' ? 'label green-500'
+                                        :(${order.status}=='failed' ? 'label danger'
+                                        :(${order.status}=='checked' ? 'label warn'
+                                        :(${order.status}=='closed' ? 'label dark'
                                         :'label accent'))))"
-                                        th:text="${order.status}"></span></td>
+                                        th:text="${order.status}=='unchecked' ? '待审核'
+                                        :(${order.status}=='paid' ? '已收款'
+                                        :(${order.status}=='failed' ? '审核未通过'
+                                        :(${order.status}=='checked' ? '已审核并出库'
+                                        :(${order.status}=='closed' ? '已关闭'
+                                        : '待退款'))))"></span></td>
 
                                 <td th:text="${order.type} == 'trade' ? '批发':'零售'"></td>
                                 <td class="m-b btn-groups">
@@ -302,7 +306,7 @@
                     <button type="button" class="btn dark-white p-x-md" data-dismiss="modal">取消</button>
                     <a class="btn danger p-x-md" th:href="@{/logout}">确认</a>
                 </div>
-            </div><!-- /.modal-content -->
+            </div>
         </div>
     </div>
     <!-- / .modal -->

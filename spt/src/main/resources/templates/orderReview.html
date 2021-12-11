@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
-    <title>Flatkit - HTML Version | Bootstrap 4 Web App Kit with AngularJS</title>
+    <title>通用批发零售业务管理系统</title>
     <meta name="description" content="Admin, Dashboard, Bootstrap, Bootstrap 4, Angular, AngularJS"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -298,7 +298,6 @@
                                 <div class="row-body">
                                     <div class="row-inner">
                                         <div class="padding">
-                                            <!-- TODO 数据绑定 -->
                                             <form th:action="@{/404}">
                                                 <div class="row-col">
                                                     <div class="row m-b">
@@ -403,6 +402,7 @@
                                                     <a class="btn warning m-b" data-toggle="modal" data-target="#m-sm"
                                                         th:if="(${theOrder.status}=='closed' or ${theOrder.status}=='unchecked')
                                                         and ${#strings.substring(session.permissions, 7, 8)}=='1'">删除</a>
+                                                </span>
                                                     <!-- small modal -->
                                                     <div id="m-sm" class="modal" data-backdrop="true">
                                                         <div class="row-col h-v">
@@ -419,7 +419,7 @@
                                                                             <button type="button" class="btn dark-white p-x-md" data-dismiss="modal">取消</button>
                                                                             <a class="btn danger p-x-md" th:href="@{/deleteOrder(o_id=${theOrder.o_id})}">确定</a>
                                                                         </div>
-                                                                    </div><!-- /.modal-content -->
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
