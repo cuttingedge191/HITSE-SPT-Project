@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Controller
 @RequestMapping
@@ -37,6 +39,23 @@ public class CustomerController {
             List<Customer> customers = clientInfoService.showAllCustoms();
             model.addAttribute("customers", customers);
             return "clientInfoSearch";
+        }
+        // 客户电话错误直接返回
+        String CHINA_REGEX_EXP = "^((13[0-9])|(14[5,7,9])|(15[0-3,5-9])|(166)|(17[0-9])|(18[0-9])|(19[1,8,9]))\\d{8}$";
+        Pattern p = Pattern.compile(CHINA_REGEX_EXP);
+        Matcher m = p.matcher(phone);
+        boolean isChinesePhoneNum = m.matches();
+        if (isChinesePhoneNum == false) {
+            model.addAttribute("msg", "电话号码不符合格式!");
+            if (uri.charAt(1) == 'u') {
+                int ic_id = Integer.parseInt(c_id);
+                Customer customer = clientInfoService.queryCustomerById(ic_id);
+                model.addAttribute("customer", customer);
+                return "updateCustomer";
+            }
+            if (uri.charAt(1) == 'a') {
+                return "addCustomer";
+            }
         }
         // 将表单返回内容抓换成数据库的格式
         String gender = sex.equals("true") ? "male" : "female";
