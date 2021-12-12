@@ -240,7 +240,7 @@
                         </div>
                                 <div class="box-divider m-0"></div>
                                 <div class="box-body">
-                            <form role="form" th:action="@{upcosNow}">
+                            <form role="form" method="post" th:action="@{upcosNow}">
                                 <input type="hidden" name="c_id" th:value="${customer.c_id}" />
                                 <div class="form-group">
                                     <label for="customer_name">客户联系人</label>
