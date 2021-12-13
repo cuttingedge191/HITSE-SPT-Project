@@ -237,8 +237,9 @@
 
               <div class="row">
 <!--                  <div class="dker p-a text-right">-->
-                <div class="col-md-6">
+                <div class="col-md-7">
                     <div class="input-group select2-bootstrap-prepend m-b">
+
 <!--                    <span class="input-group-btn">-->
 <!--                        <button class="btn btn-default" type="button" data-select2-open="select2-input-group-append">-->
 <!--                        <span class="fa fa-search"></span>-->
@@ -252,8 +253,10 @@
 <!--                    </select>-->
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-2">
                     搜索: <input id="filter" type="text" class="form-control input-sm w-auto inline m-r" />
+                </div>
+                <div class="col-md-1">
                     <a th:if="${#strings.substring(session.permissions, 2, 3)=='1'}"
                        th:href="@{/addInventory}" class="btn btn-icon white" id="addInventory">
                         <i class="fa fa-plus"></i>
@@ -261,6 +264,90 @@
                     <label th:if="${#strings.substring(session.permissions, 2, 3)=='1'}"
                            for="addInventory">进货入库</label>
                 </div>
+                  <div class="col-md-1" data-toggle="modal" data-target="#add-storehouse">
+                      <a class="btn btn-icon btn-social white" title="Flickr">
+                          <i class="fa fa-flickr"></i>
+                          <i class="fa fa-flickr pink-A200"></i>
+                      </a>
+                      <label>添加仓库</label>
+                  </div>
+                  <div class="col-md-1" data-toggle="modal" data-target="#m-md">
+                      <a class="btn btn-icon btn-social white" title="Slack" >
+                          <i class="fa fa-slack"></i>
+                          <i class="fa fa-slack blue"></i>
+                      </a>
+                      <label>仓库优先级</label>
+                  </div>
+
+                  <!-- 添加仓库 large modal -->
+                  <div id="add-storehouse" class="modal black-overlay" data-backdrop="false">
+                      <div class="modal-dialog modal-lg">
+                          <div class="modal-content">
+                              <div class="modal-header">
+                                  <h5 class="modal-title">新增仓库</h5>
+                              </div>
+                              <div class="modal-body text-center p-lg">
+                                  <div class="form-group row">
+                                      <label class="col-sm-3 form-control-label">仓库名称</label>
+                                      <div class="col-sm-9">
+                                            <input class="form-control" placeholder="请输入仓库名称">
+                                      </div>
+                                  </div>
+                                  <div class="form-group row">
+                                      <label class="col-sm-3 form-control-label">仓库信息</label>
+                                      <div class="col-sm-9">
+                                          <input class="form-control" placeholder="请输入仓库信息">
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="modal-footer">
+                                  <button type="button" class="btn dark-white p-x-md" data-dismiss="modal">取消</button>
+                                  <a class="btn green p-x-md" >确认</a>
+<!--                                  TODO 新增仓库 默认优先级最低-->
+                              </div>
+                          </div><!-- /.modal-content -->
+                      </div>
+                  </div>
+                  <!-- 添加仓库 .modal -->
+
+                  <!-- 仓库优先级排序 large modal -->
+                  <div id="m-md" class="modal black-overlay" data-backdrop="false">
+                      <div class="modal-dialog modal-lg">
+                          <div class="modal-content">
+                              <div class="modal-header">
+                                  <h5 class="modal-title">仓库出库优先级排序</h5>
+                              </div>
+                              <div class="modal-body text-center p-lg">
+                                  <table class="table m-b-none" ui-jp="footable" data-filter="#filter" data-page-size="8">
+                                  <thead>
+                                  <tr>
+                                      <th data-hide="phone">仓库ID</th>
+                                      <th data-toggle="true">库存名称</th>
+                                      <th data-toggle="true">仓库出库顺序</th>
+                                      <th data-hide="phone">仓库信息</th>
+                                  </tr>
+                                  </thead>
+                                  <tbody>
+                                  <tr th:each="inventory:${inventories}">
+                                      <td>仓库ID</td>
+                                      <td>库存名称</td>
+                                      <td>
+                                          <input placeholder="默认为原始顺序">
+                                      </td>
+                                      <td>仓库信息</td>
+                                  </tr>
+                                  </tbody>
+                                  </table>
+                              </div>
+                              <div class="modal-footer">
+                                  <button type="button" class="btn dark-white p-x-md" data-dismiss="modal">取消</button>
+                                  <a class="btn green p-x-md" >确认</a>
+                                  <!--                                  TODO-->
+                              </div>
+                          </div><!-- /.modal-content -->
+                      </div>
+                  </div>
+                  <!-- 仓库优先级排序 .modal -->
 
             </div>
 <!--              <script th:inline="javascript">-->
