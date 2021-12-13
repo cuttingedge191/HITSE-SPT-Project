@@ -78,4 +78,8 @@
         from inventory_list
         where inventory_list.il_id = #{il_id}
     </select>
+    <insert id="insertWarehouse" parameterType="Inventory">
+        insert into inventory_list(inventory_name, inventory_info, inventory_prior)
+        value (#{inventory_name}, #{inventory_info}, #{inventory_prior})
+    </insert>
 </mapper>

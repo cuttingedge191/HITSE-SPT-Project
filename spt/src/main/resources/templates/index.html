@@ -30,7 +30,7 @@
     <link rel="stylesheet" th:href="@{/assets/styles/font.css}" type="text/css"/>
 </head>
 
-<body>
+<body onload="loadPie()">
 <div class="app" id="app">
 
     <!-- ############ LAYOUT START-->
@@ -386,8 +386,16 @@
 
 <script th:inline="javascript">
     function loadPie(){
-        var l_data = [[${legend_data}]];
-        var s_data = [[${series_data}]];
+        // var l_data = [[${legend_data}]];
+        // var s_data = [[${series_data}]];
+        var l_data = ['Direct','Mail','Affiliate','AD','Search'];
+        var s_data = [
+            {value:335, name:'Direct'},
+            {value:310, name:'Mail'},
+            {value:234, name:'Affiliate'},
+            {value:135, name:'AD'},
+            {value:1548, name:'Search'}
+        ];
         var inventoryPie = echarts.init(document.getElementById('inventory_pie'));
         var option = {
             tooltip: {
@@ -397,7 +405,7 @@
             legend: {
                 orient: 'vertical',
                 x: 'left',
-                data: l_data
+                data:l_data
             },
             calculable: true,
             series: [
@@ -406,14 +414,42 @@
                     type: 'pie',
                     radius: '55%',
                     center: ['50%', '60%'],
-                    data: s_data
+                    data:s_data
                 }
             ]
         };
         console.log(option);
         inventoryPie.setOption(option);
     }
-    window.onload = loadPie();
+
+    // {
+    //     tooltip : {
+    //         trigger: 'item',
+    //             formatter: '{a} <br/>{b} : {c} ({d}%)'
+    //     },
+    //     legend: {
+    //         orient : 'vertical',
+    //             x : 'left',
+    //             data:['Direct','Mail','Affiliate','AD','Search']
+    //     },
+    //     calculable : true,
+    //         series : [
+    //     {
+    //         name:'Source',
+    //         type:'pie',
+    //         radius : '55%',
+    //         center: ['50%', '60%'],
+    //         data:[
+    //             {value:335, name:'Direct'},
+    //             {value:310, name:'Mail'},
+    //             {value:234, name:'Affiliate'},
+    //             {value:135, name:'AD'},
+    //             {value:1548, name:'Search'}
+    //         ]
+    //     }
+    // ]
+    // }
+    $(loadPie)
 </script>
 <!-- /用于概览图显示 -->
 

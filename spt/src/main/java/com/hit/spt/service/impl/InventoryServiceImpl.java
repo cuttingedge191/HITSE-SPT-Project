@@ -231,4 +231,9 @@ public class InventoryServiceImpl implements InventoryService {
             this.updateInventory(inventory);
         }
     }
+
+    @Override
+    public void insertWarehouse(Inventory inventory) {
+        inventoryMapper.insertWarehouse(inventory);
+    }
 }

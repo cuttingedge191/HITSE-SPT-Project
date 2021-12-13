@@ -27,6 +27,8 @@ public interface InventoryMapper {
      */
     List<Inventory> queryInventoryWithIlid(Integer il_id);
 
+    Integer insertWarehouse(Inventory inventory);
+
     Integer insertInventoryWithGoodName(Inventory inventory);
 
     List<Inventory> selectInventoryByName(String name);
