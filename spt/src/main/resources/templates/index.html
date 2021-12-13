@@ -30,7 +30,7 @@
     <link rel="stylesheet" th:href="@{/assets/styles/font.css}" type="text/css"/>
 </head>
 
-<body onload="loadPie()">
+<body>
 <div class="app" id="app">
 
     <!-- ############ LAYOUT START-->
@@ -405,7 +405,7 @@
         })
     }
 
-    // 从后台获取销售概览可视化数据
+    // 从后台获取销售概览可视化数据【未完成】
     function selectS_onchange(type) {
         if (type === "week") {
             document.getElementById("time_opt").setAttribute("value", "week");
@@ -430,7 +430,7 @@
         }
     }
 
-    // 重新载入库存概览可视化饼状图【未完成】
+    // 重新载入库存概览可视化饼状图
     function loadInventoryPie(legend_data, series_data) {
         var l_data = JSON.parse(legend_data);
         var s_data = JSON.parse(series_data);
