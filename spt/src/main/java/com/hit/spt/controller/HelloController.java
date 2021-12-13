@@ -1,5 +1,7 @@
 package com.hit.spt.controller;
 
+import com.hit.spt.pojo.Inventory;
+import com.hit.spt.service.InventoryService;
 import com.hit.spt.service.OverViewService;
 import com.hit.spt.service.impl.ClientInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,13 +20,12 @@ public class HelloController {
     ClientInfoService clientInfoService;
 
     @Autowired
-    OverViewService overViewService;
+    InventoryService inventoryService;
 
     @RequestMapping("index")
     public String hello(Model model) {
-        List<String> inventoryData = overViewService.getInventoryOverView(1);
-        model.addAttribute("legend_data", inventoryData.get(0));
-        model.addAttribute("series_data", inventoryData.get(1));
+        List<Inventory> inventory_lists = inventoryService.queryWarehouseList();
+        model.addAttribute("inventory_lists", inventory_lists);
         return "index";
     }
 

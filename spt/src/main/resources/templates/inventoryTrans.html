@@ -287,7 +287,7 @@
                                                             $(obj).show()
                                                         }
                                                         function select1_onchange(){
-                                                            // 异常第二个下拉栏中与第一个下拉栏相同的仓库
+                                                            // 隐藏第二个下拉栏中与第一个下拉栏相同的仓库
                                                             var il_id1 = $(":selected.select1").val()
                                                             $(".select2").each(reveal_all)
                                                             $(".select2.inventory_" + il_id1).hide()
