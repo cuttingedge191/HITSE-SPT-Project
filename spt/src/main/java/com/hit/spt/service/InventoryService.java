@@ -45,4 +45,6 @@ public interface InventoryService {
     public void deleteInventoryTransactionByUId(Integer u_id);
 
     public void decreaseInventory(Integer decreaseQuantity, Inventory inventory);
+
+    public void insertWarehouse(Inventory inventory);
 }
