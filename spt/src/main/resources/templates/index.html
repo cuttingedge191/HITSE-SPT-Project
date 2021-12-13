@@ -242,16 +242,33 @@
                     <div class="col-sm-6">
                         <div class="box">
                             <div class="box-header">
-                                <h3>库存概览</h3>
-                                <small class="block text-muted">此处可视化展示选定仓库中的积压资金额</small>
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <h5>库存概览</h5>
+                                        <small class="block text-muted">此处可视化展示选定仓库中的积压资金额</small>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group row">
+                                        <label class="col-sm-3 form-control-label" for="select_il">仓库：</label>
+                                        <select class="col-sm-7 form-control" ui-jp="select" id="select_il"
+                                                ui-options="{theme: 'bootstrap'}" name="il_id" onchange="selectIl_onchange()">
+                                            <option th:each="inventory_list:${inventory_lists}"
+                                                    th:class="'select inventory_' + ${inventory_list.il_id}" th:value="${inventory_list.il_id}" th:text="${inventory_list.inventory_name}"></option>
+                                        </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-1">
+                                        <ul class="nav">
+                                            <li class="nav-item inline">
+                                                <a class="nav-link">
+                                                    <i class="material-icons md-18">&#xe863;</i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                             <div class="box-body">
-                                <label for="select_il">仓库：</label>
-                                <select class="col-sm-4 form-control" ui-jp="select" id="select_il"
-                                        ui-options="{theme: 'bootstrap'}" name="il_id" onchange="selectIl_onchange()">
-                                    <option th:each="inventory_list:${inventory_lists}"
-                                            th:class="'select inventory_' + ${inventory_list.il_id}" th:value="${inventory_list.il_id}" th:text="${inventory_list.inventory_name}"></option>
-                                </select>
                                 <div id="inventory_pie" style="height:300px">
                                 </div>
                             </div>
@@ -261,8 +278,12 @@
                     <div class="col-sm-6">
                         <div class="box">
                             <div class="box-header">
-                                <h3>经营状况概览</h3>
-                                <small class="block text-muted">不确定如何做</small>
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <h5>经营状况概览</h5>
+                                        <small class="block text-muted">不确定如何做</small>
+                                    </div>
+                                </div>
                             </div>
                             <div class="box-body">
                                 <div ui-jp="chart" ui-options=" {
