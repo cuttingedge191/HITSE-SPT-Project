@@ -54,7 +54,7 @@ public class UserController {
             }
             session.setAttribute("permissions", rights);
             session.setMaxInactiveInterval(1800); // 会话过期时间设置
-            return "index";
+            return "redirect:../index";
         }
         model.addAttribute("msg", "用户名或者密码错误!");
         return "login";

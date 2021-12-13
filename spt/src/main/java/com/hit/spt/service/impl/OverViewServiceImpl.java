@@ -26,6 +26,12 @@ public class OverViewServiceImpl implements OverViewService {
         ArrayList<String> item_list = new ArrayList<>();
         ArrayList<Map<String, String>> data = new ArrayList<>();
         List<Inventory> inventoryInfo = inventoryMapper.queryInventoryWithIlid(il_id);
+        List<String> result = new ArrayList<>();
+        if (inventoryInfo == null || inventoryInfo.size() == 0) {
+            result.add("['无数据']");
+            result.add("[{name: '无数据', value: 0}]");
+            return result;
+        }
         for (Inventory inventory : inventoryInfo) {
             double total_cost = inventory.getCost() * inventory.getQuantity();
             inventory.setCost(total_cost);
@@ -34,10 +40,10 @@ public class OverViewServiceImpl implements OverViewService {
         inventoryInfo.sort((o1, o2) -> o2.getCost().compareTo(o1.getCost()));
         if (inventoryInfo.size() > 5) {
             // 取前5个货品单独展示
-            for (int i = 0; i < 5; ++i) {
-                item_list.add(inventoryInfo.get(i).getName());
-                Map<String, String> map = new HashMap<>();
-                map.put("value", inventoryInfo.get(i).getCost().toString());
+                for (int i = 0; i < 5; ++i) {
+                    item_list.add(inventoryInfo.get(i).getName());
+                    Map<String, String> map = new HashMap<>();
+                    map.put("value", inventoryInfo.get(i).getCost().toString());
                 map.put("name", inventoryInfo.get(i).getName());
                 data.add(map);
             }
@@ -61,15 +67,6 @@ public class OverViewServiceImpl implements OverViewService {
         }
         String legend_data_str = JSON.toJSONString(item_list);
         String series_data_str = JSON.toJSONString(data);
-        // 复杂的替换。。。
-        legend_data_str = legend_data_str.replace("\"", "'");
-        series_data_str = series_data_str
-                .replace("\"name\"", "name")
-                .replace("\"value\"", "value")
-                .replace("\"", "'")
-                .replace("value:'", "value:")
-                .replace("'}", "}");
-        List<String> result = new ArrayList<>();
         result.add(legend_data_str);
         result.add(series_data_str);
         return result;

@@ -239,15 +239,19 @@
             </div>
             <div class="padding">
                 <div class="row">
-                    <small th:text="${legend_data}"></small>
-                    <small th:text="${series_data}"></small>
                     <div class="col-sm-6">
                         <div class="box">
                             <div class="box-header">
                                 <h3>库存概览</h3>
-                                <small class="block text-muted">不确定如何做</small>
+                                <small class="block text-muted">此处可视化展示选定仓库中的积压资金额</small>
                             </div>
                             <div class="box-body">
+                                <label for="select_il">仓库：</label>
+                                <select class="col-sm-4 form-control" ui-jp="select" id="select_il"
+                                        ui-options="{theme: 'bootstrap'}" name="il_id" onchange="selectIl_onchange()">
+                                    <option th:each="inventory_list:${inventory_lists}"
+                                            th:class="'select inventory_' + ${inventory_list.il_id}" th:value="${inventory_list.il_id}" th:text="${inventory_list.inventory_name}"></option>
+                                </select>
                                 <div id="inventory_pie" style="height:300px">
                                 </div>
                             </div>
@@ -385,9 +389,21 @@
 <script th:src="@{/libs/js/echarts/build/dist/echarts-all.js}"></script>
 
 <script th:inline="javascript">
-    function loadPie(){
-        var l_data = [[${legend_data}]];
-        var s_data = [[${series_data}]];
+    // 在每次更换所选仓库时，重新从后台获取可视化数据
+    function selectIl_onchange(){
+        $.ajax({
+            url: "/getInventoryOverView?il_id="+$('#select_il').val(),
+            dataType: "json",
+            type: 'GET',
+            success : function(dataInfo) {
+                loadInventoryPie(dataInfo[0], dataInfo[1]);
+            }
+        })
+    }
+
+    function loadInventoryPie(legend_data,series_data){
+        var l_data = JSON.parse(legend_data);
+        var s_data = JSON.parse(series_data);
         var inventoryPie = echarts.init(document.getElementById('inventory_pie'));
         var option = {
             tooltip: {
@@ -413,7 +429,7 @@
         console.log(option);
         inventoryPie.setOption(option);
     }
-    window.onload = loadPie();
+    window.onload = selectIl_onchange();
 </script>
 <!-- /用于概览图显示 -->
 
