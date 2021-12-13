@@ -28,8 +28,8 @@ public class OverViewServiceImpl implements OverViewService {
         List<Inventory> inventoryInfo = inventoryMapper.queryInventoryWithIlid(il_id);
         List<String> result = new ArrayList<>();
         if (inventoryInfo == null || inventoryInfo.size() == 0) {
-            result.add("['无数据']");
-            result.add("[{name: '无数据', value: 0}]");
+            result.add("[\"无数据\"]");
+            result.add("[{\"name\":\"无数据\", \"value\":\"0\"}]");
             return result;
         }
         for (Inventory inventory : inventoryInfo) {
