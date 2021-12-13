@@ -62,6 +62,11 @@
         select goods_info.name, inventory.quality, inventory.i_id, inventory.quantity, inventory.g_id, inventory_list.inventory_name, inventory.il_id,
         goods_info.retail_price, goods_info.cost from goods_info, inventory, inventory_list where inventory.g_id = goods_info.g_id and inventory_list.il_id = inventory.il_id
     </select>
+    <select id="queryInventoryWithIlid" parameterType="java.lang.Integer" resultType="Inventory">
+        select inventory.i_id, inventory.g_id, goods_info.name, inventory.quantity, goods_info.cost
+        from inventory, goods_info
+        where inventory.il_id = #{il_id} and inventory.g_id = goods_info.g_id
+    </select>
     <select id="queryInventoryByIdAndIlID" resultType="Inventory" parameterType="java.lang.Integer">
         select goods_info.name, inventory.quality, inventory.i_id, inventory.quantity, inventory.g_id, inventory_list.inventory_name, inventory.il_id,
                goods_info.retail_price, goods_info.cost from goods_info, inventory, inventory_list
