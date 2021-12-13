@@ -27,8 +27,8 @@ public class LogInUpServiceImpl implements LogInUpService {
     public boolean registerUser(User user) {
         if (checkUsernameIfExits(user.getUsername()))
             return false;
-        else
-            userMapper.insertUser(user);
+        user.setLevel(0);
+        userMapper.insertUser(user);
         return true;
     }
 

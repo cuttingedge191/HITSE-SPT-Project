@@ -19,6 +19,14 @@ public interface InventoryMapper {
 
     List<Inventory> queryInventoryWithGnameList();
 
+    /**
+     * 根据仓库ID查询仓库内货品信息
+     *
+     * @param il_id 仓库ID
+     * @return {库存ID、货品ID、货品名、货品数量、单件成本}列表
+     */
+    List<Inventory> queryInventoryWithIlid(Integer il_id);
+
     Integer insertInventoryWithGoodName(Inventory inventory);
 
     List<Inventory> selectInventoryByName(String name);
