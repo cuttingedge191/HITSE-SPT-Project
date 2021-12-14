@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -235,5 +236,31 @@ public class InventoryServiceImpl implements InventoryService {
     @Override
     public void insertWarehouse(Inventory inventory) {
         inventoryMapper.insertWarehouse(inventory);
+    }
+
+    class WarehouseComparator implements Comparator<Inventory> {
+
+        @Override
+        public int compare(Inventory o1, Inventory o2) {
+            return o1.getInventory_prior() - o2.getInventory_prior();
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            return false;
+        }
+    }
+
+    /**
+     * 每次刷新inventoryView时，向model中添加库存和排好序的仓库
+     * @param model
+     */
+    @Override
+    public void updateInventoryView(Model model) {
+        List<Inventory> inventories = this.queryInventoryWithGnameList();
+        model.addAttribute("inventories", inventories);
+        List<Inventory> inventory_lists = this.queryWarehouseList();
+        inventory_lists.sort(new WarehouseComparator());
+        model.addAttribute("inventory_lists", inventory_lists);
     }
 }

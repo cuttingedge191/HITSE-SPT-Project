@@ -330,13 +330,13 @@
                                   </tr>
                                   </thead>
                                   <tbody>
-                                  <tr th:each="inventory:${inventories}">
-                                      <td>仓库ID</td>
-                                      <td>库存名称</td>
+                                  <tr th:each="inventory:${inventory_lists}">
+                                      <td th:text="${inventory.il_id}" th:value="${inventory.il_id}"></td>
+                                      <td th:text="${inventory.inventory_name}" th:value="${inventory.inventory_name}"></td>
                                       <td>
-                                          <input placeholder="默认为原始顺序">
+                                          <input th:value="${inventory.inventory_prior}" th:placeholder="${inventory.inventory_prior}">
                                       </td>
-                                      <td>仓库信息</td>
+                                      <td th:text="${inventory.inventory_info}" th:value="${inventory.inventory_info}"></td>
                                   </tr>
                                   </tbody>
                                   </table>

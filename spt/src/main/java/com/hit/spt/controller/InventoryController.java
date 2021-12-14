@@ -49,10 +49,7 @@ public class InventoryController {
      */
     @RequestMapping("inventoryView")
     public String inventoryView(Model model) {
-        List<Inventory> inventories = inventoryService.queryInventoryWithGnameList();
-        model.addAttribute("inventories", inventories);
-        List<Inventory> inventory_lists = inventoryService.queryWarehouseList();
-        model.addAttribute("inventory_lists", inventory_lists);
+        inventoryService.updateInventoryView(model);
         return "inventoryView";
     }
 
@@ -214,10 +211,6 @@ public class InventoryController {
         }
         inventory.setInventory_prior(maxPrior + 1);
         inventoryService.insertWarehouse(inventory);
-        inventories = inventoryService.queryInventoryWithGnameList();
-        model.addAttribute("inventories", inventories);
-        List<Inventory> inventory_lists = inventoryService.queryWarehouseList();
-        model.addAttribute("inventory_lists", inventory_lists);
-        return "inventoryView";
+        return "redirect:inventoryView";
     }
 }
