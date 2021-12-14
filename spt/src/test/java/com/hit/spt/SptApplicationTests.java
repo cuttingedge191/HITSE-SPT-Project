@@ -31,11 +31,11 @@ class SptApplicationTests {
     @Autowired
     LogInUpService logInUpService;
 
-    @Test
-    public void testOrderItemMapper() {
-        Integer a = null;
-        System.out.println((int) a);
-    }
+//    @Test
+////    public void testOrderItemMapper() {
+////        Integer a = null;
+////        System.out.println((int) a);
+////    }
 //    @Test
 //    public void testCustomerMapper() {
 //        int c_id = 22;
