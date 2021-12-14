@@ -236,24 +236,9 @@
             </div>
 
               <div class="row">
-<!--                  <div class="dker p-a text-right">-->
-                <div class="col-md-7">
-                    <div class="input-group select2-bootstrap-prepend m-b">
-
-<!--                    <span class="input-group-btn">-->
-<!--                        <button class="btn btn-default" type="button" data-select2-open="select2-input-group-append">-->
-<!--                        <span class="fa fa-search"></span>-->
-<!--                        </button>-->
-<!--                    </span>-->
-<!--                        TODO 多选框 绑定仓库-->
-<!--                    <select onchange="onSelectInput()" id="select2-input-group-append" class="form-control select2-multiple m-b" multiple ui-jp="select2" ui-options="{theme: 'bootstrap'}">-->
-<!--                        <option th:each="inventory:${inventory_lists}" class="inventory" th:text="${inventory.inventory_name}">-->
-
-<!--                        </option>-->
-<!--                    </select>-->
-                    </div>
+                <div class="col-md-6">
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-3">
                     搜索: <input id="filter" type="text" class="form-control input-sm w-auto inline m-r" />
                 </div>
                 <div class="col-md-1">
@@ -397,9 +382,9 @@
                     <td class="m-b btn-groups">
                       <button class="btn btn-sm info">详细信息</button>
                       <a th:href="@{/updateInventory(i_id=${inventory.i_id})}" class="btn btn-sm success">出库</a>
-                        <a class="btn btn-sm danger" data-toggle="modal" data-target="#m-sm">删除</a>
+                        <a class="btn btn-sm danger" data-toggle="modal" th:data-target="'#m-sm'+${inventory.i_id}">删除</a>
                         <!-- small modal -->
-                        <div id="m-sm" class="modal" data-backdrop="true">
+                        <div th:id="'m-sm'+${inventory.i_id}" class="modal" data-backdrop="true">
                             <div class="row-col h-v">
                                 <div class="row-cell v-m">
                                     <div class="modal-dialog modal-sm">

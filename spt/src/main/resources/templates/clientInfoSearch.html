@@ -266,11 +266,11 @@
                                         <td>
                                             <a class="btn btn-sm btn-primary"
                                                 th:href="@{/upcos(c_id=${cus.c_id})}">编辑</a>
-                                            <a class="btn btn-sm danger" data-toggle="modal" data-target="#m-sm">删除</a>
+                                            <a class="btn btn-sm danger" data-toggle="modal" th:data-target="'#m-sm'+${cus.c_id}">删除</a>
 <!--                                            <a class="btn btn-sm btn-danger deleteBtn"-->
 <!--                                               th:href="@{/decos(c_id=${cus.c_id})}">删除</a>-->
                                             <!-- small modal -->
-                                            <div id="m-sm" class="modal" data-backdrop="true">
+                                            <div th:id="'m-sm'+${cus.c_id}" class="modal" data-backdrop="true">
                                                 <div class="row-col h-v">
                                                     <div class="row-cell v-m">
                                                         <div class="modal-dialog modal-sm">
