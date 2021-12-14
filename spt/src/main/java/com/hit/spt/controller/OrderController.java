@@ -100,12 +100,13 @@ public class OrderController {
 
                 if (type.equals("retail") && !orderService.checkIfCanDelivery(orderItemList)) {
                     model.addAttribute("msg", "库存数量不足，无法操作！");
+
                     return this.addPosOrder(o_id, null, null, null, null, model);
+                }else if (type.equals("retail")){
+                    ordersViewController.inventoryProcessForOrder(o_id, "closed", model, request);
                 }
-                ordersViewController.inventoryProcessForOrder(o_id, status, model, request);
             } else {
                 // 订单商品为0，则删除这个订单
-
                 orderService.deleteAllOrderItemByOid(o_id);
             }
         }
