@@ -30,7 +30,7 @@
     <link rel="stylesheet" th:href="@{/assets/styles/font.css}" type="text/css"/>
 </head>
 
-<body onload="loadPie()">
+<body>
 <div class="app" id="app">
 
     <!-- ############ LAYOUT START-->
@@ -249,12 +249,15 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group row">
-                                        <label class="col-sm-3 form-control-label" for="select_il">仓库：</label>
-                                        <select class="col-sm-7 form-control" ui-jp="select" id="select_il"
-                                                ui-options="{theme: 'bootstrap'}" name="il_id" onchange="selectIl_onchange()">
-                                            <option th:each="inventory_list:${inventory_lists}"
-                                                    th:class="'select inventory_' + ${inventory_list.il_id}" th:value="${inventory_list.il_id}" th:text="${inventory_list.inventory_name}"></option>
-                                        </select>
+                                            <label class="col-sm-4 form-control-label" for="select_il">仓库：</label>
+                                            <select class="col-sm-8 form-control" ui-jp="select" id="select_il"
+                                                    ui-options="{theme: 'bootstrap'}" name="il_id"
+                                                    onchange="selectIl_onchange()">
+                                                <option th:each="inventory_list:${inventory_lists}"
+                                                        th:class="'select inventory_' + ${inventory_list.il_id}"
+                                                        th:value="${inventory_list.il_id}"
+                                                        th:text="${inventory_list.inventory_name}"></option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-sm-1">
@@ -279,70 +282,44 @@
                         <div class="box">
                             <div class="box-header">
                                 <div class="row">
-                                    <div class="col-md-8">
-                                        <h5>经营状况概览</h5>
-                                        <small class="block text-muted">不确定如何做</small>
+                                    <div class="col-md-5">
+                                        <h5>销售概览</h5>
+                                        <small class="block text-muted">此处可视化展示部分货品销售额统计</small>
+                                        <input type="hidden" id="time_opt" value="week">
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="form-group row">
+                                            <label class="col-sm-4 form-control-label" for="select_g">货品：</label>
+                                            <select class="col-sm-8 form-control" ui-jp="select" id="select_g"
+                                                    ui-options="{theme: 'bootstrap'}" name="g_id"
+                                                    onchange="selectS_onchange()">
+                                                <option>明天再绑</option>
+                                                <option>还没有绑</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="box-tool">
+                                        <ul class="nav">
+                                            <li class="nav-item inline">
+                                                <a class="nav-link" href="javascript:selectS_onchange(document.getElementById('time_opt').value)">
+                                                    <i class="material-icons md-18">&#xe863;</i>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item inline dropdown">
+                                                <a class="nav-link" data-toggle="dropdown">
+                                                    <i class="material-icons md-18">&#xe5d4;</i>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-scale pull-right">
+                                                    <a class="dropdown-item" href="javascript:selectS_onchange('week')">最近7天</a>
+                                                    <a class="dropdown-item" href="javascript:selectS_onchange('month')">最近30天</a>
+                                                </div>
+                                            </li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
                             <div class="box-body">
-                                <div ui-jp="chart" ui-options=" {
-                          tooltip : {
-                              trigger: 'axis'
-                          },
-                          legend: {
-                              data:['Max','Min']
-                          },
-                          calculable : true,
-                          xAxis : [
-                              {
-                                  type : 'category',
-                                  boundaryGap : false,
-                                  data : ['Mon','Tue','Wed','Thu','Fri','Sat','Sun']
-                              }
-                          ],
-                          yAxis : [
-                              {
-                                  type : 'value',
-                                  axisLabel : {
-                                      formatter: '{value} °C'
-                                  }
-                              }
-                          ],
-                          series : [
-                              {
-                                  name:'Max',
-                                  type:'line',
-                                  data:[11, 11, 15, 13, 12, 13, 10],
-                                  markPoint : {
-                                      data : [
-                                          {type : 'max', name: 'Max'},
-                                          {type : 'min', name: 'Min'}
-                                      ]
-                                  },
-                                  markLine : {
-                                      data : [
-                                          {type : 'average', name: 'Average'}
-                                      ]
-                                  }
-                              },
-                              {
-                                  name:'Min',
-                                  type:'line',
-                                  data:[1, -2, 2, 5, 3, 2, 0],
-                                  markPoint : {
-                                      data : [
-                                          {name : 'Min of Week', value : -2, xAxis: 1, yAxis: -1.5}
-                                      ]
-                                  },
-                                  markLine : {
-                                      data : [
-                                          {type : 'average', name : 'Average'}
-                                      ]
-                                  }
-                              }
-                          ]
-                        }" style="height:300px">
+                                <div id="sales_bar" style="height:300px">
                                 </div>
                             </div>
                         </div>
@@ -409,20 +386,52 @@
 <!-- 用于概览图显示 -->
 <script th:src="@{/libs/js/echarts/build/dist/echarts-all.js}"></script>
 
-<script th:inline="javascript">
-    // 在每次更换所选仓库时，重新从后台获取可视化数据
-    function selectIl_onchange(){
+<script>
+    // 页面加载时自动运行的函数
+    function autoRun() {
+        selectIl_onchange();
+        selectS_onchange();
+    }
+
+    // 从后台获取库存概览可视化数据
+    function selectIl_onchange() {
         $.ajax({
-            url: "/getInventoryOverView?il_id="+$('#select_il').val(),
+            url: "/getInventoryOverView?il_id=" + $('#select_il').val(),
             dataType: "json",
             type: 'GET',
-            success : function(dataInfo) {
+            success: function (dataInfo) {
                 loadInventoryPie(dataInfo[0], dataInfo[1]);
             }
         })
     }
 
-    function loadInventoryPie(legend_data,series_data){
+    // 从后台获取销售概览可视化数据【未完成】
+    function selectS_onchange(type) {
+        if (type === "week") {
+            document.getElementById("time_opt").setAttribute("value", "week");
+            $.ajax({
+                url: "/getSalesOverView?g_id=" + $('#select_g').val() + "&type=week",
+                dataType: "json",
+                type: 'GET',
+                success: function (dataInfo) {
+                    loadSalesBar();
+                }
+            })
+        } else {
+            document.getElementById("time_opt").setAttribute("value", "month");
+            $.ajax({
+                url: "/getSalesOverView?g_id=" + $('#select_g').val() + "&type=month",
+                dataType: "json",
+                type: 'GET',
+                success: function (dataInfo) {
+                    loadSalesBar();
+                }
+            })
+        }
+    }
+
+    // 重新载入库存概览可视化饼状图
+    function loadInventoryPie(legend_data, series_data) {
         var l_data = JSON.parse(legend_data);
         var s_data = JSON.parse(series_data);
         var inventoryPie = echarts.init(document.getElementById('inventory_pie'));
@@ -433,8 +442,8 @@
             },
             legend: {
                 orient: 'vertical',
-                x: 'left',
-                data:l_data
+                x: 'right',
+                data: l_data
             },
             calculable: true,
             series: [
@@ -443,14 +452,66 @@
                     type: 'pie',
                     radius: '55%',
                     center: ['50%', '60%'],
-                    data:s_data
+                    data: s_data
                 }
             ]
         };
-        console.log(option);
         inventoryPie.setOption(option);
     }
-    window.onload = selectIl_onchange();
+
+    // 重新载入销售概览可视化柱状图【未完成】
+    function loadSalesBar() {
+        var salesBar = echarts.init(document.getElementById('sales_bar'));
+        var option = {
+            tooltip: {
+                trigger: 'item'
+            },
+            calculable: true,
+            grid: {
+                borderWidth: 0
+            },
+            xAxis: [
+                {
+                    type: 'category',
+                    show: false,
+                    data: ['Line', 'Bar', 'Scatter', 'K', 'Pie', 'Radar', 'Chord', 'Force', 'Map', 'Gauge', 'Funnel']
+                }
+            ],
+            yAxis: [
+                {
+                    type: 'value',
+                    show: false
+                }
+            ],
+            series: [
+                {
+                    name: 'Echarts Samples',
+                    type: 'bar',
+                    itemStyle: {
+                        normal: {
+                            color: function (params) {
+                                var colorList = [
+                                    '#C1232B', '#B5C334', '#FCCE10', '#E87C25', '#27727B',
+                                    '#FE8463', '#9BCA63', '#FAD860', '#F3A43B', '#60C0DD',
+                                    '#D7504B', '#C6E579', '#F4E001', '#F0805A', '#26C0C0'
+                                ];
+                                return colorList[params.dataIndex]
+                            },
+                            label: {
+                                show: true,
+                                position: 'top',
+                                formatter: '{b}\n{c}'
+                            }
+                        }
+                    },
+                    data: [12, 21, 10, 4, 12, 5, 6, 5, 25, 23, 7]
+                }
+            ]
+        }
+        salesBar.setOption(option);
+    }
+
+    window.onload = autoRun();
 </script>
 <!-- /用于概览图显示 -->
 
