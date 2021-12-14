@@ -1,14 +1,11 @@
-// pages/user/index.js
+// pages/history_order/closed.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    fits: [
-      'cover'
-    ],
-    src: "https://img.yzcdn.cn/vant/cat.jpeg"
+
   },
 
   /**

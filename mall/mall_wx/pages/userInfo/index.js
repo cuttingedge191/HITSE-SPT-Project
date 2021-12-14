@@ -1,14 +1,11 @@
-// pages/user/index.js
+// pages/userInfo/index.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    fits: [
-      'cover'
-    ],
-    src: "https://img.yzcdn.cn/vant/cat.jpeg"
+
   },
 
   /**

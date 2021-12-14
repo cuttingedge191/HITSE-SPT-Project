@@ -1,1 +1,46 @@
 /* pages/logup/index.wxss */
+.main {
+  width: 100%;
+  height: 400px;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.choose_gender {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 50px;
+}
+
+.van-radio-group--horizontal{
+  display:flex;
+  flex-wrap:wrap;
+  margin-left: 12px;
+}
+
+.van-button{
+  -webkit-text-size-adjust:100%;
+  align-items:center;
+  -webkit-appearance:none;
+  border-radius:var(--button-border-radius,2px);
+  box-sizing:border-box;
+  display:inline-flex;
+  font-size:var(--button-default-font-size,16px);
+  height:var(--button-default-height,44px);
+  justify-content:center;
+  line-height:var(--button-line-height,20px);
+  padding:0;position:relative;
+  text-align:center;
+  transition:opacity .2s;
+  vertical-align:middle;
+  margin-top: 20px;
+}

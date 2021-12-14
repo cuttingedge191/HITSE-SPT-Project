@@ -1,4 +1,6 @@
 /**app.wxss**/
+@import '/libs/dist/common/index.wxss';
+
 page{
   --themeColor: #FFD100;
   font-size: 28rpx;

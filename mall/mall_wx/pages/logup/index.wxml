@@ -1,2 +1,47 @@
 <!--pages/logup/index.wxml-->
-<text>pages/logup/index.wxml</text>
+<view class="main">
+<view class="container">
+  <van-cell-group>
+  <van-field
+    value="{{ username }}"
+    clearable
+    label="用户名"
+    placeholder="请输入用户名"
+  />
+  <van-field
+    value="{{ password }}"
+    
+    type="password"
+    label="密码"
+    placeholder="请输入密码"
+  />
+  <van-field
+    value="{{ phone }}"
+    clearable
+    label="电话号码"
+    placeholder="请输入电话号"
+  />
+  <van-field
+    value="{{ addr }}"
+    clearable
+    label="收货地址"
+    placeholder="请输入收货地址"
+  />
+  <view class="choose_gender">
+  <van-radio-group
+  value="{{ gender }}"
+  bind:change="onChange"
+  direction="horizontal"
+>
+  <van-radio name="1">男</van-radio>
+  <van-radio name="2">女</van-radio>
+</van-radio-group>
+</view>
+<van-row>
+  <van-button round type="info" block color="#2acaea" bind:click="accountLogin">注册</van-button>
+</van-row>
+
+
+</van-cell-group>
+</view>
+</view>

@@ -1,4 +1,4 @@
-// pages/category/index.js
+// pages/history_order/notReceived.js
 Page({
 
   /**
