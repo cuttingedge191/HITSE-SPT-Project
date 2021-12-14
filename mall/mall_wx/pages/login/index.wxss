@@ -1,1 +1,28 @@
-/* pages/login/index.wxss */
+.main {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.buttons{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 70px;
+}
+.van-cell__label{
+  color:var(--cell-label-color,#969799);
+  font-size:var(--cell-label-font-size,20px);
+  line-height:var(--cell-label-line-height,50px);
+  margin-top:var(--cell-label-margin-top,3px);
+  margin-left: 10px ;
+}

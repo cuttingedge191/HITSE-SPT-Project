@@ -1,4 +1,39 @@
 <!--pages/user/index.wxml-->
-<view class="container">
- 
+<view  class="container">
+  <van-divider />
+  <demo-block padding>
+    <van-row>
+      <van-col offset="9" span="6">
+      <van-image
+        round
+        fit="cover"
+        width="100"
+        height="100"
+        src="{{ src }}"
+      />
+      </van-col>
+      <van-col span="1">
+        <van-icon name="setting-o" />
+      </van-col>
+      
+    </van-row>
+  </demo-block>
+
+  <van-row>
+  <van-col offset="4" span="16" >
+    <van-cell-group inset>
+    <van-cell title="我的名称" value="内容"/>
+    <van-cell title="我的账号" value="内容" />
+    <van-cell title="我的积分" value="内容" label="每消费一元积一分" />
+    </van-cell-group>
+  </van-col>
+</van-row>
+
+<van-grid>
+  <van-grid-item icon="records" text="待审核" info="2" />
+  <van-grid-item icon="balance-pay" text="待付款" info="5" />
+  <van-grid-item icon="cart-circle-o" text="待收货" />
+  <van-grid-item icon="bill-o" text="其他订单" />
+</van-grid>
+
 </view>

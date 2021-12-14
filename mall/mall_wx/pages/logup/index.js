@@ -5,14 +5,30 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    gender: '1',
+    password: '',
+    username: '',
+    phone: '',
+    able: 'false'
   },
 
+  //选择性别
+  onChange(event) {
+    this.setData({
+      radio: event.detail,
+    });
+  },
+ //注册
+ accountLogin: function() {
+  wx.redirectTo({
+      url: '/pages/login/index'
+    });
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+        
   },
 
   /**
