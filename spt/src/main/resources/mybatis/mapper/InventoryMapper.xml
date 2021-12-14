@@ -82,4 +82,10 @@
         insert into inventory_list(inventory_name, inventory_info, inventory_prior)
         value (#{inventory_name}, #{inventory_info}, #{inventory_prior})
     </insert>
+    <update id="updateWarehouse" parameterType="Inventory">
+        update inventory_list
+        set inventory_name = #{inventory_name}, inventory_info = #{inventory_info},
+            inventory_prior = #{inventory_prior}
+        where il_id = #{il_id}
+    </update>
 </mapper>
