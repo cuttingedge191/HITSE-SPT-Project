@@ -1,7 +1,5 @@
 package com.hit.spt.controller;
 
-import com.hit.spt.pojo.Customer;
-import com.hit.spt.pojo.GoodsInfo;
 import com.hit.spt.pojo.OrderItem;
 import com.hit.spt.pojo.Orders;
 import com.hit.spt.service.OrderService;
@@ -13,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping
@@ -90,19 +87,25 @@ public class OrderController {
         if (!method) {
             ordersViewController.deleteOrder(o_id);
         } else {
+            // 先检查指向这个订单的商品是否非零
             if (orderService.queryOrderItemWithNameListByOid(o_id).size() > 0) {
+                // 如果是批发，则是unchecked，反之为closed
                 String status = type.equals("trade") ? "unchecked" : "closed";
+                // 如果订单号存在，就直接返回，因为这表明是对订单的修改
                 if (orderService.checkIfExits(o_id))
                     return "redirect:ordersView";
+
                 orderService.saveOrder(orderService.generateOneOrder(o_id, cname, type, status));
                 List<OrderItem> orderItemList = orderService.queryOrderItemWithNameListByOid(o_id);
 
-                if (!orderService.checkIfCanDelivery(orderItemList) && type.equals("retail")) {
+                if (type.equals("retail") && !orderService.checkIfCanDelivery(orderItemList)) {
                     model.addAttribute("msg", "库存数量不足，无法操作！");
-                    return this.addPosOrder(o_id,null,null,null,null,model);
+                    return this.addPosOrder(o_id, null, null, null, null, model);
                 }
                 ordersViewController.inventoryProcessForOrder(o_id, status, model, request);
             } else {
+                // 订单商品为0，则删除这个订单
+
                 orderService.deleteAllOrderItemByOid(o_id);
             }
         }

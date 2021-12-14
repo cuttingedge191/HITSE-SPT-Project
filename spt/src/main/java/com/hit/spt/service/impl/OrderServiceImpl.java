@@ -121,6 +121,10 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    /**
+     *
+     * 同时产出这个订单的商品和订单
+     */
     public void deleteAllOrderItemByOid(Integer o_id) {
         orderItemMapper.deleteOrderItemByOid(o_id);
         ordersMapper.deleteOrdersByOid(o_id);
@@ -160,10 +164,10 @@ public class OrderServiceImpl implements OrderService {
         order.setTotal_turnover(0.0);
         List<OrderItem> orderItemList = orderItemMapper.queryOrderItemByOid(o_id);
         for (OrderItem orderItem : orderItemList) {
-            order.setTotal_cost(Math.round(100*(order.getTotal_cost() + orderItem.getCost()))/100.0);
-            order.setTotal_turnover(Math.round(100*(order.getTotal_turnover() + orderItem.getPrice()))/100.0);
+            order.setTotal_cost(Math.round(100 * (order.getTotal_cost() + orderItem.getCost())) / 100.0);
+            order.setTotal_turnover(Math.round(100 * (order.getTotal_turnover() + orderItem.getPrice())) / 100.0);
         }
-        order.setTotal_profit(Math.round(100*(order.getTotal_turnover() - order.getTotal_cost()))/100.0);
+        order.setTotal_profit(Math.round(100 * (order.getTotal_turnover() - order.getTotal_cost())) / 100.0);
         order.setType(type);
         order.setStatus(status);
 
@@ -228,7 +232,7 @@ public class OrderServiceImpl implements OrderService {
         return res;
     }
 
-    private class inventoryComparator implements Comparator<Inventory>{
+    private class inventoryComparator implements Comparator<Inventory> {
 
         @Override
         public int compare(Inventory o1, Inventory o2) {
@@ -238,7 +242,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public void autoInventoryDelivery(List<OrderItem> orderItemList) {
-        //TODO 自动出库
+
         for (OrderItem oi : orderItemList) {
             List<Inventory> inventories = inventoryMapper.selectInventoryByName(oi.getName());
             for (Inventory inventory : inventories) {
@@ -259,10 +263,10 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public void autoInventoryRefund(List<OrderItem> orderItemList) {
-        //TODO 自动回库
+
         List<Inventory> inventoryLists = inventoryService.queryWarehouseList();
         Integer il_id = null;
-        Integer prior = 999;
+        Integer prior = Integer.MAX_VALUE;
         for (Inventory inventory : inventoryLists) {
             if (inventory.getInventory_prior() < prior) {
                 prior = inventory.getInventory_prior();
