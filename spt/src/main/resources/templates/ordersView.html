@@ -261,19 +261,21 @@
                                         :(${order.status}=='failed' ? 'label danger'
                                         :(${order.status}=='checked' ? 'label warn'
                                         :(${order.status}=='closed' ? 'label dark'
-                                        :'label accent'))))"
+                                        :(${order.status}=='returned' ? 'blue-grey-500'
+                                        :'label accent')))))"
                                         th:text="${order.status}=='unchecked' ? '待审核'
                                         :(${order.status}=='paid' ? '已收款'
                                         :(${order.status}=='failed' ? '审核未通过'
                                         :(${order.status}=='checked' ? '已审核并出库'
                                         :(${order.status}=='closed' ? '已关闭'
-                                        : '待退款'))))"></span></td>
+                                        :(${order.status}=='returned' ? '已退款/货'
+                                        : '待退款')))))"></span></td>
 
                                 <td th:text="${order.type} == 'trade' ? '批发':'零售'"></td>
                                 <td class="m-b btn-groups">
                                     <a class="btn btn-sm success" th:href="@{/orderReview(o_id=${order.o_id})}">详情</a>
                                     <a class="btn btn-sm info" th:href="@{/updateOrder(o_id=${order.o_id})}"
-                                       th:if="${order.status}!='paid' and ${order.status}!='closed' and ${order.status}!='checked'">编辑</a>
+                                       th:if="${order.status}!='paid' and ${order.status}!='closed' and ${order.status}!='checked' and ${order.status}!='returned'">编辑</a>
 
                                 </td>
                             </tr>
