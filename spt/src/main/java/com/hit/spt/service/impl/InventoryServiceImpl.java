@@ -263,4 +263,9 @@ public class InventoryServiceImpl implements InventoryService {
         inventory_lists.sort(new WarehouseComparator());
         model.addAttribute("inventory_lists", inventory_lists);
     }
+
+    @Override
+    public void updateWarehouse(Inventory inventory) {
+        inventoryMapper.updateWarehouse(inventory);
+    }
 }

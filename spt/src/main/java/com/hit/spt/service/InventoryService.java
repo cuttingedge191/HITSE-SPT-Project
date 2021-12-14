@@ -49,4 +49,6 @@ public interface InventoryService {
     public void insertWarehouse(Inventory inventory);
 
     public void updateInventoryView(Model model);
+
+    public void updateWarehouse(Inventory inventory);
 }

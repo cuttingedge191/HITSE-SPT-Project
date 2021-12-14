@@ -331,19 +331,19 @@
                                   </thead>
                                   <tbody>
                                   <tr th:each="inventory:${inventory_lists}">
-                                      <td th:text="${inventory.il_id}" th:value="${inventory.il_id}"></td>
-                                      <td th:text="${inventory.inventory_name}" th:value="${inventory.inventory_name}"></td>
+                                      <td th:class="'inventory_' + ${inventory.il_id} + '_id'" th:text="${inventory.il_id}" th:value="${inventory.il_id}"></td>
+                                      <td th:class="'inventory_' + ${inventory.il_id} + '_name'"  th:text="${inventory.inventory_name}" th:value="${inventory.inventory_name}"></td>
                                       <td>
-                                          <input th:value="${inventory.inventory_prior}" th:placeholder="${inventory.inventory_prior}">
+                                          <input th:class="'inventory_' + ${inventory.il_id} + '_prior'"  name="inventory_prior" th:value="${inventory.inventory_prior}" th:placeholder="${inventory.inventory_prior}">
                                       </td>
-                                      <td th:text="${inventory.inventory_info}" th:value="${inventory.inventory_info}"></td>
+                                      <td th:class="'inventory_' + ${inventory.il_id} + '_info'"  th:text="${inventory.inventory_info}" th:value="${inventory.inventory_info}"></td>
                                   </tr>
                                   </tbody>
                                   </table>
                               </div>
                               <div class="modal-footer">
-                                  <button type="button" class="btn dark-white p-x-md" data-dismiss="modal">取消</button>
-                                  <a class="btn green p-x-md" >确认</a>
+                                  <button  type="button" class="btn dark-white p-x-md" data-dismiss="modal">取消</button>
+                                  <button onclick="collectWarehouseInfo()" class="btn green p-x-md" >确认</button>
                                   <!--                                  TODO-->
                               </div>
                           </div><!-- /.modal-content -->
@@ -352,19 +352,27 @@
                   <!-- 仓库优先级排序 .modal -->
 
             </div>
-<!--              <script th:inline="javascript">-->
-<!--                  function onSelectInput(){-->
-<!--                      var selected_inventory = $(".inventory:selected")-->
-<!--                      var inventory = selected_inventory.text() + " "-->
-<!--                      var filter_2 = $("#filter_2")-->
-<!--                      var filter = inventory + filter_2.val()-->
-<!--                      var filter_input = $("#filter")-->
-<!--                      console.log(filter)-->
-<!--                      filter_input.text(filter)-->
-<!--                      filter_input.val(filter)-->
-<!--                      filter_input.trigger()-->
-<!--                  }-->
-<!--              </script>-->
+              <script th:inline="javascript">
+                  function collectWarehouseInfo(){
+                      var form = document.createElement("form");
+                      form.method = "get";
+                      var warehouses = [[${inventory_lists}]];
+                      var len_warehouses = warehouses.length
+                      for (var i = 0;i < len_warehouses; i ++){
+                          var warehouse = warehouses[i]
+                          var wid = warehouse.il_id
+                          var prior = $(".inventory_" + wid + "_prior").val()
+                          input = document.createElement("input")
+                          warehouse.inventory_prior = parseInt(prior)
+                          input.name = "inventory";
+                          input.value = JSON.stringify(warehouse)
+                          form.appendChild(input)
+                      }
+                      form.action = /*[[@{/changePrior}]]*/;
+                      $(document.body).append(form)
+                      form.submit()
+                  }
+              </script>
             <div>
               <table class="table m-b-none" ui-jp="footable" data-filter="#filter" data-page-size="8">
                 <thead>

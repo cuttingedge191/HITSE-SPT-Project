@@ -47,4 +47,5 @@ public interface InventoryMapper {
 
     Inventory queryWarehouseByIlID(Integer il_id);
 
+    Integer updateWarehouse(Inventory inventory);
 }

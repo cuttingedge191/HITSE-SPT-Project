@@ -1,5 +1,6 @@
 package com.hit.spt.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.hit.spt.pojo.GoodsInfo;
 import com.hit.spt.pojo.Inventory;
@@ -120,14 +121,37 @@ public class InventoryController {
         return "updateInventory";
     }
 
+    @RequestMapping("changePrior")
+    public String changePrior(@RequestParam("inventory") List<String> inventory, Model model){
+        if(!inventory.isEmpty()){
+            inventory = safeExtractJSONStrings(inventory);
+            for(String inv:inventory){
+                JSONObject jbo = JSON.parseObject(inv);
+                Inventory inventory1 = new Inventory();
+                inventory1.setInventory_info(jbo.getString("inventory_info"));
+                inventory1.setInventory_name(jbo.getString("inventory_name"));
+                inventory1.setInventory_prior(jbo.getInteger("inventory_prior"));
+                inventory1.setIl_id(jbo.getInteger("il_id"));
+                inventoryService.updateWarehouse(inventory1);
+            }
+        }
+        return "redirect:inventoryView";
+    }
+
+    private List<String> safeExtractJSONStrings(List<String> inventory) {
+        if(inventory.get(0).charAt(inventory.get(0).length() - 1) != '}'){
+            for(int i = 1; i < inventory.size(); i ++){
+                inventory.set(0, inventory.get(0) + ',' + inventory.get(i));
+            }
+            inventory = inventory.subList(0, 1);
+        }
+        return inventory;
+    }
+
     @RequestMapping("checkInventory")
     public String checkInventory(@RequestParam("inventory") List<String> inventory, Model model) {
         if (!inventory.isEmpty()) {
-            if (inventory.get(0).charAt(inventory.get(0).length() - 1) != '}') {
-                for (int i = 1; i < inventory.size(); i++) {
-                    inventory.set(0, inventory.get(0) + ',' + inventory.get(i));
-                }
-            }
+            inventory = safeExtractJSONStrings(inventory);
             for (String inv : inventory) {
                 JSONObject jbo = JSONObject.parseObject(inv);
                 Inventory inventory1 = new Inventory();
