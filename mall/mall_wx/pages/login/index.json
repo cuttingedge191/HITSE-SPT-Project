@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "van-field": "../../libs/dist/field/index",
+    "van-button": "../../libs/dist/button/index"
+  },
+  "navigationBarTitleText": "账户登录"
+}

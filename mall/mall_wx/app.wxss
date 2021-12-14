@@ -1,0 +1,5 @@
+/**app.wxss**/
+page{
+  --themeColor: #FFD100;
+  font-size: 28rpx;
+}
