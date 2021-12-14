@@ -355,7 +355,7 @@
               <script th:inline="javascript">
                   function collectWarehouseInfo(){
                       var form = document.createElement("form");
-                      form.method = "get";
+                      form.method = "post";
                       var warehouses = [[${inventory_lists}]];
                       var len_warehouses = warehouses.length
                       for (var i = 0;i < len_warehouses; i ++){
