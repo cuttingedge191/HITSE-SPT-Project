@@ -55,10 +55,10 @@ public class OverViewServiceImpl implements OverViewService {
         inventoryInfo.sort((o1, o2) -> o2.getCost().compareTo(o1.getCost()));
         if (inventoryInfo.size() > 5) {
             // 取前5个货品单独展示
-                for (int i = 0; i < 5; ++i) {
-                    item_list.add(inventoryInfo.get(i).getName());
-                    Map<String, String> map = new HashMap<>();
-                    map.put("value", inventoryInfo.get(i).getCost().toString());
+            for (int i = 0; i < 5; ++i) {
+                item_list.add(inventoryInfo.get(i).getName());
+                Map<String, String> map = new HashMap<>();
+                map.put("value", inventoryInfo.get(i).getCost().toString());
                 map.put("name", inventoryInfo.get(i).getName());
                 data.add(map);
             }
@@ -124,7 +124,8 @@ public class OverViewServiceImpl implements OverViewService {
                         else
                             data.put(name, orderItem.getPrice());
                     }
-                }
+                } else
+                    break;
             }
         } catch (Exception e) { // 不会出现时间转换异常
         }
@@ -132,7 +133,7 @@ public class OverViewServiceImpl implements OverViewService {
         List<Map.Entry<String, Double>> list = new ArrayList<>(data.entrySet());
         list.sort((o1, o2) -> o2.getValue().compareTo(o1.getValue()));
         // 获取最多5种最大销售额的货品
-        for (int i = 0; i < 10; ++i) {
+        for (int i = 0; i < 5; ++i) {
             if (list.size() <= i)
                 break;
             else {
@@ -145,8 +146,7 @@ public class OverViewServiceImpl implements OverViewService {
         if (!item_list.contains(selectedName) && data.containsKey(selectedName)) {
             item_list.add(selectedName);
             data_list.add(data.get(selectedName).toString());
-        }
-        else if (!data.containsKey(selectedName)) {
+        } else if (!data.containsKey(selectedName)) {
             item_list.add(selectedName);
             data_list.add("0");
         }

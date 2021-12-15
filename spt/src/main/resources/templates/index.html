@@ -292,10 +292,12 @@
                                             <label for="select_g"
                                                    class="col-md-3 form-control-label">货品：</label>
                                             <select class="form-control col-md-9" ui-jp="select2" id="select_g"
-                                                    ui-options="{theme: 'bootstrap'}" name="select_g" onchange="selectS_onchange(document.getElementById('time_opt').value)">
+                                                    ui-options="{theme: 'bootstrap'}" name="select_g"
+                                                    onchange="selectS_onchange(document.getElementById('time_opt').value)">
                                                 <optgroup label="货品名称-条码">
                                                     <div th:each="goodsInfo:${goodsInfos}">
-                                                        <option th:value="${goodsInfo.g_id}" th:text="${goodsInfo.name}+'-'+${goodsInfo.g_id}"></option>
+                                                        <option th:value="${goodsInfo.g_id}"
+                                                                th:text="${goodsInfo.name}+'-'+${goodsInfo.g_id}"></option>
                                                     </div>
                                                 </optgroup>
                                             </select>
@@ -304,7 +306,8 @@
                                     <div class="box-tool">
                                         <ul class="nav">
                                             <li class="nav-item inline">
-                                                <a class="nav-link" href="javascript:selectS_onchange(document.getElementById('time_opt').value)">
+                                                <a class="nav-link"
+                                                   href="javascript:selectS_onchange(document.getElementById('time_opt').value)">
                                                     <i class="material-icons md-18">&#xe863;</i>
                                                 </a>
                                             </li>
@@ -314,7 +317,8 @@
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-scale pull-right">
                                                     <a class="dropdown-item" href="javascript:selectS_onchange('week')">最近7天</a>
-                                                    <a class="dropdown-item" href="javascript:selectS_onchange('month')">最近30天</a>
+                                                    <a class="dropdown-item"
+                                                       href="javascript:selectS_onchange('month')">最近30天</a>
                                                 </div>
                                             </li>
                                         </ul>

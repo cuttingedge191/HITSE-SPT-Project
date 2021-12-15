@@ -5,7 +5,7 @@
 
 <mapper namespace="com.hit.spt.mapper.InventoryMapper">
     <select id="queryWarehouseList" resultType="Inventory">
-        select inventory_list.il_id, inventory_list.inventory_name, inventory_list.inventory_prior
+        select inventory_list.il_id, inventory_list.inventory_name, inventory_list.inventory_prior, inventory_list.inventory_info
         from inventory_list
     </select>
     <insert id="insertInventoryWithGoodName" parameterType="Inventory">
