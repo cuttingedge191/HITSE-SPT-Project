@@ -1,3 +1,2 @@
-<!--index.wxml-->
-<view class="container">
-</view>
+<!--pages/index/index.wxml-->
+<text>hello, 欢迎来到商店</text>

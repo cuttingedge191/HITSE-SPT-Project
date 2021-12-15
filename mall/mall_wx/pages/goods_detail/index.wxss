@@ -1,1 +1,5 @@
 /* pages/goods_detail/index.wxss */
+
+.pic {
+  text-align: center;
+}

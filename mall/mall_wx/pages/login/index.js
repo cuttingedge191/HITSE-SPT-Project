@@ -8,11 +8,18 @@ Page({
     username: '',
     password: ''
   },
-  accountLogin: function() {
-    wx.switchTab({
-        url: '/pages/index/index'
-      });
-    },
+
+  doLogin: function(e) {
+    wx.request({
+      url: 'localhost:8080/doLogin',
+      method: "POST",
+      data:{
+        username:e.detail.value.username,
+        password:e.detail.value.password
+      }
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */

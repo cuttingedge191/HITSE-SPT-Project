@@ -1,2 +1,26 @@
-<!--pages/goods_list/index.wxml-->
-<text>pages/goods_list/index.wxml</text>
+<!--index.wxml-->
+<view class="container">
+  <van-search
+  shape="round"
+  clearable
+  value="{{ value }}"
+  input-align="center"
+  placeholder="请输入搜索关键词"
+  bind:search="onSearch"
+/>
+<van-divider contentPosition="center">精选商品列表</van-divider>
+<view wx:for="{{goods}}" wx:key="item.id">
+  <van-card
+  tag="{{item.tag}}"
+  price="{{item.price}}"
+  desc="{{item.desc}}"
+  title="{{item.title}}"
+  thumb="{{ item.imageURL }}"
+  thumb-link="../goods_detail/index"
+>
+  <view slot="footer">
+    <van-button  size="small" round color="red" bind:click="showPopup" >加入购物车</van-button>
+  </view>
+</van-card>
+</view>
+</view>
