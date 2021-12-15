@@ -388,7 +388,7 @@
                                                        and ${#strings.substring(session.permissions, 7, 8)}=='1'">拒绝退款/货</a>
 
                                                     <a class="btn primary m-b"
-                                                       th:href="@{/refundOrder(status='closed',o_id=${theOrder.o_id})}"
+                                                       th:href="@{/refundOrder(status='returned',o_id=${theOrder.o_id})}"
                                                        th:if="${theOrder.status} == 'refund' and ${theOrder.status} != 'closed'
                                                        and ${#strings.substring(session.permissions, 7, 8)}=='1'">确认退款/货</a>
 
@@ -400,7 +400,7 @@
 <!--                                                    <a class="btn warning m-b"-->
 <!--                                                       th:href="@{/deleteOrder(o_id=${theOrder.o_id})}" th:if="${theOrder.status}=='closed' or ${theOrder.status}=='unchecked'">删除订单</a>-->
                                                     <a class="btn warning m-b" data-toggle="modal" data-target="#m-sm"
-                                                        th:if="(${theOrder.status}=='closed' or ${theOrder.status}=='unchecked')
+                                                        th:if="(${theOrder.status}=='closed' or ${theOrder.status}=='unchecked' or ${theOrder.status}=='returned')
                                                         and ${#strings.substring(session.permissions, 7, 8)}=='1'">删除</a>
                                                 </span>
                                                     <!-- small modal -->
