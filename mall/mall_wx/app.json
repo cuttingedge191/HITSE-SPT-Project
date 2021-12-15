@@ -1,17 +1,17 @@
 {
   "pages":[
+    "pages/login/index",
     "pages/index/index",
+    "pages/cart/index",
+    "pages/user/index",
     "pages/goods_list/index",    
     "pages/goods_detail/index",
-    "pages/cart/index",
     "pages/history_order/unchecked",
     "pages/history_order/unpayed",
     "pages/history_order/notReceived",
     "pages/history_order/closed",
     "pages/search/index",
-    "pages/user/index",
     "pages/pay/index",
-    "pages/login/index",
     "pages/logup/index",
     "pages/userInfo/index"
   ],
@@ -48,6 +48,7 @@
     ]
   },
   "usingComponents": {
+    "demo-block": "./components/demo-block/index",
     "van-action-sheet": "/libs/dist/action-sheet/index",
     "van-area": "/libs/dist/area/index",
     "van-button": "/libs/dist/button/index",

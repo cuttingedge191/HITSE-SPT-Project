@@ -35,6 +35,18 @@
           "pathName": "pages/logup/index",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "购物车",
+          "pathName": "pages/cart/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "货品详情",
+          "pathName": "pages/goods_detail/index",
+          "query": "",
+          "scene": null
         }
       ]
     }

@@ -19,8 +19,8 @@ Page({
     });
   },
  //注册
- accountLogin: function() {
-  wx.redirectTo({
+ doLogup: function() {
+    wx.redirectTo({
       url: '/pages/login/index'
     });
   },

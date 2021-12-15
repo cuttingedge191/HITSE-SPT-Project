@@ -2,7 +2,7 @@
 <view  class="container">
   <van-divider />
   <demo-block padding>
-    <van-row>
+    <van-row >
       <van-col offset="9" span="6">
       <van-image
         round
@@ -15,7 +15,6 @@
       <van-col span="1">
         <van-icon name="setting-o" />
       </van-col>
-      
     </van-row>
   </demo-block>
 

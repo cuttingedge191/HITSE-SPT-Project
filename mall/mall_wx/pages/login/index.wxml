@@ -1,30 +1,28 @@
 <!--pages/login/index.wxml-->
 <view class="main">
 <view class="container">
-  <van-cell-group>
-    <van-field
-      value="{{ username }}"
-      label="用户名"
-      placeholder="请输入用户名"
-      clearable
-      right-icon="question-o"
-      right-icon-class="custom-icon"
-      required
-      bind:click-icon="onClickIcon"
-    />
-    <van-field
-      value="{{ password }}"
-      type="password"
-      label="密码"
-      placeholder="请输入密码"
-      required
-    />
-  </van-cell-group>
-
-<view class="buttons">
-<van-button round size="normal" type="primary" block bind:click="accountLogin">取消</van-button>
-<van-button round size="normal" type="info" block bind:click="accountLogin">登录</van-button>
-</view>
+  <form bindsubmit='doLogin'>
+    <van-cell-group>
+      <van-field
+        value="{{ username }}"
+        label="用户名"
+        placeholder="请输入用户名"
+        clearable
+        required
+        bind:click-icon="onClickIcon"
+      />
+      <van-field
+        value="{{ password }}"
+        type="password"
+        label="密码"
+        placeholder="请输入密码"
+        required
+      />
+    </van-cell-group>
+    <view class="buttons">
+      <van-button round size="normal" formType="submit"  open-type='getUserInfo' type="info">登录</van-button>
+    </view>
+  </form>
   <van-cell label="还没有账号?点击注册" url="/pages/logup/index" />
 </view>
 </view>
