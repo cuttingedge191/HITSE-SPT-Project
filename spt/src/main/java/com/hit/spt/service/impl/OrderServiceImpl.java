@@ -88,9 +88,9 @@ public class OrderServiceImpl implements OrderService {
         orderItem.setCost(goodsInfo.getCost() * quantity);
         orderItem.setG_id(goodsInfo.getG_id());
         if (trade)
-            orderItem.setPrice(goodsInfo.getTrade_price() * quantity);
+            orderItem.setPrice(Math.round(100 * goodsInfo.getTrade_price() * quantity) / 100.0);
         else
-            orderItem.setPrice(goodsInfo.getRetail_price() * quantity);
+            orderItem.setPrice(Math.round(100 * goodsInfo.getRetail_price() * quantity) / 100.0);
         return orderItem;
     }
 

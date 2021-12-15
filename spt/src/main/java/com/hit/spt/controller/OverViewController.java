@@ -6,7 +6,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -25,8 +24,9 @@ public class OverViewController {
     @RequestMapping("getSalesOverView")
     @ResponseBody
     public List<String> getSalesOverView(String g_id, String type) {
-        List<String> result = new ArrayList<>();
-        result.add("111");
-        return result;
+        if (type.equals("week"))
+            return overViewService.getSalesOverView(g_id, 7);
+        else
+            return overViewService.getSalesOverView(g_id, 30);
     }
 }

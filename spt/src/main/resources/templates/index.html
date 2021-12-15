@@ -245,13 +245,13 @@
                                 <div class="row">
                                     <div class="col-md-7">
                                         <h5>库存概览</h5>
-                                        <small class="block text-muted">此处可视化展示选定仓库中的积压资金额</small>
+                                        <small class="block text-muted">可视化展示选定仓库中的积压资金额</small>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group row">
                                             <label class="col-sm-4 form-control-label" for="select_il">仓库：</label>
-                                            <select class="col-sm-8 form-control" ui-jp="select" id="select_il"
-                                                    ui-options="{theme: 'bootstrap'}" name="il_id"
+                                            <select class="col-sm-8 form-control" ui-jp="select2" id="select_il"
+                                                    ui-options="{theme: 'bootstrap'}" name="select_il"
                                                     onchange="selectIl_onchange()">
                                                 <option th:each="inventory_list:${inventory_lists}"
                                                         th:class="'select inventory_' + ${inventory_list.il_id}"
@@ -282,19 +282,22 @@
                         <div class="box">
                             <div class="box-header">
                                 <div class="row">
-                                    <div class="col-md-5">
+                                    <div class="col-md-4">
                                         <h5>销售概览</h5>
-                                        <small class="block text-muted">此处可视化展示部分货品销售额统计</small>
+                                        <small class="block text-muted">可视化展示部分货品销售额统计</small>
                                         <input type="hidden" id="time_opt" value="week">
                                     </div>
-                                    <div class="col-md-5">
+                                    <div class="col-md-6">
                                         <div class="form-group row">
-                                            <label class="col-sm-4 form-control-label" for="select_g">货品：</label>
-                                            <select class="col-sm-8 form-control" ui-jp="select" id="select_g"
-                                                    ui-options="{theme: 'bootstrap'}" name="g_id"
-                                                    onchange="selectS_onchange()">
-                                                <option>明天再绑</option>
-                                                <option>还没有绑</option>
+                                            <label for="select_g"
+                                                   class="col-md-3 form-control-label">货品：</label>
+                                            <select class="form-control col-md-9" ui-jp="select2" id="select_g"
+                                                    ui-options="{theme: 'bootstrap'}" name="select_g" onchange="selectS_onchange(document.getElementById('time_opt').value)">
+                                                <optgroup label="货品名称-条码">
+                                                    <div th:each="goodsInfo:${goodsInfos}">
+                                                        <option th:value="${goodsInfo.g_id}" th:text="${goodsInfo.name}+'-'+${goodsInfo.g_id}"></option>
+                                                    </div>
+                                                </optgroup>
                                             </select>
                                         </div>
                                     </div>
@@ -352,6 +355,140 @@
 
 <!-- ############ LAYOUT END-->
 
+<!-- 用于概览图显示 -->
+<script th:src="@{/libs/js/echarts/build/dist/echarts-all.js}"></script>
+
+<script>
+    // 页面加载时自动运行的函数
+    function autoRun() {
+        selectIl_onchange();
+        selectS_onchange();
+    }
+
+    // 从后台获取库存概览可视化数据
+    function selectIl_onchange() {
+        $.ajax({
+            url: "/getInventoryOverView?il_id=" + $('#select_il').val(),
+            dataType: "json",
+            type: 'GET',
+            success: function (dataInfo) {
+                loadInventoryPie(dataInfo[0], dataInfo[1]);
+            }
+        })
+    }
+
+    // 从后台获取销售概览可视化数据
+    function selectS_onchange(type) {
+        if (type === "week") {
+            document.getElementById("time_opt").setAttribute("value", "week");
+            $.ajax({
+                url: "/getSalesOverView?g_id=" + $('#select_g').val() + "&type=week",
+                dataType: "json",
+                type: 'GET',
+                success: function (dataInfo) {
+                    loadSalesBar(dataInfo[0], dataInfo[1]);
+                }
+            })
+        } else {
+            document.getElementById("time_opt").setAttribute("value", "month");
+            $.ajax({
+                url: "/getSalesOverView?g_id=" + $('#select_g').val() + "&type=month",
+                dataType: "json",
+                type: 'GET',
+                success: function (dataInfo) {
+                    loadSalesBar(dataInfo[0], dataInfo[1]);
+                }
+            })
+        }
+    }
+
+    // 重新载入库存概览可视化饼状图
+    function loadInventoryPie(legend_data, series_data) {
+        var l_data = JSON.parse(legend_data);
+        var s_data = JSON.parse(series_data);
+        var inventoryPie = echarts.init(document.getElementById('inventory_pie'));
+        var option = {
+            tooltip: {
+                trigger: 'item',
+                formatter: '{a} <br/>{b} : {c} ({d}%)'
+            },
+            legend: {
+                orient: 'vertical',
+                x: 'right',
+                data: l_data
+            },
+            calculable: true,
+            series: [
+                {
+                    name: '积压资金额（元）',
+                    type: 'pie',
+                    radius: '55%',
+                    center: ['50%', '60%'],
+                    data: s_data
+                }
+            ]
+        };
+        inventoryPie.setOption(option);
+    }
+
+    // 重新载入销售概览可视化柱状图
+    function loadSalesBar(xAxis_data, series_data) {
+        var x_data = JSON.parse(xAxis_data);
+        var s_data = JSON.parse(series_data);
+        var salesBar = echarts.init(document.getElementById('sales_bar'));
+        var option = {
+            tooltip: {
+                trigger: 'item'
+            },
+            calculable: true,
+            grid: {
+                borderWidth: 0
+            },
+            xAxis: [
+                {
+                    type: 'category',
+                    show: false,
+                    data: x_data
+                }
+            ],
+            yAxis: [
+                {
+                    type: 'value',
+                    show: true
+                }
+            ],
+            series: [
+                {
+                    name: '货品销售额（元）',
+                    type: 'bar',
+                    itemStyle: {
+                        normal: {
+                            color: function (params) {
+                                var colorList = [
+                                    '#C1232B', '#B5C334', '#FCCE10', '#E87C25', '#27727B',
+                                    '#FE8463', '#9BCA63', '#FAD860', '#F3A43B', '#60C0DD',
+                                    '#D7504B', '#C6E579', '#F4E001', '#F0805A', '#26C0C0'
+                                ];
+                                return colorList[params.dataIndex]
+                            },
+                            label: {
+                                show: true,
+                                position: 'top',
+                                formatter: '{b}\n{c}'
+                            }
+                        }
+                    },
+                    data: s_data
+                }
+            ]
+        }
+        salesBar.setOption(option);
+    }
+
+    window.onload = autoRun();
+</script>
+<!-- /用于概览图显示 -->
+
 <!-- build:js scripts/app.html.js} -->
 <!-- jQuery -->
 <script th:src="@{/libs/jquery/jquery/dist/jquery.js}"></script>
@@ -382,138 +519,6 @@
 <script th:src="@{/libs/jquery/jquery-pjax/jquery.pjax.js}"></script>
 <script th:src="@{/scripts/ajax.js}"></script>
 <!-- endbuild -->
-
-<!-- 用于概览图显示 -->
-<script th:src="@{/libs/js/echarts/build/dist/echarts-all.js}"></script>
-
-<script>
-    // 页面加载时自动运行的函数
-    function autoRun() {
-        selectIl_onchange();
-        selectS_onchange();
-    }
-
-    // 从后台获取库存概览可视化数据
-    function selectIl_onchange() {
-        $.ajax({
-            url: "/getInventoryOverView?il_id=" + $('#select_il').val(),
-            dataType: "json",
-            type: 'GET',
-            success: function (dataInfo) {
-                loadInventoryPie(dataInfo[0], dataInfo[1]);
-            }
-        })
-    }
-
-    // 从后台获取销售概览可视化数据【未完成】
-    function selectS_onchange(type) {
-        if (type === "week") {
-            document.getElementById("time_opt").setAttribute("value", "week");
-            $.ajax({
-                url: "/getSalesOverView?g_id=" + $('#select_g').val() + "&type=week",
-                dataType: "json",
-                type: 'GET',
-                success: function (dataInfo) {
-                    loadSalesBar();
-                }
-            })
-        } else {
-            document.getElementById("time_opt").setAttribute("value", "month");
-            $.ajax({
-                url: "/getSalesOverView?g_id=" + $('#select_g').val() + "&type=month",
-                dataType: "json",
-                type: 'GET',
-                success: function (dataInfo) {
-                    loadSalesBar();
-                }
-            })
-        }
-    }
-
-    // 重新载入库存概览可视化饼状图
-    function loadInventoryPie(legend_data, series_data) {
-        var l_data = JSON.parse(legend_data);
-        var s_data = JSON.parse(series_data);
-        var inventoryPie = echarts.init(document.getElementById('inventory_pie'));
-        var option = {
-            tooltip: {
-                trigger: 'item',
-                formatter: '{a} <br/>{b} : {c} ({d}%)'
-            },
-            legend: {
-                orient: 'vertical',
-                x: 'right',
-                data: l_data
-            },
-            calculable: true,
-            series: [
-                {
-                    name: '积压资金额',
-                    type: 'pie',
-                    radius: '55%',
-                    center: ['50%', '60%'],
-                    data: s_data
-                }
-            ]
-        };
-        inventoryPie.setOption(option);
-    }
-
-    // 重新载入销售概览可视化柱状图【未完成】
-    function loadSalesBar() {
-        var salesBar = echarts.init(document.getElementById('sales_bar'));
-        var option = {
-            tooltip: {
-                trigger: 'item'
-            },
-            calculable: true,
-            grid: {
-                borderWidth: 0
-            },
-            xAxis: [
-                {
-                    type: 'category',
-                    show: false,
-                    data: ['Line', 'Bar', 'Scatter', 'K', 'Pie', 'Radar', 'Chord', 'Force', 'Map', 'Gauge', 'Funnel']
-                }
-            ],
-            yAxis: [
-                {
-                    type: 'value',
-                    show: false
-                }
-            ],
-            series: [
-                {
-                    name: 'Echarts Samples',
-                    type: 'bar',
-                    itemStyle: {
-                        normal: {
-                            color: function (params) {
-                                var colorList = [
-                                    '#C1232B', '#B5C334', '#FCCE10', '#E87C25', '#27727B',
-                                    '#FE8463', '#9BCA63', '#FAD860', '#F3A43B', '#60C0DD',
-                                    '#D7504B', '#C6E579', '#F4E001', '#F0805A', '#26C0C0'
-                                ];
-                                return colorList[params.dataIndex]
-                            },
-                            label: {
-                                show: true,
-                                position: 'top',
-                                formatter: '{b}\n{c}'
-                            }
-                        }
-                    },
-                    data: [12, 21, 10, 4, 12, 5, 6, 5, 25, 23, 7]
-                }
-            ]
-        }
-        salesBar.setOption(option);
-    }
-
-    window.onload = autoRun();
-</script>
-<!-- /用于概览图显示 -->
 
 </body>
 

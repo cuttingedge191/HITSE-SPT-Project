@@ -1,12 +1,18 @@
 package com.hit.spt.service.impl;
 
 import com.alibaba.fastjson.JSON;
+import com.hit.spt.mapper.GoodsInfoMapper;
 import com.hit.spt.mapper.InventoryMapper;
+import com.hit.spt.mapper.OrderItemMapper;
+import com.hit.spt.mapper.OrdersMapper;
 import com.hit.spt.pojo.Inventory;
+import com.hit.spt.pojo.OrderItem;
+import com.hit.spt.pojo.Orders;
 import com.hit.spt.service.OverViewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Service
@@ -14,6 +20,15 @@ public class OverViewServiceImpl implements OverViewService {
 
     @Autowired
     InventoryMapper inventoryMapper;
+
+    @Autowired
+    OrdersMapper ordersMapper;
+
+    @Autowired
+    OrderItemMapper orderItemMapper;
+
+    @Autowired
+    GoodsInfoMapper goodsInfoMapper;
 
     /**
      * 获取指定仓库的库存概览饼状图所需数据
@@ -70,5 +85,77 @@ public class OverViewServiceImpl implements OverViewService {
         result.add(legend_data_str);
         result.add(series_data_str);
         return result;
+    }
+
+    /**
+     * 获取销售概览柱状图所需数据
+     *
+     * @param g_id 货品ID（条码）
+     * @param days 计算天数
+     * @return 图例中项信息、数据信息(index.html)
+     */
+    @Override
+    public List<String> getSalesOverView(String g_id, Integer days) {
+        ArrayList<String> item_list = new ArrayList<>();
+        ArrayList<String> data_list = new ArrayList<>();
+        Map<String, Double> data = new HashMap<>();
+        // 保存指定的货品名称
+        String selectedName = goodsInfoMapper.queryGoodsInfoByGid(Long.parseLong(g_id)).getName();
+        // 获取所有状态为已付款及已关闭的订单
+        List<Orders> orders = new ArrayList<>(ordersMapper.queryOrdersByStatus("paid"));
+        orders.addAll(ordersMapper.queryOrdersByStatus("closed"));
+        // 按照时间戳从新至旧排序
+        orders.sort((o1, o2) -> o2.getTime_stamp().compareTo(o1.getTime_stamp()));
+        // 计算时间范围
+        Date now = new Date();
+        Date prev = new Date(now.getTime() - days * 24L * 60L * 60L * 1000L);
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        // 获取指定时间范围内的各货品的销售额
+        try {
+            for (Orders order : orders) {
+                Date date = df.parse(order.getTime_stamp());
+                if (date.after(prev)) {
+                    List<OrderItem> orderItems = orderItemMapper.queryOrderItemByOid(order.getO_id());
+                    for (OrderItem orderItem : orderItems) {
+                        String gid = orderItem.getG_id().toString();
+                        String name = goodsInfoMapper.queryGoodsInfoByGid(Long.parseLong(gid)).getName();
+                        if (data.containsKey(name)) // 使用名称-条码后四位标识，保证唯一性
+                            data.put(name, data.get(name) + orderItem.getPrice());
+                        else
+                            data.put(name, orderItem.getPrice());
+                    }
+                }
+            }
+        } catch (Exception e) { // 不会出现时间转换异常
+        }
+        // 将货品按照销售额进行降序排序
+        List<Map.Entry<String, Double>> list = new ArrayList<>(data.entrySet());
+        list.sort((o1, o2) -> o2.getValue().compareTo(o1.getValue()));
+        // 获取最多5种最大销售额的货品
+        for (int i = 0; i < 10; ++i) {
+            if (list.size() <= i)
+                break;
+            else {
+                item_list.add(list.get(i).getKey());
+                data_list.add(list.get(i).getValue().toString());
+            }
+        }
+        // 如果指定货品在时间范围内出现且销售额不在前10中，则将其加入到结果中
+        // 如果指定货品在时间范围内无销售，向结果中填入0
+        if (!item_list.contains(selectedName) && data.containsKey(selectedName)) {
+            item_list.add(selectedName);
+            data_list.add(data.get(selectedName).toString());
+        }
+        else if (!data.containsKey(selectedName)) {
+            item_list.add(selectedName);
+            data_list.add("0");
+        }
+        // 将结果转换为JSON字符串
+        String axis_data_str = JSON.toJSONString(item_list);
+        String series_data_str = JSON.toJSONString(data_list).replace("\"", "");
+        List<String> result_list = new ArrayList<>();
+        result_list.add(axis_data_str);
+        result_list.add(series_data_str);
+        return result_list;
     }
 }

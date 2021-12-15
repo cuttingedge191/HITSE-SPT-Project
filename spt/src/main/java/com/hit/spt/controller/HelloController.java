@@ -1,6 +1,8 @@
 package com.hit.spt.controller;
 
+import com.hit.spt.pojo.GoodsInfo;
 import com.hit.spt.pojo.Inventory;
+import com.hit.spt.service.GoodsService;
 import com.hit.spt.service.InventoryService;
 import com.hit.spt.service.OverViewService;
 import com.hit.spt.service.impl.ClientInfoService;
@@ -22,10 +24,15 @@ public class HelloController {
     @Autowired
     InventoryService inventoryService;
 
+    @Autowired
+    GoodsService goodsService;
+
     @RequestMapping("index")
     public String hello(Model model) {
         List<Inventory> inventory_lists = inventoryService.queryWarehouseList();
         model.addAttribute("inventory_lists", inventory_lists);
+        List<GoodsInfo> goodsInfos = goodsService.getAllGoods();
+        model.addAttribute("goodsInfos", goodsInfos);
         return "index";
     }
 

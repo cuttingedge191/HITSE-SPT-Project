@@ -261,7 +261,7 @@
                                         :(${order.status}=='failed' ? 'label danger'
                                         :(${order.status}=='checked' ? 'label warn'
                                         :(${order.status}=='closed' ? 'label dark'
-                                        :(${order.status}=='returned' ? 'blue-grey-500'
+                                        :(${order.status}=='returned' ? 'label gray'
                                         :'label accent')))))"
                                         th:text="${order.status}=='unchecked' ? '待审核'
                                         :(${order.status}=='paid' ? '已收款'
@@ -269,7 +269,7 @@
                                         :(${order.status}=='checked' ? '已审核并出库'
                                         :(${order.status}=='closed' ? '已关闭'
                                         :(${order.status}=='returned' ? '已退款/货'
-                                        : '待退款')))))"></span></td>
+                                        : '待退款/货')))))"></span></td>
 
                                 <td th:text="${order.type} == 'trade' ? '批发':'零售'"></td>
                                 <td class="m-b btn-groups">
