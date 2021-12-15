@@ -47,7 +47,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that = this;
+    wx.request({
+      url: 'http://localhost:8080/mall/getGoodsInfoByGid?g_id='+options.g_id,
+      method: 'GET',
+      header: {
+        'content-type':'application/json'
+      },
+      success: function(res){
+        that.setData({goodInfo : res.data})
+      }
+    })
   },
 
   /**
@@ -61,19 +71,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    let pages = getCurrentPages();
-    console.log(pages);
-    let currentPage = pages[pages.length - 1];
-    console.log(currentPage);
-    let options = currentPage.options;
-    const { goods_id } = options;
-    let good = this.data.goods.filter((item, index, arr)=>{
-      return (item.id === goods_id)
-    })
-    this.setData({
-      "goodInfo": good[0],
-    })
-    // this.getGoodsDetail(goods_id);
   },
 
 

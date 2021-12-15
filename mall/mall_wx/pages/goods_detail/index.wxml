@@ -19,9 +19,9 @@
   <demo-block padding>
     <van-divider contentPosition="center">货品详情</van-divider>
     <van-cell-group inset>
-      <van-cell title="商品名称" value="{{ goodInfo.title }}" />
-      <van-cell title="商品单价" value="{{ goodInfo.price }}" />
-      <van-cell title="其他描述" value="{{ goodInfo.desc }}" />
+      <van-cell title="商品名称" value="{{ goodInfo.name }}" />
+      <van-cell title="商品单价" value="{{ goodInfo.retail_price }}" />
+      <van-cell title="其他描述" value="{{ goodInfo.description }}" />
     </van-cell-group>
   </demo-block>
 </view>
