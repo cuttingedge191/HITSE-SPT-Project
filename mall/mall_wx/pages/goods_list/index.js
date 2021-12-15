@@ -1,5 +1,8 @@
 // index.js
 // 获取应用实例
+import Page from '../../libs/common/page';
+import Toast from '../../libs/dist/toast/toast';
+
 const app = getApp()
 wx-Page({
 
@@ -11,12 +14,12 @@ wx-Page({
     show: false,
     goods:[
     {
-    id:'1',
-    imageURL:'https://img.yzcdn.cn/vant/ipad.jpeg',
-    tag:'特价',
-    price:'2799.99',
-    title:'苹果（Apple) iPad 10.2英寸平板电脑【2021年款iPad】（64GB WLAN版/MK2K3CH/A） 深空灰色',
-    desc:'超30万人店内购买 | 新款平板',
+      id:'1',
+      imageURL:'https://img.yzcdn.cn/vant/ipad.jpeg',
+      tag:'特价',
+      price:'2799.99',
+      title:'苹果（Apple) iPad 10.2英寸平板电脑【2021年款iPad】（64GB WLAN版/MK2K3CH/A） 深空灰色',
+      desc:'超30万人店内购买 | 新款平板',
     },
     { 
       id:'2',
@@ -34,22 +37,17 @@ wx-Page({
         title:'苹果（Apple) iPad 10.2英寸平板电脑【2021年款iPad】（64GB WLAN版/MK2K3CH/A） 深空灰色',
         desc:'超30万人店内购买 | 新款平板'
         },
-        {
-          id:'4',
-          imageURL:'https://img.yzcdn.cn/vant/cat.jpeg',
-          tag:'打折',
-          price:'9.99',
-          title:'猫咪V3.0限定版',
-          desc:'超30万人店内购买，你值得拥有！'
-          },
     ]
   },
-  showPopup() {
-    this.setData({ show: true });
+
+  addCart: function() {
+    Toast.success('已加入购物车');
   },
 
-  onClose() {
-    this.setData({ show: false });
+  viewDetail: function() {
+    wx.redirectTo({
+      url: '/pages/goods_detail/index'
+    });
   },
   /**
    * 生命周期函数--监听页面加载

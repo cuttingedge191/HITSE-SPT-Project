@@ -9,7 +9,7 @@
           width="250"
           height="250"
           radius="20"
-          src="{{ src }}"
+          src="{{ goodInfo.imageURL }}"
         />
       </van-row>
   </demo-block>
@@ -19,9 +19,9 @@
   <demo-block padding>
     <van-divider contentPosition="center">货品详情</van-divider>
     <van-cell-group inset>
-      <van-cell title="商品名称" value="内容" />
-      <van-cell title="商品单价" value="内容" />
-      <van-cell title="其他描述" value="内容" />
+      <van-cell title="商品名称" value="{{ goodInfo.title }}" />
+      <van-cell title="商品单价" value="{{ goodInfo.price }}" />
+      <van-cell title="其他描述" value="{{ goodInfo.desc }}" />
     </van-cell-group>
   </demo-block>
 </view>
@@ -37,6 +37,11 @@
   </demo-block>
 </view>
 
+<text>\n</text>
+<text>\n</text>
+<text>\n</text>
+<text>\n</text>
+<text>\n</text>
 
 <van-goods-action>
   <van-goods-action-icon icon="cart-o" text="购物车" bind:click="onClickCart" />
