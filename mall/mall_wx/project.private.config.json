@@ -19,7 +19,7 @@
           "scene": null
         },
         {
-          "name": "首页",
+          "name": "商品列表",
           "pathName": "pages/goods_list/index",
           "query": "",
           "scene": null
@@ -45,6 +45,12 @@
         {
           "name": "货品详情",
           "pathName": "pages/goods_detail/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "欢迎页面",
+          "pathName": "pages/index/index",
           "query": "",
           "scene": null
         }

@@ -1,1 +1,5 @@
-/* pages/goods_list/index.wxss */
+/**index.wxss**/
+/* view{
+  color:var(--themeColor);
+} */
+

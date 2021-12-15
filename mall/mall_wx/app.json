@@ -1,7 +1,7 @@
 {
   "pages":[
-    "pages/login/index",
     "pages/index/index",
+    "pages/login/index",
     "pages/cart/index",
     "pages/user/index",
     "pages/goods_list/index",    
@@ -10,8 +10,6 @@
     "pages/history_order/unpayed",
     "pages/history_order/notReceived",
     "pages/history_order/closed",
-    "pages/search/index",
-    "pages/pay/index",
     "pages/logup/index",
     "pages/userInfo/index"
   ],
@@ -28,7 +26,7 @@
     "color": "#666",
     "list": [
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/goods_list/index",
         "iconPath": "static/images/home.png",
         "selectedIconPath": "static/images/home@selected.png",
         "text": "首页"
