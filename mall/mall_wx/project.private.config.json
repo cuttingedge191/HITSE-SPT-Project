@@ -53,6 +53,12 @@
           "pathName": "pages/index/index",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "修改个人信息",
+          "pathName": "pages/userInfo/index",
+          "query": "",
+          "scene": null
         }
       ]
     }

@@ -1,2 +1,4 @@
 <!--pages/index/index.wxml-->
-<text>hello, 欢迎来到商店</text>
+<view class="index-container">
+  <image src="../../static/images/introductionico.png"></image>
+</view>
