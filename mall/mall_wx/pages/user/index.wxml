@@ -29,10 +29,10 @@
 </van-row>
 
 <van-grid>
-  <van-grid-item icon="records" text="待审核" info="2" />
-  <van-grid-item icon="balance-pay" text="待付款" info="5" />
-  <van-grid-item icon="cart-circle-o" text="待收货" />
-  <van-grid-item icon="bill-o" text="其他订单" />
+  <van-grid-item icon="records" text="待审核" info="2" url="../history_order/unchecked/index"/>
+  <van-grid-item icon="balance-pay" text="待付款" info="5" url="../history_order/unpayed/index"/>
+  <van-grid-item icon="cart-circle-o" text="待收货" url="../history_order/notReceived/index" />
+  <van-grid-item icon="bill-o" text="其他订单" url="../history_order/closed/index"/>
 </van-grid>
 
 </view>
