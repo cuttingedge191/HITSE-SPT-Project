@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -28,5 +29,13 @@ public class OverViewController {
             return overViewService.getSalesOverView(g_id, 7);
         else
             return overViewService.getSalesOverView(g_id, 30);
+    }
+
+    @RequestMapping("getOperationOverView")
+    @ResponseBody
+    public List<String> getOperationOverView(String type) {
+        List<String> res = new ArrayList<>();
+        res.add("111");
+        return res;
     }
 }
