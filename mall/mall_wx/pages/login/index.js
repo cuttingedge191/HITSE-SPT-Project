@@ -5,19 +5,33 @@ Page({
    * 页面的初始数据
    */
   data: {
-    username: '',
-    password: ''
+    user:{id:123, psw:456},
   },
 
   doLogin: function(e) {
-    wx.request({
-      url: 'localhost:8080/doLogin',
-      method: "POST",
-      data:{
-        username:e.detail.value.username,
-        password:e.detail.value.password
-      }
-    })
+    // wx.request({
+    //   url: 'localhost:8080/customer/login',
+    //   method: "POST",
+    //   data:{
+    //     customer_id:e.detail.value.customer_id,
+    //     password:e.detail.value.psw
+    //   }
+    // })
+    let { customer_id, psw} = e.detail.value;
+    console.log(customer_id);
+    console.log(psw);
+    if (!customer_id || !psw) {
+      // this.setData({  
+      // warn: "id或密码为空！",  
+      // })
+      return;
+    }
+    else{
+      wx.setStorageSync("userinfo", e.detail); //将userinfo存入本地缓存
+      wx.switchTab({
+        url: '/pages/goods_list/index',
+      })
+    }
   },
 
   /**

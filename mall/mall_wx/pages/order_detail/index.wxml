@@ -1,0 +1,36 @@
+<!--pages/order_detail/index.wxml-->
+
+<demo-block title="订单进度">
+  <van-steps
+    steps="{{ steps }}"
+    active="{{ active }}"
+    active-icon="success"
+    active-color="#38f"
+    inactive-icon="arrow"
+  />
+</demo-block>
+
+<demo-block title="全部货品">
+  <view wx:for="{{ order_items }}" wx:key="id">
+    <van-card
+      num="{{ item.num }}"
+      price="{{ item.price }}"
+      desc="{{ item.description }}"
+      title="{{ item.name }}"
+      thumb="{{ imageURL }}"
+    >
+    </van-card>
+  </view>
+</demo-block>
+
+<view wx:if="{{ actions[active] }}">
+  <demo-block title="操作"> 
+    <van-row>
+      <van-col offset="18" span="6">
+        <van-button icon="balance-o">
+          <text>{{ steps[active].text }}</text>
+        </van-button>
+      </van-col>
+    </van-row>
+  </demo-block>
+</view>

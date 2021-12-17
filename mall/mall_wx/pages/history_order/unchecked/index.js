@@ -25,24 +25,6 @@ Page({
         order_price:'666',
         order_time:'2021.12.12',
        },
-       {
-        order_id:'1',
-        order_number:'234242414',
-        order_price:'666',
-        order_time:'2021.12.12',
-       },
-       {
-        order_id:'1',
-        order_number:'234242414',
-        order_price:'666',
-        order_time:'2021.12.12',
-       },
-       {
-        order_id:'1',
-        order_number:'234242414',
-        order_price:'666',
-        order_time:'2021.12.12',
-       }
      ]
   },
   changePage: function(event) {
@@ -62,6 +44,13 @@ Page({
       })
     }
   },
+
+  viewOrder: function(e) {
+    wx.navigateTo({
+      url: "../../order_detail/index?o_id="+e.currentTarget.id,
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */

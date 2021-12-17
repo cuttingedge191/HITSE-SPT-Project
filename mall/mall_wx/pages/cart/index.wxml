@@ -5,24 +5,17 @@
     <van-swipe-cell right-width="{{ 65 }}">
       <van-cell-group>
         <van-card
-          num="2"
           price="2.00"
           desc="描述信息"
           title="货品名称"
           thumb="{{ imageURL }}"
         >
           <view slot="footer">
-            <van-button round size="mini">
-              <van-icon name="plus"/>
-            </van-button>
-            <van-button round size="mini">
-              <van-icon name="minus"/>
-            </van-button>
+            <van-stepper value="{{ 5 }}" min="2" max="8" />
           </view>
         </van-card>
       </van-cell-group>
       <view slot="right">删除</view>
-      
     </van-swipe-cell>
   </demo-block>
 
@@ -36,7 +29,8 @@
   >
     <view slot="tip">
       您的收货地址是：
-      <text class="edit-address" bindtap="onClickLink">点击修改</text>
+      <text>{{ addr }}</text>
+      <text class="edit-address" bindtap="changeAddr">\t点击修改</text>
     </view>
   </van-submit-bar>
 </view>

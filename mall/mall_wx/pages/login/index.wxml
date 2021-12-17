@@ -4,23 +4,21 @@
   <form bindsubmit='doLogin'>
     <van-cell-group>
       <van-field
-        value="{{ username }}"
         label="用户名"
         placeholder="请输入用户名"
-        clearable
+        name="customer_id"
         required
-        bind:click-icon="onClickIcon"
       />
       <van-field
-        value="{{ password }}"
         type="password"
         label="密码"
         placeholder="请输入密码"
+        name="psw"
         required
       />
     </van-cell-group>
     <view class="buttons">
-      <van-button round size="normal" formType="submit"  open-type='getUserInfo' type="info">登录</van-button>
+      <van-button round size="normal" formType="submit" type="info">登录</van-button>
     </view>
   </form>
   <van-cell label="还没有账号?点击注册" url="/pages/logup/index" />

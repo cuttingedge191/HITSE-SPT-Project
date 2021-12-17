@@ -11,7 +11,8 @@
     "pages/history_order/notReceived/index",
     "pages/history_order/closed/index",
     "pages/logup/index",
-    "pages/userInfo/index"
+    "pages/userInfo/index",
+    "pages/order_detail/index"
   ],
   "window":{
     "backgroundTextStyle":"light",

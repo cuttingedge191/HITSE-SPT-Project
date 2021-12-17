@@ -5,17 +5,29 @@ Page({
    * 页面的初始数据
    */
   data: {
+    name:"",
+    account:"",
     fits: [
       'cover'
     ],
     src: "https://img.yzcdn.cn/vant/cat.jpeg"
   },
 
+  changeInfo: function() {
+    wx.navigateTo({
+      url: '/pages/userInfo/index',
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var userinfo = wx.getStorageSync('userinfo'); //获取本地缓存中的userinfo
+    console.log("本地用户信息",userinfo);
+    this.setData({
+      account : userinfo.value.customer_id
+    })
   },
 
   /**

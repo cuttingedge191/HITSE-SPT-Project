@@ -10,10 +10,8 @@
         width="100"
         height="100"
         src="{{ src }}"
+        bindtap="changeInfo"
       />
-      </van-col>
-      <van-col span="1">
-        <van-icon name="setting-o" />
       </van-col>
     </van-row>
   </demo-block>
@@ -22,7 +20,7 @@
   <van-col offset="4" span="16" >
     <van-cell-group inset>
     <van-cell title="我的名称" value="内容"/>
-    <van-cell title="我的账号" value="内容" />
+    <van-cell title="我的账号" value="{{ account }}" />
     <van-cell title="我的积分" value="内容" label="每消费一元积一分" />
     </van-cell-group>
   </van-col>

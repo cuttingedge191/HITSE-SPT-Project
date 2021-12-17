@@ -59,6 +59,12 @@
           "pathName": "pages/userInfo/index",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "订单详情",
+          "pathName": "pages/order_detail/index",
+          "query": "",
+          "scene": null
         }
       ]
     }
