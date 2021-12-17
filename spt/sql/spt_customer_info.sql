@@ -29,9 +29,15 @@ CREATE TABLE `customer_info` (
   `gender` varchar(20) DEFAULT NULL,
   `phone` varchar(45) DEFAULT NULL,
   `address` varchar(45) DEFAULT NULL,
+  `password` varchar(45) DEFAULT NULL,
+  `total_points` double DEFAULT '0',
+  `used_points` double DEFAULT '0',
+  `level` int(11) DEFAULT '0',
+  `balance` double DEFAULT '0',
   PRIMARY KEY (`c_id`),
-  UNIQUE KEY `cid_UNIQUE` (`c_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  UNIQUE KEY `cid_UNIQUE` (`c_id`),
+  UNIQUE KEY `phone_UNIQUE` (`phone`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +46,7 @@ CREATE TABLE `customer_info` (
 
 LOCK TABLES `customer_info` WRITE;
 /*!40000 ALTER TABLE `customer_info` DISABLE KEYS */;
-INSERT INTO `customer_info` VALUES (3,'trade','锐捷','female','13846112','Harbin'),(4,'retail','aaaa','female','12345678901','地址'),(5,'trade','bbbb','female','1111111111','2222'),(6,'trade','1111','male','2222','3333');
+INSERT INTO `customer_info` VALUES (1,'retail','aaaa','female','18667896914','地址',NULL,0,0,0,0),(2,'retail','bbbb','female','15045674913','2222',NULL,0,0,0,0),(3,'trade','批发大客户','male','13045674912','地址地址',NULL,0,0,0,0),(4,'trade','批发小客户','male','18912345911','地址',NULL,0,0,0,0),(5,'trade','软件过程','male','13345678901','哈工大一校区',NULL,0,0,0,0);
 /*!40000 ALTER TABLE `customer_info` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +59,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-12-07 22:12:53
+-- Dump completed on 2021-12-17 21:44:55

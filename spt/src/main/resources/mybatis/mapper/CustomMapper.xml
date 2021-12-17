@@ -20,7 +20,7 @@
         where type = #{type}
     </select>
     <select id="queryCustomerList" resultType="Customer">
-        select *
+        select c_id, type, name, gender, phone, address
         from spt.customer_info
     </select>
     <insert id="insertCustomer" parameterType="Customer">

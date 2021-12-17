@@ -239,42 +239,6 @@
             </div>
 
             <div class="padding">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="box">
-                            <div class="box-header">
-                                <h3>经营状况概览</h3>
-                                <small class="block text-muted">可视化展示经营状况数据</small>
-                                <input type="hidden" id="time_opt1" value="7">
-                            </div>
-                            <div class="box-body">
-                                <div id="operating_line" style="height:300px">
-                                </div>
-                            </div>
-                            <div class="box-tool">
-                                <ul class="nav">
-                                    <li class="nav-item inline">
-                                        <a class="nav-link"
-                                           href="javascript:selectOp_onchange(document.getElementById('time_opt1').value)">
-                                            <i class="material-icons md-18">&#xe863;</i>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item inline dropdown">
-                                        <a class="nav-link" data-toggle="dropdown">
-                                            <i class="material-icons md-18">&#xe5d4;</i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-scale pull-right">
-                                            <a class="dropdown-item"
-                                               href="javascript:selectOp_onchange('7')">近1周</a>
-                                            <a class="dropdown-item"
-                                               href="javascript:selectOp_onchange('28')">近4周</a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
                 <div class="row">
                     <div class="col-sm-6">
@@ -371,6 +335,44 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="box">
+                            <div class="box-header">
+                                <h3>经营状况概览</h3>
+                                <small class="block text-muted">可视化展示经营状况数据</small>
+                                <input type="hidden" id="time_opt1" value="7">
+                            </div>
+                            <div class="box-body">
+                                <div id="operating_line" style="height:300px">
+                                </div>
+                            </div>
+                            <div class="box-tool">
+                                <ul class="nav">
+                                    <li class="nav-item inline">
+                                        <a class="nav-link"
+                                           href="javascript:selectOp_onchange(document.getElementById('time_opt1').value)">
+                                            <i class="material-icons md-18">&#xe863;</i>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item inline dropdown">
+                                        <a class="nav-link" data-toggle="dropdown">
+                                            <i class="material-icons md-18">&#xe5d4;</i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-scale pull-right">
+                                            <a class="dropdown-item"
+                                               href="javascript:selectOp_onchange('7')">近1周</a>
+                                            <a class="dropdown-item"
+                                               href="javascript:selectOp_onchange('28')">近4周</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

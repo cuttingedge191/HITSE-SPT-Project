@@ -33,7 +33,7 @@ CREATE TABLE `user_info` (
   PRIMARY KEY (`u_id`),
   UNIQUE KEY `u_id_UNIQUE` (`u_id`),
   UNIQUE KEY `username_UNIQUE` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,7 +42,7 @@ CREATE TABLE `user_info` (
 
 LOCK TABLES `user_info` WRITE;
 /*!40000 ALTER TABLE `user_info` DISABLE KEYS */;
-INSERT INTO `user_info` VALUES (1,'Session测试','male','系统管理员',2047,'admin','admin'),(2,'000','female','员工',730,'12345','12345');
+INSERT INTO `user_info` VALUES (1,'最高权限','male','系统管理员',2047,'admin','admin'),(2,'测试员工','male','不确定',0,'12345','12345');
 /*!40000 ALTER TABLE `user_info` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -55,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-12-07 22:12:52
+-- Dump completed on 2021-12-17 21:44:54

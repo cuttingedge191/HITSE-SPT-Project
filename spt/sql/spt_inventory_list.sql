@@ -28,7 +28,7 @@ CREATE TABLE `inventory_list` (
   `inventory_info` varchar(45) DEFAULT NULL,
   `inventory_prior` tinyint(4) NOT NULL DEFAULT '1',
   PRIMARY KEY (`il_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,7 +37,7 @@ CREATE TABLE `inventory_list` (
 
 LOCK TABLES `inventory_list` WRITE;
 /*!40000 ALTER TABLE `inventory_list` DISABLE KEYS */;
-INSERT INTO `inventory_list` VALUES (1,'主仓库','备注信息',1),(2,'门店仓库','备注信息',2);
+INSERT INTO `inventory_list` VALUES (1,'主仓库','总店仓库',1),(2,'门店仓库','哈工大门店仓库',2),(3,'哈尔滨仓库','哈尔滨分仓库',3),(4,'北京仓库','北京分仓库',4);
 /*!40000 ALTER TABLE `inventory_list` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -50,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-12-07 22:12:52
+-- Dump completed on 2021-12-17 21:44:54
