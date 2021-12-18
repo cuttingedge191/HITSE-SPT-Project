@@ -8,6 +8,7 @@ import com.hit.spt.mapper.OrdersMapper;
 import com.hit.spt.pojo.Inventory;
 import com.hit.spt.pojo.OrderItem;
 import com.hit.spt.pojo.Orders;
+import com.hit.spt.pojo.Stock;
 import com.hit.spt.service.OverViewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -157,5 +158,83 @@ public class OverViewServiceImpl implements OverViewService {
         result_list.add(axis_data_str);
         result_list.add(series_data_str);
         return result_list;
+    }
+
+    @Override
+    public List<String> getOperationOverView() {
+        // 初始化变量
+        List<String> date_list = new ArrayList<>();
+        Collection<Double> init = Arrays.asList(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+        List<Double> sale_data = new ArrayList<>(init);
+        List<Double> profit_data = new ArrayList<>(init);
+        List<Double> cost_data = new ArrayList<>(init);
+        List<Double> inventory_data = new ArrayList<>(init);
+
+        // 获取日期列表
+        Long dayT = 24 * 60 * 60 * 1000L;
+        Date start = new Date(new Date().getTime() / dayT * dayT - 6 * dayT);
+        SimpleDateFormat df_show = new SimpleDateFormat("MM-dd");
+        for (int i = 0; i < 7; ++i)
+            date_list.add(df_show.format(new Date(start.getTime() + i * 24 * 60 * 60 * 1000L)));
+
+        // 获取每日销售金额和盈利金额
+        List<Orders> orders = ordersMapper.queryOrdersByStatus("paid");
+        orders.addAll(ordersMapper.queryOrdersByStatus("closed"));
+        orders.sort((o1, o2) -> o2.getTime_stamp().compareTo(o1.getTime_stamp()));
+        try {
+            SimpleDateFormat df_raw = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            for (Orders order : orders) {
+                Date date = df_raw.parse(order.getTime_stamp());
+                if (date.after(start)) {
+                    String date_str = df_show.format(date);
+                    sale_data.set(date_list.indexOf(date_str), sale_data.get(date_list.indexOf(date_str)) + order.getTotal_turnover());
+                    profit_data.set(date_list.indexOf(date_str), profit_data.get(date_list.indexOf(date_str)) + order.getTotal_profit());
+                } else
+                    break;
+            }
+        } catch (Exception e) { // 不会出现时间转换异常
+        }
+
+        // 获取每日进货金额
+        List<Stock> stocks = inventoryMapper.queryAllStocks();
+        stocks.sort((o1, o2) -> o2.getTime_stamp().compareTo(o1.getTime_stamp()));
+        try {
+            SimpleDateFormat df_raw = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            for (Stock stock : stocks) {
+                Date date = df_raw.parse(stock.getTime_stamp());
+                if (date.after(start)) {
+                    String date_str = df_show.format(date);
+                    cost_data.set(date_list.indexOf(date_str), cost_data.get(date_list.indexOf(date_str)) + stock.getCost());
+                }
+                else
+                    break;
+            }
+        } catch (Exception e) { // 不会出现时间转换异常
+        }
+
+        // 获取当前库存积压金额，随后回推之前6天的库存积压金额
+        List<Inventory> inventoryInfo = inventoryMapper.queryInventoryWithGnameList();
+        double sum = 0.0;
+        if (inventoryInfo != null) {
+            for (Inventory inventory : inventoryInfo)
+                sum += inventory.getCost() * inventory.getQuantity();
+        }
+        inventory_data.set(6, sum);
+        for (int i = 5; i >= 0; --i)
+            inventory_data.set(i, inventory_data.get(i + 1) - cost_data.get(i + 1) + sale_data.get(i + 1) - profit_data.get(i + 1));
+
+        // 将结果转换为JSON字符串
+        String xAxis_data_str = JSON.toJSONString(date_list);
+        String sales_data_str = JSON.toJSONString(sale_data).replace("\"", "");
+        String profit_data_str = JSON.toJSONString(profit_data).replace("\"", "");
+        String cost_data_str = JSON.toJSONString(cost_data).replace("\"", "");
+        String inventory_data_str = JSON.toJSONString(inventory_data).replace("\"", "");
+        List<String> result = new ArrayList<>();
+        result.add(xAxis_data_str);
+        result.add(sales_data_str);
+        result.add(profit_data_str);
+        result.add(cost_data_str);
+        result.add(inventory_data_str);
+        return result;
     }
 }
