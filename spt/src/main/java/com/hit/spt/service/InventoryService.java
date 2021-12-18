@@ -2,6 +2,7 @@ package com.hit.spt.service;
 
 import com.hit.spt.pojo.Inventory;
 import com.hit.spt.pojo.InventoryTransaction;
+import com.hit.spt.pojo.Stock;
 import org.springframework.ui.Model;
 
 import javax.servlet.http.HttpServletRequest;
@@ -51,4 +52,8 @@ public interface InventoryService {
     public void updateInventoryView(Model model);
 
     public void updateWarehouse(Inventory inventory);
+
+    public void insertStock(Stock stock);
+
+    public void queryAllStocks();
 }

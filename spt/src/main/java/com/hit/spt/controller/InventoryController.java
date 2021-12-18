@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.hit.spt.pojo.GoodsInfo;
 import com.hit.spt.pojo.Inventory;
 import com.hit.spt.pojo.InventoryTransaction;
+import com.hit.spt.pojo.Stock;
 import com.hit.spt.service.GoodsService;
 import com.hit.spt.service.InventoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -69,6 +72,7 @@ public class InventoryController {
         int quantity_dev = 0;
         double cost_old = 0;
         double cost_new = 0;
+        Stock stock = new Stock();
         if (uri.charAt(1) == 'a') {
             g_id = goodsService.queryGoodsInfoByName(inventory.getName()).getG_id();
             quantity_old = inventoryService.queryQuantityByGid(g_id);
@@ -102,6 +106,7 @@ public class InventoryController {
         } else if (quantity_dev + quantity_old == 0) {
             cost_res = -1.0;
         }
+        stock.setCost(Math.round((quantity_dev * cost_new) * 100) / 100.);
 
         // 更新货品资料信息
         if (cost_res != cost_old) {
@@ -110,6 +115,12 @@ public class InventoryController {
             costUpdate.setCost(cost_res);
             goodsService.updateCost(costUpdate);
         }
+
+        stock.setG_id(g_id);
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String date = df.format(new Date());
+        stock.setTime_stamp(date);
+        inventoryService.insertStock(stock);
 
         return "redirect:inventoryView";
     }

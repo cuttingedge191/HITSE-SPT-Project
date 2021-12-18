@@ -88,4 +88,12 @@
             inventory_prior = #{inventory_prior}
         where il_id = #{il_id}
     </update>
+    <select id="queryAllStocks" resultType="Stock">
+        select stock_history.sh_id, stock_history.time_stamp, stock_history.cost, stock_history.g_id
+        from stock_history
+    </select>
+    <insert id="insertStock" parameterType="Stock">
+        insert stock_history(time_stamp, cost, g_id)
+        value (#{time_stamp}, #{cost}, #{g_id})
+    </insert>
 </mapper>

@@ -6,6 +6,7 @@ import com.hit.spt.mapper.InventoryTransactionMapper;
 import com.hit.spt.pojo.GoodsInfo;
 import com.hit.spt.pojo.Inventory;
 import com.hit.spt.pojo.InventoryTransaction;
+import com.hit.spt.pojo.Stock;
 import com.hit.spt.service.InventoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -267,5 +268,15 @@ public class InventoryServiceImpl implements InventoryService {
     @Override
     public void updateWarehouse(Inventory inventory) {
         inventoryMapper.updateWarehouse(inventory);
+    }
+
+    @Override
+    public void insertStock(Stock stock) {
+        inventoryMapper.insertStock(stock);
+    }
+
+    @Override
+    public void queryAllStocks() {
+        inventoryMapper.queryAllStocks();
     }
 }

@@ -1,6 +1,7 @@
 package com.hit.spt.mapper;
 
 import com.hit.spt.pojo.Inventory;
+import com.hit.spt.pojo.Stock;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -48,4 +49,8 @@ public interface InventoryMapper {
     Inventory queryWarehouseByIlID(Integer il_id);
 
     Integer updateWarehouse(Inventory inventory);
+
+    List<Stock> queryAllStocks();
+
+    Integer insertStock(Stock stock);
 }
