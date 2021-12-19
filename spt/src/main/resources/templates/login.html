@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>SPT Login</title>
+    <title>通用批发零售业务管理系统</title>
     <meta name="description" content="Admin, Dashboard, Bootstrap, Bootstrap 4, Angular, AngularJS" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -46,23 +46,21 @@
         <!-- ############ LAYOUT START-->
         <div class="center-block w-xxl w-auto-xs p-y-md">
             <div class="navbar">
-                <div class="pull-center">
-                    <div ui-include="'../views/blocks/navbar.brand.html'"></div>
-                </div>
+                <div class="pull-center"></div>
             </div>
             <div class="p-a-md box-color r box-shadow-z1 text-color m-a">
-                <div class="m-b text-sm">
-                    登录
+                <div class="m-b text-md-center">
+                    用户登录
                 </div>
                 <form name="form" method="post" th:action="@{/user/login}">
                     <div class="md-form-group float-label">
                         <input type="text" class="md-input" name="username" required>
-                        <label>username</label>
+                        <label>用户名</label>
                         <p style="color:red" th:text="${msg}" th:if="${msg} != null"></p>
                     </div>
                     <div class="md-form-group float-label">
                         <input type="password" class="md-input" name="password" required>
-                        <label>Password</label>
+                        <label>密码</label>
                     </div>
                     <button type="submit" class="btn primary btn-block p-x-md">登录</button>
                 </form>
