@@ -4,14 +4,14 @@ import Toast from '../../libs/dist/toast/toast';
 
 Page({
   data: {
-    goodInfo:{ },
+    goodInfo: {},
   },
 
-  onClickButton: function() {
+  onClickButton: function () {
     Toast.success('已加入购物车');
   },
 
-  onClickCart: function() {
+  onClickCart: function () {
     wx.switchTab({
       url: '/pages/cart/index'
     });
@@ -23,13 +23,15 @@ Page({
   onLoad: function (options) {
     var that = this;
     wx.request({
-      url: 'http://localhost:8080/mall/getGoodsInfoByGid?g_id='+options.g_id,
+      url: 'http://localhost:8080/mall/getGoodsInfoByGid?g_id=' + options.g_id,
       method: 'GET',
       header: {
-        'content-type':'application/json'
+        'content-type': 'application/json'
       },
-      success: function(res){
-        that.setData({goodInfo : res.data})
+      success: function (res) {
+        that.setData({
+          goodInfo: res.data
+        })
       }
     })
   },
@@ -44,8 +46,7 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-  },
+  onShow: function () {},
 
 
   /**

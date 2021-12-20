@@ -9,6 +9,11 @@
         from customer_info
         where c_id = #{c_id}
     </select>
+    <select id="queryCustomerByPhone" resultType="Customer" parameterType="java.lang.String">
+        select c_id, type, name, gender, phone, address, password
+        from customer_info
+        where phone = #{phone}
+    </select>
     <select id="queryCustomerByName" resultType="Customer" parameterType="java.lang.String">
         select c_id, type, name, gender, phone, address
         from customer_info
@@ -24,8 +29,8 @@
         from spt.customer_info
     </select>
     <insert id="insertCustomer" parameterType="Customer">
-        insert into customer_info(c_id, type, name, gender, phone, address)
-        values (#{c_id}, #{type}, #{name}, #{gender}, #{phone}, #{address})
+        insert into customer_info(c_id, type, name, gender, phone, address, password)
+        values (#{c_id}, #{type}, #{name}, #{gender}, #{phone}, #{address}, #{password})
     </insert>
     <delete id="deleteCustomerById" parameterType="java.lang.Integer">
         delete
@@ -38,7 +43,8 @@
             name=#{name},
             gender=#{gender},
             phone=#{phone},
-            address=#{address}
+            address=#{address},
+            password=#{password}
         where c_id = #{c_id}
     </update>
 </mapper>

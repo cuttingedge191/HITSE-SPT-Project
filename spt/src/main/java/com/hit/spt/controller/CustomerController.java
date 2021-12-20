@@ -28,7 +28,6 @@ public class CustomerController {
     @RequestMapping({"addCustomerNow", "upcosNow", "clientInfoSearch", "decos"})
     public String addCustomerNow(String c_id, String name, String phone,String addr, String sex, String type, Model model, HttpServletRequest request){
         String uri = request.getRequestURI();
-//        System.out.println(uri);
         // 删除客户
         if (uri.charAt(1) == 'd'){
             int ic_id = Integer.parseInt(c_id);
@@ -45,7 +44,7 @@ public class CustomerController {
         Pattern p = Pattern.compile(CHINA_REGEX_EXP);
         Matcher m = p.matcher(phone);
         boolean isChinesePhoneNum = m.matches();
-        if (isChinesePhoneNum == false) {
+        if (!isChinesePhoneNum) {
             model.addAttribute("msg", "电话号码不符合格式!");
             if (uri.charAt(1) == 'u') {
                 int ic_id = Integer.parseInt(c_id);
@@ -63,12 +62,12 @@ public class CustomerController {
         Customer customer = null;
         // 添加客户
         if (uri.charAt(1) == 'a'){
-            customer = new Customer(null, c_type ,name ,gender ,phone ,addr);
+            customer = new Customer(null, c_type ,name ,gender ,phone ,addr, null);
             clientInfoService.insertCustomer(customer);
         }
         // 更新客户
         else if(uri.charAt(1) == 'u'){
-            customer = new Customer(Integer.parseInt(c_id), c_type ,name ,gender ,phone ,addr);
+            customer = new Customer(Integer.parseInt(c_id), c_type ,name ,gender ,phone ,addr, null);
             clientInfoService.updateCustomer(customer);
         }
         List<Customer> customers = clientInfoService.showAllCustoms();
