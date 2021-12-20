@@ -239,13 +239,15 @@ public class InventoryController {
 
     @RequestMapping("addInventoryList")
     public String addInventoryList(Inventory inventory, Model model){
-        List<Inventory> inventories = inventoryService.queryWarehouseList();
-        Integer maxPrior = 0;
-        for(Inventory warehouse:inventories){
-            maxPrior = Math.max(maxPrior, warehouse.getInventory_prior());
+        if(inventory.getInventory_name() != null) {
+            List<Inventory> inventories = inventoryService.queryWarehouseList();
+            Integer maxPrior = 0;
+            for (Inventory warehouse : inventories) {
+                maxPrior = Math.max(maxPrior, warehouse.getInventory_prior());
+            }
+            inventory.setInventory_prior(maxPrior + 1);
+            inventoryService.insertWarehouse(inventory);
         }
-        inventory.setInventory_prior(maxPrior + 1);
-        inventoryService.insertWarehouse(inventory);
         return "redirect:inventoryView";
     }
 }
