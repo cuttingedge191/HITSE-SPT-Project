@@ -245,14 +245,14 @@
                         <div class="box">
                             <div class="box-header">
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <h5>库存概览</h5>
                                         <small class="block text-muted">可视化展示选定仓库中的积压资金额</small>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-7">
                                         <div class="form-group row">
-                                            <label class="col-sm-4 form-control-label" for="select_il">仓库：</label>
-                                            <select class="col-sm-8 form-control" ui-jp="select2" id="select_il"
+                                            <label class="col-sm-3 form-control-label" for="select_il">仓库：</label>
+                                            <select class="col-sm-9 form-control" ui-jp="select2" id="select_il"
                                                     ui-options="{theme: 'bootstrap'}" name="select_il"
                                                     onchange="selectIl_onchange()">
                                                 <option th:each="inventory_list:${inventory_lists}"
@@ -261,17 +261,18 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="box-tool">
-                                        <ul class="nav">
-                                            <li class="nav-item inline">
-                                                <a class="nav-link" href="javascript:selectIl_onchange()">
-                                                    <i class="material-icons md-18">&#xe863;</i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
                                 </div>
                             </div>
+                            <div class="box-tool">
+                                <ul class="nav">
+                                    <li class="nav-item inline">
+                                        <a class="nav-link" href="javascript:selectIl_onchange()">
+                                            <i class="material-icons md-18">&#xe863;</i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
                             <div class="box-body">
                                 <div id="inventory_pie" style="height:300px">
                                 </div>
@@ -283,7 +284,7 @@
                         <div class="box">
                             <div class="box-header">
                                 <div class="row">
-                                    <div class="col-md-5">
+                                    <div class="col-md-4">
                                         <h5>销售概览</h5>
                                         <small class="block text-muted">可视化展示部分货品销售额统计</small>
                                         <input type="hidden" id="time_opt" value="week">
@@ -303,29 +304,30 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="box-tool">
-                                        <ul class="nav">
-                                            <li class="nav-item inline">
-                                                <a class="nav-link"
-                                                   href="javascript:selectS_onchange(document.getElementById('time_opt').value)">
-                                                    <i class="material-icons md-18">&#xe863;</i>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item inline dropdown">
-                                                <a class="nav-link" data-toggle="dropdown">
-                                                    <i class="material-icons md-18">&#xe5d4;</i>
-                                                </a>
-                                                <div class="dropdown-menu dropdown-menu-scale pull-right">
-                                                    <a class="dropdown-item"
-                                                       href="javascript:selectS_onchange('week')">近7天</a>
-                                                    <a class="dropdown-item"
-                                                       href="javascript:selectS_onchange('month')">近30天</a>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
                                 </div>
                             </div>
+                            <div class="box-tool">
+                                <ul class="nav">
+                                    <li class="nav-item inline">
+                                        <a class="nav-link"
+                                           href="javascript:selectS_onchange(document.getElementById('time_opt').value)">
+                                            <i class="material-icons md-18">&#xe863;</i>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item inline dropdown">
+                                        <a class="nav-link" data-toggle="dropdown">
+                                            <i class="material-icons md-18">&#xe5d4;</i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-scale pull-right">
+                                            <a class="dropdown-item"
+                                               href="javascript:selectS_onchange('week')">近7天</a>
+                                            <a class="dropdown-item"
+                                               href="javascript:selectS_onchange('month')">近30天</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+
                             <div class="box-body">
                                 <div id="sales_bar" style="height:300px">
                                 </div>
