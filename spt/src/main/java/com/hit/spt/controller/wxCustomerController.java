@@ -38,4 +38,15 @@ public class wxCustomerController {
         }
         return "error";
     }
+
+    @RequestMapping("/mall/login")
+    public String login(@RequestBody JSONObject jsonObject) {
+        String phone = jsonObject.getString("phone");
+        String password = jsonObject.getString("password");
+        Customer c = clientInfoService.queryCustomerByPhone(phone);
+        if (c != null && c.getPassword().equals(password)) {
+            return c.getC_id().toString();
+        }
+        return "error";
+    }
 }

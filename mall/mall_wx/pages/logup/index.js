@@ -67,7 +67,7 @@ Page({
               wx.redirectTo({
                 url: '/pages/login/index'
               });
-            }, 2000); // 延迟两秒再跳转
+            }, 1000); // 延迟1秒再跳转
           } else {
             Toast.fail('注册失败，此手机号已注册！');
           }
