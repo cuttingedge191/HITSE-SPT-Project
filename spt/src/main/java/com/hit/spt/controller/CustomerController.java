@@ -1,11 +1,8 @@
 package com.hit.spt.controller;
 
-import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.hit.spt.mapper.CustomerMapper;
 import com.hit.spt.pojo.Customer;
 import com.hit.spt.service.impl.ClientInfoService;
-import org.apache.coyote.Request;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,7 +37,7 @@ public class CustomerController {
             return "clientInfoSearch";
         }
         // 客户电话错误直接返回
-        String CHINA_REGEX_EXP = "^((13[0-9])|(14[5,7,9])|(15[0-3,5-9])|(166)|(17[0-9])|(18[0-9])|(19[1,8,9]))\\d{8}$";
+        String CHINA_REGEX_EXP = "^((13[0-9])|(14[579])|(15[0-3,5-9])|(166)|(17[0-9])|(18[0-9])|(19[189]))\\d{8}$";
         Pattern p = Pattern.compile(CHINA_REGEX_EXP);
         Matcher m = p.matcher(phone);
         boolean isChinesePhoneNum = m.matches();
@@ -59,7 +56,7 @@ public class CustomerController {
         // 将表单返回内容抓换成数据库的格式
         String gender = sex.equals("true") ? "male" : "female";
         String c_type = type.equals("true") ? "retail" : "trade";
-        Customer customer = null;
+        Customer customer;
         // 添加客户
         if (uri.charAt(1) == 'a'){
             customer = new Customer(null, c_type ,name ,gender ,phone ,addr, null);
