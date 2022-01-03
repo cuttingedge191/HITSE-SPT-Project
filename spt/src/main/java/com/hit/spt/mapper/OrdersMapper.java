@@ -28,4 +28,7 @@ public interface OrdersMapper {
 
     List<Orders> queryAllOrdersWithCname();
 
+    Integer getOrderCntByCidAndStatus(Integer c_id, String status);
+
+    List<Orders> queryOrdersByCidAndStatus(Integer c_id, String status);
 }

@@ -5,15 +5,18 @@ Page({
    * 页面的初始数据
    */
   data: {
-    name:"",
-    account:"",
+    name: "",
+    account: "",
     fits: [
       'cover'
     ],
-    src: "https://img.yzcdn.cn/vant/cat.jpeg"
+    src: "https://img.yzcdn.cn/vant/cat.jpeg",
+    unc_cnt: "",
+    unp_cnt: "",
+    unr_cnt: ""
   },
 
-  changeInfo: function() {
+  changeInfo: function () {
     wx.navigateTo({
       url: '/pages/userInfo/index',
     })
@@ -22,11 +25,35 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    var userinfo = wx.getStorageSync('userinfo'); //获取本地缓存中的userinfo
-    console.log("本地用户信息",userinfo);
-    this.setData({
-      account : userinfo.value.customer_id
+  onLoad: function () {
+    var that = this;
+    var c_id = wx.getStorageSync('c_id');
+    wx.request({
+      url: 'http://localhost:8080/mall/getCustomerInfoByCid?c_id=' + c_id,
+      method: 'GET',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        that.setData({
+          name: res.data.name,
+          account: res.data.phone,
+        })
+      }
+    });
+    wx.request({
+      url: 'http://localhost:8080/mall/getOrderCntByCid?c_id=' + c_id,
+      method: 'GET',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        that.setData({
+          unc_cnt: res.data[0] == '0' ? '' : res.data[0],
+          unp_cnt: res.data[1] == '0' ? '' : res.data[1],
+          unr_cnt: res.data[2] == '0' ? '' : res.data[2]
+        })
+      }
     })
   },
 

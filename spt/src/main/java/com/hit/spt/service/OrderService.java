@@ -44,4 +44,8 @@ public interface OrderService {
     void autoInventoryDelivery(List<OrderItem> orderItemList);
 
     void autoInventoryRefund(List<OrderItem> orderItemList);
+
+    List<Integer> getOrderCntByCid(Integer c_id);
+
+    List<Orders> queryOrdersByCidAndStatus(Integer c_id, String type);
 }
