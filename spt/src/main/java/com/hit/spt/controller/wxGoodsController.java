@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-// 用于微信小程序的商品信息控制器
-
 @RestController
 public class wxGoodsController {
     @Autowired

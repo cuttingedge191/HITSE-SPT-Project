@@ -10,10 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import java.text.SimpleDateFormat;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -288,6 +285,26 @@ public class OrderServiceImpl implements OrderService {
 
     }
 
+    /**
+     * 【用于微信小程序】
+     * 获取单个客户待审核、已审核、已收款、已关闭的订单数量
+     * @param c_id 客户ID
+     * @return 计数List
+     */
+    @Override
+    public List<Integer> getOrderCntByCid(Integer c_id) {
+        String[] statusArr = {"unchecked", "checked", "paid", "closed"};
+        List<Integer> res = new ArrayList<>();
+        for (int i = 0; i < 4; ++i) {
+            res.add(ordersMapper.getOrderCntByCidAndStatus(c_id, statusArr[i]));
+        }
+        return res;
+    }
+
+    @Override
+    public List<Orders> queryOrdersByCidAndStatus(Integer c_id, String type) {
+        return ordersMapper.queryOrdersByCidAndStatus(c_id, type);
+    }
 
     public int totalQuantity(Long g_id) {
         List<Integer> quantityList = inventoryMapper.queryQuantityByGid(g_id);

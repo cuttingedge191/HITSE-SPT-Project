@@ -30,7 +30,7 @@ Page({
           return;
         }
         Toast.success('登录成功，欢迎使用！');
-        wx.setStorageSync("c_id", res.data); // 存入本地缓存
+        wx.setStorageSync('c_id', res.data); // 存入本地缓存
         setTimeout(function () {
           wx.switchTab({
             url: '/pages/goods_list/index',

@@ -94,4 +94,23 @@
         set status = #{status}
         where o_id = #{o_id}
     </update>
+    <select id="getOrderCntByCidAndStatus" resultType="java.lang.Integer">
+        select count(*)
+        from orders
+        where orders.c_id = #{c_id}
+        and orders.status = #{status}
+    </select>
+    <select id="queryOrdersByCidAndStatus" resultType="Orders">
+        select o_id,
+               c_id,
+               type,
+               status,
+               total_turnover,
+               total_cost,
+               total_profit,
+               time_stamp
+        from orders
+        where orders.c_id = #{c_id}
+        and orders.status = #{status}
+    </select>
 </mapper>

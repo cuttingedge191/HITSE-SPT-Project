@@ -49,4 +49,10 @@ public class wxCustomerController {
         }
         return "error";
     }
+
+    @RequestMapping("/mall/getCustomerInfoByCid")
+    public Customer getCustomerInfoByCid(String c_id) {
+        int ic_id = Integer.parseInt(c_id);
+        return clientInfoService.queryCustomerById(ic_id);
+    }
 }
