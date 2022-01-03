@@ -34,14 +34,6 @@ public class InventoryServiceImpl implements InventoryService {
         return inventoryMapper.insertInventory(inventory);
     }
 
-    /**
-     * @return
-     */
-    @Override
-    public List<Inventory> queryInventoryList() {
-        return inventoryMapper.queryInventoryList();
-    }
-
     @Override
     public List<Inventory> queryInventoryWithGnameList() {
         return inventoryMapper.queryInventoryWithGnameList();

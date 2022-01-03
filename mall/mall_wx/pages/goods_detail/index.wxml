@@ -3,15 +3,9 @@
 
 <view class="pic">
   <demo-block title="货品图片" padding>
-      <van-row>
-        <van-image
-          fit="cover"
-          width="250"
-          height="250"
-          radius="20"
-          src="{{ goodInfo.imageURL }}"
-        />
-      </van-row>
+    <van-row>
+      <van-image fit="cover" width="250" height="250" radius="20" src="{{ goodInfo.imageURL }}" />
+    </van-row>
   </demo-block>
 </view>
 
@@ -45,18 +39,8 @@
 
 <van-goods-action>
   <van-goods-action-icon icon="cart-o" text="购物车" bind:click="onClickCart" />
-  <van-goods-action-button
-    class="demo-margin-right"
-    text="加入购物车"
-    type="warning"
-    bind:click="onClickButton"
-  />
-  <van-popup
-    show="{{ show }}"
-    position="bottom"
-    custom-style="height: 20%;"
-    bind:close="onClose"
-  />
+  <van-goods-action-button class="demo-margin-right" text="加入购物车" type="warning" bind:click="onClickButton" />
+  <van-popup show="{{ show }}" position="bottom" custom-style="height: 20%;" bind:close="onClose" />
 </van-goods-action>
 
 <van-toast id="van-toast" />

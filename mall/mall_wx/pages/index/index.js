@@ -1,18 +1,17 @@
+import Toast from "../../libs/dist/toast/toast";
+
 // pages/index/index.js
-var timer;
 Page({
 
   /**
    * 页面的初始数据
    */
-  data: {
-
-  },
+  data: {},
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function () {
 
   },
 
@@ -28,13 +27,22 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    //自动跳转到login
-    setTimeout(function(){
-    //页面跳转相当于	
-      wx.navigateTo({
+    try {
+      var cid = wx.getStorageSync('c_id');
+    } catch (e) {}
+    if (cid && cid != '' && cid != 'error') {
+      setTimeout(function () {
+        wx.switchTab({
+          url: '../goods_list/index',
+        })
+      }, 3000);
+      return;
+    }
+    setTimeout(function () {
+      wx.redirectTo({
         url: '../login/index',
       })
-    },3000);
+    }, 3000);
   },
 
   /**

@@ -11,8 +11,6 @@ import java.util.List;
 public interface InventoryService {
     int insertInventoryChange(Inventory inventory);
 
-    List<Inventory> queryInventoryList();
-
     List<Inventory> queryInventoryWithGnameList();
 
     Integer updateInventory(Inventory inventory);

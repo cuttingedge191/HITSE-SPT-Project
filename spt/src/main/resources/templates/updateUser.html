@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8"/>
-    <title>SPT updateUser</title>
+    <title>通用批发零售业务管理系统</title>
     <meta name="description" content="Admin, Dashboard, Bootstrap, Bootstrap 4, Angular, AngularJS"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -265,36 +265,49 @@
                                         <input type="radio" name="sex" id="female" value="false"
                                                th:checked="${user.gender}=='female'?'true':'false'"/>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="username">用户名</label>
-                                        <input type="text" class="form-control" name="username" id="username"
-                                               th:placeholder="${user.username}" th:value="${user.username}" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="password">密码</label>
-                                        <input type="password" class="form-control" name="password" id="password"
-                                               th:placeholder="${user.password}" th:value="${user.password}" required>
+                                    <div class="row m-b">
+                                        <div class="col-md-6">
+                                            <label for="username">用户名</label>
+                                            <input type="text" class="form-control" name="username" id="username"
+                                                   th:placeholder="${user.username}" th:value="${user.username}"
+                                                   required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="password">密码</label>
+                                            <input type="password" class="form-control" name="password" id="password"
+                                                   th:placeholder="${user.password}" th:value="${user.password}"
+                                                   required>
+                                        </div>
                                     </div>
 
                                     <label for="permissions">权限设置</label>
                                     <div class="row m-b" id="permissions">
-                                        <div class="col-md-6">
+                                        <div class="col-md-12">
+                                            <hr/>
+                                        </div>
+                                        <div class="col-md-12">
                                             <label class="md-switch">
                                                 <input type="checkbox" name="p1" id="p1"
                                                        th:checked="${#strings.substring(permissions, 0, 1)=='1'}">
                                                 <i class="blue"></i>
-                                                统计查看
+                                                概览统计查看
                                             </label>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-12 center">
+                                            <hr/>
+                                        </div>
+                                        <div class="col-md-12">
                                             <label class="md-switch">
                                                 <input type="checkbox" name="p2" id="p2"
                                                        th:checked="${#strings.substring(permissions, 1, 2)=='1'}">
                                                 <i class="blue"></i>
-                                                货品资料管理
+                                                货品管理
                                             </label>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-12 center">
+                                            <hr/>
+                                        </div>
+                                        <div class="col-md-4">
                                             <label class="md-switch">
                                                 <input type="checkbox" name="p3" id="p3"
                                                        th:checked="${#strings.substring(permissions, 2, 3)=='1'}">
@@ -302,7 +315,7 @@
                                                 货品入库
                                             </label>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <label class="md-switch">
                                                 <input type="checkbox" name="p4" id="p4"
                                                        th:checked="${#strings.substring(permissions, 3, 4)=='1'}">
@@ -310,13 +323,16 @@
                                                 库存盘点
                                             </label>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <label class="md-switch">
                                                 <input type="checkbox" name="p5" id="p5"
                                                        th:checked="${#strings.substring(permissions, 4, 5)=='1'}">
                                                 <i class="blue"></i>
                                                 库存调度
                                             </label>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <hr/>
                                         </div>
                                         <div class="col-md-6">
                                             <label class="md-switch">
@@ -350,7 +366,10 @@
                                                 批发销售单收款/退款
                                             </label>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-12">
+                                            <hr/>
+                                        </div>
+                                        <div class="col-md-12">
                                             <label class="md-switch">
                                                 <input type="checkbox" name="p10" id="p10"
                                                        th:checked="${#strings.substring(permissions, 9, 10)=='1'}">
@@ -358,7 +377,10 @@
                                                 客户管理
                                             </label>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-12">
+                                            <hr/>
+                                        </div>
+                                        <div class="col-md-12">
                                             <label class="md-switch">
                                                 <input type="checkbox" name="p11" id="p11"
                                                        th:checked="${#strings.substring(permissions, 10, 11)=='1'}">
@@ -366,8 +388,11 @@
                                                 系统用户管理
                                             </label>
                                         </div>
+                                        <div class="col-md-12">
+                                            <hr/>
+                                        </div>
                                     </div>
-                                    <a class="btn danger m-b " th:href="@{/userInfoSearch}">放弃</a>
+                                    <a class="btn danger m-b " th:href="@{/userInfoSearch}">不保存返回</a>
                                     <button type="submit" class="btn primary m-b ">保存修改</button>
                                 </form>
                             </div>

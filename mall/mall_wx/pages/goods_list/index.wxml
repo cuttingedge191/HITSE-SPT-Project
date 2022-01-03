@@ -1,25 +1,13 @@
 <!--index.wxml-->
 <view class="container">
-  <van-search
-    shape="round"
-    clearable
-    value="{{ value }}"
-    input-align="center"
-    placeholder="请输入搜索关键词"
-    bind:search="onSearch"
-  />
-<van-divider contentPosition="center">商品列表</van-divider>
-<view wx:for="{{ goods }}" wx:key="id">
-  <van-card
-    price="{{ item.retail_price }}"
-    desc="{{ item.description }}"
-    title="{{ item.name }}"
-    thumb="{{ imageURL }}"
-    thumb-link="../goods_detail/index?g_id={{item.g_id}}"
-  >
-  <view slot="footer">
-    <van-button  size="small" round color="red" bind:click="addCart" >加入购物车</van-button>
+  <van-search shape="round" clearable value="{{ value }}" input-align="center" placeholder="请输入搜索关键词" bind:search="onSearch" />
+  <van-divider contentPosition="center">商品列表</van-divider>
+  <van-toast id="van-toast" />
+  <view wx:for="{{ goods }}" wx:key="id">
+    <van-card price="{{ item.retail_price }}" desc="{{ item.description }}" title="{{ item.name }}" thumb="{{ imageURL }}" thumb-link="../goods_detail/index?g_id={{item.g_id}}">
+      <view slot="footer">
+        <van-button size="small" round color="red" bind:click="addCart">加入购物车</van-button>
+      </view>
+    </van-card>
   </view>
-  </van-card>
-</view>
 </view>

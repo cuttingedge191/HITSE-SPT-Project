@@ -33,7 +33,7 @@ CREATE TABLE `orders` (
   `time_stamp` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`o_id`),
   UNIQUE KEY `oid_UNIQUE` (`o_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,7 +42,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (1,1,'retail','closed',20,8.66,11.34,'2021-12-14 21:33:46'),(2,3,'trade','closed',83,37.8,45.2,'2021-12-14 23:19:29'),(3,1,'retail','closed',5,1.49,3.51,'2021-12-15 15:46:18'),(4,1,'retail','closed',35,20,15,'2021-12-15 20:24:41'),(5,1,'retail','closed',66,19.99,46.01,'2021-12-15 20:26:59'),(6,3,'trade','paid',66.66,9.99,56.67,'2021-12-15 20:54:26');
+INSERT INTO `orders` VALUES (1,3,'trade','closed',75,60,15,'2021-12-17 19:14:51'),(2,5,'trade','paid',300,250,50,'2021-12-18 19:16:13'),(3,4,'trade','paid',340,180,160,'2021-12-18 19:52:32');
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -55,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-12-17 21:44:55
+-- Dump completed on 2021-12-18 20:46:31

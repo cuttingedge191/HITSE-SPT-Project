@@ -1,3 +1,5 @@
+import Toast from "../../libs/dist/toast/toast";
+
 // pages/login/index.js
 Page({
 
@@ -5,40 +7,50 @@ Page({
    * 页面的初始数据
    */
   data: {
-    user:{id:123, psw:456},
+    phone: '',
+    password: ''
   },
 
-  doLogin: function(e) {
-    // wx.request({
-    //   url: 'localhost:8080/customer/login',
-    //   method: "POST",
-    //   data:{
-    //     customer_id:e.detail.value.customer_id,
-    //     password:e.detail.value.psw
-    //   }
-    // })
-    let { customer_id, psw} = e.detail.value;
-    console.log(customer_id);
-    console.log(psw);
-    if (!customer_id || !psw) {
-      // this.setData({  
-      // warn: "id或密码为空！",  
-      // })
+  doLogin: function (e) {
+    var formData = e.detail.value;
+    if (formData.phone == '' || formData.password == '') {
+      Toast.fail('手机号或密码未输入！');
       return;
     }
-    else{
-      wx.setStorageSync("userinfo", e.detail); //将userinfo存入本地缓存
-      wx.switchTab({
-        url: '/pages/goods_list/index',
-      })
-    }
+    wx.request({
+      url: 'http://localhost:8080/mall/login',
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      },
+      data: formData,
+      success: function (res) {
+        if (res.data === "error") {
+          Toast.fail('手机号未注册或密码错误！');
+          return;
+        }
+        Toast.success('登录成功，欢迎使用！');
+        wx.setStorageSync("c_id", res.data); // 存入本地缓存
+        setTimeout(function () {
+          wx.switchTab({
+            url: '/pages/goods_list/index',
+          })
+        }, 1000); // 延迟1秒再跳转
+      },
+      fail: function () {
+        Toast.fail('无法连接至服务器，请重试！');
+      }
+    })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
+  onLoad: function () {
+    // 隐藏登录界面左上角的Home
+    wx.hideHomeButton({
+      success: (res) => {},
+    })
   },
 
   /**
@@ -89,5 +101,5 @@ Page({
   onShareAppMessage: function () {
 
   },
- 
+
 })

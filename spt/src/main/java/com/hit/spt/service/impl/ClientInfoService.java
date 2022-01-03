@@ -27,9 +27,15 @@ public class ClientInfoService {
     public void updateCustomer(Customer customer){
         customerMapper.updateCustomerById(customer);
     }
+
     public Customer queryCustomerById(Integer c_id){
         return customerMapper.queryCustomerById(c_id);
     }
+
+    public Customer queryCustomerByPhone(String phone) {
+        return customerMapper.queryCustomerByPhone(phone);
+    }
+
     public List<Customer> queryCustomerByType(String type) {
         return customerMapper.queryCustomerByType(type);
     }

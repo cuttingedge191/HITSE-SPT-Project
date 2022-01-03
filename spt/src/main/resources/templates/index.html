@@ -238,41 +238,41 @@
                 </div>
             </div>
 
-            <div class="padding">
+            <div th:if="${#strings.substring(session.permissions, 0, 1)=='1'}" class="padding">
 
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="box">
                             <div class="box-header">
                                 <div class="row">
-                                    <div class="col-md-7">
+                                    <div class="col-md-4">
                                         <h5>库存概览</h5>
                                         <small class="block text-muted">可视化展示选定仓库中的积压资金额</small>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-7">
                                         <div class="form-group row">
-                                            <label class="col-sm-4 form-control-label" for="select_il">仓库：</label>
-                                            <select class="col-sm-8 form-control" ui-jp="select2" id="select_il"
+                                            <label class="col-sm-3 form-control-label" for="select_il">仓库：</label>
+                                            <select class="col-sm-9 form-control" ui-jp="select2" id="select_il"
                                                     ui-options="{theme: 'bootstrap'}" name="select_il"
                                                     onchange="selectIl_onchange()">
                                                 <option th:each="inventory_list:${inventory_lists}"
-                                                        th:class="'select inventory_' + ${inventory_list.il_id}"
                                                         th:value="${inventory_list.il_id}"
                                                         th:text="${inventory_list.inventory_name}"></option>
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-sm-1">
-                                        <ul class="nav">
-                                            <li class="nav-item inline">
-                                                <a class="nav-link" href="javascript:selectIl_onchange()">
-                                                    <i class="material-icons md-18">&#xe863;</i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
                                 </div>
                             </div>
+                            <div class="box-tool">
+                                <ul class="nav">
+                                    <li class="nav-item inline">
+                                        <a class="nav-link" href="javascript:selectIl_onchange()">
+                                            <i class="material-icons md-18">&#xe863;</i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
                             <div class="box-body">
                                 <div id="inventory_pie" style="height:300px">
                                 </div>
@@ -287,47 +287,47 @@
                                     <div class="col-md-4">
                                         <h5>销售概览</h5>
                                         <small class="block text-muted">可视化展示部分货品销售额统计</small>
-                                        <input type="hidden" id="time_opt2" value="week">
+                                        <input type="hidden" id="time_opt" value="week">
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-7">
                                         <div class="form-group row">
                                             <label for="select_g"
                                                    class="col-md-3 form-control-label">货品：</label>
-                                            <select class="form-control col-md-9" ui-jp="select2" id="select_g"
+                                            <select class="col-md-9 form-control" ui-jp="select2" id="select_g"
                                                     ui-options="{theme: 'bootstrap'}" name="select_g"
-                                                    onchange="selectS_onchange(document.getElementById('time_opt2').value)">
+                                                    onchange="selectS_onchange(document.getElementById('time_opt').value)">
                                                 <optgroup label="货品名称-条码">
-                                                    <div th:each="goodsInfo:${goodsInfos}">
-                                                        <option th:value="${goodsInfo.g_id}"
-                                                                th:text="${goodsInfo.name}+'-'+${goodsInfo.g_id}"></option>
-                                                    </div>
+                                                    <option th:each="goodsInfo:${goodsInfos}"
+                                                            th:value="${goodsInfo.g_id}"
+                                                            th:text="${goodsInfo.name}+'-'+${goodsInfo.g_id}"></option>
                                                 </optgroup>
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="box-tool">
-                                        <ul class="nav">
-                                            <li class="nav-item inline">
-                                                <a class="nav-link"
-                                                   href="javascript:selectS_onchange(document.getElementById('time_opt2').value)">
-                                                    <i class="material-icons md-18">&#xe863;</i>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item inline dropdown">
-                                                <a class="nav-link" data-toggle="dropdown">
-                                                    <i class="material-icons md-18">&#xe5d4;</i>
-                                                </a>
-                                                <div class="dropdown-menu dropdown-menu-scale pull-right">
-                                                    <a class="dropdown-item"
-                                                       href="javascript:selectS_onchange('week')">近7天</a>
-                                                    <a class="dropdown-item"
-                                                       href="javascript:selectS_onchange('month')">近30天</a>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
                                 </div>
                             </div>
+                            <div class="box-tool">
+                                <ul class="nav">
+                                    <li class="nav-item inline">
+                                        <a class="nav-link"
+                                           href="javascript:selectS_onchange(document.getElementById('time_opt').value)">
+                                            <i class="material-icons md-18">&#xe863;</i>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item inline dropdown">
+                                        <a class="nav-link" data-toggle="dropdown">
+                                            <i class="material-icons md-18">&#xe5d4;</i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-scale pull-right">
+                                            <a class="dropdown-item"
+                                               href="javascript:selectS_onchange('week')">近7天</a>
+                                            <a class="dropdown-item"
+                                               href="javascript:selectS_onchange('month')">近30天</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+
                             <div class="box-body">
                                 <div id="sales_bar" style="height:300px">
                                 </div>
@@ -340,34 +340,26 @@
                     <div class="col-sm-12">
                         <div class="box">
                             <div class="box-header">
-                                <h3>经营状况概览</h3>
-                                <small class="block text-muted">可视化展示经营状况数据</small>
-                                <input type="hidden" id="time_opt1" value="7">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h5>经营状况概览</h5>
+                                        <small class="block text-muted">可视化展示经营状况数据</small>
+                                    </div>
+                                    <div class="box-tool">
+                                        <ul class="nav">
+                                            <li class="nav-item inline">
+                                                <a class="nav-link"
+                                                   href="javascript:op_onrefresh()">
+                                                    <i class="material-icons md-18">&#xe863;</i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                             <div class="box-body">
                                 <div id="operating_line" style="height:300px">
                                 </div>
-                            </div>
-                            <div class="box-tool">
-                                <ul class="nav">
-                                    <li class="nav-item inline">
-                                        <a class="nav-link"
-                                           href="javascript:selectOp_onchange(document.getElementById('time_opt1').value)">
-                                            <i class="material-icons md-18">&#xe863;</i>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item inline dropdown">
-                                        <a class="nav-link" data-toggle="dropdown">
-                                            <i class="material-icons md-18">&#xe5d4;</i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-scale pull-right">
-                                            <a class="dropdown-item"
-                                               href="javascript:selectOp_onchange('7')">近1周</a>
-                                            <a class="dropdown-item"
-                                               href="javascript:selectOp_onchange('28')">近4周</a>
-                                        </div>
-                                    </li>
-                                </ul>
                             </div>
                         </div>
                     </div>
@@ -413,34 +405,9 @@
 <script>
     // 页面加载时自动运行的函数
     function autoRun() {
-        selectOp_onchange(document.getElementById('time_opt1').value);
         selectIl_onchange();
-        selectS_onchange(document.getElementById('time_opt2').value);
-    }
-
-    // 从后台获取经营状况概览可视化数据
-    function selectOp_onchange(type) {
-        if (type === "week") {
-            document.getElementById("time_opt1").setAttribute("value", "week");
-            $.ajax({
-                url: "/getOperationOverView?type=week",
-                dataType: "json",
-                type: 'GET',
-                success: function (dataInfo) {
-                    loadOperatingLine();
-                }
-            })
-        } else {
-            document.getElementById("time_opt1").setAttribute("value", "month");
-            $.ajax({
-                url: "/getOperationOverView?type=month",
-                dataType: "json",
-                type: 'GET',
-                success: function (dataInfo) {
-                    loadOperatingLine();
-                }
-            })
-        }
+        selectS_onchange(document.getElementById('time_opt').value);
+        op_onrefresh();
     }
 
     // 从后台获取库存概览可视化数据
@@ -458,7 +425,7 @@
     // 从后台获取销售概览可视化数据
     function selectS_onchange(type) {
         if (type === "week") {
-            document.getElementById("time_opt2").setAttribute("value", "week");
+            document.getElementById("time_opt").setAttribute("value", "week");
             $.ajax({
                 url: "/getSalesOverView?g_id=" + $('#select_g').val() + "&type=week",
                 dataType: "json",
@@ -468,7 +435,7 @@
                 }
             })
         } else {
-            document.getElementById("time_opt2").setAttribute("value", "month");
+            document.getElementById("time_opt").setAttribute("value", "month");
             $.ajax({
                 url: "/getSalesOverView?g_id=" + $('#select_g').val() + "&type=month",
                 dataType: "json",
@@ -480,59 +447,17 @@
         }
     }
 
-    // 重新载入经营状况概览折线图
-    function loadOperatingLine() {
-        var operatingLine = echarts.init(document.getElementById('operating_line'));
-        var option = {
-            tooltip: {
-                trigger: 'axis'
-            },
-            legend: {
-                data: ['销售金额', '盈利金额', '进货金额', '库存积压金额']
-            },
-            xAxis: [
-                {
-                    type: 'category',
-                    boundaryGap: false,
-                    data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-                }
-            ],
-            yAxis: [
-                {
-                    type: 'value'
-                }
-            ],
-            grid: {
-                x2: 10
-            },
-            series: [
-                {
-                    name: '销售金额',
-                    type: 'line',
-                    stack: 'total',
-                    data: [120, 132, 101, 134, 90, 230, 210]
-                },
-                {
-                    name: '盈利金额',
-                    type: 'line',
-                    stack: 'total',
-                    data: [220, 182, 191, 234, 290, 330, 310]
-                },
-                {
-                    name: '进货金额',
-                    type: 'line',
-                    stack: 'total',
-                    data: [150, 232, 201, 154, 190, 330, 410]
-                },
-                {
-                    name: '库存积压金额',
-                    type: 'line',
-                    stack: 'total',
-                    data: [320, 332, 301, 334, 390, 330, 320]
-                },
-            ]
-        }
-        operatingLine.setOption(option);
+    // 从后台获取经营状况概览可视化数据
+    function op_onrefresh() {
+        $.ajax({
+            url: "/getOperationOverView?",
+            dataType: "json",
+            type: 'GET',
+            success: function (dataInfo) {
+                console.log(dataInfo);
+                loadOperatingLine(dataInfo[0], dataInfo[1], dataInfo[2], dataInfo[3], dataInfo[4]);
+            }
+        })
     }
 
     // 重新载入库存概览可视化饼状图
@@ -569,11 +494,11 @@
         var x_data = JSON.parse(xAxis_data);
         var s_data = JSON.parse(series_data);
         var salesBar = echarts.init(document.getElementById('sales_bar'));
-        var time_opt = document.getElementById("time_opt2").value;
+        var time_opt = document.getElementById("time_opt").value;
         if (time_opt === "week")
-            time_opt = "最近7天 ";
+            time_opt = "近7天 ";
         else
-            time_opt = "最近30天 ";
+            time_opt = "近30天 ";
         var option = {
             tooltip: {
                 trigger: 'item'
@@ -621,6 +546,66 @@
             ]
         }
         salesBar.setOption(option);
+    }
+
+    // 重新载入经营状况概览折线图
+    function loadOperatingLine(xAxis_data, sales_data, profit_data, cost_data, inventory_data) {
+        var x_data = JSON.parse(xAxis_data);
+        var s_data = JSON.parse(sales_data);
+        var p_data = JSON.parse(profit_data);
+        var c_data = JSON.parse(cost_data);
+        var i_data = JSON.parse(inventory_data);
+        var operatingLine = echarts.init(document.getElementById('operating_line'));
+        var option = {
+            tooltip: {
+                trigger: 'axis'
+            },
+            legend: {
+                data: ['销售金额', '盈利金额', '进货金额', '库存积压金额']
+            },
+            xAxis: [
+                {
+                    type: 'category',
+                    boundaryGap: false,
+                    data: x_data
+                }
+            ],
+            yAxis: [
+                {
+                    type: 'value'
+                }
+            ],
+            grid: {
+                x2: 50
+            },
+            series: [
+                {
+                    name: '销售金额',
+                    type: 'line',
+                    stack: '1',
+                    data: s_data
+                },
+                {
+                    name: '盈利金额',
+                    type: 'line',
+                    stack: '2',
+                    data: p_data
+                },
+                {
+                    name: '进货金额',
+                    type: 'line',
+                    stack: '3',
+                    data: c_data
+                },
+                {
+                    name: '库存积压金额',
+                    type: 'line',
+                    stack: '4',
+                    data: i_data
+                },
+            ]
+        }
+        operatingLine.setOption(option);
     }
 
     window.onload = autoRun();

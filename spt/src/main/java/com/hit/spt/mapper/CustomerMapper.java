@@ -23,6 +23,8 @@ public interface CustomerMapper {
 
     Customer queryCustomerById(Integer c_id);
 
+    Customer queryCustomerByPhone(String phone);
+
     // 根据type（批发零售）返回customer
     List<Customer> queryCustomerByType(String type);
 

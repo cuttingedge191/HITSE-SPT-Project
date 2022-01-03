@@ -80,6 +80,13 @@ public class InventoryController {
             cost_old = goodsService.queryGoodsInfoByGid(g_id).getCost();
             cost_new = inventory.getCost();
             inventoryService.mergeInsertInventory(inventory);
+            // 仅在添加库存时，更新入库记录表
+            stock.setCost(Math.round((quantity_dev * cost_new) * 100) / 100.0);
+            stock.setG_id(g_id);
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String date = df.format(new Date());
+            stock.setTime_stamp(date);
+            inventoryService.insertStock(stock);
         } else if (uri.charAt(1) == 'u') {
             if (inventory != null) {
                 g_id = goodsService.queryGoodsInfoByName(inventory.getName()).getG_id();
@@ -106,21 +113,14 @@ public class InventoryController {
         } else if (quantity_dev + quantity_old == 0) {
             cost_res = -1.0;
         }
-        stock.setCost(Math.round((quantity_dev * cost_new) * 100) / 100.);
 
         // 更新货品资料信息
         if (cost_res != cost_old) {
             GoodsInfo costUpdate = goodsService.queryGoodsInfoByGid(g_id);
-            cost_res = (double) Math.round(cost_res * 100) / 100; // 保留两位小数
+            cost_res = (double) Math.round(cost_res * 100) / 100.0; // 保留两位小数
             costUpdate.setCost(cost_res);
             goodsService.updateCost(costUpdate);
         }
-
-        stock.setG_id(g_id);
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String date = df.format(new Date());
-        stock.setTime_stamp(date);
-        inventoryService.insertStock(stock);
 
         return "redirect:inventoryView";
     }

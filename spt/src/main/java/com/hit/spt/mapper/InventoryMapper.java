@@ -16,8 +16,6 @@ public interface InventoryMapper {
 
     List<Integer> queryQuantityByGid(Long g_id);
 
-    List<Inventory> queryInventoryList();
-
     List<Inventory> queryInventoryWithGnameList();
 
     /**

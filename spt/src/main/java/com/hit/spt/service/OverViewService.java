@@ -7,4 +7,5 @@ public interface OverViewService {
 
     List<String> getSalesOverView(String g_id, Integer days);
 
+    List<String> getOperationOverView();
 }

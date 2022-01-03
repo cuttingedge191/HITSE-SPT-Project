@@ -33,9 +33,7 @@ public class OverViewController {
 
     @RequestMapping("getOperationOverView")
     @ResponseBody
-    public List<String> getOperationOverView(String type) {
-        List<String> res = new ArrayList<>();
-        res.add("111");
-        return res;
+    public List<String> getOperationOverView() {
+        return overViewService.getOperationOverView();
     }
 }
