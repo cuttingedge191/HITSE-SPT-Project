@@ -1,4 +1,7 @@
 // pages/user/index.js
+
+const app = getApp();
+
 Page({
 
   /**
@@ -31,7 +34,7 @@ Page({
     var c_id = wx.getStorageSync('c_id');
     var cType = wx.getStorageSync('cType');
     wx.request({
-      url: 'http://localhost:8080/mall/getCustomerInfoByCid?c_id=' + c_id,
+      url: app.enabledUrl + '/mall/getCustomerInfoByCid?c_id=' + c_id,
       method: 'GET',
       header: {
         'content-type': 'application/json'

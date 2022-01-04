@@ -1,5 +1,7 @@
 import Toast from "../../libs/dist/toast/toast";
 
+const app = getApp();
+
 // pages/logup/index.js
 Page({
 
@@ -54,7 +56,7 @@ Page({
       Toast.fail('请输入有效的11位手机号码！');
     } else {
       wx.request({
-        url: 'http://localhost:8080/mall/logup',
+        url: app.enabledUrl + '/mall/logup',
         method: 'POST',
         header: {
           'content-type': 'application/json'

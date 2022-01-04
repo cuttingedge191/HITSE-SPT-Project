@@ -3,6 +3,8 @@
 import Page from '../../libs/common/page';
 import Toast from '../../libs/dist/toast/toast';
 
+const app = getApp();
+
 Page({
 
   /**
@@ -31,7 +33,7 @@ Page({
     var that = this;
     var cType = wx.getStorageSync('c_type');
     wx.request({
-      url: 'http://localhost:8080/mall/getGoodsList',
+      url: app.enabledUrl + '/mall/getGoodsList',
       method: 'GET',
       header: {
         'content-type': 'application/json'

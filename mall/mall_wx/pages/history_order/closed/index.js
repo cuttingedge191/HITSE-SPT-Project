@@ -1,4 +1,7 @@
 // pages/history_order/unpayed/index.js
+
+const app = getApp();
+
 Page({
 
   /**
@@ -38,7 +41,7 @@ Page({
     var that = this;
     var c_id = wx.getStorageSync('c_id');
     wx.request({
-      url: 'http://localhost:8080/mall/queryOrdersByCidAndStatus?c_id=' + c_id + "&status=closed",
+      url: app.enabledUrl + '/mall/queryOrdersByCidAndStatus?c_id=' + c_id + "&status=closed",
       method: 'GET',
       header: {
         'content-type': 'application/json'

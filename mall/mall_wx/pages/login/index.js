@@ -1,5 +1,7 @@
 import Toast from "../../libs/dist/toast/toast";
 
+const app = getApp();
+
 // pages/login/index.js
 Page({
 
@@ -18,7 +20,7 @@ Page({
       return;
     }
     wx.request({
-      url: 'http://localhost:8080/mall/login',
+      url: app.enabledUrl + '/mall/login',
       method: 'POST',
       header: {
         'content-type': 'application/json'
