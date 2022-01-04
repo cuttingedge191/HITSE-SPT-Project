@@ -4,6 +4,7 @@ import Toast from '../../libs/dist/toast/toast';
 
 Page({
   data: {
+    c_type: '',
     goodInfo: {},
   },
 
@@ -22,6 +23,7 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
+    var cType = wx.getStorageSync('c_type');
     wx.request({
       url: 'http://localhost:8080/mall/getGoodsInfoByGid?g_id=' + options.g_id,
       method: 'GET',
@@ -30,7 +32,8 @@ Page({
       },
       success: function (res) {
         that.setData({
-          goodInfo: res.data
+          goodInfo: res.data,
+          c_type: cType
         })
       }
     })

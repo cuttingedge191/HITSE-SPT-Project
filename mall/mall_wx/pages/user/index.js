@@ -7,6 +7,7 @@ Page({
   data: {
     name: "",
     account: "",
+    type: "",
     fits: [
       'cover'
     ],
@@ -28,6 +29,7 @@ Page({
   onLoad: function () {
     var that = this;
     var c_id = wx.getStorageSync('c_id');
+    var cType = wx.getStorageSync('cType');
     wx.request({
       url: 'http://localhost:8080/mall/getCustomerInfoByCid?c_id=' + c_id,
       method: 'GET',
@@ -38,6 +40,7 @@ Page({
         that.setData({
           name: res.data.name,
           account: res.data.phone,
+          type: cType == 'retail' ? '零售' : '批发'
         })
       }
     });

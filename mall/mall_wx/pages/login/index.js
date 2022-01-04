@@ -25,12 +25,13 @@ Page({
       },
       data: formData,
       success: function (res) {
-        if (res.data === "error") {
+        if (res.data[0] === "error") {
           Toast.fail('手机号未注册或密码错误！');
           return;
         }
         Toast.success('登录成功，欢迎使用！');
-        wx.setStorageSync('c_id', res.data); // 存入本地缓存
+        wx.setStorageSync('c_id', res.data[0]); // 存入客户ID
+        wx.setStorageSync('c_type', res.data[1]); // 存入客户类型
         setTimeout(function () {
           wx.switchTab({
             url: '/pages/goods_list/index',

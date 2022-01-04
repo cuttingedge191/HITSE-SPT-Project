@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
 public class wxCustomerController {
     @Autowired
@@ -40,14 +43,19 @@ public class wxCustomerController {
     }
 
     @RequestMapping("/mall/login")
-    public String login(@RequestBody JSONObject jsonObject) {
+    public List<String> login(@RequestBody JSONObject jsonObject) {
         String phone = jsonObject.getString("phone");
         String password = jsonObject.getString("password");
+        List<String> res = new ArrayList<>();
         Customer c = clientInfoService.queryCustomerByPhone(phone);
         if (c != null && c.getPassword().equals(password)) {
-            return c.getC_id().toString();
+            res.add(c.getC_id().toString());
+            res.add(c.getType());
+            return res;
         }
-        return "error";
+        res.add("error");
+        res.add("error");
+        return res;
     }
 
     @RequestMapping("/mall/getCustomerInfoByCid")

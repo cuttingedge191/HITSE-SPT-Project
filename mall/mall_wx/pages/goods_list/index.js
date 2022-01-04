@@ -3,14 +3,13 @@
 import Page from '../../libs/common/page';
 import Toast from '../../libs/dist/toast/toast';
 
-const app = getApp()
-wx - Page({
+Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    value: '',
+    c_type: '',
     show: false,
     imageURL: "https://img.yzcdn.cn/vant/ipad.jpeg",
     goods: []
@@ -30,6 +29,7 @@ wx - Page({
    */
   onLoad: function () {
     var that = this;
+    var cType = wx.getStorageSync('c_type');
     wx.request({
       url: 'http://localhost:8080/mall/getGoodsList',
       method: 'GET',
@@ -38,10 +38,11 @@ wx - Page({
       },
       success: function (res) {
         that.setData({
-          goods: res.data
+          goods: res.data,
+          c_type: cType
         })
       }
-    })
+    });
   },
 
   /**
