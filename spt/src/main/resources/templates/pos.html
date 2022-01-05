@@ -245,7 +245,8 @@
                                             </div>
                                             <div class="box-divider m-0"></div>
                                             <!--<div class="box-body">-->
-                                            <form role="form" id="myForm" name="myForm" method="post" th:action="@{/addOnePosOrderItem}">
+                                            <form role="form" id="myForm" name="myForm" method="post"
+                                                  th:action="@{/addOnePosOrderItem}">
                                                 <input type="hidden" th:value="${o_id}" name="o_id">
                                                 <input type="hidden" value="retail" name="type">
                                                 <div class="box-body">
@@ -321,14 +322,15 @@
                                                                 </div>
                                                                 <div class="modal-footer">
                                                                     <a href="#" type="button"
-                                                                            class="btn dark-white p-x-md"
-                                                                            data-dismiss="modal">取消
+                                                                       class="btn dark-white p-x-md"
+                                                                       data-dismiss="modal">取消
                                                                     </a>
-                                                                    <a onclick="discountAndRequest()" class="btn danger p-x-md">确定</a>
+                                                                    <a onclick="discountAndRequest()"
+                                                                       class="btn danger p-x-md">确定</a>
                                                                 </div>
                                                             </div><!-- /.modal-content -->
                                                         </div>
-                                                        
+
                                                     </div>
                                                     <!-- / .modal -->
                                                 </div>
@@ -473,16 +475,28 @@
         document.getElementById("giveChange").value = (b - a).toFixed(2)
         document.getElementById("giveChange2").value = (b - a).toFixed(2)
     }
-    function freeTheGood(){
+
+    function freeTheGood() {
         var myForm = document.forms['myForm'];
         myForm.discount.value = 0.0;
         myForm.submit();
     }
-    function discountAndRequest(){
-        var myForm = document.forms['myForm'];
-        myForm.discount.value = document.getElementById("discountValue").value;
-        myForm.submit();
 
+    function discountAndRequest() {
+        var myForm = document.forms['myForm'];
+        var discount = document.getElementById("discountValue").value;
+        if (parseFloat(discount).toString() === "NaN") {
+            alert("“请输入数字……”");
+            document.getElementById("discountValue").value = null;
+        }
+        else if (discount > 10.0 || discount < 0) {
+            document.getElementById("discountValue").value = 10.0;
+            alert("输入不合法！");
+            document.getElementById("discountValue").value = null;
+        } else {
+            myForm.discount.value = discount;
+            myForm.submit();
+        }
     }
 </script>
 <!-- jQuery -->
