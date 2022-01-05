@@ -1,11 +1,15 @@
 // pages/cart/index.js
+import Dialog from '../../libs/dist/dialog/dialog';
+const app = getApp();
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    addr:"这是地址",
+    addr:"",
+    cartItems: [],
     imageURL: 'https://img.yzcdn.cn/upload_files/2017/07/02/af5b9f44deaeb68000d7e4a711160c53.jpg'
   },
 
@@ -15,11 +19,39 @@ Page({
     })
   },
 
+  deleteCartItem:function(event) {
+    const { position, instance } = event.detail;
+    switch (position) {
+      case 'right':
+        Dialog.confirm({
+          message: '确定删除吗？',
+        }).then(() => {
+          // 确定删除执行这里
+          console.log("-------------------------");
+          instance.close();
+        });
+        break;
+    }
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
+  onLoad: function () {
+    var that = this;
+    var c_id = wx.getStorageSync('c_id');
+    wx.request({
+      url: app.enabledUrl + '/mall/getCustomerAddressByCid?c_id=' + c_id,
+      method: 'GET',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        that.setData({
+          addr: res.data
+        })
+      }
+    })
   },
 
   /**

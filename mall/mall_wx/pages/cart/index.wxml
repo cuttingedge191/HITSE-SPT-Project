@@ -2,7 +2,11 @@
 <view class="main">
 
   <demo-block title="全部">
-    <van-swipe-cell right-width="{{ 65 }}">
+    <van-swipe-cell 
+    id="swipe-cell"
+    right-width="{{ 65 }}"
+    async-close
+    bind:close="deleteCartItem">
       <van-cell-group>
         <van-card
           price="2.00"
@@ -15,7 +19,7 @@
           </view>
         </van-card>
       </van-cell-group>
-      <view slot="right">删除</view>
+      <view slot="right" class="van-swipe-cell__right">删除</view>
     </van-swipe-cell>
   </demo-block>
 
@@ -34,3 +38,4 @@
     </view>
   </van-submit-bar>
 </view>
+<van-dialog id="van-dialog" />

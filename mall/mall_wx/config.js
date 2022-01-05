@@ -5,7 +5,7 @@
  * remoteUrl: 远程服务器地址
  */
 var serverConf = {
-  localTest: false,
+  localTest: true,
   localUrl: 'http://localhost:8080',
   remoteUrl: 'http://192.168.1.9:8080'
 }

@@ -42,6 +42,24 @@ public class wxCustomerController {
         return "error";
     }
 
+    @RequestMapping("/mall/changeInfo")
+    public String changeInfo(@RequestBody JSONObject jsonObject) {
+        String password = jsonObject.getString("password");
+        String password_confirm = jsonObject.getString("password_confirm");
+
+        String phone = jsonObject.getString("phone");
+        Customer c = clientInfoService.queryCustomerByPhone(phone);
+        c.setName(jsonObject.getString("name"));
+        c.setGender(jsonObject.getString("gender").equals("1") ? "male" : "female");
+        c.setAddress(jsonObject.getString("address"));
+        if (password == "" && password_confirm == "") {
+            return "pswNotChange";
+        } else if (password == password_confirm) {
+            c.setPassword(password);
+            return "resetPsw";
+        } else return "error";
+    }
+
     @RequestMapping("/mall/login")
     public List<String> login(@RequestBody JSONObject jsonObject) {
         String phone = jsonObject.getString("phone");
@@ -62,5 +80,12 @@ public class wxCustomerController {
     public Customer getCustomerInfoByCid(String c_id) {
         int ic_id = Integer.parseInt(c_id);
         return clientInfoService.queryCustomerById(ic_id);
+    }
+
+    @RequestMapping("/mall/getCustomerAddressByCid")
+    public String getCustomerAddressByCid(String c_id) {
+        int ic_id = Integer.parseInt(c_id);
+        Customer c = clientInfoService.queryCustomerById(ic_id);
+        return c.getAddress();
     }
 }

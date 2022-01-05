@@ -48,7 +48,7 @@ Page({
       }
     });
     wx.request({
-      url: 'http://localhost:8080/mall/getOrderCntByCid?c_id=' + c_id,
+      url: app.enabledUrl + '/mall/getOrderCntByCid?c_id=' + c_id,
       method: 'GET',
       header: {
         'content-type': 'application/json'
