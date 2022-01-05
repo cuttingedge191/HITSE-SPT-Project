@@ -17,7 +17,7 @@ public interface OrderService {
 
     Double calcTotalPriceByOid(Integer o_id);
 
-    OrderItem generateOrderItem(Integer o_id, String name, Integer quantity, Boolean trade);
+    OrderItem generateOrderItem(Integer o_id, String name, Float discount, Integer quantity, Boolean trade);
 
     int saveOrder(Orders orders);
 
@@ -37,7 +37,7 @@ public interface OrderService {
 
     void getGoodsCustomerInfo(Model model, Integer o_id, String type);
 
-    void genOrderItemForOrder(Integer o_id, String item_name, Integer quantity, String type, String cname, Model model);
+    void genOrderItemForOrder(Integer o_id, String item_name, Float discount, Integer quantity, String type, String cname, Model model);
 
     boolean checkIfCanDelivery(List<OrderItem> orderItemList);
 

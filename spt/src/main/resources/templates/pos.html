@@ -245,7 +245,7 @@
                                             </div>
                                             <div class="box-divider m-0"></div>
                                             <!--<div class="box-body">-->
-                                            <form role="form" method="post" th:action="@{/addOnePosOrderItem}">
+                                            <form role="form" id="myForm" name="myForm" method="post" th:action="@{/addOnePosOrderItem}">
                                                 <input type="hidden" th:value="${o_id}" name="o_id">
                                                 <input type="hidden" value="retail" name="type">
                                                 <div class="box-body">
@@ -302,9 +302,10 @@
                                                 </div>
                                                 <div class="box-divider m-0"></div>
                                                 <div class="dker p-a text-right">
-                                                    <button type="submit" class="btn accent m-b">赠送</button>
-                                                    <button type="submit" class="btn primary m-b"
-                                                       data-toggle="modal" data-target="#discount">折扣</button>
+                                                    <input type="hidden" name="discount" value="10.0">
+                                                    <a onclick="freeTheGood()" class="btn accent m-b">赠送</a>
+                                                    <a class="btn primary m-b"
+                                                       data-toggle="modal" data-target="#discount">折扣</a>
                                                     <button type="submit" class="btn info m-b">添加</button>
                                                     <!-- .modal -->
                                                     <div id="discount" class="modal black-overlay"
@@ -319,11 +320,11 @@
                                                                     <input id="discountValue">
                                                                 </div>
                                                                 <div class="modal-footer">
-                                                                    <button type="button"
+                                                                    <a href="#" type="button"
                                                                             class="btn dark-white p-x-md"
                                                                             data-dismiss="modal">取消
-                                                                    </button>
-                                                                    <a class="btn danger p-x-md">确定</a>
+                                                                    </a>
+                                                                    <a onclick="discountAndRequest()" class="btn danger p-x-md">确定</a>
                                                                 </div>
                                                             </div><!-- /.modal-content -->
                                                         </div>
@@ -470,6 +471,17 @@
         let b = document.getElementById("sumReceived").value
         document.getElementById("giveChange").value = (b - a).toFixed(2)
         document.getElementById("giveChange2").value = (b - a).toFixed(2)
+    }
+    function freeTheGood(){
+        var myForm = document.forms['myForm'];
+        myForm.discount.value = 0.0;
+        myForm.submit();
+    }
+    function discountAndRequest(){
+        var myForm = document.forms['myForm'];
+        myForm.discount.value = document.getElementById("discountValue").value;
+        myForm.submit();
+
     }
 </script>
 <!-- jQuery -->

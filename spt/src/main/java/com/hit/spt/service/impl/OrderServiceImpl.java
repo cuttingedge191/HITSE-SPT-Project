@@ -75,7 +75,7 @@ public class OrderServiceImpl implements OrderService {
      * @return 一个带详细信息的商品项
      */
     @Override
-    public OrderItem generateOrderItem(Integer o_id, String name, Integer quantity, Boolean trade) {
+    public OrderItem generateOrderItem(Integer o_id, String name, Float discount, Integer quantity, Boolean trade) {
         // 生成一个带有详细信息的goodsInfo
         GoodsInfo goodsInfo = goodsInfoMapper.queryGoodsInfoByName(name);
         OrderItem orderItem = new OrderItem();
@@ -84,10 +84,10 @@ public class OrderServiceImpl implements OrderService {
         orderItem.setQuantity(quantity);
         orderItem.setCost(goodsInfo.getCost() * quantity);
         orderItem.setG_id(goodsInfo.getG_id());
-        if (trade)
+        if (trade )
             orderItem.setPrice(Math.round(100 * goodsInfo.getTrade_price() * quantity) / 100.0);
         else
-            orderItem.setPrice(Math.round(100 * goodsInfo.getRetail_price() * quantity) / 100.0);
+            orderItem.setPrice(Math.round(100 * goodsInfo.getRetail_price() * quantity * (discount/10.0)) / 100.0);
         return orderItem;
     }
 
@@ -206,10 +206,10 @@ public class OrderServiceImpl implements OrderService {
      * @param model     传参
      */
     @Override
-    public void genOrderItemForOrder(Integer o_id, String item_name, Integer quantity, String type, String cname, Model model) {
+    public void genOrderItemForOrder(Integer o_id, String item_name, Float discount, Integer quantity, String type, String cname, Model model) {
         boolean trade = type != null && type.equals("trade");
 
-        OrderItem orderItem = generateOrderItem(o_id, item_name, quantity, trade);
+        OrderItem orderItem = generateOrderItem(o_id, item_name,discount, quantity, trade);
         addOneOrderItem(orderItem);
         // 生成暂存物品列表
         List<OrderItem> orderItemWithNameList = queryOrderItemWithNameListByOid(o_id);

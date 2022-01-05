@@ -38,7 +38,7 @@ public class OrderController {
     public String addOneOrder(Integer o_id, String item_name, Integer quantity, String cname, String ifUpdate, HttpServletRequest request, Model model) {
         String type = "trade";
         if (request.getRequestURI().equals("/addOneOrderItem")) {
-            orderService.genOrderItemForOrder(o_id, item_name, quantity, type, cname, model);
+            orderService.genOrderItemForOrder(o_id, item_name, 10.0F, quantity, type, cname, model);
         }
         //update 和 add order不同！！
         if (ifUpdate != null)
@@ -55,10 +55,10 @@ public class OrderController {
     }
 
     @RequestMapping({"pos", "addOnePosOrderItem"})
-    public String addPosOrder(Integer o_id, String item_name, Integer quantity, String cname, HttpServletRequest request, Model model) {
+    public String addPosOrder(Integer o_id, String item_name, Float discount, Integer quantity, String cname, HttpServletRequest request, Model model) {
         String type = "retail";
         if (request != null && request.getRequestURI().equals("/addOnePosOrderItem")) {
-            orderService.genOrderItemForOrder(o_id, item_name, quantity, type, cname, model);
+            orderService.genOrderItemForOrder(o_id, item_name, discount, quantity, type, cname, model);
             model.addAttribute("totalPrice", orderService.calcTotalPriceByOid(o_id));
         }
         if (o_id != null) {
@@ -101,8 +101,8 @@ public class OrderController {
                 if (type.equals("retail") && !orderService.checkIfCanDelivery(orderItemList)) {
                     model.addAttribute("msg", "库存数量不足，无法操作！");
 
-                    return this.addPosOrder(o_id, null, null, null, null, model);
-                }else if (type.equals("retail")){
+                    return this.addPosOrder(o_id, null, null,null, null, null, model);
+                } else if (type.equals("retail")) {
                     ordersViewController.inventoryProcessForOrder(o_id, "closed", model, request);
                 }
             } else {
