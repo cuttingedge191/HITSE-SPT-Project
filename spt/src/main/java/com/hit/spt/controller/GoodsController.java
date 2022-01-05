@@ -52,38 +52,41 @@ public class GoodsController {
         return "redirect:goodsView";
     }
 
-    @RequestMapping({"addGoodsNow", "deleteGoods"})
-    public String ADCSGoods(@RequestParam("image") MultipartFile image, GoodsInfo good, Model model, HttpServletRequest request){
+    @RequestMapping("addGoodsNow")
+    public String addGoodsNow(@RequestParam("image") MultipartFile image, GoodsInfo good,Model model, HttpServletRequest request){
+        GoodsInfo goodsInfo1 = goodsService.queryGoodsInfoByName(good.getName());
+        GoodsInfo goodsInfo2 = goodsService.queryGoodsInfoByGid(good.getG_id());
         String uri = request.getRequestURI();
-        if (uri.charAt(1) == 'a') {
-            GoodsInfo goodsInfo1 = goodsService.queryGoodsInfoByName(good.getName());
-            GoodsInfo goodsInfo2 = goodsService.queryGoodsInfoByGid(good.getG_id());
-            if (goodsInfo1 == null && goodsInfo2 == null) {
-                goodsService.insertGoods(good);
-                String[] originalFileName = Objects.requireNonNull(image.getOriginalFilename()).split("\\.");
-                String  destDir=request.getServletContext().getRealPath("static/");
-                destDir = destDir + "goodsImages/";
-                File destpath = new File(destDir, good.getG_id() +
-                        "." + originalFileName[originalFileName.length - 1]);
-                // 判断路径是否存在，如果不存在就创建一个
-                if (!destpath.getParentFile().exists()) {
-                    destpath.getParentFile().mkdirs();
-                }
-                String path = destDir + good.getG_id() +
-                        "." + originalFileName[originalFileName.length - 1];
-                System.out.println(path);
-                try{
-                    image.transferTo(new File(path));
-                } catch (IOException e){
-                    e.printStackTrace();
-                }
-            } else {
-                model.addAttribute("goodsExistWarning", "true");
-                return "addGoods";
+        if (goodsInfo1 == null && goodsInfo2 == null) {
+            goodsService.insertGoods(good);
+            String[] originalFileName = Objects.requireNonNull(image.getOriginalFilename()).split("\\.");
+            String  destDir=request.getServletContext().getRealPath("static/");
+            destDir = destDir + "goodsImages/";
+            File destpath = new File(destDir, good.getG_id() +
+                    "." + originalFileName[originalFileName.length - 1]);
+            // 判断路径是否存在，如果不存在就创建一个
+            if (!destpath.getParentFile().exists()) {
+                destpath.getParentFile().mkdirs();
             }
-        } else if (uri.charAt(1) == 'd') {
-            goodsService.deleteGoodsByGid(good.getG_id());
+            String path = destDir + good.getG_id() +
+                    "." + originalFileName[originalFileName.length - 1];
+            System.out.println(path);
+            try{
+                image.transferTo(new File(path));
+            } catch (IOException e){
+                e.printStackTrace();
+            }
+        } else {
+            model.addAttribute("goodsExistWarning", "true");
+            return "addGoods";
         }
+        return "redirect:goodsView";
+    }
+
+    @RequestMapping("deleteGoods")
+    public String ADCSGoods(GoodsInfo good, Model model, HttpServletRequest request){
+        String uri = request.getRequestURI();
+        goodsService.deleteGoodsByGid(good.getG_id());
         return "redirect:goodsView";
     }
 
