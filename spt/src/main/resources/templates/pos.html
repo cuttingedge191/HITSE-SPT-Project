@@ -485,13 +485,14 @@
     function discountAndRequest() {
         var myForm = document.forms['myForm'];
         var discount = document.getElementById("discountValue").value;
-        if (parseFloat(discount).toString() === "NaN") {
-            alert("“请输入数字……”");
+        var re = /^[0-9]+.?[0-9]*$/;
+        if (!re.test(discount)) {
+            alert("请输入数字");
             document.getElementById("discountValue").value = null;
         }
         else if (discount > 10.0 || discount < 0) {
             document.getElementById("discountValue").value = 10.0;
-            alert("输入不合法！");
+            alert("输入超出范围");
             document.getElementById("discountValue").value = null;
         } else {
             myForm.discount.value = discount;
