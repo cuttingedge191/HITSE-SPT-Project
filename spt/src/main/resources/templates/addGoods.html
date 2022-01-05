@@ -240,7 +240,7 @@
                                 </div>
                                 <div class="box-divider m-0"></div>
                                 <div class="box-body">
-                                    <form role="form" method="post" th:action="@{/addGoodsNow}">
+                                    <form role="form" method="post" th:action="@{/addGoodsNow}"  enctype="multipart/form-data">
                                         <div class="form-group">
                                             <label for="name">货品名称</label>
                                             <input type="text" class="form-control" name="name" id="name" placeholder="请输入货品名称"
@@ -269,7 +269,7 @@
                                         <div class="form-group">
                                             <label for="description">货品图片</label>
                                         <div class="file-loading" name="description">
-                                            <input id="input-b6a" name="input-b6a[]" type="file" multiple
+                                            <input id="input-b6a" name="image" type="file" multiple
                                                    required>
                                         </div>
                                         </div>

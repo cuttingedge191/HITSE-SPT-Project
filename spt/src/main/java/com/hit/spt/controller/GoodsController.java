@@ -3,18 +3,27 @@ package com.hit.spt.controller;
 import com.hit.spt.pojo.GoodsInfo;
 import com.hit.spt.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 @RequestMapping
 public class GoodsController {
     @Autowired
     GoodsService goodsService;
+
+
 
     @RequestMapping("addGoods")
     public String addGoods() {
@@ -44,13 +53,30 @@ public class GoodsController {
     }
 
     @RequestMapping({"addGoodsNow", "deleteGoods"})
-    public String ADCSGoods(GoodsInfo good, Model model, HttpServletRequest request){
+    public String ADCSGoods(@RequestParam("image") MultipartFile image, GoodsInfo good, Model model, HttpServletRequest request){
         String uri = request.getRequestURI();
         if (uri.charAt(1) == 'a') {
             GoodsInfo goodsInfo1 = goodsService.queryGoodsInfoByName(good.getName());
             GoodsInfo goodsInfo2 = goodsService.queryGoodsInfoByGid(good.getG_id());
             if (goodsInfo1 == null && goodsInfo2 == null) {
                 goodsService.insertGoods(good);
+                String[] originalFileName = Objects.requireNonNull(image.getOriginalFilename()).split("\\.");
+                String  destDir=request.getServletContext().getRealPath("static/");
+                destDir = destDir + "goodsImages/";
+                File destpath = new File(destDir, good.getG_id() +
+                        "." + originalFileName[originalFileName.length - 1]);
+                // 判断路径是否存在，如果不存在就创建一个
+                if (!destpath.getParentFile().exists()) {
+                    destpath.getParentFile().mkdirs();
+                }
+                String path = destDir + good.getG_id() +
+                        "." + originalFileName[originalFileName.length - 1];
+                System.out.println(path);
+                try{
+                    image.transferTo(new File(path));
+                } catch (IOException e){
+                    e.printStackTrace();
+                }
             } else {
                 model.addAttribute("goodsExistWarning", "true");
                 return "addGoods";
