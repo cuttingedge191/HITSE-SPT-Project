@@ -14,7 +14,8 @@ Page({
     c_type: '',
     show: false,
     imageURL: "https://img.yzcdn.cn/vant/ipad.jpeg",
-    goods: []
+    goods: [],
+    goods_all: [],
   },
 
   addCart: function (e) {
@@ -38,6 +39,26 @@ Page({
     Toast.success('已加入购物车！');
   },
 
+  onSearch: function (e) {
+    var that = this;
+    var showGoods = [];
+    for (let index = 0; index < that.data.goods_all.length - 1; ++index) {
+      if (that.data.goods_all[index].name.includes(e.detail) || that.data.goods_all[index].description.includes(e.detail)) {
+        showGoods.push(that.data.goods_all[index]);
+      }
+    }
+    that.setData({
+      goods: showGoods,
+    })
+  },
+
+  cancelSearch: function () {
+    var that = this;
+    that.setData({
+      goods: that.data.goods_all,
+    })
+  },
+
   viewDetail: function () {
     wx.redirectTo({
       url: '/pages/goods_detail/index'
@@ -58,6 +79,7 @@ Page({
       success: function (res) {
         that.setData({
           goods: res.data,
+          goods_all: res.data,
           c_type: cType
         })
       }

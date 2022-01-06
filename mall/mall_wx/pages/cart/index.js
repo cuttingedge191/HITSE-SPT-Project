@@ -1,5 +1,7 @@
 // pages/cart/index.js
 import Dialog from '../../libs/dist/dialog/dialog';
+import Toast from '../../libs/dist/toast/toast';
+
 const app = getApp();
 
 Page({
@@ -21,6 +23,8 @@ Page({
   },
 
   deleteCartItem: function (event) {
+    var that = this;
+    var g_id = event.currentTarget.id.toString();
     const {
       position,
       instance
@@ -31,11 +35,55 @@ Page({
           message: '确定删除吗？',
         }).then(() => {
           // 确定删除执行这里
-          console.log("-------------------------");
+          var idList = wx.getStorageSync('ids');
+          var numList = wx.getStorageSync('nums');
+          var index = idList.indexOf(g_id);
+          idList.splice(index, 1)
+          numList.splice(index, 1)
+          wx.setStorageSync('ids', idList);
+          wx.setStorageSync('nums', numList);
+          let cart_tmp = that.data.cart;
+          let i;
+          for (i = 0; i < cart_tmp.length; ++i) {
+            if (cart_tmp[i].g_id == g_id) break;
+          }
+          var total_tmp = that.data.total - cart_tmp[i].price * 100
+          cart_tmp.splice(i,1)
+          that.setData({
+            cart: cart_tmp,
+            total: total_tmp,
+          })
           instance.close();
         });
         break;
     }
+  },
+
+  ChangeGoodsNum: function (e) {
+    var that = this;
+    var idList = wx.getStorageSync('ids');
+    var numList = wx.getStorageSync('nums');
+    var index = idList.indexOf(e.target.id.toString());
+    if (index < 0) {
+      Toast.fail('系统错误！');
+    } else {
+      var changeNum = e.detail - numList[index];
+      numList[index] = e.detail; // 货品个数设置为 num 个
+      var cart_tmp = that.data.cart;
+      for (let i = 0; i < cart_tmp.length; ++i) {
+        if (cart_tmp[i].g_id == e.target.id.toString()) {
+          var price = cart_tmp[i].price / cart_tmp[i].num;
+          cart_tmp[i].num = e.detail;
+          cart_tmp[i].price += changeNum * price;
+          that.setData({
+            cart: cart_tmp,
+            total: that.data.total + changeNum * price * 100
+          })
+        }
+      }
+    }
+    wx.setStorageSync('ids', idList);
+    wx.setStorageSync('nums', numList);
   },
 
   /**
@@ -52,7 +100,6 @@ Page({
         'content-type': 'application/json'
       },
       success: function (res) {
-        console.log(res.data);
         that.setData({
           addr: res.data[0]
         })
@@ -102,7 +149,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+    let _this = this;
+    _this.setData({
+      total: 0,
+      cart: []
+    })
+    _this.onLoad();
   },
 
   /**

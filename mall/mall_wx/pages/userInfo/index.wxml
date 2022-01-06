@@ -4,7 +4,7 @@
   <form bindsubmit='changeInfo'>
     <van-cell-group>
       <view class="pic" >
-        <van-image round fit="cover" width="100" height="100" src="{{src}}" bind:click="changeImage" />
+        <van-image round fit="cover" width="100" height="100" src="{{src}}" />
       </view>
       <van-field name="name" value="{{ name }}" clearable label="用户名" placeholder="请输入用户名" required />
       <van-field name="phone" value="{{ account }}" clearable label="电话号码" placeholder="请输入电话号" disabled />

@@ -35,7 +35,7 @@ Page({
         wx.switchTab({
           url: '../goods_list/index',
         })
-      }, 3000);
+      }, 2000);
       return;
     }
     setTimeout(function () {

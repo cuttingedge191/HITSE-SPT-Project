@@ -3,6 +3,8 @@ const config = require('config.js');
 wx-App({
 
     enabledUrl: config.enabledUrl,
+    maleImage: "../../../static/images/male.jpg",
+    femaleImage: "../../../static/images/female.jpg",
   
   /**
    * 当小程序初始化完成时，会触发 onLaunch（全局只触发一次）

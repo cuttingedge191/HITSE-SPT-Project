@@ -55,8 +55,8 @@ public class wxCustomerController {
             clientInfoService.updateCustomer(c);
             return "pswNotChange";
         } else if (password.equals(password_confirm)) {
-            clientInfoService.updateCustomer(c);
             c.setPassword(password);
+            clientInfoService.updateCustomer(c);
             return "resetPsw";
         } else return "error";
     }

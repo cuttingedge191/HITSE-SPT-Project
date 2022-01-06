@@ -1,6 +1,6 @@
 <!--index.wxml-->
 <view class="container">
-  <van-search shape="round" clearable value="{{ value }}" input-align="center" placeholder="请输入搜索关键词" bind:search="onSearch" />
+  <van-search shape="round" clearable input-align="center" placeholder="请输入搜索关键词" bind:search="onSearch" bind:clear="cancelSearch" />
   <van-divider contentPosition="center">商品列表</van-divider>
   <van-toast id="van-toast" />
   <view wx:for="{{ goods }}" wx:key="g_id">
