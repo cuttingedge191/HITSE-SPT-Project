@@ -8,19 +8,23 @@ Page({
    * 页面的初始数据
    */
   data: {
-    addr:"",
-    cartItems: [],
+    addr: '',
+    cart: [],
+    total: 0,
     imageURL: 'https://img.yzcdn.cn/upload_files/2017/07/02/af5b9f44deaeb68000d7e4a711160c53.jpg'
   },
 
-  changeAddr:function() {
+  changeAddr: function () {
     wx.navigateTo({
       url: '/pages/userInfo/index'
     })
   },
 
-  deleteCartItem:function(event) {
-    const { position, instance } = event.detail;
+  deleteCartItem: function (event) {
+    const {
+      position,
+      instance
+    } = event.detail;
     switch (position) {
       case 'right':
         Dialog.confirm({
@@ -39,6 +43,7 @@ Page({
    */
   onLoad: function () {
     var that = this;
+    // 获取收货地址
     var c_id = wx.getStorageSync('c_id');
     wx.request({
       url: app.enabledUrl + '/mall/getCustomerAddressByCid?c_id=' + c_id,
@@ -47,11 +52,43 @@ Page({
         'content-type': 'application/json'
       },
       success: function (res) {
+        console.log(res.data);
         that.setData({
-          addr: res.data
+          addr: res.data[0]
         })
       }
     })
+    // 获取购物车信息，计算总价
+    var idList = wx.getStorageSync('ids');
+    for (var i = 0; i < idList.length; ++i) {
+      wx.request({
+        url: app.enabledUrl + '/mall/getGoodsInfoByGid?g_id=' + idList[i],
+        method: 'GET',
+        header: {
+          'content-type': 'application/json'
+        },
+        success: function (res) {
+          var item = {};
+          var idList = wx.getStorageSync('ids');
+          var numList = wx.getStorageSync('nums');
+          item.g_id = res.data.g_id.toString();
+          item.num = numList[idList.indexOf(item.g_id)];
+          item.name = res.data.name;
+          item.description = res.data.description;
+          if (wx.getStorageSync('c_type') == 'retail') {
+            item.price = res.data.retail_price * item.num;
+          } else {
+            item.price = res.data.trade_price * item.num;
+          }
+          var cart_tmp = that.data.cart;
+          cart_tmp.push(item);
+          that.setData({
+            total: that.data.total + item.price * 100,
+            cart: cart_tmp
+          })
+        }
+      })
+    }
   },
 
   /**
@@ -65,7 +102,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    
   },
 
   /**

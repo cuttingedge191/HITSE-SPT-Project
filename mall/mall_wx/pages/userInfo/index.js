@@ -16,9 +16,9 @@ Page({
     ],
     gender: '',
     password: '',
-    password_confirm:'',
+    password_confirm: '',
     addr: '',
-    src:"https://img.yzcdn.cn/vant/cat.jpeg"
+    src: "https://img.yzcdn.cn/vant/cat.jpeg"
   },
 
   // 选择性别
@@ -39,11 +39,10 @@ Page({
     return true;
   },
 
- // 修改
- changeInfo: function(e) {
+  // 修改
+  changeInfo: function (e) {
     var that = this;
     var formData = e.detail.value;
-    console.log("KKKKKKKKK",formData);
     if (formData.password != formData.password_confirm) {
       Toast.fail('两次输入的密码不一致！');
     } else if (!that.checkFormComplete(e)) {
@@ -70,9 +69,8 @@ Page({
               wx.switchTab({
                 url: '/pages/user/index'
               });
-            }, 500); // 延迟1秒再跳转
-          }
-           else {
+            }, 500); // 延迟0.5秒再跳转
+          } else {
             Toast.fail('修改失败！');
           }
         },
@@ -82,37 +80,37 @@ Page({
       })
     }
   },
-   // 上传头像
-   changeImage: function () {
+  // 上传头像
+  changeImage: function () {
     var that = this;
     wx.chooseImage({
-        count: 1, // 默认9
-        sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
-        sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-        success: function (res) {
-            // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片，只有一张图片获取下标为0
-            var tempFilePaths = res.tempFilePaths[0];
+      count: 1, // 默认9
+      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+      success: function (res) {
+        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片，只有一张图片获取下标为0
+        var tempFilePaths = res.tempFilePaths[0];
+        that.setData({
+          src: tempFilePaths,
+          actionSheetHidden: !that.data.actionSheetHidden
+        })
+        util.uploadFile('/itdragon/uploadImage', tempFilePaths, 'imgFile', {}, function (res) {
+          console.log(res);
+          if (null != res) {
             that.setData({
-                src: tempFilePaths,
-                actionSheetHidden: !that.data.actionSheetHidden
+              userImg: res
             })
-            util.uploadFile('/itdragon/uploadImage', tempFilePaths, 'imgFile' ,{}, function (res) {
-                console.log(res);
-                if (null != res) {
-                    that.setData({
-                        userImg: res
-                    })
-                } else {
-                    // 显示消息提示框
-                    wx.showToast({
-                        title: '上传失败',
-                        icon: 'error',
-                        duration: 2000
-                    })
-                }
-            });
-        }
-    })    
+          } else {
+            // 显示消息提示框
+            wx.showToast({
+              title: '上传失败',
+              icon: 'error',
+              duration: 2000
+            })
+          }
+        });
+      }
+    })
   },
   /**
    * 生命周期函数--监听页面加载

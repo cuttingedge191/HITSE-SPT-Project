@@ -46,15 +46,16 @@ public class wxCustomerController {
     public String changeInfo(@RequestBody JSONObject jsonObject) {
         String password = jsonObject.getString("password");
         String password_confirm = jsonObject.getString("password_confirm");
-
         String phone = jsonObject.getString("phone");
         Customer c = clientInfoService.queryCustomerByPhone(phone);
         c.setName(jsonObject.getString("name"));
         c.setGender(jsonObject.getString("gender").equals("1") ? "male" : "female");
         c.setAddress(jsonObject.getString("address"));
-        if (password == "" && password_confirm == "") {
+        if (password.equals("") && password_confirm.equals("")) {
+            clientInfoService.updateCustomer(c);
             return "pswNotChange";
-        } else if (password == password_confirm) {
+        } else if (password.equals(password_confirm)) {
+            clientInfoService.updateCustomer(c);
             c.setPassword(password);
             return "resetPsw";
         } else return "error";
@@ -83,9 +84,12 @@ public class wxCustomerController {
     }
 
     @RequestMapping("/mall/getCustomerAddressByCid")
-    public String getCustomerAddressByCid(String c_id) {
+    public List<String> getCustomerAddressByCid(String c_id) {
+        // List<String>并不代表有多个收货地址，只是String中文编码在微信小程序端有问题
         int ic_id = Integer.parseInt(c_id);
         Customer c = clientInfoService.queryCustomerById(ic_id);
-        return c.getAddress();
+        List<String> res = new ArrayList<>();
+        res.add(c.getAddress());
+        return res;
     }
 }

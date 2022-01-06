@@ -17,8 +17,25 @@ Page({
     goods: []
   },
 
-  addCart: function () {
-    Toast.success('已加入购物车');
+  addCart: function (e) {
+    var idList = wx.getStorageSync('ids');
+    var numList;
+    if (idList) {
+      numList = wx.getStorageSync('nums');
+    } else {
+      idList = [];
+      numList = [];
+    }
+    var index = idList.indexOf(e.currentTarget.id);
+    if (index < 0) {
+      idList.push(e.currentTarget.id);
+      numList.push(1); // 默认添加一个
+    } else {
+      numList[index] += 1; // 再次添加数量加一
+    }
+    wx.setStorageSync('ids', idList);
+    wx.setStorageSync('nums', numList);
+    Toast.success('已加入购物车！');
   },
 
   viewDetail: function () {
