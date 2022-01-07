@@ -4,7 +4,7 @@
 <view class="pic">
   <demo-block title="货品图片" padding>
     <van-row>
-      <van-image fit="cover" width="250" height="250" radius="20" src="{{ goodInfo.imageURL }}" />
+      <van-image fit="cover" width="250" height="250" radius="20" src="{{ imageBaseURL + goodInfo.g_id + '.png' }}" />
     </van-row>
   </demo-block>
 </view>
@@ -21,20 +21,20 @@
   </demo-block>
 </view>
 
-  <view class="num">
-    <demo-block padding>
-      <van-divider contentPosition="center">选择数量</van-divider>
-      <van-cell-group inset>
-        <van-cell title="购买数量">
-          <van-stepper name="num" value="{{ 1 }}" min="1" bind:change="ChangeGoodNum" />
-        </van-cell>
-      </van-cell-group>
-    </demo-block>
-  </view>
-  <text>\n\n\n\n\n</text>
-  <van-goods-action>
-    <van-goods-action-icon icon="cart-o" text="购物车" bind:click="onClickCart" />
-    <van-goods-action-button class="demo-margin-right" text="加入购物车" type="warning" bind:click="addCart" />
-    <van-popup show="{{ show }}" position="bottom" custom-style="height: 20%;" bind:close="onClose" />
-  </van-goods-action>
+<view class="num">
+  <demo-block padding>
+    <van-divider contentPosition="center">选择数量</van-divider>
+    <van-cell-group inset>
+      <van-cell title="购买数量">
+        <van-stepper name="num" value="{{ 1 }}" min="1" bind:change="ChangeGoodNum" />
+      </van-cell>
+    </van-cell-group>
+  </demo-block>
+</view>
+<text>\n\n\n\n\n</text>
+<van-goods-action>
+  <van-goods-action-icon icon="cart-o" text="购物车" bind:click="onClickCart" />
+  <van-goods-action-button class="demo-margin-right" text="加入购物车" type="warning" bind:click="addCart" />
+  <van-popup show="{{ show }}" position="bottom" custom-style="height: 20%;" bind:close="onClose" />
+</van-goods-action>
 <van-toast id="van-toast" />

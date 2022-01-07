@@ -13,7 +13,7 @@ Page({
     addr: '',
     cart: [],
     total: 0,
-    imageURL: 'https://img.yzcdn.cn/upload_files/2017/07/02/af5b9f44deaeb68000d7e4a711160c53.jpg'
+    imageBaseURL: app.enabledUrl + '/goodsImages/'
   },
 
   changeAddr: function () {
@@ -48,7 +48,7 @@ Page({
             if (cart_tmp[i].g_id == g_id) break;
           }
           var total_tmp = that.data.total - cart_tmp[i].price * 100
-          cart_tmp.splice(i,1)
+          cart_tmp.splice(i, 1)
           that.setData({
             cart: cart_tmp,
             total: total_tmp,
@@ -87,6 +87,48 @@ Page({
   },
 
   /**
+   * 提交订单
+   */
+  onSubmit: function () {
+    let that = this;
+    if (that.data.total == 0) {
+      Toast.fail('您还没有选择商品！');
+      return;
+    }
+    wx.request({
+      url: app.enabledUrl + '/mall/commitOrderFromCart',
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      },
+      data: {
+        c_id: wx.getStorageSync('c_id'),
+        c_type: wx.getStorageSync('c_type'),
+        ids: wx.getStorageSync('ids'),
+        nums: wx.getStorageSync('nums')
+      },
+      success: function (res) {
+        if (res.data == 'ok') {
+          Toast.success('订单提交成功！');
+          // 清空购物车并重新加载购物车界面
+          wx.setStorageSync('ids', []);
+          wx.setStorageSync('nums', []);
+          that.setData({
+            total: 0,
+            cart: []
+          })
+          that.onLoad();
+        }
+        else
+          Toast.fail('系统错误，请重试！');
+      },
+      fail: function () {
+        Toast.fail('无法连接至服务器，请重试！');
+      }
+    });
+  },
+
+  /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
@@ -104,7 +146,7 @@ Page({
           addr: res.data[0]
         })
       }
-    })
+    });
     // 获取购物车信息，计算总价
     var idList = wx.getStorageSync('ids');
     for (var i = 0; i < idList.length; ++i) {

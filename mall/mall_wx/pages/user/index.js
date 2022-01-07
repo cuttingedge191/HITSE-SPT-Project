@@ -39,7 +39,7 @@ Page({
   onLoad: function () {
     var that = this;
     var c_id = wx.getStorageSync('c_id');
-    var cType = wx.getStorageSync('cType');
+    var cType = wx.getStorageSync('c_type');
     wx.request({
       url: app.enabledUrl + '/mall/getCustomerInfoByCid?c_id=' + c_id,
       method: 'GET',
@@ -82,7 +82,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.onLoad();
   },
 
   /**

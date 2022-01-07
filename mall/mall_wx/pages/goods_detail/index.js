@@ -8,6 +8,7 @@ Page({
   data: {
     c_type: '',
     goodInfo: {},
+    imageBaseURL: app.enabledUrl + '/goodsImages/',
     num: 1,
   },
 

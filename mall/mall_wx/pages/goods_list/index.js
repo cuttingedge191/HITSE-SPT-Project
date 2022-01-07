@@ -13,7 +13,7 @@ Page({
   data: {
     c_type: '',
     show: false,
-    imageURL: "https://img.yzcdn.cn/vant/ipad.jpeg",
+    imageBaseURL: app.enabledUrl + '/goodsImages/',
     goods: [],
     goods_all: [],
   },

@@ -4,12 +4,12 @@
   <van-divider contentPosition="center">商品列表</van-divider>
   <van-toast id="van-toast" />
   <view wx:for="{{ goods }}" wx:key="g_id">
-    <van-card wx:if="{{ c_type=='retail'}}" id="{{ item.g_id }}" price="{{ item.retail_price }}" desc="{{ item.description }}" title="{{ item.name }}" thumb="{{ imageURL }}" thumb-link="../goods_detail/index?g_id={{ item.g_id }}">
+    <van-card wx:if="{{ c_type=='retail'}}" id="{{ item.g_id }}" price="{{ item.retail_price }}" desc="{{ item.description }}" title="{{ item.name }}" thumb="{{ imageBaseURL + item.g_id + '.png'}}" thumb-link="../goods_detail/index?g_id={{ item.g_id }}">
       <view slot="footer">
         <van-button id="{{ item.g_id }}" size="small" round color="red" bind:click="addCart">加入购物车</van-button>
       </view>
     </van-card>
-    <van-card wx:else price="{{ item.trade_price }}" desc="{{ item.description }}" title="{{ item.name }}" thumb="{{ imageURL }}" thumb-link="../goods_detail/index?g_id={{item.g_id}}">
+    <van-card wx:else price="{{ item.trade_price }}" desc="{{ item.description }}" title="{{ item.name }}" thumb="{{ imageBaseURL + item.g_id + '.png'}}" thumb-link="../goods_detail/index?g_id={{ item.g_id }}">
       <view slot="footer">
         <van-button id="{{ item.g_id }}" size="small" round color="red" bind:click="addCart">加入购物车</van-button>
       </view>

@@ -4,31 +4,37 @@
   <van-steps
     steps="{{ steps }}"
     active="{{ active }}"
-    active-icon="success"
+    active-icon="arrow-down"
     active-color="#38f"
     inactive-icon="arrow"
   />
 </demo-block>
 
 <demo-block title="全部货品">
-  <view wx:for="{{ order_items }}" wx:key="id">
+  <view wx:for="{{ order_items }}" wx:key="g_id">
     <van-card
-      num="{{ item.num }}"
+      num="{{ item.quantity }}"
       price="{{ item.price }}"
       desc="{{ item.description }}"
       title="{{ item.name }}"
-      thumb="{{ imageURL }}"
+      thumb="{{ imageBaseURL + item.g_id + '.png'}}"
     >
     </van-card>
   </view>
 </demo-block>
 
-<view wx:if="{{ actions[active] }}">
+<view>
   <demo-block title="操作"> 
     <van-row>
-      <van-col offset="18" span="6">
-        <van-button icon="balance-o">
-          <text>{{ steps[active].text }}</text>
+      <van-col offset="16" span="8">
+        <van-button wx:if="{{ active == 2 || active == 4 }}" icon="balance-o">
+          <text>{{ actions[active] }}</text>
+        </van-button>
+        <van-button wx:if="{{ active == 1 }}" icon="cross" >
+          <text>{{ actions[active] }}</text>
+        </van-button>
+        <van-button wx:if="{{ active == 3 }}" icon="success">
+          <text>{{ actions[active] }}</text>
         </van-button>
       </van-col>
     </van-row>

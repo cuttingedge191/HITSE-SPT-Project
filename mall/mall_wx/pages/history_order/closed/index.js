@@ -40,6 +40,7 @@ Page({
   onLoad: function () {
     var that = this;
     var c_id = wx.getStorageSync('c_id');
+    // 添加已完成订单
     wx.request({
       url: app.enabledUrl + '/mall/queryOrdersByCidAndStatus?c_id=' + c_id + "&status=closed",
       method: 'GET',
@@ -49,6 +50,19 @@ Page({
       success: function (res) {
         that.setData({
           orders: res.data
+        })
+      }
+    });
+    // 添加已退款订单
+    wx.request({
+      url: app.enabledUrl + '/mall/queryOrdersByCidAndStatus?c_id=' + c_id + "&status=returned",
+      method: 'GET',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        that.setData({
+          orders: orders.push(res.data)
         })
       }
     });
