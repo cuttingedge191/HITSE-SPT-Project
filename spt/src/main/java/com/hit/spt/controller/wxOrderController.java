@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.hit.spt.mapper.OrdersMapper;
 import com.hit.spt.pojo.Customer;
+
 import com.hit.spt.pojo.GoodsInfo;
 import com.hit.spt.pojo.OrderItem;
 import com.hit.spt.pojo.Orders;
@@ -17,10 +18,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
 import javax.print.attribute.IntegerSyntax;
+
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -157,10 +157,4 @@ public class wxOrderController {
         return "error";
     }
 
-//    @RequestMapping("deleteOrder")
-//    public String deleteOrder(Integer o_id) {
-//        orderService.deleteAllOrderItemByOid(o_id);
-//        ordersMapper.deleteOrdersByOid(o_id);
-//        return "redirect:ordersView";
-//    }
 }

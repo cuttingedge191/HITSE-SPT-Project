@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="ProjectModuleManager">
-    <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/HITSE-SPT-Project.iml" filepath="$PROJECT_DIR$/.idea/HITSE-SPT-Project.iml" />
-      <module fileurl="file://$PROJECT_DIR$/spt/spt.iml" filepath="$PROJECT_DIR$/spt/spt.iml" />
-    </modules>
-  </component>
-</project>
