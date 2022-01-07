@@ -4,53 +4,17 @@
   <form bindsubmit='changeInfo'>
     <van-cell-group>
       <view class="pic" >
-      <van-image
-        round
-        fit="cover"
-        width="100"
-        height="100"
-        src="{{src}}"
-        bind:click="changeImage"
-      />
-    </view>
-      <van-field
-        value="{{ username }}"
-        clearable
-        label="用户名"
-        placeholder="请输入用户名"
-      />
-      <van-field
-        value="{{ password }}"
-        type="password"
-        label="密码"
-        placeholder="请重新设置密码"
-      />
-      <van-field
-        value="{{ ackpassword }}"
-        type="password"
-        label="确认密码"
-        placeholder="请再次输入密码"
-      />
-      <van-field
-        value="{{ phone }}"
-        clearable
-        label="电话号码"
-        placeholder="请输入电话号"
-      />
-      <van-field
-        value="{{ addr }}"
-        clearable
-        label="收货地址"
-        placeholder="请输入收货地址"
-      />
+        <van-image round fit="cover" width="100" height="100" src="{{src}}" />
+      </view>
+      <van-field name="name" value="{{ name }}" clearable label="用户名" placeholder="请输入用户名" required />
+      <van-field name="phone" value="{{ account }}" clearable label="电话号码" placeholder="请输入电话号" disabled />
+      <van-field name="password" value="{{ password }}" type="password" label="密码" placeholder="请重新设置密码" />
+      <van-field name="password_confirm" value="{{ password_confirm }}" type="password" label="确认密码" placeholder="请再次输入密码" />
+      <van-field name="address" value="{{ addr }}" clearable label="收货地址" placeholder="请输入收货地址" required />
       <view class="choose_gender">
-        <van-radio-group
-          value="{{ gender }}"
-          bind:change="onChange"
-          direction="horizontal"
-        >
+        <van-radio-group name="gender" value="{{ gender }}" bind:change="onChange" direction="horizontal">
           <van-radio name="1">男</van-radio>
-          <van-radio name="2">女</van-radio>
+          <van-radio name="0">女</van-radio>
         </van-radio-group>
       </view>
       <van-row>
@@ -60,3 +24,5 @@
   </form>
 </view>
 </view>
+
+<van-toast id="van-toast" />

@@ -8,16 +8,47 @@ Page({
   data: {
     c_type: '',
     goodInfo: {},
+    num: 1,
   },
 
   onClickButton: function () {
     Toast.success('已加入购物车');
   },
 
+  addCart: function (e) {
+    var idList = wx.getStorageSync('ids');
+    var numList;
+    if (idList) {
+      numList = wx.getStorageSync('nums');
+    } else {
+      idList = [];
+      numList = [];
+    }
+    var index = idList.indexOf(this.data.goodInfo.g_id.toString());
+    if (index < 0) {
+      idList.push(this.data.goodInfo.g_id.toString());
+      numList.push(this.data.num); // 添加 num 个
+    } else {
+      numList[index] += this.data.num; // 再次添加 num 个
+    }
+    wx.setStorageSync('ids', idList);
+    wx.setStorageSync('nums', numList);
+    Toast.success('已加入购物车！');
+    wx.switchTab({
+      url: '/pages/goods_list/index'
+    });
+  },
+
   onClickCart: function () {
     wx.switchTab({
       url: '/pages/cart/index'
     });
+  },
+
+  ChangeGoodNum: function (e) {
+    this.setData({
+      num: e.detail,
+    })
   },
 
   /**

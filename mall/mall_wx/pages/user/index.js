@@ -14,7 +14,7 @@ Page({
     fits: [
       'cover'
     ],
-    src: "https://img.yzcdn.cn/vant/cat.jpeg",
+    src: "",
     unc_cnt: "",
     unp_cnt: "",
     unr_cnt: ""
@@ -24,6 +24,13 @@ Page({
     wx.navigateTo({
       url: '/pages/userInfo/index',
     })
+  },
+
+  logout: function () {
+    wx.clearStorageSync();
+    wx.redirectTo({
+      url: '/pages/index/index'
+    });
   },
 
   /**
@@ -43,12 +50,13 @@ Page({
         that.setData({
           name: res.data.name,
           account: res.data.phone,
-          type: cType == 'retail' ? '零售' : '批发'
+          type: cType == 'retail' ? '零售' : '批发',
+          src: res.data.gender == 'male' ?  app.maleImage : app.femaleImage
         })
       }
     });
     wx.request({
-      url: 'http://localhost:8080/mall/getOrderCntByCid?c_id=' + c_id,
+      url: app.enabledUrl + '/mall/getOrderCntByCid?c_id=' + c_id,
       method: 'GET',
       header: {
         'content-type': 'application/json'

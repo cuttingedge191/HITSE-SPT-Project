@@ -14,11 +14,49 @@ Page({
     c_type: '',
     show: false,
     imageURL: "https://img.yzcdn.cn/vant/ipad.jpeg",
-    goods: []
+    goods: [],
+    goods_all: [],
   },
 
-  addCart: function () {
-    Toast.success('已加入购物车');
+  addCart: function (e) {
+    var idList = wx.getStorageSync('ids');
+    var numList;
+    if (idList) {
+      numList = wx.getStorageSync('nums');
+    } else {
+      idList = [];
+      numList = [];
+    }
+    var index = idList.indexOf(e.currentTarget.id);
+    if (index < 0) {
+      idList.push(e.currentTarget.id);
+      numList.push(1); // 默认添加一个
+    } else {
+      numList[index] += 1; // 再次添加数量加一
+    }
+    wx.setStorageSync('ids', idList);
+    wx.setStorageSync('nums', numList);
+    Toast.success('已加入购物车！');
+  },
+
+  onSearch: function (e) {
+    var that = this;
+    var showGoods = [];
+    for (let index = 0; index < that.data.goods_all.length - 1; ++index) {
+      if (that.data.goods_all[index].name.includes(e.detail) || that.data.goods_all[index].description.includes(e.detail)) {
+        showGoods.push(that.data.goods_all[index]);
+      }
+    }
+    that.setData({
+      goods: showGoods,
+    })
+  },
+
+  cancelSearch: function () {
+    var that = this;
+    that.setData({
+      goods: that.data.goods_all,
+    })
   },
 
   viewDetail: function () {
@@ -41,6 +79,7 @@ Page({
       success: function (res) {
         that.setData({
           goods: res.data,
+          goods_all: res.data,
           c_type: cType
         })
       }

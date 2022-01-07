@@ -42,6 +42,25 @@ public class wxCustomerController {
         return "error";
     }
 
+    @RequestMapping("/mall/changeInfo")
+    public String changeInfo(@RequestBody JSONObject jsonObject) {
+        String password = jsonObject.getString("password");
+        String password_confirm = jsonObject.getString("password_confirm");
+        String phone = jsonObject.getString("phone");
+        Customer c = clientInfoService.queryCustomerByPhone(phone);
+        c.setName(jsonObject.getString("name"));
+        c.setGender(jsonObject.getString("gender").equals("1") ? "male" : "female");
+        c.setAddress(jsonObject.getString("address"));
+        if (password.equals("") && password_confirm.equals("")) {
+            clientInfoService.updateCustomer(c);
+            return "pswNotChange";
+        } else if (password.equals(password_confirm)) {
+            c.setPassword(password);
+            clientInfoService.updateCustomer(c);
+            return "resetPsw";
+        } else return "error";
+    }
+
     @RequestMapping("/mall/login")
     public List<String> login(@RequestBody JSONObject jsonObject) {
         String phone = jsonObject.getString("phone");
@@ -62,5 +81,15 @@ public class wxCustomerController {
     public Customer getCustomerInfoByCid(String c_id) {
         int ic_id = Integer.parseInt(c_id);
         return clientInfoService.queryCustomerById(ic_id);
+    }
+
+    @RequestMapping("/mall/getCustomerAddressByCid")
+    public List<String> getCustomerAddressByCid(String c_id) {
+        // List<String>并不代表有多个收货地址，只是String中文编码在微信小程序端有问题
+        int ic_id = Integer.parseInt(c_id);
+        Customer c = clientInfoService.queryCustomerById(ic_id);
+        List<String> res = new ArrayList<>();
+        res.add(c.getAddress());
+        return res;
     }
 }
