@@ -2,6 +2,7 @@ package com.hit.spt.controller;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.hit.spt.mapper.OrdersMapper;
 import com.hit.spt.pojo.Customer;
 import com.hit.spt.pojo.GoodsInfo;
 import com.hit.spt.pojo.OrderItem;
@@ -9,10 +10,13 @@ import com.hit.spt.pojo.Orders;
 import com.hit.spt.service.GoodsService;
 import com.hit.spt.service.OrderService;
 import com.hit.spt.service.impl.ClientInfoService;
+import com.hit.spt.service.OrdersViewService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 
 import javax.print.attribute.IntegerSyntax;
 import java.text.SimpleDateFormat;
@@ -22,6 +26,10 @@ import java.util.List;
 
 @RestController
 public class wxOrderController {
+
+    @Autowired
+    OrdersMapper ordersMapper;
+
     @Autowired
     OrderService orderService;
 
@@ -30,6 +38,9 @@ public class wxOrderController {
 
     @Autowired
     ClientInfoService clientInfoService;
+
+    @Autowired
+    OrdersViewService ordersViewService;
 
     @RequestMapping("/mall/getOrderCntByCid")
     public List<Integer> getOrderCntByCid(String c_id) {
@@ -61,8 +72,17 @@ public class wxOrderController {
             case "paid":
                 res = 3;
                 break;
-            case "closed":
+            case "received":
                 res = 4;
+                break;
+            case "refund":
+                res = 5;
+                break;
+            case "returned":
+                res = 6;
+                break;
+            case "closed":
+                res = 7;
                 break;
         }
         return res;
@@ -112,4 +132,35 @@ public class wxOrderController {
         orderService.saveOrder(order);
         return "ok";
     }
+
+    @RequestMapping("/mall/editOrder")
+    public String editOrderStatus(String o_id, String status) {
+        int io_id = Integer.parseInt(o_id);
+        System.out.println(status);
+        if (status.equals("failed")) {
+            ordersViewService.updateOrderStatus(io_id, status);
+            return "failed";
+        } else if (status.equals("paid")) {
+            ordersViewService.updateOrderStatus(io_id, status);
+            return "paid";
+        } else if (status.equals("received")) {
+            ordersViewService.updateOrderStatus(io_id, status);
+            return "received";
+        } else if (status.equals("delete")) {
+            orderService.deleteAllOrderItemByOid(io_id);
+            ordersMapper.deleteOrdersByOid(io_id);
+            return "delete";
+        } else if (status.equals("refund")) {
+            ordersViewService.updateOrderStatus(io_id, status);
+            return "refund";
+        }
+        return "error";
+    }
+
+//    @RequestMapping("deleteOrder")
+//    public String deleteOrder(Integer o_id) {
+//        orderService.deleteAllOrderItemByOid(o_id);
+//        ordersMapper.deleteOrdersByOid(o_id);
+//        return "redirect:ordersView";
+//    }
 }

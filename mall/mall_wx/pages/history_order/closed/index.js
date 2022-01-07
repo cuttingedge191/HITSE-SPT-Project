@@ -11,6 +11,7 @@ Page({
     active: 3,
     orders: []
   },
+
   changePage: function (event) {
     var temp = event.detail.name;
     if (temp == "0") {
@@ -49,11 +50,50 @@ Page({
       },
       success: function (res) {
         that.setData({
-          orders: res.data
+          orders: that.data.orders.concat(res.data)
         })
       }
     });
     // 添加已退款订单
+    wx.request({
+      url: app.enabledUrl + '/mall/queryOrdersByCidAndStatus?c_id=' + c_id + "&status=received",
+      method: 'GET',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        that.setData({
+          orders: that.data.orders.concat(res.data)
+        })
+      }
+    });
+    // 添加未通过审核订单
+    wx.request({
+      url: app.enabledUrl + '/mall/queryOrdersByCidAndStatus?c_id=' + c_id + "&status=failed",
+      method: 'GET',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        that.setData({
+          orders: that.data.orders.concat(res.data)
+        })
+      }
+    });
+    // 退货中的订单
+    wx.request({
+      url: app.enabledUrl + '/mall/queryOrdersByCidAndStatus?c_id=' + c_id + "&status=refund",
+      method: 'GET',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        that.setData({
+          orders: that.data.orders.concat(res.data)
+        })
+      }
+    });
+    // 添加未通过审核订单
     wx.request({
       url: app.enabledUrl + '/mall/queryOrdersByCidAndStatus?c_id=' + c_id + "&status=returned",
       method: 'GET',
@@ -62,7 +102,7 @@ Page({
       },
       success: function (res) {
         that.setData({
-          orders: orders.push(res.data)
+          orders: that.data.orders.concat(res.data)
         })
       }
     });

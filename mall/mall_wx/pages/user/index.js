@@ -1,5 +1,5 @@
 // pages/user/index.js
-
+import Dialog from '../../libs/dist/dialog/dialog';
 const app = getApp();
 
 Page({
@@ -27,10 +27,27 @@ Page({
   },
 
   logout: function () {
-    wx.clearStorageSync();
-    wx.redirectTo({
-      url: '/pages/index/index'
-    });
+    Dialog.confirm({
+      title: '退出确定',
+      message: '您确定要退出吗？这将不会保存您的账号密码以及购物车！',
+    })
+      .then(() => {
+        // on confirm
+        wx.clearStorageSync();
+        wx.redirectTo({
+          url: '/pages/index/index'
+        });
+      })
+      .catch(() => {
+        // on cancel
+        wx.switchTab({
+          url: '/pages/user/index'
+        });
+      });
+    // wx.clearStorageSync();
+    // wx.redirectTo({
+    //   url: '/pages/index/index'
+    // });
   },
 
   /**

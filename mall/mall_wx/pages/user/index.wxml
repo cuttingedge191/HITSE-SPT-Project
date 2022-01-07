@@ -27,13 +27,12 @@
     <van-grid-item icon="bill-o" text="其他订单" url="../history_order/closed/index" />
   </van-grid>
 
-
   <van-row>
     <van-col offset="10" span="6">
         <van-cell title="" value="" />
         <van-cell icon="close" title="退出" bind:click="logout" />
     </van-col>
   </van-row>
-
+  <van-dialog id="van-dialog" />
 
 </view>

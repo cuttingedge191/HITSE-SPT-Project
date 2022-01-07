@@ -27,16 +27,23 @@
   <demo-block title="操作"> 
     <van-row>
       <van-col offset="16" span="8">
-        <van-button wx:if="{{ active == 2 || active == 4 }}" icon="balance-o">
+        <van-button wx:if="{{ status >= 0 && status <= 4 }}" icon="{{ icons[active] }}" bind:click="editOrder">
           <text>{{ actions[active] }}</text>
         </van-button>
-        <van-button wx:if="{{ active == 1 }}" icon="cross" >
-          <text>{{ actions[active] }}</text>
+        <van-button wx:if="{{ status == 6 || status == 7 }}" icon="cross" bind:click="editOrder">
+          <text>删除</text>
         </van-button>
-        <van-button wx:if="{{ active == 3 }}" icon="success">
-          <text>{{ actions[active] }}</text>
-        </van-button>
+        <van-popup show="{{ show }}" closeable position="bottom" custom-style="height: 30%" bind:close="closePopup" >
+          <demo-block title="选择付款方式">
+            <van-cell-group inset>
+              <van-cell icon="wechat-pay" title="微信" value="去支付" is-link bind:click="editOrder" />
+              <van-cell icon="alipay" title="支付宝" value="去支付" is-link bind:click="editOrder" />
+            </van-cell-group>
+          </demo-block>
+        </van-popup>
       </van-col>
     </van-row>
   </demo-block>
 </view>
+
+<van-toast id="van-toast" />

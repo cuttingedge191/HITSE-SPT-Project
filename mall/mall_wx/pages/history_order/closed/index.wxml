@@ -21,6 +21,10 @@
           <view class="order_time_text">订单日期</view>
           <view class="order_time_value">{{ item.time_stamp }}</view>
         </view>
+        <view class="order_status_row">
+          <view class="order_status_text">订单状态</view>
+          <view class="order_status_value">{{ item.status }}</view>
+        </view>
       </view>
     </van-tab>
   </van-tabs>
