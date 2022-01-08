@@ -84,7 +84,7 @@ public class OrderServiceImpl implements OrderService {
         orderItem.setQuantity(quantity);
         orderItem.setCost(goodsInfo.getCost() * quantity);
         orderItem.setG_id(goodsInfo.getG_id());
-        if (trade )
+        if (trade)
             orderItem.setPrice(Math.round(100 * goodsInfo.getTrade_price() * quantity) / 100.0);
         else
             orderItem.setPrice(Math.round(100 * goodsInfo.getRetail_price() * quantity * (discount/10.0)) / 100.0);
@@ -100,7 +100,6 @@ public class OrderServiceImpl implements OrderService {
      */
     @Override
     public void insertOrderItem(OrderItem orderItem) {
-
         orderItemMapper.insertOrderItem(orderItem);
     }
 
@@ -304,6 +303,11 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<Orders> queryOrdersByCidAndStatus(Integer c_id, String type) {
         return ordersMapper.queryOrdersByCidAndStatus(c_id, type);
+    }
+
+    @Override
+    public String queryOrderStatusByOid(Integer o_id) {
+        return ordersMapper.queryOrdersByOid(o_id).getStatus();
     }
 
     public int totalQuantity(Long g_id) {

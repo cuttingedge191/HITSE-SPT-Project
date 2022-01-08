@@ -1,0 +1,49 @@
+<!--pages/order_detail/index.wxml-->
+
+<demo-block title="订单进度">
+  <van-steps
+    steps="{{ steps }}"
+    active="{{ active }}"
+    active-icon="arrow-down"
+    active-color="#38f"
+    inactive-icon="arrow"
+  />
+</demo-block>
+
+<demo-block title="全部货品">
+  <view wx:for="{{ order_items }}" wx:key="g_id">
+    <van-card
+      num="{{ item.quantity }}"
+      price="{{ item.price }}"
+      desc="{{ item.description }}"
+      title="{{ item.name }}"
+      thumb="{{ imageBaseURL + item.g_id + '.png'}}"
+    >
+    </van-card>
+  </view>
+</demo-block>
+
+<view>
+  <demo-block title="操作"> 
+    <van-row>
+      <van-col offset="16" span="8">
+        <van-button wx:if="{{ status >= 0 && status <= 4 }}" icon="{{ icons[active] }}" bind:click="editOrder">
+          <text>{{ actions[active] }}</text>
+        </van-button>
+        <van-button wx:if="{{ status == 6 || status == 7 }}" icon="cross" bind:click="editOrder">
+          <text>删除</text>
+        </van-button>
+        <van-popup show="{{ show }}" closeable position="bottom" custom-style="height: 30%" bind:close="closePopup" >
+          <demo-block title="选择付款方式">
+            <van-cell-group inset>
+              <van-cell icon="wechat-pay" title="微信" value="去支付" is-link bind:click="editOrder" />
+              <van-cell icon="alipay" title="支付宝" value="去支付" is-link bind:click="editOrder" />
+            </van-cell-group>
+          </demo-block>
+        </van-popup>
+      </van-col>
+    </van-row>
+  </demo-block>
+</view>
+
+<van-toast id="van-toast" />

@@ -169,7 +169,7 @@
                         </li>
 
                         <li>
-                            <a th:href="@{/account}">
+                            <a href="#">
                                     <span class="nav-icon">
                                         <i class="material-icons">&#xe1b8;
                                             <span ui-include="'@{/assets/images/i_8.svg'"></span>
@@ -262,20 +262,22 @@
                                         :(${order.status}=='checked' ? 'label warn'
                                         :(${order.status}=='closed' ? 'label dark'
                                         :(${order.status}=='returned' ? 'label gray'
-                                        :'label accent')))))"
+                                        :(${order.status}=='received' ? 'label blue'
+                                        :'label accent'))))))"
                                         th:text="${order.status}=='unchecked' ? '待审核'
                                         :(${order.status}=='paid' ? '已收款'
                                         :(${order.status}=='failed' ? '审核未通过'
                                         :(${order.status}=='checked' ? '已审核并出库'
                                         :(${order.status}=='closed' ? '已关闭'
                                         :(${order.status}=='returned' ? '已退款/货'
-                                        : '待退款/货')))))"></span></td>
+                                        :(${order.status}=='received' ? '已签收'
+                                        : '待退款/货'))))))"></span></td>
 
                                 <td th:text="${order.type} == 'trade' ? '批发':'零售'"></td>
                                 <td class="m-b btn-groups">
                                     <a class="btn btn-sm success" th:href="@{/orderReview(o_id=${order.o_id})}">详情</a>
                                     <a class="btn btn-sm info" th:href="@{/updateOrder(o_id=${order.o_id})}"
-                                       th:if="${order.status}!='paid' and ${order.status}!='closed' and ${order.status}!='checked' and ${order.status}!='returned'">编辑</a>
+                                       th:if="${order.status}!='paid' and ${order.status}!='closed' and ${order.status}!='checked' and ${order.status}!='returned' and ${order.status}!='received'">编辑</a>
 
                                 </td>
                             </tr>

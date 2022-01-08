@@ -1,0 +1,25 @@
+/* pages/cart/index.wxss */
+.edit-address {
+  color: #1989fa;
+}
+
+.van-swipe-cell__left {
+  display: inline-block;
+  width: 65px;
+  height: 44px;
+  font-size: 15px;
+  line-height: 44px;
+  color: #fff;
+  text-align: center;
+  background-color: #00CD66;
+}
+.van-swipe-cell__right {
+  display: inline-block;
+  width: 65px;
+  height: 44px;
+  font-size: 15px;
+  line-height: 44px;
+  color: #fff;
+  text-align: center;
+  background-color: #ee0a24;
+}

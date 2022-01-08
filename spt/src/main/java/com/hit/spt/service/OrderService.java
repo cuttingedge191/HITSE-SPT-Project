@@ -48,4 +48,6 @@ public interface OrderService {
     List<Integer> getOrderCntByCid(Integer c_id);
 
     List<Orders> queryOrdersByCidAndStatus(Integer c_id, String type);
+
+    String queryOrderStatusByOid(Integer o_id);
 }

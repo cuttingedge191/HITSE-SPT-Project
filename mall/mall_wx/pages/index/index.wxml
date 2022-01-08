@@ -1,4 +1,0 @@
-<!--pages/index/index.wxml-->
-<view class="index-container">
-  <image src="../../static/images/introductionico.png"></image>
-</view>
