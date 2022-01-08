@@ -35,9 +35,11 @@ Page({
     wx.setStorageSync('ids', idList);
     wx.setStorageSync('nums', numList);
     Toast.success('已加入购物车！');
-    wx.switchTab({
-      url: '/pages/goods_list/index'
-    });
+    setTimeout(function () {
+      wx.switchTab({
+        url: '/pages/goods_list/index'
+      });
+    }, 1000); // 延迟1秒再跳转
   },
 
   onClickCart: function () {

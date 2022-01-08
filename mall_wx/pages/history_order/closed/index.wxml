@@ -23,7 +23,7 @@
         </view>
         <view class="order_status_row">
           <view class="order_status_text">订单状态</view>
-          <view class="order_status_value">{{ item.status }}</view>
+          <view class="order_status_value">{{ item.status == 'closed' ? '订单关闭' : item.status == 'received' ? '已确认收货' : item.status == 'refund' ? '待退款/货' : item.status == 'returned' ? '已退款/货' : '审核未通过' }}</view>
         </view>
       </view>
     </van-tab>

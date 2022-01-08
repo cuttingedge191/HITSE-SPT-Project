@@ -102,8 +102,9 @@ public class OverViewServiceImpl implements OverViewService {
         Map<String, Double> data = new HashMap<>();
         // 保存指定的货品名称
         String selectedName = goodsInfoMapper.queryGoodsInfoByGid(Long.parseLong(g_id)).getName();
-        // 获取所有状态为已付款及已关闭的订单
+        // 获取所有状态为已付款、已签收和已关闭的订单
         List<Orders> orders = new ArrayList<>(ordersMapper.queryOrdersByStatus("paid"));
+        orders.addAll(ordersMapper.queryOrdersByStatus("received"));
         orders.addAll(ordersMapper.queryOrdersByStatus("closed"));
         // 按照时间戳从新至旧排序
         orders.sort((o1, o2) -> o2.getTime_stamp().compareTo(o1.getTime_stamp()));
@@ -179,6 +180,7 @@ public class OverViewServiceImpl implements OverViewService {
 
         // 获取每日销售金额和盈利金额
         List<Orders> orders = ordersMapper.queryOrdersByStatus("paid");
+        orders.addAll(ordersMapper.queryOrdersByStatus("received"));
         orders.addAll(ordersMapper.queryOrdersByStatus("closed"));
         orders.sort((o1, o2) -> o2.getTime_stamp().compareTo(o1.getTime_stamp()));
         try {
@@ -219,9 +221,12 @@ public class OverViewServiceImpl implements OverViewService {
             for (Inventory inventory : inventoryInfo)
                 sum += inventory.getCost() * inventory.getQuantity();
         }
+        sum = Math.round(100 * sum) / 100.0;
         inventory_data.set(6, sum);
-        for (int i = 5; i >= 0; --i)
-            inventory_data.set(i, inventory_data.get(i + 1) - cost_data.get(i + 1) + sale_data.get(i + 1) - profit_data.get(i + 1));
+        for (int i = 5; i >= 0; --i) {
+            double tmp = inventory_data.get(i + 1) - cost_data.get(i + 1) + sale_data.get(i + 1) - profit_data.get(i + 1);
+            inventory_data.set(i, Math.round(100 * tmp) / 100.0);
+        }
 
         // 将结果转换为JSON字符串
         String xAxis_data_str = JSON.toJSONString(date_list);

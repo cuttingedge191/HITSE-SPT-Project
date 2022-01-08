@@ -3,22 +3,17 @@ package com.hit.spt.controller;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.hit.spt.mapper.OrdersMapper;
-import com.hit.spt.pojo.Customer;
-
 import com.hit.spt.pojo.GoodsInfo;
 import com.hit.spt.pojo.OrderItem;
 import com.hit.spt.pojo.Orders;
 import com.hit.spt.service.GoodsService;
 import com.hit.spt.service.OrderService;
-import com.hit.spt.service.impl.ClientInfoService;
 import com.hit.spt.service.OrdersViewService;
-
+import com.hit.spt.service.impl.ClientInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.print.attribute.IntegerSyntax;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -136,23 +131,23 @@ public class wxOrderController {
     @RequestMapping("/mall/editOrder")
     public String editOrderStatus(String o_id, String status) {
         int io_id = Integer.parseInt(o_id);
-        System.out.println(status);
-        if (status.equals("failed")) {
-            ordersViewService.updateOrderStatus(io_id, status);
-            return "failed";
-        } else if (status.equals("paid")) {
-            ordersViewService.updateOrderStatus(io_id, status);
-            return "paid";
-        } else if (status.equals("received")) {
-            ordersViewService.updateOrderStatus(io_id, status);
-            return "received";
-        } else if (status.equals("delete")) {
-            orderService.deleteAllOrderItemByOid(io_id);
-            ordersMapper.deleteOrdersByOid(io_id);
-            return "delete";
-        } else if (status.equals("refund")) {
-            ordersViewService.updateOrderStatus(io_id, status);
-            return "refund";
+        switch (status) {
+            case "failed":
+                ordersViewService.updateOrderStatus(io_id, status);
+                return "failed";
+            case "paid":
+                ordersViewService.updateOrderStatus(io_id, status);
+                return "paid";
+            case "received":
+                ordersViewService.updateOrderStatus(io_id, status);
+                return "received";
+            case "delete":
+                orderService.deleteAllOrderItemByOid(io_id);
+                ordersMapper.deleteOrdersByOid(io_id);
+                return "delete";
+            case "refund":
+                ordersViewService.updateOrderStatus(io_id, status);
+                return "refund";
         }
         return "error";
     }
